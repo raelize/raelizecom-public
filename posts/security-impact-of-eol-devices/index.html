@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.67.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Threat After Death: Security Impact of EoL Devices&nbsp;&ndash;&nbsp;</title><link rel="stylesheet" href="/css/core.min.45e92f7dc74d6415db1a7ff392a35ccbe19908c8b5070204bb47886ce741bbad83ac491a69e49f38c9f983fcc0afab6c.css" integrity="sha384-RekvfcdNZBXbGn/zkqNcy&#43;GZCMi1BwIEu0eIbOdBu62DrEkaaeSfOMn5g/zAr6ts"><body>
+    <div class="base-body"><section id="header" class="site header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name"></span></a></span>
+        <span class="header right-side"></span></div><div class="site slogan"><span class="title">Research by Raelize!</span></div></section><div id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Threat After Death: Security Impact of EoL Devices</h1><p class="article date">Wednesday, March 18, 2020</p></section><article class="article markdown-body"><p>We identified several vulnerabilities in the <a href="https://eu.dlink.com/uk/en/products/dsl-2640b-adsl-2-wireless-g-router-with-4-port-10-100-switch"target="_blank">D-Link DSL-2640B</a> DSL gateway which will likely not be fixed as the device is <a href="https://en.wikipedia.org/wiki/End-of-life_%28product%29"target="_blank">EoL</a> (more details will come soon). A vulnerability identified in an EoL device typically has a guaranteed, infinite lifetime. Basically a <strong>NO-day</strong>. Although <a href="https://www.shodan.io/"target="_blank">Shodan</a> only reports only two active devices, we like to stress that the impact of these vulnerabilities should not be neglected.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/DNSChanger"target="_blank">DNSChanger</a> malware has been updated in 2018 to target the DSL-2640B. The attacker's efforts would be hard to explain with just Shodan's figures. An analysis performed by <a href="https://badpackets.net"target="_blank">Bad Packets</a> using data from a different source, identified a much larger device population, excessing 14,000 active devices. The stark difference between device population numbers questions our ability to correctly assess relevance, scale and impact of EoL devices.</p>
+<p>The device population size may be surprising for a device that is EoL for more than 7 years. Taking control of such a large device population allows for attacks at scale, such as contributing significant bandwidth in a DDoS attacks. The data directly challenges the perceived relevance of EoL devices in general.</p>
+<p><strong>Important:</strong> The information described in this blog post was also discussed at <a href="https://nullcon.net/website/"target="_blank">NULLCON 2020</a> for which the slides can be downloaded <a href="/upload/Nullcon_2020_PwdLess_Exploitation_Tales_from_RouterLand_v1.0.pdf">here</a>.</p>
+<h1 id="end-of-life">End-of-Life?</h1>
+<p><strong>End-of-Life</strong> refers to the life-cycle stage of a device, where no support is provided anymore. This typically includes security updates for newly identified vulnerabilities.</p>
+<p>One may expect that the device population rapidly declines once a device becomes EoL. We are not aware of any research that explores an EoL device population evolutions and time it takes before the device disappear from the Internet. It is safe to assume that the lifetime of some devices (e.g. routers, modems, TVs, etc.) may be significantly longer than expected.</p>
+<p>Devices that are EoL are rarely considered interesting for security research as:</p>
+<ul>
+<li>the manufacturer is not interested and vulnerabilities will not be fixed</li>
+<li>exploitation is not interesting as it is simply too easy</li>
+<li>the device is out of scope of any bug bounty program</li>
+<li>the device population will likely go to zero (at some point)</li>
+</ul>
+<p>However, any vulnerability will have an almost guaranteed, infinite life. Any attacker will be able to exploit such a vulnerability, until the last device is disconnected from the Internet.</p>
+<h1 id="d-link-dsl-2640b">D-Link DSL-2640B</h1>
+<p>The D-Link DSL-2640B is a DSL gateway first released in 2007 and sold in several countries. The US version has been in <a href="https://legacy.us.dlink.com/pages/product.aspx?id=e8d4df5edfcb4d3ab3007d8ff835fc40"target="_blank">EoL</a> since 2013. No information is known to us about the devices sold in other countries.</p>
+<p>This device may easily look like an uninteresting target. Until recently, only one CVE was a available for a <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-1308"target="_blank">XSS vulnerability</a>, which was reported in 2012. It's not surprising that the research community is uninterested as Shodan only reports 2 available devices.</p>
+<p style="text-align:center;"><img src="../img/EOL/Shodan_search.png" width="600px"></p>
+<p>This indicates that this device has disappeared from the Internet and that any identified vulnerability will be practically irrelevant.</p>
+<p>We have reasons to believe that real attackers do not share the same view&hellip;</p>
+<h1 id="learning-from-malware">Learning from malware</h1>
+<p>A DNSChanger malware campaign, which took place between December 2018 and April 2019, hijacked network traffic of users by reconfiguring remotely the DNS servers of several vulnerable consumer routers. <a href="https://badpackets.net"target="_blank">Bad Packets</a> analyzed this DNS hijacking campaign and identified 7 distinct attack waves targeting different routers, sharing their results in a nice <a href="https://badpackets.net/ongoing-dns-hijacking-campaign-targeting-consumer-routers/"target="_blank">blog post</a>.</p>
+<p>The DNSChanger malware was already active in <a href="https://www.proofpoint.com/us/threat-insight/post/home-routers-under-attack-malvertising-windows-android-devices"target="_blank">2016</a>. At that time it was not yet targeting the D-Link DSL-2640B. In 2017, an <a href="https://www.exploit-db.com/exploits/42197"target="_blank">exploit</a> got posted to exploit-db.com that allows unauthenticated modification of the device's DNS server settings. This vulnerability is used by the DNSChanger malware during its 2018-2019 campaign.</p>
+<p>In a nutshell, the DNSChanger malware was <strong>intentionally updated</strong> to support a <strong>target</strong>, which, according to Shodan, had <strong>practically disappeared</strong> from the Internet&hellip;</p>
+<p><em><strong>WHY!?</strong></em></p>
+<h1 id="lies-damned-lies-and-statistics">Lies, damned lies, and statistics</h1>
+<p>An important piece of information in the <a href="https://badpackets.net/ongoing-dns-hijacking-campaign-targeting-consumer-routers/"target="_blank">blog post</a> by <a href="https://badpackets.net"target="_blank">Bad Packets</a> is their estimation of affected devices. Instead of using Shodan for their estimate, they used data provided by <a href="https://www.binaryedge.io/"target="_blank">BinaryEdge</a>. Long story short, they concluded that the device population of the DSL-2640B is a whopping amount of 14,327!</p>
+<p>BinaryEdge's count exceeds Shodan's results by <strong>4 orders of magnitude</strong> (!).</p>
+<p style="text-align:center;"><img src="../img/EOL/BinaryEgde_search.png" width="600px"></p>
+<p>One may wonder whether such results are accurate and which of the two is the most accurate. This is a valid question and it would definitely be interesting to understand the reason for this significant difference. We would love to hear if anybody knows more about his.</p>
+<p>Just to be sure, we performed a few sanity checks on the BinaryEdge data and, based on our limited capabilities (i.e. we cannot simply exploit these devices to check), we concluded that the count may be realistic.</p>
+<h1 id="impact">Impact</h1>
+<p>if we assume that the BinaryEdge data is realistic, we need to reconsider the relevance of vulnerabilities affecting the D-Link DSL-2640B.</p>
+<p><strong>Firstly</strong>, it's interesting that even after 7 (!) years of EoL 10,000 device are still reachable over the Internet. This directly challenges the assumption that EoL devices's population declines to extinction in a considerable amount of time. In other words, if the numbers are correct, it's clear that a rapid disappearance of EoL devices cannot be safely assumed and it fully justifies the malware's choice to include the device in its list of targets.</p>
+<p><strong>Secondly</strong>, the relevance of exploits affecting EoL devices, with a guaranteed infinite lifetime, increases drastically when such devices do not actually disappear. This directly challenges the assumption that exploits affecting EoL devices are useless as the population count rapidly approaches zero. Exploits are definitely not useless when they affect 10,000+ Internet connected devices.</p>
+<p><strong>Lastly</strong>, attackers are always interested in exploiting large populations of Internet connected devices, also when old, slow and EoL. The DSL-2640B has an upstream bandwidth of 3.5 Mbps and therefore the aggregate bandwidth of the 10,000 devices is 35 Gbps. This would be a significant contribution in DDoS attacks, especially if further amplified via various techniques like <a href="https://blog.cloudflare.com/deep-inside-a-dns-amplification-ddos-attack/"target="_blank">DNS Amplification</a>, <a href="https://www.cloudflare.com/learning/ddos/ntp-amplification-ddos-attack/"target="_blank">NTP Amplification</a> or <a href="https://blog.radware.com/security/2019/11/threat-alert-tcp-reflection-attacks/"target="_blank">TCP Reflection</a>.</p>
+<p>This made us wonder&hellip; what is the <strong>actual value</strong> of an exploit for an EoL device?</p>
+<p>We have not been able to find solid data on the value of exploits for EoL devices. In March of this year a new <a href="https://ktln2.org/2020/03/05/cve-2020-9544/"target="_blank">vulnerability</a> for the DSL-2640B was released affecting a specific firmware version. This vulnerability enables an attacker to perform  an unauthenticated firmware update. <a href="https://vuldb.com/?id.150966"target="_blank">VulDB</a> provides an estimated value between 5,000 USD and and 25,000 USD. We wonder if this estimate takes the device population size into account. Nonetheless, it should be evident that a larger population would make the exploit more valuable.</p>
+<h1 id="final-thoughts">Final thoughts</h1>
+<p>More and more devices will become EoL each year. We also know that users will keep on using them, regardless of security recommendations. This situation is not easy to address, for instance, kill switches implemented by the manufacturers are likely undesired or even illegal.  A possible measure may inform users of the EoL status of the device and its risk, potentially fueling device replacement/disconnection.</p>
+<p>We believe that it is also fundamental to provide adequate methods for mapping the device population of EoL devices. Services like Shodan and BinaryEdge are definitely useful, but we have shown how they can provide greatly conflicting data, potentially leading to incorrect conclusions.</p>
+<p>Someone may also suggest that ISPs (or Manufacturers) should be responsible for tracking, and reporting, Internet connected devices. Protocols like <a href="https://en.wikipedia.org/wiki/TR-069"target="_blank">TR-069</a> are actually used by ISPs already and may facilitate this purpose as well.</p>
+<p>Regardless of the solution, we believe that it takes more than just technical measures to effectively address the threat posed by EoL devices to the Internet ecosystem.</p>
+<p>We would love to hear your thoughts: <a href="https://twitter.com/raelizecom"target="_blank">@raelizecom</a>.</p>
+</article></div></div><section id="footer" class="footer"><div class="footer-wrap">
+    <p class="copyright">©2020 Raelize</p>
+    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p>
+</div></section>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-135892271-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</div>
+</body>
+
+</html>
