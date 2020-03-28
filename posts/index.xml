@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Raelize</copyright>
-    <lastBuildDate>Thu, 26 Mar 2020 19:30:21 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2020 11:00:00 +0100</lastBuildDate>
     
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Security Advisories: D-Link DSL-2640B</title>
       <link>/posts/d-link-dsl-2640b-security-advisories/</link>
-      <pubDate>Thu, 26 Mar 2020 19:30:21 +0100</pubDate>
+      <pubDate>Sat, 28 Mar 2020 11:00:00 +0100</pubDate>
       
       <guid>/posts/d-link-dsl-2640b-security-advisories/</guid>
       <description>In a previous post we shared our considerations on the impact of vulnerabilities in Internet connected devices that are EoL.</description>
