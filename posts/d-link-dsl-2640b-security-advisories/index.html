@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.67.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>Security Advisories: D-Link DSL-2640B&nbsp;&ndash;&nbsp;</title><link rel="stylesheet" href="/css/core.min.659a148d71e217fe0a6d4a4a047bc382d774d595f7a5df7cc639a963c5173e941ec1bb539f195398c0ece20d85639d47.css" integrity="sha384-ZZoUjXHiF/4KbUpKBHvDgtd01ZX3pd98xjmpY8UXPpQewbtTnxlTmMDs4g2FY51H"><body>
-    <div class="base-body"><section id="header" class="site header">
+<meta name="supported-color-schemes" content="light dark"><title>Security Advisories: D-Link DSL-2640B&nbsp;&ndash;&nbsp;</title><link rel="stylesheet" href="/css/core.min.e5c403f4c2f7c25ee5197f02ac939c048c14cb00cac23614e60c4f8fe172f2c524736790ceb10515986f47d8bd5e8fb6.css" integrity="sha384-5cQD9ML3wl7lGX8CrJOcBIwUywDKwjYU5gxPj&#43;Fy8sUkc2eQzrEFFZhvR9i9Xo&#43;2"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Security Advisories: D-Link DSL-2640B" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name"></span></a></span>
-        <span class="header right-side"></span></div><div class="site slogan"><span class="title">Research by raelize!</span></div></section><div id="content"><div class="article-container"><section class="article header">
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">Home</a><a class="nav item" href="/about">About</a><a class="nav item" href="/training">Training</a><a class="nav item" href="/contact">Contact</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
     <h1 class="article title">Security Advisories: D-Link DSL-2640B</h1><p class="article date">Saturday, March 28, 2020</p></section><article class="article markdown-body"><p>In a <a href="https://raelize.com/posts/security-impact-of-eol-devices/"target="_blank">previous post</a> we shared our considerations on the impact of vulnerabilities in Internet connected devices that are <a href="https://en.wikipedia.org/wiki/End-of-life_%28product%29"target="_blank">EoL</a>. We used the vulnerabilities that we identified in the <a href="https://eu.dlink.com/uk/en/products/dsl-2640b-adsl-2-wireless-g-router-with-4-port-10-100-switch"target="_blank">D-Link DSL-2640B DSL gateway</a> as a use case to support our considerations. In this post we describe the technical details of these vulnerabilities.</p>
 <p>Before we dive into the technical details, it's important to note that:</p>
 <ul>
@@ -105,7 +105,8 @@ Attack URL: http://&lt;device_IP_address&gt;/images/redpass.cgi?sysPassword=newp
 <p>The <code>do_cgi()</code> function can, in principle, only be accessed after authentication. However, unauthenticated exploitation of this vulnerability is possible by combining it with <a href="#cve-2020-9277----d-link-dsl-2640b---cgi-authentication-bypass">CVE-2020-9277</a>. In the picture below we exploit this vulnerability without authentication, execute a reverse shell payload.</p>
 <p style="text-align:center;"><img src="../img/2020-02-D-Link-CVEs/exploited_b0f.png" width="600px"></p>
 <p>While the vulnerability is potentially exploitable via browser pivoting, exploitation may not be trivial due to the URL mangling introduced by the browser when applying URL encoding on the outgoing requests.</p>
-</article></div><section class="article navigation"><p><a class="link" href="/posts/security-impact-of-eol-devices/"><span class="li">&rarr;</span>Threat After Death: Security Impact of EoL Devices</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
+</article></div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/posts/security-impact-of-eol-devices/"><span class="iconfont icon-article"></span>Threat After Death: Security Impact of EoL Devices</a></p></section></div></section><section id="footer"><div class="footer-wrap">
     <p class="copyright">©2020 Raelize</p>
     <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
         target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
@@ -121,7 +122,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-</div>
 </body>
 
 </html>

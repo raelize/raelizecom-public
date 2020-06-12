@@ -22,5 +22,56 @@
       
     </item>
     
+    <item>
+      <title>About Raelize</title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Raelize is an independent device security research group consisting of Cristofaro Mune and Niek Timmers.</description>
+      
+    </item>
+    
+    <item>
+      <title>BootPwn &lt;br&gt; &lt;i&gt;&#34;Pwning Secure Boot by Experience&#34;&lt;/i&gt;</title>
+      <link>/bootpwn/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/bootpwn/</guid>
+      <description>Format Available Price (per student)     Online ✅ 2000 EUR   In-Person (2 days) ✅ Contact us!</description>
+      
+    </item>
+    
+    <item>
+      <title>BootPwn &lt;br&gt; &lt;i&gt;&#34;Pwning TEEs by Experience&#34;&lt;/i&gt;</title>
+      <link>/teepwn/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/teepwn/</guid>
+      <description>Format Available Price     Online ✅ 2000 EUR   In-Person (2 days) ✅ Contact us!</description>
+      
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/contact/</guid>
+      <description>Email For questions and/or remarks please use email: info@raelize.com.
+Twitter You can follow our future developments on Twitter: @raelizecom.</description>
+      
+    </item>
+    
+    <item>
+      <title>Training</title>
+      <link>/training/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/training/</guid>
+      <description>We offer multiple exciting trainings on interesting different topics related to device security (e.</description>
+      
+    </item>
+    
   </channel>
 </rss>

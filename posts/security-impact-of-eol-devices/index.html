@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.67.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title>Threat After Death: Security Impact of EoL Devices&nbsp;&ndash;&nbsp;</title><link rel="stylesheet" href="/css/core.min.659a148d71e217fe0a6d4a4a047bc382d774d595f7a5df7cc639a963c5173e941ec1bb539f195398c0ece20d85639d47.css" integrity="sha384-ZZoUjXHiF/4KbUpKBHvDgtd01ZX3pd98xjmpY8UXPpQewbtTnxlTmMDs4g2FY51H"><body>
-    <div class="base-body"><section id="header" class="site header">
+<meta name="supported-color-schemes" content="light dark"><title>Threat After Death: Security Impact of EoL Devices&nbsp;&ndash;&nbsp;</title><link rel="stylesheet" href="/css/core.min.e5c403f4c2f7c25ee5197f02ac939c048c14cb00cac23614e60c4f8fe172f2c524736790ceb10515986f47d8bd5e8fb6.css" integrity="sha384-5cQD9ML3wl7lGX8CrJOcBIwUywDKwjYU5gxPj&#43;Fy8sUkc2eQzrEFFZhvR9i9Xo&#43;2"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Threat After Death: Security Impact of EoL Devices" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name"></span></a></span>
-        <span class="header right-side"></span></div><div class="site slogan"><span class="title">Research by raelize!</span></div></section><div id="content"><div class="article-container"><section class="article header">
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">Home</a><a class="nav item" href="/about">About</a><a class="nav item" href="/training">Training</a><a class="nav item" href="/contact">Contact</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
     <h1 class="article title">Threat After Death: Security Impact of EoL Devices</h1><p class="article date">Wednesday, March 18, 2020</p></section><article class="article markdown-body"><p>We identified several vulnerabilities in the <a href="https://eu.dlink.com/uk/en/products/dsl-2640b-adsl-2-wireless-g-router-with-4-port-10-100-switch"target="_blank">D-Link DSL-2640B</a> DSL gateway which will likely not be fixed as the device is <a href="https://en.wikipedia.org/wiki/End-of-life_%28product%29"target="_blank">EoL</a> (more details will come soon). A vulnerability identified in an EoL device typically has a guaranteed, infinite lifetime. Basically a <strong>NO-day</strong>. Although <a href="https://www.shodan.io/"target="_blank">Shodan</a> only reports only two active devices, we like to stress that the impact of these vulnerabilities should not be neglected.</p>
 <p>The <a href="https://en.wikipedia.org/wiki/DNSChanger"target="_blank">DNSChanger</a> malware has been updated in 2018 to target the DSL-2640B. The attacker's efforts would be hard to explain with just Shodan's figures. An analysis performed by <a href="https://badpackets.net"target="_blank">Bad Packets</a> using data from a different source, identified a much larger device population, excessing 14,000 active devices. The stark difference between device population numbers questions our ability to correctly assess relevance, scale and impact of EoL devices.</p>
 <p>The device population size may be surprising for a device that is EoL for more than 7 years. Taking control of such a large device population allows for attacks at scale, such as contributing significant bandwidth in a DDoS attacks. The data directly challenges the perceived relevance of EoL devices in general.</p>
@@ -54,7 +54,8 @@ More tailored queries may yield different numbers on each of the search engines.
 <p>Someone may also suggest that ISPs (or Manufacturers) should be responsible for tracking, and reporting, Internet connected devices. Protocols like <a href="https://en.wikipedia.org/wiki/TR-069"target="_blank">TR-069</a> are actually used by ISPs already and may facilitate this purpose as well.</p>
 <p>Regardless of the solution, we believe that it takes more than just technical measures to effectively address the threat posed by EoL devices to the Internet ecosystem.</p>
 <p>We would love to hear your thoughts: <a href="https://twitter.com/raelizecom"target="_blank">@raelizecom</a>.</p>
-</article></div><section class="article navigation"><p><a class="link" href="/posts/d-link-dsl-2640b-security-advisories/"><span class="li">&larr;</span>Security Advisories: D-Link DSL-2640B</a></p></section></div><section id="footer" class="footer"><div class="footer-wrap">
+</article></div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/posts/d-link-dsl-2640b-security-advisories/"><span class="iconfont icon-article"></span>Security Advisories: D-Link DSL-2640B</a></p></section></div></section><section id="footer"><div class="footer-wrap">
     <p class="copyright">©2020 Raelize</p>
     <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
         target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
@@ -70,7 +71,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-</div>
 </body>
 
 </html>
