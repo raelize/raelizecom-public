@@ -23,22 +23,32 @@
     </item>
     
     <item>
+      <title></title>
+      <link>/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/bootpwn/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/bootpwn/</guid>
+      <description>&amp;ldquo;Breaking Secure Boot by Experience&amp;rdquo;    Format Available Price (per student)     Online ✅ 2000 EUR   In-Person (2 days) ✅ Contact us!</description>
+      
+    </item>
+    
+    <item>
       <title>About Raelize</title>
       <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
       <description>Raelize is an independent device security research group consisting of Cristofaro Mune and Niek Timmers.</description>
-      
-    </item>
-    
-    <item>
-      <title>BootPwn &lt;br&gt; &lt;i&gt;&#34;Pwning Secure Boot by Experience&#34;&lt;/i&gt;</title>
-      <link>/bootpwn/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/bootpwn/</guid>
-      <description>Format Available Price (per student)     Online ✅ 2000 EUR   In-Person (2 days) ✅ Contact us!</description>
       
     </item>
     
