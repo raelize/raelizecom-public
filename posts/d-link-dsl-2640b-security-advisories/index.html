@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.73.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.74.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <meta name="supported-color-schemes" content="light dark"><title>Security Advisories: D-Link DSL-2640B&nbsp;&ndash;&nbsp;</title><link rel="stylesheet" href="/css/core.min.e1ef28899d0e6a18e7631ba42c43ebd1c1d75d1e47ef686f09e1eb354e5da2c434fea9a5af8662af51fc1bd0f52553ae.css" integrity="sha384-4e8oiZ0OahjnYxukLEPr0cHXXR5H72hvCeHrNU5dosQ0/qmlr4Zir1H8G9D1JVOu"><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Security Advisories: D-Link DSL-2640B" /><body><section id="header">
     <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name"></span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">Home</a><a class="nav item" href="/about">About</a><a class="nav item" href="/blog">Blog</a><a class="nav item" href="/training">Training</a><a class="nav item" href="/contact">Contact</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">Home</a><a class="nav item" href="/about">About</a><a class="nav item" href="/services">Services</a><a class="nav item" href="/training">Training</a><a class="nav item" href="/blog">Blog</a><a class="nav item" href="/contact">Contact</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
     <h1 class="article title">Security Advisories: D-Link DSL-2640B</h1><p class="article date">Saturday, March 28, 2020</p></section><article class="article markdown-body"><p>In a <a href="https://raelize.com/posts/security-impact-of-eol-devices/"target="_blank">previous post</a> we shared our considerations on the impact of vulnerabilities in Internet connected devices that are <a href="https://en.wikipedia.org/wiki/End-of-life_%28product%29"target="_blank">EoL</a>. We used the vulnerabilities that we identified in the <a href="https://eu.dlink.com/uk/en/products/dsl-2640b-adsl-2-wireless-g-router-with-4-port-10-100-switch"target="_blank">D-Link DSL-2640B DSL gateway</a> as a use case to support our considerations. In this post we describe the technical details of these vulnerabilities.</p>
 <p>Before we dive into the technical details, it's important to note that:</p>
 <ul>
@@ -23,15 +23,15 @@
 <li><a href="#cve-2020-9277----d-link-dsl-2640b---cgi-authentication-bypass">CVE-2020-9277 &ndash; D-Link DSL-2640B - CGI Authentication bypass</a></li>
 <li><a href="#cve-2020-9276----d-link-dsl-2640b---do_cgi-buffer-overflow">CVE-2020-9276 &ndash; D-Link DSL-2640B - do_cgi buffer overflow</a></li>
 </ul>
-<p>We hope we provided sufficient technical details of the identified vulnerabilities. Additional information (e.g. video demonstrations) may be provided in the future. Feel free to get in touch (<a href="https://twitter.com/raelizecom"target="_blank">@raelizecom</a>) for any questions and/or remarks.</p>
+<p>We hope we provided sufficient technical details of the identified vulnerabilities. Additional information (e.g. video demonstrations) may be provided in the future.</p>
 <p>We hope you enjoy the technical remainder of this post! :)</p>
 <h5 id="cve-2020-9275----d-link-dsl-2640b---remote-credentials-exfiltration">CVE-2020-9275 &ndash; D-Link DSL-2640B - Remote credentials exfiltration</h5>
 <p>This <a href="/advisories/CVE-2020-9275_D-Link-DSL-2640B_Remote-Credentials-Exfiltration_v1.0.txt">vulnerability</a> allows retrieval of the administrative password by sending a specific UDP packet to port 65002 of the device.</p>
 <p>An attacker connected to the WiFi or the local LAN, or who is able to reach the internal device interface in any other way, can retrieve the device password with a single <code>UDP</code> request.</p>
 <p>Most functionality of the device, including the administration panel and the web server, are implemented in a single process named <code>cfm</code> executed at startup. The <code>cfm</code> process listens on <code>UDP</code> port <code>65002</code>. Likely to support device configuration from a dedicated application. The screenshot below, shows the function implementing the communication protocol. The function name, <code>pcApplication</code>, is taken directly from the binary's symbols.</p>
-<p style="text-align:center;"><img src="../img/2020-02-D-Link-CVEs/UDP_65002_pcApplication_cfm.png" width="600px"></p>
+<p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/UDP_65002_pcApplication_cfm.png" width="600px"></p>
 <p>Communication is done using D-Link's proprietrary protocol for which no information is publicly available. Reversing the <code>cfm</code> binary yields the following structure for the protocol packet.</p>
-<p style="text-align:center;"><img src="../img/2020-02-D-Link-CVEs/cfm_protocol.png" width="600px"></p>
+<p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/cfm_protocol.png" width="600px"></p>
 <p>Several commands are supported and accessible by specifying the command code in the 2 bytes <code>cmd</code> field. Communication is in plaintext and without authentication. The code only checks, for some commands, that the provided <code>MAC</code> address matches the device <code>MAC</code> address.</p>
 <p>The command <code>\x00\x01</code> allows retrieving system information from the device, including the device administrative password which is returned in plaintext. For example:</p>
 <pre><code>python -c 'print(&quot;\x00\x01&quot;* 5)' | nc -u 192.168.1.1 65002
@@ -52,25 +52,25 @@ sys	0m21.439s
 </code></pre>
 <p>Due of the (very) forgiving implementation, any <code>UDP</code> packet with <code>\x00\x01</code> at the right location would return the administrative password. Even our initial dumb approach yielded the administrative password within minutes.</p>
 <p>Our initial test identified the vulnerability is exploitable from the LAN. Nonetheless, the service seems to be listening on all the interfaces (see below).</p>
-<p style="text-align:center;"><img src="../img/2020-02-D-Link-CVEs/cfm_socket.png" width="600px"></p>
+<p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/cfm_socket.png" width="600px"></p>
 <p>Unfortunately, we were unable to verify the vulnerability on the WAN side as we lacked a suitable DSL connection. Using the information we have, we cannot exclude that the vulnerability is also exploitable on WAN side. Of course, we would be happy to hear more insight on this.</p>
 <h5 id="cve-2020-9279----d-link-dsl-2640b---hard-coded-privileged-account">CVE-2020-9279 &ndash; D-Link DSL-2640B - Hard-coded privileged account</h5>
 <p>For this <a href="/advisories/CVE-2020-9279_D-Link-DSL-2640B_Hard-coded-privileged-account_v1.0.txt">vulnerability</a> we identified is a hard-coded user account. An attacker may use these credentials to login into the device in order to perform administrative tasks.</p>
 <p>The vulnerability was identified by analyzing the authentication process accessible via the web interface. While the <code>cfm</code> process provides the communication &quot;plumbing&quot;, the actual authentication is delegated to an external library <code>libpsi.so</code>. The library uses an object-oriented approach for handling the authentication credentials and the incoming authentication requests.</p>
 <p>An analysis of the <code>cfm</code> process revealed a code path supporting authentication for the user named <code>user</code>.</p>
-<p style="text-align:center;"><img src="../img/2020-02-D-Link-CVEs/user_user.png" width="600px"></p>
+<p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/user_user.png" width="600px"></p>
 <p>The <code>default</code> passwords used for authentication are hard-coded in the <code>libpsi.so</code> binary.</p>
-<p style="text-align:center;"><img src="../img/2020-02-D-Link-CVEs/user_account.png" width="600px"></p>
+<p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/user_account.png" width="600px"></p>
 <p>Reverse engineering this library told us that the following <code>default</code> credentials can be used for logging into the web interface of the device.</p>
 <pre><code>Username: user
 Password: 00202b004720
 </code></pre>
 <p>Although the password of the user <code>user</code> can be changed, no web interface control is provided for modifying it. Therefore, this password will be set to its default state for the entire life time of the device. It is important to note that the account is valid for authenticating to any service relying on <code>lipsi.so</code>, such as <code>ftp</code>, <code>telnet</code> and <code>ssh</code>. As far as we know, the user <code>user</code> has similar capabilities as the <code>admin</code> account.</p>
 <p>Interestingly, even though <code>libpsi.so</code> is only released in binary format, the credentials are clearly visible in the GPL source code of the device (see picture below).</p>
-<p style="text-align:center;"><img src="../img/2020-02-D-Link-CVEs/user_pwd_src.png" width="600px"></p>
+<p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/user_pwd_src.png" width="600px"></p>
 <p>Also, interestingly, these credentials are referred to as <code>ASUS_USER_ACCOUNT</code>. One may wonder how an ASUS related account ends up in a D-Link device.</p>
 <p>The source code itself does not reveal any intention of obfuscation. The credentials seem to be valid for other ASUS devices as well. ASUS refers to them as the <code>ASUS Super account</code> in some old pages.</p>
-<p style="text-align:center;"><img src="../img/2020-02-D-Link-CVEs/asus_account.png" width="600px"></p>
+<p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/asus_account.png" width="600px"></p>
 <p>One could say that it's basically an ASUS <code>feature</code> ( :-) ) which ended up for some unknown reason in a D-Link device. The supply chain of IoT devices are definitely not devoid any mysteries. We believe it may be the result of some &quot;supply chain magic&quot; rather than malicious intent.</p>
 <p>The last remark we would like to make is that this vulnerability may be exploited through browser pivoting. A malicious website, visited with any device connected to the WiFi/LAN, may perform crafted requests towards the gateway.</p>
 <h5 id="cve-2020-9278----d-link-dsl-2640b---unauthenticated-configuration-reset">CVE-2020-9278 &ndash; D-Link DSL-2640B - Unauthenticated configuration reset</h5>
@@ -100,10 +100,10 @@ Attack URL: http://&lt;device_IP_address&gt;/images/redpass.cgi?sysPassword=newp
 <h5 id="cve-2020-9276----d-link-dsl-2640b---do_cgi-buffer-overflow">CVE-2020-9276 &ndash; D-Link DSL-2640B - do_cgi buffer overflow</h5>
 <p>This <a href="/advisories/CVE-2020-9276_D-Link-DSL-2640B_do_cgi-buffer-overflow_v1.0.txt">vulnerability</a> is a buffer overflow occurring in the <code>do_cgi()</code> function, while parsing the requested <code>cgi</code> module name. An attacker may execute arbitrary code on the device with administrative privileges, by supplying a malicious <code>cgi</code> module name in the URL.</p>
 <p>The <code>do_cgi</code> function, in order to identify the module to be executed, copies the module name on the stack. However, it does not check whether the length of the supplied module name fits in the allocated buffer (see picture).</p>
-<p style="text-align:center;"><img src="../img/2020-02-D-Link-CVEs/do_cgi_bof.png" width="600px"></p>
+<p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/do_cgi_bof.png" width="600px"></p>
 <p>A long <code>cgi</code> module name will overwrite the return address saved on the stack, allowing for a classical stack buffer overflow which is easy to exploit.</p>
 <p>The <code>do_cgi()</code> function can, in principle, only be accessed after authentication. However, unauthenticated exploitation of this vulnerability is possible by combining it with <a href="#cve-2020-9277----d-link-dsl-2640b---cgi-authentication-bypass">CVE-2020-9277</a>. In the picture below we exploit this vulnerability without authentication, execute a reverse shell payload.</p>
-<p style="text-align:center;"><img src="../img/2020-02-D-Link-CVEs/exploited_b0f.png" width="600px"></p>
+<p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/exploited_b0f.png" width="600px"></p>
 <p>While the vulnerability is potentially exploitable via browser pivoting, exploitation may not be trivial due to the URL mangling introduced by the browser when applying URL encoding on the outgoing requests.</p>
 </article></div>
 <div class="article bottom"><section class="article navigation"><p><a class="link" href="/posts/security-impact-of-eol-devices/"><span class="iconfont icon-article"></span>Threat After Death: Security Impact of EoL Devices</a></p></section></div></section><section id="footer"><div class="footer-wrap">

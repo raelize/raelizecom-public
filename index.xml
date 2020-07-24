@@ -43,12 +43,22 @@
     </item>
     
     <item>
+      <title></title>
+      <link>/services/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/services/</guid>
+      <description>Soon!  Please contact us for inquiries! </description>
+      
+    </item>
+    
+    <item>
       <title>About Raelize</title>
       <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>Raelize is an independent device security research group consisting of Cristofaro Mune and Niek Timmers.</description>
+      <description>Raelize is a company specialized in device security expertise. It was founded in 2020 by Cristofaro Mune and Niek Timmers.</description>
       
     </item>
     
