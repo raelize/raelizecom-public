@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Raelize</copyright>
-    <lastBuildDate>Sat, 28 Mar 2020 11:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2020 20:40:00 +0200</lastBuildDate>
     
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Espressif ESP32: Bypassing Secure Boot using EMFI</title>
+      <link>/posts/espressif-systems-esp32-bypassing-sb-using-emfi/</link>
+      <pubDate>Fri, 24 Jul 2020 20:40:00 +0200</pubDate>
+      
+      <guid>/posts/espressif-systems-esp32-bypassing-sb-using-emfi/</guid>
+      <description>Our research during the last few years definitely points out our interest in Fault Injection (FI) attacks.</description>
+      
+    </item>
     
     <item>
       <title>Security Advisories: D-Link DSL-2640B</title>
