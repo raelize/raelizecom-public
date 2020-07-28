@@ -28,14 +28,12 @@
 <p>We believe that our results may be achieved using low cost (e.g. <a href="http://store.newae.com/chipshouter-kit/"target="_blank">ChipShouter</a>) or Do-It-Yourself (e.g. <a href="https://github.com/RedBalloonShenanigans/BADFET"target="_blank">BADFET</a>) tooling as well. However, this type of tooling may be limiting and is often not able to sufficiently sweep the <strong>glitch parameter</strong> search space. Nonetheless, we believe that once a <strong>FI</strong> vulnerability is identified and exploited, and therefore the required <strong>glitch parameters</strong> are known, <strong>low cost tooling</strong> may be tuned or built to inject a successful glitch.</p>
 <p>To set ourselves up for success, being able to sweep the glitch parameter search space efficiently, we use the following components to conduct our <strong>FI</strong> research:</p>
 <ul>
-<li><a href="https://www.riscure.com/security-tools/inspector-fi/"target="_blank">Riscure Inspector FI</a></li>
 <li><a href="https://www.riscure.com/product/spider/"target="_blank">Riscure Spider</a></li>
-<li><a href="https://getquote.riscure.com/en/quote/2101068/em-fi-transient-probe.htm"target="_blank">Riscure EM Probe</a></li>
-<li><a href="https://getquote.riscure.com/en/quote/2101124/xyz-stage-for-em-probe-em-fi-or-compact-laser.htm"target="_blank">Riscure Probe Station</a></li>
-<li><a href="https://www.picotech.com/oscilloscope/3000/usb3-oscilloscope-logic-analyzer"target="_blank">Picoscope 3000 series</a></li>
-<li><a href="https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html"target="_blank">Intel NUC</a></li>
+<li><a href="https://getquote.riscure.com/en/quote/2101124/xyz-stage-for-em-probe-em-fi-or-compact-laser.htm"target="_blank">Riscure XYZ stage</a></li>
+<li><a href="https://getquote.riscure.com/en/quote/2101068/em-fi-transient-probe.htm"target="_blank">Riscure EM-FI Transient Probe</a></li>
+<li><a href="https://www.riscure.com/security-tools/inspector-fi/"target="_blank">Riscure Inspector FI Python</a></li>
 </ul>
-<p>We execute the Python framework offered by <a href="https://www.riscure.com/security-tools/inspector-fi/"target="_blank">Riscure Inspector FI</a> on our <a href="https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html"target="_blank">Intel NUC</a> in order to communicate with the above components. A logical representation of the setup is shown below.</p>
+<p>We execute the <a href="https://www.riscure.com/security-tools/inspector-fi/"target="_blank">Inspector FI Python</a> framework on an <a href="https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html"target="_blank">Intel NUC</a> in order to communicate with the above components. A logical representation of the setup is shown below.</p>
 <p style="text-align:center;">
 	<a href="/img/esp32/ESP32-fi-setup.png">
 		<img src="/img/esp32/ESP32-fi-setup.png" width="600px"
@@ -55,7 +53,7 @@
 		<img src="/img/esp32/nodemcu.png" width="300px">
 	</a>
 </p>
-<p>We removed the metal casing of the <strong>ESP32-WROOM-32</strong> package in order to place the tip of the <strong>EM Probe</strong> on the chip's surface. This is the only modification we made to the target in order to inject <strong>EM</strong> glitches.</p>
+<p>We removed the metal casing of the <strong>ESP32-WROOM-32</strong> package in order to place the tip of the <strong>EM-FI Probe</strong> on the chip's surface. This is the only modification we made to the target in order to inject <strong>EM</strong> glitches.</p>
 <h1 id="identification">Identification</h1>
 <p>The most important <strong>glitch parameters</strong> when performing <strong>EMFI</strong>, are <strong>position</strong>, <strong>power</strong> and <strong>timing</strong>. Tuning these parameters is not always trivial, especially when targeting something specific like <strong>Secure Boot</strong>. The combined parameter search space can be huge, especially if a fine grid is used for spatial positioning. Therefore, we typically start with an intermediate step that allows us to determine efficiently where exactly a chip is sensitive to <strong>EM</strong> glitches.</p>
 <p>It's relevant to point out, that the first step for <strong>FI</strong>, after building the setup, is to determine if the target is <strong>vulnerable</strong>. As such vulnerability is at the <strong>chip level</strong> (i.e. hardware), it does not matter if it is identified on a <strong>development board</strong> or an <strong>finalized device</strong> (i.e. the vulnerability is the same). That's why, if possible, we typically prefer to perform the initial research using a development board that's designed around the same or similar chip. Then, porting the attack to a finalized device, especially when the software is the same as well (e.g. ROM code), is often trivial.</p>
@@ -107,7 +105,7 @@
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>We generate the <strong>trigger high</strong> and the <strong>trigger low</strong> signal by driving a <strong>GPIO</strong> pin. This allows us to create a measurable <strong>attack window</strong> that encompasses the sled of <code>add</code> instructions. This increases our chances of injecting a successful glitch and allows us to identify the presence of a hardware vulnerability.</p>
 <h2 id="location">Location</h2>
-<p>We use the <strong>Probe Station</strong> to automatically move the <strong>EM Probe</strong> across the chip's surface. The <strong>Spider</strong> waits until the <strong>trigger</strong> is set high, effectively injecting the glitch exactly within the attack window. The attack window is defined by the moment the <strong>trigger</strong> goes high and the <strong>trigger</strong> goes low. We randomize both the <strong>timing within the attack window</strong> and the <strong>power</strong> of the <strong>EM Probe</strong>. We used a <strong>30 x 30 grid</strong> for our initial experiment.</p>
+<p>We use the <strong>XYZ stage</strong> to automatically move the <strong>EM-FI Probe</strong> across the chip's surface. The <strong>Spider</strong> waits until the <strong>trigger</strong> is set high, effectively injecting the glitch exactly within the attack window. The attack window is defined by the moment the <strong>trigger</strong> goes high and the <strong>trigger</strong> goes low. We randomize both the <strong>timing within the attack window</strong> and the <strong>power</strong> of the <strong>EM-FI Probe</strong>. We used a <strong>30 x 30 grid</strong> for our initial experiment.</p>
 <p>All experiments are grouped according to the behavior we observe. We assign a color to each experiment based on their group. All experiments that result in:</p>
 <ul>
 <li>no observable effect whatsoever are colored <span style="color: #74dc8d">green dots</span></li>
@@ -115,7 +113,7 @@
 <li>a different counter value (i.e. successful glitch) are are colored <span style="color: #e76a72">red diamonds</span></li>
 <li>an exception (e.g. illegal instruction) are colored <span style="color: #ec5598">magenta crosses</span></li>
 </ul>
-<p>We perform roughly 165,000 experiments in ~8.5 hours which are plotted in the graph shown below. For each experiment we move the <strong>EM probe</strong> and randomize the <strong>glitch power</strong> between <strong>10%</strong> and <strong>100%</strong> of the maximum power.</p>
+<p>We perform roughly 165,000 experiments in ~8.5 hours which are plotted in the graph shown below. For each experiment we move the <strong>EM-FI probe</strong> and randomize the <strong>glitch power</strong> between <strong>10%</strong> and <strong>100%</strong> of the maximum power.</p>
 <p style="text-align:center;">
 	<a href="/img/esp32/esp32-add-sled.png">
 		<img src="/img/esp32/esp32-add-sled.png" height="250px">
@@ -157,7 +155,7 @@
 </tbody>
 </table>
 <p>The <span style="color: #e76a72">red diamond</span> represents a location where we were able to introduce a successful glitch that introduced a fault that effected the increment of the counter without affecting the chip's continuation. Although we observed only a single successful glitch, it shows that the <strong>ESP32</strong> is susceptible to <strong>EM</strong> glitches.</p>
-<p>We achieved our first goal, we identified a hardware vulnerability. Let's see if we can <strong>exploit</strong> it by introducing faults that allow us to build an actual attack. We decided to fix the <strong>EM probe</strong> to the the location of the <strong>successful glitch</strong> the bypass of <strong>Secure Boot</strong>. This nicely reduces the glitch parameter search space by one entire dimension.</p>
+<p>We achieved our first goal, we identified a hardware vulnerability. Let's see if we can <strong>exploit</strong> it by introducing faults that allow us to build an actual attack. We decided to fix the <strong>EM-FI probe</strong> to the the location of the <strong>successful glitch</strong> the bypass of <strong>Secure Boot</strong>. This nicely reduces the glitch parameter search space by one entire dimension.</p>
 <h1 id="exploitation">Exploitation</h1>
 <p>The <strong>Espressif IoT Development Framework (ESP-IDF)</strong> includes convenient tools to <strong>build software</strong> (<code>idf.py</code>), <strong>burn eFuses</strong> (<code>espefuse.py</code>), <strong>generate keys</strong> (<code>espsecure.py</code>) and <strong>program the flash memory</strong> (<code>esptool.py</code>). We used these tooling extensively throughout while finding ways to exploit the vulnerability.</p>
 <h2 id="perform-a-sanity-check">Perform a sanity check</h2>
@@ -212,7 +210,7 @@
 </span><span class="gi">+ ets_main.c 371
 </span></code></pre></div><p>Now we have the <strong>Secure Boot</strong> implementation kick in, we can think about bypassing it by exploiting the hardware vulnerability we identified using <strong>EMFI</strong>.</p>
 <h2 id="timing-the-attack">Timing the attack</h2>
-<p>The <strong>identification</strong> phase allowed us to fix the <em>EM Probe</em> location and give some insights into the <strong>power</strong> that's required. Unfortunately, the <strong>trigger</strong> based on a <strong>GPIO pin</strong> could not be used any more, as the verification is performed by the <strong>ROM</strong> code, which cannot be modified. Therefore, we needed a new reference point for timing our <strong>FI</strong> attack.</p>
+<p>The <strong>identification</strong> phase allowed us to fix the *<em>EM-FI Probe(</em> location and give some insights into the <strong>power</strong> that's required. Unfortunately, the <strong>trigger</strong> based on a <strong>GPIO pin</strong> could not be used any more, as the verification is performed by the <strong>ROM</strong> code, which cannot be modified. Therefore, we needed a new reference point for timing our <strong>FI</strong> attack.</p>
 <p>We started by using the <strong>reset</strong> signal as the <strong>trigger</strong>, but this induced significant jitter in our timing. Therefore, we decided to use the <strong>flash</strong> activity to time our attack. This is often a great signal to use for triggering as it is often tightly coupled to the software execution, especially during <strong>Secure Boot</strong>.</p>
 <p>The activity on <strong>pin1</strong> of the <strong>flash</strong> is shown in <span style="color: #81dafc">blue</span> whereas the <strong>trigger</strong> signal that we derive from this activity is shown in <span style="color: #e76a72">red</span>.</p>
 <p style="text-align:center;">
