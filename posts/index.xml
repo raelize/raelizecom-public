@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Raelize</copyright>
-    <lastBuildDate>Fri, 24 Jul 2020 20:40:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2020 11:00:00 +0200</lastBuildDate>
     
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Fault Injection Reference Model (FIRM)</title>
+      <link>/posts/raelize-fi-reference-model/</link>
+      <pubDate>Wed, 26 Aug 2020 11:00:00 +0200</pubDate>
+      
+      <guid>/posts/raelize-fi-reference-model/</guid>
+      <description>In today&#39;s world, physical access to a device is considered a significant threat as devices often play a central role for the underlying business model.</description>
+      
+    </item>
     
     <item>
       <title>Espressif ESP32: Bypassing Secure Boot using EMFI</title>
