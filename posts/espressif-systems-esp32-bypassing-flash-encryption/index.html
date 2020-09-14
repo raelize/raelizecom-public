@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.74.3" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)&nbsp;&ndash;&nbsp;</title><link rel="stylesheet" href="/css/core.min.0b9416c1ab7ad80e65b9c8c02a08c0bc1ccc6239d624b16fd01f9ec0d401727ffe61878c75525c2bb300f182d0c722f2.css" integrity="sha384-C5QWwat62A5lucjAKgjAvBzMYjnWJLFv0B&#43;ewNQBcn/&#43;YYeMdVJcK7MA8YLQxyLy"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name"></span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">Home</a><a class="nav item" href="/about">About</a><a class="nav item" href="/services">Services</a><a class="nav item" href="/training">Training</a><a class="nav item" href="/blog">Blog</a><a class="nav item" href="/contact">Contact</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
+    <h1 class="article title">Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)</h1><p class="article date">Monday, September 14, 2020</p></section><article class="article markdown-body"><p>In our <a href="/espressif-systems-esp32-controlling-pc-during-sb/">previous post</a> we described an attack where we load an arbitrary value indirectly into the PC register using <strong>EMFI</strong>. During that attack we achieved our initial goal where we wanted to last year's research, where we turn <strong>Data Transfers</strong> into <strong>Code Execution</strong>, into practice.</p>
+<p>As we already pointed out, the <strong>Flash Encryption</strong> feature of the <strong>ESP32</strong> chip, which <strong>Espressif</strong> advises to use, significantly increases the complexity for bypassing <strong>Secure Boot</strong>. The typical approach of making modifications to the plain-text code or data stored in external flash is not possible any more once <strong>Flash Encryption</strong> is enabled.</p>
+<p>In this post we describe an attack where we leverage the (hardware) vulnerability described in our <a href="/espressif-systems-esp32-controlling-pc-during-sb/">previous post</a> in combination with another vulnerability (i.e. <a href="https://www.espressif.com/sites/default/files/advisory_downloads/Security%20Advisory%20CVE-2020-15048%2C%2013629%20EN%26CN.pdf"target="_blank">CVE-2020-15048</a>) in order to load an arbitrary value into the PC register.</p>
+<h1 id="flash-encryption">Flash Encryption</h1>
+<p>The <strong>ESP32</strong> supports <a href="https://docs.espressif.com/projects/esp-idf/en/release-v3.2/security/flash-encryption.html"target="_blank">Flash Encryption</a> which is used to assure the confidentiality of the code and data stored in external flash. Interestingly, decryption of the data is done transparently to the processor by the flash controller. It uses a tweaked <strong>AES-256</strong> hardware implementation to assure the plain-text data cannot be obtained from the cipher-text without knowledge of the decryption key.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-flash-encryption.png">
+        <img src="/img/esp32/esp32-flash-encryption.png" width="700px">
+    </a>
+</p>
+<p>The <strong>decryption key</strong> is stored in <strong>OTP-memory</strong> and cannot be access directly from software. This secure key storage was found to be vulnerable to a <strong>Fault Injection</strong> attack for which the results are <a href="https://limitedresults.com/2019/11/pwn-the-esp32-forever-flash-encryption-and-sec-boot-keys-extraction/"target="_blank">published</a>. Our attack is not related to this research.</p>
+<p>It's important to note that the <strong>decryption key</strong> is actually not used as-is. It is actually used to generate unique keys for each 32-byte block in the external flash. This is likely done to mitigate several of the issues applicable when the standard <strong>AES-256</strong> algorithm is used. These issues are mostly related to the <strong>cipher mode</strong> that is used as the underlying cryptographic algorithm is sufficiently secure. For example, when <strong>ECB</strong> mode is used it's possible to swap blocks and when <strong>CBC</strong> mode is used it's possible to flip bits.</p>
+<p>Nonetheless, as the <strong>unique keys</strong> are only generated for each 32-byte block, and the block-size of the underlying cryptographic algorithm is 16 bytes, adjacent blocks are still encrypted with the same key. This is exactly what we leverage, in combination with several design and implementation issues, to bypass <strong>Secure Boot</strong> using a very similar attack as described in our <a href="/espressif-systems-esp32-controlling-pc-during-sb/">previous post</a>.</p>
+<h1 id="vulnerability-identification">Vulnerability identification</h1>
+<h4 id="flash-communication">Flash communication</h4>
+<p>The chip's communication with the external flash, shown in the picture below, already indicated to us that there were more stages loaded during boot than just the <strong>bootloader</strong>.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-spi-pin1-during-boot.png">
+        <img src="/img/esp32/esp32-spi-pin1-during-boot.png" width="600px">
+    </a>
+</p>
+<p>We observe several patterns during which different parts of the external flash are copied from external flash to internal memory. Without further investigation we do not exactly know what the parts are.</p>
+<h4 id="rom-printing">ROM printing</h4>
+<p>Conveniently, the <strong>ROM</strong> prints during its execution, on the serial interface, information about these parts. This printing cannot be disabled as far as we know and is therefore always available. This information allows us to know, without analyzing the flash communication itself, exactly when what is copied.</p>
+<p>We concluded the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gi">+ load:0x3fff0008,len:4         &lt;-- C
+</span><span class="gi">+ load:0x3fff000c,len:3220      &lt;-- D
+</span><span class="gi">+ load:0x40078000,len:4816      &lt;-- E
+</span><span class="gi">+ load:0x40080400,len:18640     &lt;-- F
+</span><span class="gi">+ entry 0x40080740
+</span></code></pre></div><p>The <strong>ROM</strong> extracts the <strong>load address</strong> and <strong>length</strong> for each part from the external flash itself. This information is stored in so-called headers which is stored at the beginning of each part. For example, the header for part '<strong>C</strong>' is shown below. The last two 4-byte words are the <strong>load</strong> and <strong>len</strong> in the above snippet.</p>
+<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">00001010    00 00 00 00 00 00 00 01 08 00 FF 3F 04 00 00 00
+</code></pre></div><p>It's important to realize that this information is printed before any signature is verified. For example, the <strong>ROM</strong> will print the following if these values are set to <code>0x41414141</code>, even though it will result in a chip that does not boot as these values are invalid. Note, <code>1094795585</code> is <code>0x41414141</code> in decimal.</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">load:0x41414141,len:1094795585
+</code></pre></div><h4 id="encryption">Encryption</h4>
+<p>Unfortunately, all data is encrypted once <strong>Flash Encryption</strong> is enabled, including these headers. This means we cannot simply set the values contained in the header to arbitrary values as they will be decrypted into garbage as we do this research under the assumption that we do not have access to the decryption key.</p>
+<p>Interestingly, Espressif's SDK stores the different parts of the flash image next to each other. This is shown in the picture below.</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff">...
+<span class="gi">+ 00002F70    20 00 A8 08 92 AB FF 90 9A 10 C0 20 00 99 08 C0
+</span><span class="gi">+ 00002F80    20 00 A8 08 91 CE FB 90 5C 7A 00 40 00 99 08 8C
+</span><span class="gi"></span><span class="gd">- 00002F90    12 65 ED FF 1D F0 00 00 00 04 08 40 D0 48 00 00
+</span><span class="gd">- 00002FA0    28 00 FF 3F 00 00 00 04 44 00 FF 3F 54 7D 00 40
+</span><span class="gd"></span>...
+</code></pre></div><p>The <span style="color: #74dc8d">green</span> data is loaded during part '<strong>E</strong>' and the <span style="color: #e76a72">red</span> data is loaded during part '<strong>F</strong>'. The last 16-byte block of part '<strong>E</strong>' is encrypted with the same key as the first 16-byte block of part '<strong>F</strong>'.</p>
+<p>Interestingly, because last block of part '<strong>E</strong>' and the first block of part '<strong>F</strong>' are encrypted with the same key, we can leak the last two 4-byte words of part '<strong>E</strong>'. This works as the first block of part '<strong>F</strong>' is actually the header that contains the information that is printed on the serial interface prior to the <strong>Secure Boot</strong> check.</p>
+<p>For example, if we overwrite the last block of part '<strong>E</strong>' with the first block of part '<strong>F</strong>', the <strong>ROM</strong> prints the following.</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gi">+ load:0x3fff0008,len:4
+</span><span class="gi">+ load:0x3fff000c,len:3220
+</span><span class="gi">+ load:0x40078000,len:4816
+</span><span class="gi"></span><span class="gd">- load:0x40007a5c,len:2349373696    # last two 4-byte words of part &#39;E&#39;
+</span><span class="gd"></span><span class="gi">+ entry 0x40080740
+</span></code></pre></div><p>Please note that the both blocks are encrypted and we actually copy an encrypted block over another encrypted block. We cannot do anything else as we assume we do not have access to the <strong>decryption key</strong>, similarly as a real-world attacker.</p>
+<h4 id="brute-forcing">Brute forcing</h4>
+<p>This sequence of choices made during the design and implementation of the <strong>ESP32</strong>'s <strong>Secure Boot</strong> implementation allows us to <strong>brute force</strong> arbitrary values of the last two 4-byte words of part '<strong>E</strong>'. Nonetheless, brute forcing an arbitrary value, considering we do roughly 10 experiments per second, takes more than 10 years (i.e. search space is 2^32). Optimizations are likely possible, but we did not investigate this.</p>
+<p>Regardless if we can optimize the brute force to something reasonable, we do not know if it's even feasible to load a value into the PC register if we can only control a single 4-byte value. Therefore, we decided to determine exactly that before we deal with the limitations imposed to us by the brute force requirement.</p>
+<h1 id="attack-identification">Attack identification</h1>
+<h4 id="approach">Approach</h4>
+<p>We are performing the attacks on a development board and therefore we are able to set the <strong>Secure Boot</strong> and <strong>Flash Encryption</strong> keys. It allows us to identify if the attack is applicable using a fully controlled environment. Even though a real-world attacker is unable to do so, it's not unlikely an attack will do the vulnerability identification on a development board as well.</p>
+<p>We started our experiments by overwriting part '<strong>E</strong>', in a plain-text flash image, entirely with address pointers to a function in <strong>ROM</strong> that prints something on the serial interfaces. This is the exact same address we used for identifying a successful glitch as during the attack described in the <a href="/espressif-systems-esp32-controlling-pc-during-sb/">previous post</a>. This part is stored in flash from address <code>0x1cc0</code> to address <code>0x2f90</code>.</p>
+<p>Then, we encrypt the plain-text flash image with the correct encryption key and program the encrypted result using the <strong>ESP32 SDK</strong>. This allows us to make arbitrary modifications to the plain-text flash image. Of course, this is definitely not possible by a real-world attacker as the encryption key will not be known. Nonetheless, this is definitely a valid approach for working towards attack identification.</p>
+<h4 id="initial-experiments">Initial experiments</h4>
+<p>For our first experiments we injected glitches while part '<strong>E</strong>' was being copied by the processor from external flash to internal memory. Even though this <strong>attack window</strong> is rather large, we are really affected by timing as we know that part '<strong>E</strong>' is entirely overwritten with the address pointer.</p>
+<p>The results of this campaign are shown in the picture below.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-brute-1.png">
+        <img src="/img/esp32/esp32-brute-1.png" width="600px">
+    </a>
+</p>
+<p>Interestingly, we observed four experiments for which we execute <strong>ROM</strong> function successfully. As anticipated, the successful results are spread out across the <strong>attack window</strong>. Like with the other attacks performed on the <strong>ESP32</strong> chip so far, we are able to reproduce the attacks with a high success rate (i.e. higher than once per minute).</p>
+<h4 id="working-towards-success">Working towards success</h4>
+<p>We set the glitch parameters to that of the successful glitch that is closest to the end of part '<strong>E</strong>'. The two 4-byte words that we can potentially brute force are copied last as they are present in the last 16-byte block of part '<strong>E</strong>'.</p>
+<p>Then, we slow start overwriting part '<strong>E</strong>' with 0x100 byte chunks of <code>0x41</code> bytes until we cannot reproduce the successful glitch any more. This tells us exactly, which 0x100 byte chunk of data contains the pointer that is loaded into the PC register. For this first result we concluded the pointer is taken from the chunk at offset <code>0x2a00</code>.</p>
+<p>Then, we start targeting the remaining <strong>attack window</strong> again in order to find a successful glitch closer to the end of part '<strong>E</strong>'. After a couple hours of testing we identified a successful glitch for which the result is shown in the picture below.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-brute-2.png">
+        <img src="/img/esp32/esp32-brute-2.png" width="600px">
+    </a>
+</p>
+<p>Again, we fix the glitch parameters and we slowly start overwriting part '<strong>E</strong>' again until we cannot reproduce the attack anymore. This time we concluded the pointer is taken from the chunk at offset <code>0x2c00</code>.</p>
+<p>Then, we start targeting the remaining <strong>attack window</strong> again in order to find a successful glitch closer to the end of part '<strong>E</strong>' which is shown in the picture below.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-brute-3.png">
+        <img src="/img/esp32/esp32-brute-3.png" width="600px">
+    </a>
+</p>
+<p>At this point it was late at night and the temperature in our office dropped significantly. As a result, we observed alterations in the behavior of the chip compared to the previous experiments. The result was that we could not reproduce the successful glitches any more.</p>
+<p>Therefore, we decided to randomize the <strong>glitch power</strong> in order to generate the successful glitches again. Moreover, as it was late, and some test runtime was ahead of us, we decided to simply set only the last two 4-byte words of part '<strong>E</strong>' to the address pointer. If successful, it proves that the attack we envisioned works.</p>
+<h4 id="achieving-success">Achieving success</h4>
+<p>After roughly 300,000 experiments, which took roughly 12 hours, we got two successful glitches for which the results are shown in the picture below.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-brute-4.png">
+        <img src="/img/esp32/esp32-brute-4.png" width="600px">
+    </a>
+</p>
+<p>The only thing left to do was to verify which of the two 4-byte words was actually loaded into the PC register. At first, we tried to set only the last word to the address pointer, but we were unsuccessful in reproducing the attack.</p>
+<p>Once we set only the other 4-byte word to the address pointer, we were able to reproduce the attack. This demonstrates that, it's practical to load an arbitrary value into the PC register of the <strong>ESP32</strong> during boot, assuming you can control a single 4-byte value. The latter of course is affected by the brute force described earlier in this post.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>We demonstrated an attack on the <strong>ESP32</strong> that bypasses both <strong>Secure Boot</strong>, even when its <strong>Flash Encryption</strong> feature is enabled. The attack allows an attacker to load an arbitrary value into the <strong>ESP32</strong>'s PC register. The attack can be described using our <a href="/posts/raelize-fi-reference-model/">FIRM</a> as follows.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/firm-esp32-secure-boot-bypass-CVE-2020-15048.png">
+        <img src="/img/esp32/firm-esp32-secure-boot-bypass-CVE-2020-15048.png" width="600px">
+    </a>
+</p>
+<p>Nonetheless, due to the <strong>Flash Encryption</strong> feature, an attacker needs to brute-force a 4-byte word which is leaked via the serial interface. This requirement is somewhat restrictive and definitely costly time-wise. Espressif requested a CVE (i.e. <strong>CVE-2020-15048</strong>) for this vulnerability for which they released an <a href="https://www.espressif.com/sites/default/files/advisory_downloads/Security%20Advisory%20CVE-2020-15048%2C%2013629%20EN%26CN.pdf"target="_blank">advisory</a>.</p>
+<p>We acknowledge the limitations imposed by the brute-force requirement and therefore we did not pursue this path any further. Nonetheless, we believe the results described in this post are important  as it shows that <strong>Fault Injection</strong> attacks are effective even when control over the environment is (very) limited.</p>
+<h1 id="next-steps">Next steps</h1>
+<p>Stay tuned for our final post in this series on the <strong>ESP32</strong> where we describe an attack that bypasses <strong>Secure Boot</strong> and <strong>Flash Encryption</strong> in order to extract the plain-text data from external flash using only a single glitch.</p>
+</article></div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/posts/espressif-systems-esp32-controlling-pc-during-sb/"><span class="iconfont icon-article"></span>Espressif ESP32: Controlling PC during Secure Boot</a></p></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2020 Raelize</p>
+    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
+        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank">Notepadium</a></p>
+</div></section>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-135892271-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+</body>
+
+</html>

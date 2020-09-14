@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>©2020 Raelize</copyright>
-    <lastBuildDate>Tue, 08 Sep 2020 12:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2020 09:00:00 +0200</lastBuildDate>
     
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)</title>
+      <link>/posts/espressif-systems-esp32-bypassing-flash-encryption/</link>
+      <pubDate>Mon, 14 Sep 2020 09:00:00 +0200</pubDate>
+      
+      <guid>/posts/espressif-systems-esp32-bypassing-flash-encryption/</guid>
+      <description>In our previous post we described an attack where we load an arbitrary value indirectly into the PC register using EMFI.</description>
+      
+    </item>
     
     <item>
       <title>Espressif ESP32: Controlling PC during Secure Boot</title>
