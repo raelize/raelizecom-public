@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
-    <loc>https://raelize.com/</loc><lastmod>2020-09-14T09:00:00+02:00</lastmod></url><url>
+    <loc>https://raelize.com/</loc><lastmod>2020-09-22T08:00:00+02:00</lastmod></url><url>
+    <loc>https://raelize.com/posts/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</loc><lastmod>2020-09-22T08:00:00+02:00</lastmod></url><url>
+    <loc>https://raelize.com/posts/</loc><lastmod>2020-09-22T08:00:00+02:00</lastmod></url><url>
     <loc>https://raelize.com/posts/espressif-systems-esp32-bypassing-flash-encryption/</loc><lastmod>2020-09-14T09:00:00+02:00</lastmod></url><url>
-    <loc>https://raelize.com/posts/</loc><lastmod>2020-09-14T09:00:00+02:00</lastmod></url><url>
     <loc>https://raelize.com/posts/espressif-systems-esp32-controlling-pc-during-sb/</loc><lastmod>2020-09-08T12:00:00+02:00</lastmod></url><url>
     <loc>https://raelize.com/posts/raelize-fi-reference-model/</loc><lastmod>2020-08-26T11:00:00+02:00</lastmod></url><url>
     <loc>https://raelize.com/posts/espressif-systems-esp32-bypassing-sb-using-emfi/</loc><lastmod>2020-07-24T20:40:00+02:00</lastmod></url><url>
