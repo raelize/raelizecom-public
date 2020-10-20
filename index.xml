@@ -2,82 +2,82 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title></title>
-    <link>/</link>
+    <link>https://raelize.com/</link>
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>©2020 Raelize</copyright>
+    <copyright>©2020 Raelize B.V.</copyright>
     <lastBuildDate>Tue, 22 Sep 2020 08:00:00 +0200</lastBuildDate>
     
-        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://raelize.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Posts</title>
-      <link>/posts/</link>
+      <link>https://raelize.com/posts/</link>
       <pubDate>Tue, 22 Sep 2020 08:00:00 +0200</pubDate>
       
-      <guid>/posts/</guid>
+      <guid>https://raelize.com/posts/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title></title>
-      <link>/blog/</link>
+      <link>https://raelize.com/blog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/blog/</guid>
+      <guid>https://raelize.com/blog/</guid>
       <description></description>
       
     </item>
     
     <item>
       <title></title>
-      <link>/bootpwn/</link>
+      <link>https://raelize.com/bootpwn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/bootpwn/</guid>
-      <description>&amp;ldquo;Breaking Secure Boot by Experience&amp;rdquo;    Format Available Price (per student)     Online ✅ 2000 EUR   In-Person (2 days) ✅ Contact us!</description>
+      <guid>https://raelize.com/bootpwn/</guid>
+      <description>&amp;ldquo;Breaking Secure Boot by Experience&amp;rdquo;    Format Available Price (per student)     Online  2000 EUR   In-Person (3 days)  Contact us!</description>
       
     </item>
     
     <item>
       <title></title>
-      <link>/services/</link>
+      <link>https://raelize.com/services/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/services/</guid>
+      <guid>https://raelize.com/services/</guid>
       <description>Soon!  Please contact us for inquiries! </description>
       
     </item>
     
     <item>
-      <title>About Raelize</title>
-      <link>/about/</link>
+      <title></title>
+      <link>https://raelize.com/teepwn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
+      <guid>https://raelize.com/teepwn/</guid>
+      <description>&amp;ldquo;Breaking TEEs by Experience&amp;rdquo;    Format Available Price     Online  2000 EUR   In-Person (3 days)  Contact us!</description>
+      
+    </item>
+    
+    <item>
+      <title>About Raelize</title>
+      <link>https://raelize.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://raelize.com/about/</guid>
       <description>Raelize is a company specialized in device security expertise, founded in 2020 by Cristofaro Mune and Niek Timmers.</description>
       
     </item>
     
     <item>
-      <title>BootPwn &lt;br&gt; &lt;i&gt;&#34;Pwning TEEs by Experience&#34;&lt;/i&gt;</title>
-      <link>/teepwn/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/teepwn/</guid>
-      <description>Format Available Price     Online ✅ 2000 EUR   In-Person (2 days) ✅ Contact us!</description>
-      
-    </item>
-    
-    <item>
       <title>Contact</title>
-      <link>/contact/</link>
+      <link>https://raelize.com/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/contact/</guid>
+      <guid>https://raelize.com/contact/</guid>
       <description>Email For questions and/or remarks please use email: info@raelize.com.
 Twitter You can follow our future developments on Twitter: @raelizecom.</description>
       
@@ -85,11 +85,11 @@ Twitter You can follow our future developments on Twitter: @raelizecom.</descrip
     
     <item>
       <title>Training</title>
-      <link>/training/</link>
+      <link>https://raelize.com/training/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/training/</guid>
-      <description>We offer multiple exciting trainings on interesting different topics related to device security (e.</description>
+      <guid>https://raelize.com/training/</guid>
+      <description>We offer multiple exciting trainings, or rather experiences, on interesting different topics related to the security of devices.</description>
       
     </item>
     
