@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Espressif ESP32: Bypassing Secure Boot using EMFI</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.80.0" />
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <hr>
+        <h1>Espressif ESP32: Bypassing Secure Boot using EMFI</h1>
+        <p>Friday, Jul 24, 2020</p>
+        <hr>
+        
+      </div>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="post-single-content" background-color=0xff>
+          <p>Our research during the last few years definitely points out our interest in <strong>Fault Injection (FI)</strong> attacks. We produced numerous publications, which we presented at both <em><strong>academic</strong></em> and <em><strong>security</strong></em> conferences. Among other research, we showed that <strong>FI</strong> is an effective technique for for <strong>bypassing Secure Boot</strong> (<a href="/upload/research/2016/2016_BlackHat-EU_Bypassing-Secure-Boot-Using-Fault-Injection_NT-AS.pdf">2016</a>, <a href="/upload/research/2019/2019_BlueHat-IL_Hardening-Secure-Boot-on-Embedded-Devices-for-Hostile-Environments_NT-AS-CM.pdf">2019</a> and <a href="/upload//research/2019/2019_Designing-Secure-Boot-Securely_NT-AS.pdf">2019</a>) and <strong>escalating privileges on Linux</strong> (<a href="/upload/research/2017/2017_FDTC_Escalating-Privileges-in-Linux-using-Fault-Injection_NT-CM.pdf">2017</a>, <a href="/upload/research/2017/2017_BlueHat-v17_KERNELFAULT-R00ting-the-Unexploitable-using-Hardware-Fault-Injection_CM_NT.pdf">2017</a> and <a href="/upload/research/2017/2017_Hardwear-io_Escalating-Privileges-in-Linux-using-Fault-Injection_NT-CM.pdf">2017</a>).</p>
+<p>Like many of you, our curiosity is constantly sparked and therefore we cannot prevent ourselves from injecting glitches. This post will be your first peek into our new and exciting <strong>FI</strong> research.</p>
+<h2 id="our-research-2016-2019">Our research (2016-2019)</h2>
+<p>Our <a href="/upload/research/2019/2019_PoC_Using-Fault-Injection-to-Turn-Data-Transfers-into-Arbitrary-Execution_CM-NT.pdf">presentation</a> at <a href="http://www.powerofcommunity.net/2019.htm#">POC2019</a> <em>advances</em> and <em>generalizes</em> the <a href="/upload/research/2016/2016_FDTC_Controlling-PC-on-ARM-using-Fault-Injection_NT-AS-MW.pdf">research</a> we published in 2016 at <a href="https://fdtc.deib.polimi.it/FDTC16/">FDTC</a>, where we showed that <em>&ldquo;data transfers&rdquo;</em> can yield <em>&ldquo;arbitrary code execution&rdquo;</em> using <strong>FI</strong>. During our demonstration live on stage we injected <strong>voltage glitches</strong> into the <a href="https://www.espressif.com/en/products/socs/esp32/overview">Espressif ESP32</a> using the open source <a href="https://github.com/noopwafel/iceglitch">iceGLITCH</a>. More specifically, we showed how <strong>FI</strong> can be used to modify <strong>callx8 instructions</strong> in order to achieve <strong>arbitrary control</strong> of the <strong>program counter</strong> in situations where the attacker controls nothing more than just <strong>the data</strong> being transferred.</p>
+<p>It's important to point out that our <strong>2016 research</strong> showed the program counter can be be controlled on processor architectures where it is directly addressable (e.g. ARMv7). Our <strong>2019 research</strong> showed that the program counter can be controlled even if the it is not directly addressable (e.g. ARMv8). Moreover, maybe even more relevant, this is possible leveraging <strong>common software constructs</strong> such as the  <code>memcpy</code> function.</p>
+<p>Let us be clear&hellip;</p>
+<p>You can perform these type of attack when you <strong>only</strong> control <strong>the data</strong> being transferred. Neither the <strong>destination</strong> nor the <strong>source</strong> of the data transfer needs to be controlled, <strong>just the data</strong> itself. Moreover, you can leverage <strong>common software constructs</strong> executed by <strong>privileged code</strong> (e.g. Kernel) that copy data from an untrusted domain (e.g. an communication interface or external data source like flash), which are present on any device. Then, if the underlying <strong>hardware is vulnerable</strong> to <strong>FI</strong>, and many standard chips are, you can achieve <strong>full control</strong> of the program counter, <strong>regardless</strong> of the processor architecture.</p>
+<p>We disclosed our research to <strong>Espressif</strong> before the presentation. It was received with interest and we discussed the potential risk for the <strong>ESP32</strong> chip. Nonetheless, as the results were achieved in a <strong>fully controlled environment</strong> targeting <strong>test code</strong>, we agreed that the impact was minimal at the time.</p>
+<h2 id="our-research-2020-and-beyond">Our research (2020 and beyond)</h2>
+<p>Fast forward to early 2020 and we obtained new hardware <strong>FI</strong> tooling to support our research endeavors. We decided to test our new capabilities on a target already available to us and that we were familiar with. We decided to focus on injecting electromagnetic (EM) glitches. We will refer to this technique as <strong>EMFI</strong>.</p>
+<p>We started with a typical approach where we target test code that is entirely under our control in order to determine the resilience of the <strong>ESP32</strong> towards <strong>EM glitches</strong>. Once we determined the <strong>ESP32</strong> is vulnerable, we set our final goal to put our <a href="/upload/research/2019/2019_PoC_Using-Fault-Injection-to-Turn-Data-Transfers-into-Arbitrary-Execution_CM-NT.pdf">2019</a> research into practice.</p>
+<p>We decided our first step towards to this goal was to bypass the <strong>Secure Boot</strong> implementation of the <strong>ESP32</strong>. It's important to point out that when we started our research, several researchers already published <strong>FI</strong> attacks on this implementation for which Espressif issued an <a href="https://www.espressif.com/en/news/Espressif_Security_Advisory_Concerning_Fault_Injection_and_Secure_Boot">advisory</a>. Differently from the attacks already published, we used <strong>EM glitches</strong> instead of <strong>voltage glitches</strong> to <strong>trigger</strong> a similar hardware vulnerability. Our approach has several advantages, as <strong>EMFI</strong>:</p>
+<ul>
+<li>typically requires no <strong>invasive modifications</strong> to the target</li>
+<li>is somewhat <strong>localized</strong>,  as the EM field has a definite spatial distribution</li>
+</ul>
+<p>Interestingly, besides reproducing the already published attack, we identified several new approaches for exploiting the faults we introduce, which allow us to bypass both <strong>Secure Boot</strong> and <strong>Flash Encryption</strong>. By doing so, we also identified several <strong>new vulnerabilities</strong> for which <strong>Espressif</strong> issued an <a href="https://www.espressif.com/sites/default/files/advisory_downloads/Security%20Advisory%20CVE-2020-15048%2C%2013629%20EN%26CN.pdf">advisory</a>. <strong>Espressif</strong> indicated that these attacks do not apply to the updated <a href="https://www.espressif.com/sites/default/files/documentation/ESP32_ECO_V3_User_Guide__EN.pdfe">ESP32 V3</a> and <a href="https://www.espressif.com/en/products/socs/esp32-s2">ESP32-S2</a> chips.</p>
+<p>In this post we describe our approach for bypassing <strong>Secure Boot</strong> without <strong>Flash Encryption</strong> enabled (i.e. reproducing <a href="https://www.espressif.com/en/news/Espressif_Security_Advisory_Concerning_Fault_Injection_and_Secure_Boot">CVE-2019-15894</a>) using <strong>EMFI</strong>. In several upcoming posts, which will be posted in the upcoming weeks, we will describe our other attacks, including the new vulnerabilities we identified (i.e. <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-15048">CVE-2020-15048</a> and <a href="https://nvd.nist.gov/vuln/detail/CVE-2020-13629">CVE-2020-13629</a>).</p>
+<h2 id="setup">Setup</h2>
+<p>After over a decade of conducting <strong>FI</strong> testing and research, we know out of firsthand experience that the <strong>identification</strong> and <strong>exploitation</strong> of <strong>FI</strong> vulnerabilities may require a long breath. It's not always so trivial as some may make you believe. <strong>Expert tooling</strong> in the hands of <em>advanced users</em>, can make a dramatic difference in the <strong>identification</strong> phase, let alone during the <strong>exploitation</strong> of the identified vulnerabilities. Therefore, we like to use <a href="https://www.riscure.com/security-tools/inspector-fi/">commercially available</a> tooling during our <strong>FI</strong> research.</p>
+<p>We believe that our results may be achieved using low cost (e.g. <a href="http://store.newae.com/chipshouter-kit/">ChipShouter</a>) or Do-It-Yourself (e.g. <a href="https://github.com/RedBalloonShenanigans/BADFET">BADFET</a>) tooling as well. However, this type of tooling may be limiting and is often not able to sufficiently sweep the <strong>glitch parameter</strong> search space. Nonetheless, we believe that once a <strong>FI</strong> vulnerability is identified and exploited, and therefore the required <strong>glitch parameters</strong> are known, <strong>low cost tooling</strong> may be tuned or built to inject a successful glitch.</p>
+<p>To set ourselves up for success, being able to sweep the glitch parameter search space efficiently, we use the following components to conduct our <strong>FI</strong> research:</p>
+<ul>
+<li><a href="https://www.riscure.com/product/spider/">Riscure Spider</a></li>
+<li><a href="https://getquote.riscure.com/en/quote/2101124/xyz-stage-for-em-probe-em-fi-or-compact-laser.htm">Riscure XYZ stage</a></li>
+<li><a href="https://getquote.riscure.com/en/quote/2101068/em-fi-transient-probe.htm">Riscure EM-FI Transient Probe</a></li>
+<li><a href="https://www.riscure.com/security-tools/inspector-fi/">Riscure Inspector FI Python</a></li>
+</ul>
+<p>We execute the <a href="https://www.riscure.com/security-tools/inspector-fi/">Inspector FI Python</a> framework on an <a href="https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html">Intel NUC</a> in order to communicate with the above components. A logical representation of the setup is shown below.</p>
+<p style="text-align:center;">
+	<a href="/img/esp32/ESP32-fi-setup.png">
+		<img src="/img/esp32/ESP32-fi-setup.png" style="max-width: 100%; width: 600px">
+	</a>
+</p>
+<p>The picture below shows the setup in action, while we inject <strong>EM</strong> glitches into the <strong>ESP32</strong>.</p>
+<p style="text-align:center;">
+	<a href="/img/esp32/setup-distant.jpg">
+		<img src="/img/esp32/setup-distant.jpg" style="max-width: 100%; width: 600px">
+	</a>
+</p>
+<h2 id="target">Target</h2>
+<p>We used the <a href="https://www.az-delivery.de/en/products/esp32-developmentboard">ESP32 NodeMCU</a> modules available from <a href="https://www.az-delivery.de/en">AZ Delivery</a> which is shown in the picture below. These modules are designed around a <strong>ESP32-WROOM-32</strong> package.</p>
+<p style="text-align:center;">
+	<a href="/img/esp32/nodemcu.png">
+		<img src="/img/esp32/nodemcu.png" style="max-width: 100%; width: 600px">
+	</a>
+</p>
+<p>We removed the metal casing of the <strong>ESP32-WROOM-32</strong> package in order to place the tip of the <strong>EM-FI Probe</strong> on the chip's surface. This is the only modification we made to the target in order to inject <strong>EM</strong> glitches.</p>
+<h2 id="identification">Identification</h2>
+<p>The most important <strong>glitch parameters</strong> when performing <strong>EMFI</strong>, are <strong>position</strong>, <strong>power</strong> and <strong>timing</strong>. Tuning these parameters is not always trivial, especially when targeting something specific like <strong>Secure Boot</strong>. The combined parameter search space can be huge, especially if a fine grid is used for spatial positioning. Therefore, we typically start with an intermediate step that allows us to determine efficiently where exactly a chip is sensitive to <strong>EM</strong> glitches.</p>
+<p>It's relevant to point out, that the first step for <strong>FI</strong>, after building the setup, is to determine if the target is <strong>vulnerable</strong>. As such vulnerability is at the <strong>chip level</strong> (i.e. hardware), it does not matter if it is identified on a <strong>development board</strong> or an <strong>finalized device</strong> (i.e. the vulnerability is the same). That's why, if possible, we typically prefer to perform the initial research using a development board that's designed around the same or similar chip. Then, porting the attack to a finalized device, especially when the software is the same as well (e.g. ROM code), is often trivial.</p>
+<h2 id="test-code">Test code</h2>
+<p>The test code we use during this intermediate step includes a command handler with at least one command, which does the following:</p>
+<ul>
+<li>receive command byte</li>
+<li>set trigger high</li>
+<li>using assembly to initialize unused registers with known values</li>
+<li>using assembly to increase a counter with add instructions (i.e add sled)</li>
+<li>set trigger signal low</li>
+<li>print the counter result</li>
+</ul>
+<p>One of the implementations used during our <strong>ESP32</strong> research is shown below. The test code allows us to identify a successful glitch by observing the counter printed on the <strong>serial interface</strong>. If the counter value is different than the expected value (i.e. 10,000), then the glitch we injected <strong>successfully</strong> affected the target's execution without preventing program continuation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">char</span> cmd;
+<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> counter;
+
+<span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>) {
+	cmd <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+	uart_rx_one_char(<span style="color:#f92672">&amp;</span>cmd);					<span style="color:#75715e">// receive command
+</span><span style="color:#75715e"></span>
+	<span style="color:#66d9ef">if</span>(cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;A&#39;</span>) {
+		GPIO_OUTPUT_SET(<span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">0</span>);				<span style="color:#75715e">// trigger high
+</span><span style="color:#75715e"></span>				
+		<span style="color:#66d9ef">asm</span> <span style="color:#66d9ef">volatile</span> (						<span style="color:#75715e">// set unused registers
+</span><span style="color:#75715e"></span>			<span style="color:#e6db74">&#34;movi a0, 0x40404040;&#34;</span>
+			<span style="color:#e6db74">&#34;movi a1, 0x41414141;&#34;</span>
+			<span style="color:#e6db74">&#34;movi a2, 0x42424242;&#34;</span>
+			<span style="color:#e6db74">&#34;movi a3, 0x43434343;&#34;</span>
+			<span style="color:#e6db74">&#34;movi a4, 0x44444444;&#34;</span>
+			<span style="color:#e6db74">&#34;movi a5, 0x45454545;&#34;</span>
+			<span style="color:#75715e">// &#34;movi a6, 0x46464646;&#34;
+</span><span style="color:#75715e"></span>			<span style="color:#e6db74">&#34;movi a7, 0x47474747;&#34;</span>
+			<span style="color:#e6db74">&#34;movi a8, 0x48484848;&#34;</span>
+			<span style="color:#e6db74">&#34;movi a9, 0x49494949;&#34;</span>
+
+			<span style="color:#e6db74">&#34;movi a6, 0;&#34;</span>
+			<span style="color:#e6db74">&#34;addi a6, a6, 1;&#34;</span>				<span style="color:#75715e">// start add sled
+</span><span style="color:#75715e"></span>			<span style="color:#f92672">&lt;</span> repeat <span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">000</span> times <span style="color:#f92672">&gt;</span>
+			<span style="color:#e6db74">&#34;mov %[counter], a6;&#34;</span>
+			<span style="color:#f92672">:</span> [counter] <span style="color:#e6db74">&#34;=r&#34;</span> (counter)
+			<span style="color:#f92672">:</span>
+			<span style="color:#f92672">:</span> 	<span style="color:#e6db74">&#34;a6&#34;</span>, <span style="color:#e6db74">&#34;a0&#34;</span>, <span style="color:#e6db74">&#34;a1&#34;</span>, <span style="color:#e6db74">&#34;a2&#34;</span>, <span style="color:#e6db74">&#34;a3&#34;</span>, <span style="color:#e6db74">&#34;a4&#34;</span>, <span style="color:#e6db74">&#34;a5&#34;</span>, <span style="color:#e6db74">&#34;a7&#34;</span>, <span style="color:#e6db74">&#34;a8&#34;</span>, <span style="color:#e6db74">&#34;a9&#34;</span> );
+
+		GPIO_OUTPUT_SET(<span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">1</span>);				<span style="color:#75715e">// trigger low
+</span><span style="color:#75715e"></span>	}
+
+	printf(<span style="color:#e6db74">&#34;AAAA%08xBBBB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, counter);	<span style="color:#75715e">// send result back
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>We generate the <strong>trigger high</strong> and the <strong>trigger low</strong> signal by driving a <strong>GPIO</strong> pin. This allows us to create a measurable <strong>attack window</strong> that encompasses the sled of <code>add</code> instructions. This increases our chances of injecting a successful glitch and allows us to identify the presence of a hardware vulnerability.</p>
+<h2 id="location">Location</h2>
+<p>We use the <strong>XYZ stage</strong> to automatically move the <strong>EM-FI Probe</strong> across the chip's surface. The <strong>Spider</strong> waits until the <strong>trigger</strong> is set high, effectively injecting the glitch exactly within the attack window. The attack window is defined by the moment the <strong>trigger</strong> goes high and the <strong>trigger</strong> goes low. We randomize both the <strong>timing within the attack window</strong> and the <strong>power</strong> of the <strong>EM-FI Probe</strong>. We used a <strong>30 x 30 grid</strong> for our initial experiment.</p>
+<p>All experiments are grouped according to the behavior we observe. We assign a color to each experiment based on their group. All experiments that result in:</p>
+<ul>
+<li>no observable effect whatsoever are colored <span style="color: #74dc8d">green dots</span></li>
+<li>a reset or mute of the chip are colored <span style="color: yellow">yellow dots</span></li>
+<li>a different counter value (i.e. successful glitch) are are colored <span style="color: #e76a72">red diamonds</span></li>
+<li>an exception (e.g. illegal instruction) are colored <span style="color: #ec5598">magenta crosses</span></li>
+</ul>
+<p>We perform roughly 165,000 experiments in ~8.5 hours which are plotted in the graph shown below. For each experiment we move the <strong>EM-FI probe</strong> and randomize the <strong>glitch power</strong> between <strong>10%</strong> and <strong>100%</strong> of the maximum power.</p>
+<p style="text-align:center;">
+	<a href="/img/esp32/esp32-add-sled.png">
+		<img src="/img/esp32/esp32-add-sled.png" height="250px">
+	</a>
+	<a href="/img/esp32/identification-ploit2.png">
+		<img src="/img/esp32/identification-ploit2.png" height="250px">
+	</a>
+</p>
+<p>The experiments are summarized below. For each type we provided an example of what is observed on the <strong>serial interface</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Response</th>
+<th>Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expected</td>
+<td><code><span style="color: #74dc8d">AAAA00002710BBBB</span></code></td>
+<td>165404</td>
+</tr>
+<tr>
+<td>Exception</td>
+<td><code><span style="color: #ec5598">Fatal exception (0): IllegalInstruction <cut></span></code></td>
+<td>6</td>
+</tr>
+<tr>
+<td>Reset/Mute</td>
+<td><code><span style="color: yellow">ets Jun  8 2016 00:22:57&hellip;.rst:0x1 (POWERON_RESET) <cut></span></code></td>
+<td>1489</td>
+</tr>
+<tr>
+<td>Success</td>
+<td><code><span style="color: #e76a72">AAAA0000270ABBBB</span></code></td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The <span style="color: #e76a72">red diamond</span> represents a location where we were able to introduce a successful glitch that introduced a fault that effected the increment of the counter without affecting the chip's continuation. Although we observed only a single successful glitch, it shows that the <strong>ESP32</strong> is susceptible to <strong>EM</strong> glitches.</p>
+<p>We achieved our first goal, we identified a hardware vulnerability. Let's see if we can <strong>exploit</strong> it by introducing faults that allow us to build an actual attack. We decided to fix the <strong>EM-FI probe</strong> to the location of the <strong>successful glitch</strong> the bypass of <strong>Secure Boot</strong>. This nicely reduces the glitch parameter search space by one entire dimension.</p>
+<h2 id="exploitation">Exploitation</h2>
+<p>The <strong>Espressif IoT Development Framework (ESP-IDF)</strong> includes convenient tools to <strong>build software</strong> (<code>idf.py</code>), <strong>burn eFuses</strong> (<code>espefuse.py</code>), <strong>generate keys</strong> (<code>espsecure.py</code>) and <strong>program the flash memory</strong> (<code>esptool.py</code>). We used these tooling extensively throughout while finding ways to exploit the vulnerability.</p>
+<h4 id="perform-a-sanity-check">Perform a sanity check</h4>
+<p>It's always a good idea to perform a so-called &ldquo;<em>sanity check</em>&rdquo; to verify if <strong>Secure Boot</strong> is actually enabled and works as expected. One approach for doing this, is to invalidate the <strong>bootloader</strong> and observe the differences on the <strong>serial interface</strong> output. When there is no <strong>serial interface</strong> output, other information may be used as well, such as the communication with the flash or the chip's power consumption. As fas as we know the <strong>serial interface</strong> output of the <strong>ESP32</strong> cannot be disabled and therefore always available.</p>
+<p>After power-on reset, the <strong>ROM</strong> (<span style="color: #74dc8d"> green </span>) and <strong>bootloader</strong> (<span style="color: #e76a72"> red </span>) print the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
+</span><span style="color:#a6e22e">+ 
+</span><span style="color:#a6e22e">+ rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+</span><span style="color:#a6e22e">+ configsip: 0, SPIWP:0xee
+</span><span style="color:#a6e22e">+ clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+</span><span style="color:#a6e22e">+ mode:DIO, clock div:2
+</span><span style="color:#a6e22e">+ load:0x3fff0008,len:4
+</span><span style="color:#a6e22e">+ load:0x3fff000c,len:3220
+</span><span style="color:#a6e22e">+ load:0x40078000,len:4816
+</span><span style="color:#a6e22e">+ load:0x40080400,len:18640
+</span><span style="color:#a6e22e">+ entry 0x40080740
+</span><span style="color:#a6e22e"></span><span style="color:#f92672">- I (86) boot: Chip Revision: 1
+</span><span style="color:#f92672">- I (87) boot_comm: chip revision: 1, min. bootloader chip revision: 0
+</span><span style="color:#f92672">- I (42) boot: ESP-IDF v3.3.1 2nd stage bootloader
+</span><span style="color:#f92672">- I (42) boot: compile time 16:14:32
+</span><span style="color:#f92672">- I (42) boot: Enabling RNG early entropy source...
+</span><span style="color:#f92672">- I (46) boot: SPI Speed 		: 40MHz
+</span><span style="color:#f92672">- I (50) boot: SPI mode 		: DIO
+</span><span style="color:#f92672">- I (54) boot: SPI Flash Size	: 2MB
+</span><span style="color:#f92672">- 
+</span><span style="color:#f92672">- Hello, I am the bootloader
+</span></code></pre></div><p>We invalidate the <strong>bootloader</strong> by modifying the string <code>bootloader</code>, visible in the last line of the above <strong>serial interface</strong> output, into <code>Raelize!!!</code>. Then, we program the modified <strong>bootloader</strong> to the external flash of the <strong>ESP32</strong>. Then, when we boot up the <strong>ESP32</strong>, we observe the following output printed on the <strong>serial interface</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
+</span><span style="color:#a6e22e">+ 
+</span><span style="color:#a6e22e">+ rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+</span><span style="color:#a6e22e">+ configsip: 0, SPIWP:0xee
+</span><span style="color:#a6e22e">+ clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+</span><span style="color:#a6e22e">+ mode:DIO, clock div:2
+</span><span style="color:#a6e22e">+ load:0x3fff0008,len:4
+</span><span style="color:#a6e22e">+ load:0x3fff000c,len:3220
+</span><span style="color:#a6e22e">+ load:0x40078000,len:4816
+</span><span style="color:#a6e22e">+ load:0x40080400,len:18640
+</span><span style="color:#a6e22e">+ csum err:0xb5!=0xdf
+</span><span style="color:#a6e22e">+ ets_main.c 371
+</span></code></pre></div><p>The <strong>ROM</strong> verifies a checksum of the <strong>bootloader</strong>, which is invalid due to our modification. The checksum value present in the <strong>flash image</strong>  is easily identified as the required information is printed on the <strong>serial interface</strong>. We simply change <code>0xb5</code> into <code>0xdf</code> to satisfy the checksum operation. As expected, the <strong>ROM</strong> now reports that the <strong>Secure Boot</strong> check failed.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
+</span><span style="color:#a6e22e">+ 
+</span><span style="color:#a6e22e">+ rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+</span><span style="color:#a6e22e">+ configsip: 0, SPIWP:0xee
+</span><span style="color:#a6e22e">+ clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+</span><span style="color:#a6e22e">+ mode:DIO, clock div:2
+</span><span style="color:#a6e22e">+ load:0x3fff0008,len:4
+</span><span style="color:#a6e22e">+ load:0x3fff000c,len:3220
+</span><span style="color:#a6e22e">+ load:0x40078000,len:4816
+</span><span style="color:#a6e22e">+ load:0x40080400,len:18640
+</span><span style="color:#a6e22e">+ secure boot check fail
+</span><span style="color:#a6e22e">+ ets_main.c 371
+</span></code></pre></div><p>Now we have the <strong>Secure Boot</strong> implementation kick in, we can think about bypassing it by exploiting the hardware vulnerability we identified using <strong>EMFI</strong>.</p>
+<h4 id="timing-the-attack">Timing the attack</h4>
+<p>The <strong>identification</strong> phase allowed us to fix the *<em>EM-FI Probe(</em> location and give some insights into the <strong>power</strong> that's required. Unfortunately, the <strong>trigger</strong> based on a <strong>GPIO pin</strong> could not be used any more, as the verification is performed by the <strong>ROM</strong> code, which cannot be modified. Therefore, we needed a new reference point for timing our <strong>FI</strong> attack.</p>
+<p>We started by using the <strong>reset</strong> signal as the <strong>trigger</strong>, but this induced significant jitter in our timing. Therefore, we decided to use the <strong>flash</strong> activity to time our attack. This is often a great signal to use for triggering as it is often tightly coupled to the software execution, especially during <strong>Secure Boot</strong>.</p>
+<p>The activity on <strong>pin1</strong> of the <strong>flash</strong> is shown in <span style="color: #81dafc">blue</span> whereas the <strong>trigger</strong> signal that we derive from this activity is shown in <span style="color: #e76a72">red</span>.</p>
+<p style="text-align:center;">
+	<a href="/img/esp32/esp32-spi-pin1-during-boot.png">
+		<img src="/img/esp32/esp32-spi-pin1-during-boot.png" style="max-width: 100%; width: 600px">
+	</a>
+</p>
+<p>At this stage of the research, we did not exactly know what was happening at each moment (i.e. <strong>A</strong> to <strong>G</strong>). However, we know we take the chip out of reset just before <strong>A</strong> and we assume that the bootloader is copied last during <strong>F</strong>. If a valid <strong>bootloader</strong> is programmed on the flash, the chip starts executing the bootloader somewhere during <strong>G</strong>.</p>
+<h4 id="performing-the-attack">Performing the attack</h4>
+<p>We decided to inject glitches in a 10 µs <strong>attack window</strong> starting directly after <strong>F</strong>. The attack cycle for each experiment, which allowed us to perform roughly 10 experiments per second, was as follows:</p>
+<ul>
+<li>Pull the <strong>EN pin down</strong> to keep the chip in <strong>reset</strong></li>
+<li>Pull the <strong>EN pin up</strong> to release the chip from <strong>reset</strong></li>
+<li>Wait for 17 ms until the flash activity gap between <strong>E</strong> and <strong>F</strong></li>
+<li>Wait for the first falling edge on <strong>pin1</strong> of the <strong>flash</strong> (beginning of <strong>F</strong>) and set <strong>trigger high</strong></li>
+<li>Inject an <strong>EM</strong> glitch with randomized <strong>power</strong> and <strong>timing</strong> within the <strong>attack window</strong></li>
+<li>Store the <strong>serial interface</strong> output in a database for post processing</li>
+</ul>
+<p>After ~35,000 experiments, which took ~55 minutes, we observed <strong>three successful glitches</strong> where we bypassed <strong>Secure Boot</strong> using a <strong>EM</strong> glitch. We can easily identify the successful glitches as <code>Raelize!!!</code>  is printed on the <strong>serial interface</strong> instead of <code>bootloader</code> as is shown below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
+</span><span style="color:#a6e22e">+ 
+</span><span style="color:#a6e22e">+ rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+</span><span style="color:#a6e22e">+ configsip: 0, SPIWP:0xee
+</span><span style="color:#a6e22e">+ clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+</span><span style="color:#a6e22e">+ mode:DIO, clock div:2
+</span><span style="color:#a6e22e">+ load:0x3fff0008,len:4
+</span><span style="color:#a6e22e">+ load:0x3fff000c,len:3220
+</span><span style="color:#a6e22e">+ load:0x40078000,len:4816
+</span><span style="color:#a6e22e">+ load:0x40080400,len:18640
+</span><span style="color:#a6e22e">+ entry 0x40080740
+</span><span style="color:#a6e22e"></span><span style="color:#f92672">- I (86) boot: Chip Revision: 1
+</span><span style="color:#f92672">- I (87) boot_comm: chip revision: 1, min. bootloader chip revision: 0
+</span><span style="color:#f92672">- I (42) boot: ESP-IDF v3.3.1 2nd stage bootloader
+</span><span style="color:#f92672">- I (42) boot: compile time 16:14:32
+</span><span style="color:#f92672">- I (42) boot: Enabling RNG early entropy source...
+</span><span style="color:#f92672">- I (46) boot: SPI Speed 		: 40MHz
+</span><span style="color:#f92672">- I (50) boot: SPI mode 		: DIO
+</span><span style="color:#f92672">- I (54) boot: SPI Flash Size	: 2MB
+</span><span style="color:#f92672">- 
+</span><span style="color:#f92672">- Hello, I am the Raelize!!!
+</span></code></pre></div><p>The plot below shows all the experiments where the <strong>X</strong> axis is the <strong>timing</strong> (nanoseconds) and the <strong>Y</strong> axis is the <strong>power</strong> (% of full power). The three <span style="color: #e76a72">red diamonds</span> represent three successful glitches.</p>
+<p style="text-align:center;">
+	<a href="/img/esp32/esp32-secure-boot.png">
+		<img src="/img/esp32/esp32-secure-boot.png" style="max-width: 100%; width: 600px">
+	</a>
+</p>
+<p>The statistics for these experiments are shown below.</p>
+<div align="center">
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Amount</th>
+<th>%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color: #74dc8d">Expected</span></td>
+<td>19494</td>
+<td>56.54</td>
+</tr>
+<tr>
+<td><span style="color: yellow">Reset/Mute</span></td>
+<td>14981</td>
+<td>43.45</td>
+</tr>
+<tr>
+<td><span style="color: #e76a72">success</span></td>
+<td>3</td>
+<td>0.01</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can determine the attack's success rate by tuning the glitch parameters. When we simply take the exact same glitch parameters (i.e. <strong>position</strong>, <strong>power</strong> and <strong>timing</strong>) we achieve a <strong>success rate</strong> of <strong>2 successful glitches per minute</strong>. This shows the attack can be easily reproduced once the <strong>glitch parameters</strong> are known.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We demonstrated that the <strong>ESP32</strong> is vulnerable to <strong>EMFI</strong> and we leveraged this hardware vulnerability for a <strong>Secure Boot</strong> attack. Even though a similar attack has already been published, we demonstrated that <strong>EMFI</strong> brings significant advantages over other <strong>Fault Injection</strong> techniques.</p>
+<p>For this <strong>Secure Boot</strong> attack, we did not assume any specific <strong>Fault Model</strong> as we merely leveraged the observable behavioral changes of the chip. Using a refined scanning technique, in combination with an efficient trigger for timing, was simply sufficient to build a successful <strong>Secure Boot</strong> attack.</p>
+<p>Nonetheless, these initial results suggested to us that there may be an opportunity to leverage more refined <strong>Fault Models</strong> for exploitation. We anticipated, that we could put our previously published research into practice where we turn <strong>copy operations</strong> into <strong>execution primitives</strong>. If applicable, this could allow us to invent powerful new attacks that bypass more than just <strong>Secure Boot</strong> using a single glitch.</p>
+<p>We actually tried a few different things after the initial attack described in this post. Like any research, not everything succeeded, but we actually managed to bypass <strong>Secure Boot</strong> and <strong>Flash Decryption</strong> using a creative and interesting approach.</p>
+<p><i>
+<pre><code>&quot;It's not the fault that matters, 
+ it's how you use it that reveals its true value.&quot; - Raelize
+</code></pre><p></i></p></p>
+<p>The results of this adventure beyond <em>&ldquo;just bypassing Secure Boot&rdquo;</em> will be described in a series of upcoming posts which will be published in the upcoming weeks. <strong>Stay tuned!</strong></p>
+<h2 id="acknowledgment">Acknowledgment</h2>
+<p>We would like to thank <strong>Espressif</strong> for their positive, proactive and investigative attitude during the entire coordinated disclosure of this research. Our experience was entirely positive and we wish all vulnerability disclosures would be like this. It sets a great example on how to deal with a coordinated vulnerability disclosure process.</p>
+
+        </div>
+        
+        
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.ebd57d27ce11ffdacdf3f8c7d8b3e6aeb26f8231253ffe8acd77c70536d81020bcab3d4dff78141fa04044164049b6d3.js" integrity="sha384-69V9J84R/9rN8/jH2LPmrrJvgjElP/6KzXfHBTbYECC8qz1N/3gUH6BARBZASbbT"></script>
+
+
+</body>
+
+</html>

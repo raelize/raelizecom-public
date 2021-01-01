@@ -1,190 +1,469 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.78.2" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title></title><link rel="stylesheet" href="/css/core.min.0b9416c1ab7ad80e65b9c8c02a08c0bc1ccc6239d624b16fd01f9ec0d401727ffe61878c75525c2bb300f182d0c722f2.css" integrity="sha384-C5QWwat62A5lucjAKgjAvBzMYjnWJLFv0B&#43;ewNQBcn/&#43;YYeMdVJcK7MA8YLQxyLy"><meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="" /><body><section id="header">
-    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name"></span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">Home</a><a class="nav item" href="/about">About</a><a class="nav item" href="/services">Services</a><a class="nav item" href="/training">Training</a><a class="nav item" href="/blog">Blog</a><a class="nav item" href="/contact">Contact</a></nav></div></span></div></section><section id="content"><div class="article-container"><section class="article header">
-    <h1 class="article title"></h1></section><article class="article markdown-body"><div align="center">
-<p style="text-align:center;">
-    <a href="../img/teepwn.png" ><img src="../img/teepwn.png" width="400px"></a>
-</p>
-<h1 id="breaking-tees-by-experience"><em>&ldquo;Breaking TEEs by Experience&rdquo;</em></h1>
-<table>
-<thead>
-<tr>
-<th>Format</th>
-<th>Available</th>
-<th>Price</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Online</td>
-<td><img src="/img/yes.svg" width=40px/></td>
-<td>2000 EUR</td>
-</tr>
-<tr>
-<td>In-Person (3 days)</td>
-<td><img src="/img/yes.svg" width=40px/></td>
-<td><a href="mailto:info@raelize.com">Contact us!</a></td>
-</tr>
-<tr>
-<td>In-Person (4 days)</td>
-<td><img src="/img/yes.svg" width=40px/></td>
-<td><a href="mailto:info@raelize.com">Contact us!</a></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="description">Description</h2>
-<p>Trusted Execution Environments (TEEs) are notoriously hard to secure due to the interaction
-between complex hardware and a large trusted code bases (TCBs). The security provided by TEEs
-has been broken on a wide variety of devices, including mobile phones, smart TVs and even
-vehicles. Publicly disclosed TEE vulnerabilities were often exploited directly from the less-trusted
-Rich Execution Environment (REE). Many of these vulnerabilities were specific for TEEs and
-required novel exploitation techniques.</p>
-<p>The TEEPwn experience provides an offensive system-level perspective and dives into the darker
-corners of TEE Security. It is designed with a system-level approach, where you will experience
-powerful exploitation of TEE vulnerabilities. The TEEPwn experience is hands-on, gamified and
-driven by an exciting jeopardy-style Capture the Flag (CTF).</p>
-<p>Your journey starts by achieving a comprehensive understanding of TEEs, where you will learn how
-hardware and software concur to enforce effective security boundaries. You will then use this
-understanding for identifying interesting vulnerabilities across the entire TEE attack surface. You
-will then be challenged along the path to exploit them in multiple scenarios.
-All vulnerabilities are identified and exploited on our emulated attack platform, implementing a 64-
-bit TEEs based on ARM TrustZone.</p>
-<p>You will take on different roles, as an attacker in control of:</p>
-<ul>
-<li>the REE, attempting to achieve privileged code execution in the TEE.</li>
-<li>the REE, trying to access assess protected by a Trusted Application (TA).</li>
-<li>a TA, aiming to escalate privileges to TEE OS.</li>
-<li>a TA, accessing the protected assets of other TAs.</li>
-</ul>
-<p>TEEPwn will guide you into an unexpected range of attack vectors and TEE-specific exploitation
-techniques, which may be leveraged for novel and creative software exploits. refining your skills to
-a new level.</p>
-<h2 id="audience">Audience</h2>
-<ul>
-<li>Security Analysts and Researchers, interested in new techniques.</li>
-<li>Software Security Developers/Architects interested in TEE software attack techniques.</li>
-</ul>
-<h2 id="agenda">Agenda</h2>
-<p>The exact agenda depends on the training's format. However, the lectures and exercises are sourced from an extensive library consisting of interesting topics and hands-on exercises.</p>
-<ul>
-<li><strong>TEE Fundamentals</strong>
-<ul>
-<li>TEE overview</li>
-<li>Security model</li>
-</ul>
-</li>
-<li><strong>ARM TrustZone-based TEEs</strong>
-<ul>
-<li>TEE SW components</li>
-<li>TEE attacker model</li>
-<li>TEE attack surface</li>
-</ul>
-</li>
-<li><strong>REE &ndash;&gt; TEE attacks</strong>
-<ul>
-<li>Secure Monitor</li>
-<li>TEE OS (SMC interface)</li>
-<li>Exploitation:
-<ul>
-<li>Vulnerable SMC handlers</li>
-<li>Broken design</li>
-<li>Unchecked Pointers</li>
-<li>Restricted writes</li>
-<li>Range checks</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>REE &ndash;&gt; TA attacks</strong>
-<ul>
-<li>Communicating with TAs</li>
-<li>Global Platform APIs</li>
-<li>Exploitation:
-<ul>
-<li>Type confusion</li>
-<li>TOCTOU (Double fetch)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>TA &ndash;&gt; TEE attacks</strong>
-<ul>
-<li>TEE OS (Syscall interface)</li>
-<li>Confidential- Drivers</li>
-<li>Exploitation:
-<ul>
-<li>Unchecked pointers from TA</li>
-<li>Vulnerable crypto primitives</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>TA &ndash;&gt; TA attacks</strong>
-<ul>
-<li>State confusion</li>
-</ul>
-</li>
-</ul>
-<h2 id="learning-objectives">Learning objectives</h2>
-<ul>
-<li>Explore TEE security at the system level</li>
-<li>Gain strong understanding of TrustZone-based TEEs</li>
-<li>Identify vulnerabilities across the entire TEE attack surface</li>
-<li>Experience TEE-specific exploitation techniques</li>
-</ul>
-<h2 id="attendee-requirements">Attendee requirements</h2>
-<ul>
-<li>Experience with C/C++ programming</li>
-<li>Experience with the ARM architecture (AArch64)</li>
-<li>Understanding of typical software vulnerabilities</li>
-<li>Familiarity with reverse engineering and typical exploitation techniques</li>
-<li>Familiarity with modern OS security concepts</li>
-</ul>
-<h2 id="relevant-publications">Relevant publications</h2>
-<ul>
-<li><a href="/upload/research/2017/2017_EuskalHack_Secure-Initialization-of-TEEs-when-secure-boot-falls-short_CM-ES.pdf">Secure Initialization of TEEs when Secure Boot Falls Short</a> @ EuskalHack 2017</li>
-</ul>
-<h2 id="reviews">Reviews</h2>
-<p>Anonymous #1:</p>
-<blockquote>
-<p>Really enjoyed the material and CTF, instructions were clear, challenges were nicely staggered, just tricky enough without being frustrating and conveyed the concepts clearly.</p>
-</blockquote>
-<p>Anonymous #2:</p>
-<blockquote>
-<p>the training is AMAZING, could use a bit more coffee breaks</p>
-</blockquote>
-<p>Anonymous #3:</p>
-<blockquote>
-<p>For me as a non-SW reversengineer the learning curve is a bit steep, but better by challenged than to be bored during a training 🙂</p>
-</blockquote>
-<p>Anonymous #4:</p>
-<blockquote>
-<p>Thanks for organizing training in Ringzer0.
-It is above my expectations, and I enjoyed very much these 5 days.
-Training contents are well considered.</p>
-</blockquote>
-</article></div>
-<div class="article bottom"><section class="article navigation"><p><a class="link" href="/about/"><span class="iconfont icon-article"></span>About Raelize</a></p></section></div></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">©2020 Raelize B.V.</p>
-    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
-        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
-        target="_blank">Notepadium</a></p>
-</div></section>
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-135892271-3', 'auto');
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
 	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.80.0" />
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+
+
+<!-- Start empty -->
+<section id="services" class="bg-one section" style="padding: 20px 0; padding-top: 60px;">
+    
+    <div class="container" style="background-color: #292f36;">
+        <div class="row justify-content-center">
+            <div class="col-lg-12" style="margin: 0px 0;">
+                <br>
+                <div class="title text-center wow fadeIn" data-wow-duration="500ms" style="padding-bottom: 20px;">
+                    <img src="../img/teepwn.png" width=300px/>
+
+                    <div class="border-meghna"></div>
+                    <br>
+                    <h4><i>Breaking TEEs by Experience</i></h4>
+                </div>
+            </div>
+            
+            <div style="width: 650px; padding: 10px">
+
+                <p>Trusted Execution Environments (TEEs) are notoriously hard to secure due to the interaction between complex hardware and a large trusted code bases (TCBs). The security provided by TEEs has been broken on a wide variety of devices, including mobile phones, smart TVs and even vehicles. Publicly disclosed TEE vulnerabilities were often exploited directly from the less-trusted Rich Execution Environment (REE). Many of these vulnerabilities were specific for TEEs and required novel exploitation techniques.</p>
+
+                <p>The TEEPwn experience provides an offensive system-level perspective and dives into the darker corners of TEE Security. It is designed with a system-level approach, where you will experience powerful exploitation of TEE vulnerabilities. The TEEPwn experience is hands-on, gamified and driven by an exciting jeopardy-style Capture the Flag (CTF).</p>
+
+                <p>Your journey starts by achieving a comprehensive understanding of TEEs, where you will learn how hardware and software concur to enforce effective security boundaries. You will then use this understanding for identifying interesting vulnerabilities across the entire TEE attack surface. You will then be challenged along the path to exploit them in multiple scenarios. All vulnerabilities are identified and exploited on our emulated attack platform, implementing a 64- bit TEEs based on ARM TrustZone.</p>
+
+                <p>You will take on different roles, as an attacker in control of:</p>
+
+                <ul>
+                    <li>the REE, attempting to achieve privileged code execution in the TEE.</li>
+                    <li>the REE, trying to access assess protected by a Trusted Application (TA).</li>
+                    <li>a TA, aiming to escalate privileges to TEE OS.</li>
+                    <li>a TA, accessing the protected assets of other TAs.</li>
+                </ul>
+
+                <p>TEEPwn will guide you into an unexpected range of attack vectors and TEE-specific exploitation techniques, which may be leveraged for novel and creative software exploits. refining your skills to a new level.</p>
+
+                <center>
+                    <p><a href="/teepwn#contact">Please contact us for more information!</a></p>
+                </center>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /testimonial -->
+
+
+
+
+<!-- Start Testimonial -->
+<section id="testimonial" class="testimonial overly section bg-2" style='background-image: url("../images/backgrounds/shutterstock_722319712.jpg"); padding:20px 0' >
+	
+	<img src="../images/backgrounds/shutterstock_722319712.jpg" style="display: none;" onerror="this.onerror=null;this.parentElement.style.backgroundImage= 'url(../images/backgrounds/shutterstock_722319712.jpg)'">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-12">
+				<!-- testimonial wrapper -->
+				<div id="testimonials" class="wow fadeInUp" data-wow-duration="500ms" data-wow-delay="100ms">
+
+					<!-- testimonial single -->
+					<div class="item text-center">
+						<div class="client-thumb"><img class="img-fluid lozad" data-src="../images/client/johndoe.png" alt="Anonymous"/></div>
+						<div class="client-info" style="max-width: 100%; width:600px;">
+							<div class="client-meta"><h3>Anonymous</h3></div>
+							<div class="client-comment"><p style="text-align:center;">Really enjoyed the material and CTF, instructions were clear, challenges were nicely staggered, just tricky enough without being frustrating and conveyed the concepts clearly.</p></div>
+						</div>
+					</div>
+					<!-- /testimonial single -->
+
+					<!-- testimonial single -->
+					<div class="item text-center">
+						<div class="client-thumb"><img class="img-fluid lozad" data-src="../images/client/johndoe.png" alt="Anonymous"/></div>
+						<div class="client-info" style="max-width: 100%; width:600px;">
+							<div class="client-meta"><h3>Anonymous</h3></div>
+							<div class="client-comment"><p style="text-align:center;">the training is AMAZING, could use a bit more coffee breaks</p></div>
+						</div>
+					</div>
+					<!-- /testimonial single -->
+
+					<!-- testimonial single -->
+					<div class="item text-center">
+						<div class="client-thumb"><img class="img-fluid lozad" data-src="../images/client/johndoe.png" alt="Anonymous"/></div>
+						<div class="client-info" style="max-width: 100%; width:600px;">
+							<div class="client-meta"><h3>Anonymous</h3></div>
+							<div class="client-comment"><p style="text-align:center;">For me as a non-SW reversengineer the learning curve is a bit steep, but better by challenged than to be bored during a training</p></div>
+						</div>
+					</div>
+					<!-- /testimonial single -->
+
+					<!-- testimonial single -->
+					<div class="item text-center">
+						<div class="client-thumb"><img class="img-fluid lozad" data-src="../images/client/johndoe.png" alt="Anonymous"/></div>
+						<div class="client-info" style="max-width: 100%; width:600px;">
+							<div class="client-meta"><h3>Anonymous</h3></div>
+							<div class="client-comment"><p style="text-align:center;">Thanks for organizing training in Ringzer0. It is above my expectations, and I enjoyed very much these 5 days. Training contents are well considered.</p></div>
+						</div>
+					</div>
+					<!-- /testimonial single -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- /testimonial -->
+
+
+
+<!-- Start empty -->
+<section id="services" class="bg-one section" style="padding: 20px 0;">
+    
+    <div class="container"  style="background-color: #292f36;">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <br>
+                <div class="title text-center wow fadeIn" data-wow-duration="500ms" style="padding-bottom: 0px;">
+                    <h2>Additional <span class="color">Info</span></h2>
+                    <div class="border-meghna"></div>
+                </div>
+            </div>
+
+            <div style="width: 650px; padding: 10px">
+
+                <h4>Audience</h4>
+
+                <ul>
+                    <li>Security Analysts and Researchers, interested in new techniques.</li>
+                    <li>Software Security Developers/Architects interested in TEE software attack techniques.</li>
+                </ul>
+
+                <h4>Agenda</h4>
+
+                <ul>
+                    <li>TEE Fundamentals </li>
+                    <ul>
+                        <li>TEE overview</li>
+                        <li>Security model</li>
+                    </ul>
+                    <li>ARM TrustZone-based TEEs</li>
+                    <ul>
+                        <li>TEE SW components</li>
+                        <li>TEE attacker model</li>
+                        <li>TEE attack surface</li>
+                    </ul>
+                    <li>REE –> TEE attacks</li>
+                    <ul>
+                        <li>Secure Monitor</li>
+                        <li>TEE OS (SMC interface)</li>
+                        <li>Exploitation:</li>
+                        <ul>
+                            <li>Vulnerable SMC handlers</li>
+                            <li>Broken design</li>
+                            <li>Unchecked Pointers</li>
+                            <li>Restricted writes</li>
+                            <li>Range checks</li>
+                        </ul>
+                    </ul>
+
+
+                    <li>REE –> TA attacks</li>
+                    <ul>
+                        <li>Communicating with TAs</li>
+                        <li>Global Platform APIs</li>
+                        <li>Exploitation:</li>
+                        <ul>
+                            <li>Type confusion</li>
+                            <li>TOCTOU (Double fetch)</li>
+                        </ul>
+                    </ul>
+
+                    <li>TA –> TEE attacks</li>
+                    <ul>
+                        <li>TEE OS (Syscall interface)</li>
+                        <li>Drivers</li>
+                        <li>Exploitation:</li>
+                        <ul>
+                            <li>Unchecked pointers from TA</li>
+                            <li>Vulnerable crypto primitives</li>
+                        </ul>
+                    </ul>
+
+                   <li>TA –> TA attacks</li>
+                    <ul>
+                        <li>State confusion</li>
+                    </ul>
+                </ul>
+
+                <h4>Learning objectives</h4>
+
+                <ul>
+                    <li>Explore TEE security at the system level</li>
+                    <li>Gain strong understanding of TrustZone-based TEEs</li>
+                    <li>Identify vulnerabilities across the entire TEE attack surface</li>
+                    <li>Experience TEE-specific exploitation techniques</li>
+                </ul>
+
+                <h4>Attendee requirements</h4>
+
+                <ul>
+                    <li>Experience with C/C++ programming</li>
+                    <li>Experience with the ARM architecture (AArch64)</li>
+                    <li>Understanding of typical software vulnerabilities</li>
+                    <li>Familiarity with reverse engineering and typical exploitation techniques</li>
+                    <li>Familiarity with modern OS security concepts</li>
+                </ul>
+
+                <center>
+                    <p><a href="/teepwn#contact">Please contact us for more information!</a></p>
+                </center>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /testimonial -->
+
+
+
+
+
+
+<!-- Start Contact Us -->
+<section id="contact" class="contact-us section-bg">
+	<div class="container pb-5">
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- section title -->
+				<div class="title text-center wow fadeIn" data-wow-duration="500ms">
+					<h2> Contact <span class="color">
+							  Us </span></h2>
+					<div class="border-meghna"></div>
+				</div>
+			</div>
+			<!-- /section title -->
+
+			<!-- Contact Details -->
+			<div class="contact-info col-lg-6 wow fadeInUp" data-wow-duration="500ms">
+				<h3>Contact Details</h3>
+				<p> Feel free to contact us, we will be happy to listen and support. </p>
+
+				
+				<div class="contact-details">
+					
+					<div class="con-info clearfix">
+						<i class="ti-location-pin"></i>
+						<span>Stadhoudersweg 108-D, 3039 CK, Rotterdam, The Netherlands</span>
+					</div>
+					
+					<div class="con-info clearfix">
+						<i class="ti-email"></i>
+						<span>Email: info@raelize.com</span>
+					</div>
+					
+					<div class="con-info clearfix">
+						<i class="ti-briefcase"></i>
+						<span>VAT: NL861445934B01</span>
+					</div>
+					
+					<div class="con-info clearfix">
+						<i class="ti-home"></i>
+						<span>KVK: 78549477</span>
+					</div>
+					
+				</div>
+				
+			</div>
+
+			<!-- Contact Form -->
+			
+			
+			<div class="col-lg-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+				<form id="contact-form" class="form-meghna" method="post" action="https://formspree.io/f/mleowyle" role="form">
+					<div class="form-group">
+						<input type="text" placeholder="Your Name" class="form-control" name="name" id="name">
+					</div>
+					<div class="form-group">
+						<input type="email" placeholder="Your Email" class="form-control" name="email" id="email">
+					</div>
+					<div class="form-group">
+						<input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
+					</div>
+					<div class="form-group">
+						<textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>
+					</div>
+					<div id="cf-submit">
+						<button type="submit" id="contact-submit" class="btn btn-transparent btn-block"
+							value="Submit">Submit</button>
+					</div>
+				</form>
+			</div>
+			
+			
+		</div>
+	</div>
+</section>
+<!-- /contact -->
+
+
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.ebd57d27ce11ffdacdf3f8c7d8b3e6aeb26f8231253ffe8acd77c70536d81020bcab3d4dff78141fa04044164049b6d3.js" integrity="sha384-69V9J84R/9rN8/jH2LPmrrJvgjElP/6KzXfHBTbYECC8qz1N/3gUH6BARBZASbbT"></script>
+
+
 </body>
 
 </html>

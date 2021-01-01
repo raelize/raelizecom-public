@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Fault Injection Reference Model (FIRM)</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.80.0" />
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <hr>
+        <h1>Fault Injection Reference Model (FIRM)</h1>
+        <p>Wednesday, Aug 26, 2020</p>
+        <hr>
+        
+      </div>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="post-single-content" background-color=0xff>
+          <p>In today's world, physical access to a device is considered a significant threat as devices often play a central role for the underlying business model. A multitude of assets, intellectual property (IP) and even the devices themselves have become sufficiently valuable to require adequate protection.</p>
+<p>This gave rise to security features specifically designed to mitigate threats related to physical access. These type of security features, for example <strong>Secure Boot</strong>, are nowadays way more common than they used to be just a handful of years ago.</p>
+<p>Nonetheless, modern device hackers did not give up, often resorting to powerful techniques like <strong>Fault Injection (FI)</strong> in order to circumvent these new defenses. For example, most of the latest gaming consoles, if not all, have been initially hacked successfully using a wide variety of <strong>FI</strong> attacks in order to <a href="https://media.ccc.de/v/c4.openchaos.2018.06.glitching-the-switch">achieve code execution</a>, <a href="https://rdist.root.org/2010/01/27/how-the-ps3-hypervisor-was-hacked/">escalate privileges</a> or <a href="https://yifan.lu/2019/02/22/attacking-hardware-aes-with-dfa/">extract cryptographic keys</a>.</p>
+<p>At the same time, lots of research has been published where <strong>FI</strong> theoretics and practicalities are discussed and demonstrated. We have been specifically active in this field, for example demonstrating that <strong>FI</strong> is an efficient technique for <a href="https://raelize.com/upload/research/2016/2016_BlackHat-EU_Bypassing-Secure-Boot-Using-Fault-Injection_NT-AS.pdf">bypassing Secure Boot</a> and <a href="https://raelize.com/upload/research/2017/2017_FDTC_Escalating-Privileges-in-Linux-using-Fault-Injection_NT-CM.pdf">escalating privileges on Linux</a>.</p>
+<p>We expect that <strong>FI</strong> attacks will become even more relevant in the future as more devices will implement defenses to prevent easy access to device internals.</p>
+<h2 id="background">Background</h2>
+<p>The basic concept of <strong>FI</strong> is actually quite straightforward. Simply said, it often boils down to using specialized tooling for injecting a glitch at a specific moment in time into a vulnerable target. Some call it magic, while others like to fall back on their understanding of the physics at play.</p>
+<p>Actually, most <strong>FI</strong> details are not that easy to discuss, even for seemingly simple attacks. In fact, quite a diverse technical background, spanning multiple domains related to both software and hardware, is usually required to fully digest the matter at hand. Importantly, a thorough understanding of the details is often needed to come up with novel ideas that progress the <strong>FI</strong> research field.</p>
+<p>This is something we experienced ourselves in numerous exchanges between us and with others. Discussing <strong>FI</strong> attacks is not always trivial, mostly due to a mix of different backgrounds, levels of understanding and experience. We realized we needed a better method or tool to support reasoning on <strong>FI</strong> attacks and defenses.</p>
+<p>We believe that our <strong>Fault Injection Reference Model (FIRM)</strong>, which we introduced already at <a href="https://raelize.com/upload/research/2019/2019_HITB-Cyberweek-UAE_Debunking-Fault-Injection-Myths-and-Misconceptions_CM-NT.pdf">HITB+CyberWeek</a> and <a href="https://raelize.com/upload/using-fault-injection-for-turning-data-transfers-into-arbitrary-execution-poc2019-slides-1.0.pdf">POC2019</a>, does exactly that.</p>
+<p>Before we dive into <strong>FIRM</strong> itself, let's align ourselves on what a <strong>FI</strong> vulnerability exactly is and how attackers utilize <strong>FI</strong> for attacks.</p>
+<h4 id="what39s-a-fi-vulnerability">What's a FI vulnerability?</h4>
+<p>Most attacks, if not all, are applicable due to the presence a vulnerability. Without a vulnerability, it would be hard to differentiate a feature from an actual attack. While software vulnerabilities have been refined conceptually over the years, no comparable effort has been devoted to <strong>FI</strong> vulnerabilities.</p>
+<p>Without any attempt to be rigorous or complete, we like to use the following definition for describing a <strong>FI</strong> vulnerability.</p>
+<p><i>
+<pre><code>&quot;The susceptibility of a hardware subsystem to a specific 
+Fault Injection technique, which has an impact on security.&quot; - Raelize
+</code></pre><p></i></p></p>
+<p>It should already be apparent from the definition itself that bypassing <strong>Secure Boot</strong> using <strong>voltage glitches</strong> entails exploiting a different vulnerability than doing the same using <strong>optical pulses</strong>. Although the achieved goal is identical, the underlying physics and root cause is entirely different. It's important to point out that these differences become extremely relevant during the development of both effective attacks and defenses.</p>
+<p>Interestingly, specialized tooling is not always required to trigger <strong>FI</strong> vulnerabilities. Examples are <a href="https://www.usenix.org/system/files/conference/usenixsecurity17/sec17-tang.pdf">CLKSCREW</a> and <a href="http://users.ece.cmu.edu/~yoonguk/papers/kim-isca14.pdf">Rowhammer</a> which both use software to trigger <strong>FI</strong> vulnerabilities. Moreover, these attacks showed that <strong>FI</strong> vulnerabilities are applicable to more than just the CPU alone.</p>
+<p>We consider these so-called <em><strong>software-driven</strong></em> attacks to be <strong>FI</strong> attacks and they fit perfectly in <strong>FIRM</strong> as well!</p>
+<h4 id="what39s-a-fi-attack">What's a FI attack?</h4>
+<p>At a high level, the steps an attacker takes for performing a <strong>FI</strong> attack are quite intuitive. Most <strong>FI</strong> attacks can be summarized as follows:</p>
+<ol>
+<li>Select a target</li>
+<li>Select a <strong>FI</strong> technique</li>
+<li>Generate a trigger</li>
+<li>Glitch n' pray</li>
+<li>Profit</li>
+</ol>
+<p>For many attacks, there is not much more to it. It would not be the first time the security of a modern chip is completely compromised by using this naive, but straightforward, approach. Nonetheless, seasoned <strong>FI</strong> practitioners know that this process is not always sufficient. At some point the need comes to better understand what exactly is going on.</p>
+<p>Regardless if you are an attacker or defender, the nuances of the variables at play become very important when targets are complex or specifically hardened against <strong>FI</strong>. This includes for example the <strong>timing of the glitch</strong>, <strong>the shape of the glitch</strong>, <strong>the impact of the glitch</strong>, <strong>the target's state</strong>, etc.</p>
+<p>We raelized we could visualize <strong>FI</strong> attacks, identify their main building blocks and conceptually play with them. Moreover, we could visually break down the attack to discuss specific nuances and details, but also capture common properties at a more abstract level. With time, experience and research the different pieces started falling into place and a reference model formed in our heads.</p>
+<p>Simply said, <strong>FIRM</strong> was born.</p>
+<h2 id="description-of-firm">Description of FIRM</h2>
+<p>We consider six so-called stages of a <strong>FI</strong> attack: <strong>Activate</strong>, <strong>Inject</strong>, <strong>Glitch</strong>, <strong>Fault</strong>, <strong>Exploit</strong> and <strong>Goal</strong>. These stages, or building blocks, are used to break down a <strong>FI</strong> attack in separate steps or events.</p>
+<p style="text-align:center;">
+	<a href="/img/fimodel/raelize-fi-fault-model-new.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-new.png" width="1000px">
+    </a>
+</p>
+<p>From an attacker's point of view, at the start, there are several choices to be made. These are likely steered mostly by attacker's capabilities (i.e. what tooling or expertise is available) and the characteristics of the target (i.e. some <strong>FI</strong> techniques may be difficult to apply).</p>
+<ul>
+<li>The <strong>Activate</strong> stage applies to the <strong>FI</strong> technique, whether driven by software or hardware, that is used.</li>
+<li>The <strong>Inject</strong> stage applies to the environmental domain affected by the <strong>FI</strong> technique.</li>
+<li>The <strong>Glitch</strong> stage applies to the parameters that can shape the glitch used to trigger the <strong>FI</strong> vulnerability in the target.</li>
+</ul>
+<p>The above stages encompass what is required during the <strong>FI</strong> attack in order to trigger the <strong>FI</strong> vulnerability. The remaining stages are related to what can be accomplished once the <strong>FI</strong> vulnerability is triggered.</p>
+<ul>
+<li>The <strong>Fault</strong> stage applies to the type of faults that are introduced as a consequence of the <strong>FI</strong> vulnerability. These so-called <strong>Fault Models</strong> describe the behavioral impact (i.e. fault) a glitch has on a target (e.g. instruction skipping, instruction corruption, etc.)</li>
+<li>The <strong>Exploit</strong> stage describes how a given fault can be leveraged by an attacker to achieve a certain goal.</li>
+<li>The <strong>Goal</strong> stage describes what can be achieved by an attacker. These goals may be very similar to goals achieved with the exploitation of a software vulnerability.</li>
+</ul>
+<p>At each stage there is a vast amount of available options and potential outcomes. The picture below presents by no means an exhaustive list. Nonetheless, it gives a <strong>peek in the kitchen</strong> for the amount of variables at play while conducting <strong>FI</strong> attacks.</p>
+<p style="text-align:center;">
+	<a href="/img/fimodel/raelize-fi-fault-model-with-names-new.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-with-names-new.png" width="1000px">
+    </a>
+</p>
+<p>The choices made during the <strong>Activate</strong>, <strong>Inject</strong> and <strong>Glitch</strong> stage impact the options available in the <strong>Fault</strong>, <strong>Exploit</strong> and <strong>Goal</strong> stage. Therefore, it's extremely important to sufficiently explore the available options during the initial stages before ruling out a certain attack as not applicable. Suboptimal choices will likely lead to suboptimal results.</p>
+<p>It's typically much easier to prove a <strong>FI</strong> attack is possible rather than proving it's impossible. Negative proofs may be even impossible&hellip;</p>
+<h2 id="using-firm----describing-attacks">Using FIRM &ndash; Describing attacks</h2>
+<p><strong>FIRM</strong> can be used for effectively describing <strong>FI</strong> attacks. We demonstrate it here using some real-world attacks as an example.</p>
+<h4 id="bypassing-secure-boot-on-the-nintendo-switch">Bypassing Secure Boot on the Nintendo Switch</h4>
+<p><a href="https://media.ccc.de/v/c4.openchaos.2018.06.glitching-the-switch">This publication</a> shows it's possible to bypass the <strong>Secure Boot</strong> feature of the Nintendo Switch using <strong>FI</strong>. The attacker used a home-made, FPGA-based, glitcher to inject glitches into the chip's voltage supply. The attack goal was to bypass the verification of the bootloader in order to extract the decryption keys for some of the contents stored in flash.</p>
+<p>We can describe the attack using <strong>FIRM</strong>:</p>
+<p style="text-align:center;">
+	<a href="/img/fimodel/raelize-fi-fault-model-switch.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-switch.png" width="1000px">
+    </a>
+</p>
+<p>As far as we know, details regarding the fault itself were never disclosed. From an offensive perspective this is not uncommon. Attackers are often not that interested in what exactly is affected within a chip. In the end, knowing the fault model itself is often not needed for reaching the goal.</p>
+<p>Nonetheless, a better understanding of the faults at play gives way to more powerful attacks, which will become more relevant once manufacturers start hardening their devices.</p>
+<h4 id="escalating-privileges-using-rowhammer">Escalating privileges using Rowhammer</h4>
+<p><a href="https://googleprojectzero.blogspot.com/2015/03/exploiting-dram-rowhammer-bug-to-gain.html">This publication</a> from Google's Project Zero (P0) demonstrates how the <strong>Rowhammer</strong> vulnerability can be used to gain Linux Kernel privileges. The authors used software to trigger the hardware vulnerability in the DRAM chip in order to perform this <strong>FI</strong> attack.</p>
+<p>Using <strong>FIRM</strong>, we can describe this <strong>FI</strong> attack as well:</p>
+<p style="text-align:center;">
+	<a href="/img/fimodel/raelize-fi-fault-model-rowhammer.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-rowhammer.png" width="1000px">
+    </a>
+</p>
+<h2 id="using-firm----designing-defenses">Using FIRM &ndash; Designing defenses</h2>
+<p><strong>FIRM</strong> can also be used from a <strong>defensive</strong> perspective. This can be useful while designing defenses against <strong>FI</strong> attacks.</p>
+<p>The picture below shows how typical <strong>FI</strong> defenses can be actually connected to different <strong>FIRM</strong> stages. It should become more visible how different measures can play a different role in lowering the chance of success, depending the stage they are connected to.</p>
+<p style="text-align:center;">
+	<a href="/img/fimodel/raelize-fi-fault-model-countermeasures.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-countermeasures.png" width="1000px">
+    </a>
+</p>
+<p>Manufacturers often consider <strong>FI</strong> specific defenses to lower the risk of <strong>FI</strong> attacks. <strong>FIRM</strong> allows them to consider what defense may be useful during what stage of a <strong>FI</strong> attack. Interestingly, some of the defenses applicable against <strong>FI</strong> attacks may not be specific to <strong>FI</strong> at all (e.g. software exploitation mitigations).</p>
+<p>It's important to point out an interesting observation. For example, software mitigations do not affect <strong>FI</strong> attack until the <strong>Exploit</strong> stage is reached. This is both an advantage and a disadvantage. Because the <strong>Exploit</strong> stage occurs after the <strong>Fault</strong> stage, software mitigations are often tailored to a specific <strong>Fault Model</strong>. However, if not all possible <strong>Fault Models</strong> are known in advance, which is likely for a given target, then designing comprehensive software mitigations becomes not trivial at all. Having all the possible fault models by software mitigations may even be an impossible task per se.</p>
+<p>Assuming the amount of applicable <strong>Fault Models</strong> is unknown, then effective defenses can only be implemented at the <strong>Inject</strong> or <strong>Glitch</strong> stage. The focus should shift from mitigating the exploitation to preventing or detecting the glitch before the hardware vulnerability is triggered at all.</p>
+<p>There are many other interesting observations to be made. We leave this up to the reader for now. We will likely touch upon this observations ourselves at a later stage&hellip;</p>
+<h2 id="using-firm----developing-attacks">Using FIRM &ndash; Developing attacks</h2>
+<p><strong>FIRM</strong> can also be used to envision and reason about new and unexplored attack paths.</p>
+<p>For instance, in the diagram below, the exploitation path is independent from the path taken to trigger the vulnerability. Different <strong>FI</strong> techniques trigger different vulnerabilities but result in the same type of fault. This allows for reusing the same exploit path across different attacks.</p>
+<p style="text-align:center;">
+	<a href="/img/fimodel/raelize-fi-fault-model-different-method-same-fault.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-different-method-same-fault.png" width="1000px">
+    </a>
+</p>
+<p>Recently we came across an applicable example. The <strong>Secure Boot</strong> implementation of the ESP32 chip has been bypassed using both <strong>voltage glitches</strong> (<a href="https://limitedresults.com/2019/09/pwn-the-esp32-secure-boot/">reference</a>) and <strong>electromagnetic glitches</strong> (<a href="https://raelize.com/posts/espressif-systems-esp32-bypassing-sb-using-emfi/">reference</a>). It's likely both attack trigger different hardware vulnerabilities but still use a similar path for exploitation.</p>
+<p>Another interesting example is the <a href="https://arxiv.org/pdf/1912.11523.pdf">JackHammer</a> attack, where the Rowhammer vulnerability is triggered from an embedded FPGA instead of software. Effectively, the only difference between this attack and P0's Rowhammer attack is the <strong>Activate</strong> stage. All the remaining stages are applicable and can be reused.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We believe <strong>FIRM</strong> is useful for discussing <strong>FI</strong> attacks and defenses in a systematic manner. We are confident it can be used to progress both the offensive and defensive <strong>FI</strong> playing field. Nonetheless, we are aware that there is room for improvement and we are open to your remarks and/or contributions.</p>
+<p>You can expect new <strong>FI</strong> research soon where we are going use <strong>FIRM</strong> again. Stay tuned!</p>
+
+        </div>
+        
+        
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.ebd57d27ce11ffdacdf3f8c7d8b3e6aeb26f8231253ffe8acd77c70536d81020bcab3d4dff78141fa04044164049b6d3.js" integrity="sha384-69V9J84R/9rN8/jH2LPmrrJvgjElP/6KzXfHBTbYECC8qz1N/3gUH6BARBZASbbT"></script>
+
+
+</body>
+
+</html>

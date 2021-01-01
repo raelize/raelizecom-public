@@ -1,34 +1,305 @@
 <!DOCTYPE html>
-<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.78.2" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<meta name="supported-color-schemes" content="light dark"><title></title><link rel="stylesheet" href="/css/core.min.0b9416c1ab7ad80e65b9c8c02a08c0bc1ccc6239d624b16fd01f9ec0d401727ffe61878c75525c2bb300f182d0c722f2.css" integrity="sha384-C5QWwat62A5lucjAKgjAvBzMYjnWJLFv0B&#43;ewNQBcn/&#43;YYeMdVJcK7MA8YLQxyLy"><link rel="alternate" type="application/rss+xml" href="/blog/index.xml" title="" /><meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="" /><body><section id="header">
-    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><img class="site logo" src="/img/logo.png" alt /><span class="site name"></span></a></span>
-        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/">Home</a><a class="nav item" href="/about">About</a><a class="nav item" href="/services">Services</a><a class="nav item" href="/training">Training</a><a class="nav item" href="/blog">Blog</a><a class="nav item" href="/contact">Contact</a></nav></div></span></div></section><section id="content"><ul class="note list"><li class="item"><a class="note" href="/posts/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">
-            <p class="note title">Espressif ESP32: Bypassing Encrypted Secure Boot (CVE-2020-13629)</p><p class="note date">Tuesday, September 22, 2020</p><p class="note content">We arrived at the last post about our Fault Injection research on the ESP32.<span class="mldr">&mldr;</span></p></a></li><li class="item"><a class="note" href="/posts/espressif-systems-esp32-bypassing-flash-encryption/">
-            <p class="note title">Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)</p><p class="note date">Monday, September 14, 2020</p><p class="note content">In our previous post we described an attack where we load an arbitrary value indirectly into the PC register using EMFI.<span class="mldr">&mldr;</span></p></a></li><li class="item"><a class="note" href="/posts/espressif-systems-esp32-controlling-pc-during-sb/">
-            <p class="note title">Espressif ESP32: Controlling PC during Secure Boot</p><p class="note date">Tuesday, September 8, 2020</p><p class="note content">In our previous post we demonstrated that the ESP32 chip is vulnerable to EMFI.<span class="mldr">&mldr;</span></p></a></li><li class="item"><a class="note" href="/posts/raelize-fi-reference-model/">
-            <p class="note title">Fault Injection Reference Model (FIRM)</p><p class="note date">Wednesday, August 26, 2020</p><p class="note content">In today's world, physical access to a device is considered a significant threat as devices often play a central role for the underlying business model.<span class="mldr">&mldr;</span></p></a></li><li class="item"><a class="note" href="/posts/espressif-systems-esp32-bypassing-sb-using-emfi/">
-            <p class="note title">Espressif ESP32: Bypassing Secure Boot using EMFI</p><p class="note date">Friday, July 24, 2020</p><p class="note content">Our research during the last few years definitely points out our interest in Fault Injection (FI) attacks.<span class="mldr">&mldr;</span></p></a></li></ul><div class="pagination">
-    <ul><li><a class="active" href="/blog/">1</a></li><li><a class="" href="/blog/page/2/">2</a></li></ul>
-</div><center>
-<a href="/posts/index.xml"><img src="/img/rss.svg" width=5% /></a>
-</center></section><section id="footer"><div class="footer-wrap">
-    <p class="copyright">©2020 Raelize B.V.</p>
-    <p class="powerby"><span>Powered by </span><a href="https://gohugo.io" 
-        target="_blank">Hugo</a><span> and the </span><a href="https://themes.gohugo.io/hugo-notepadium/" 
-        target="_blank">Notepadium</a></p>
-</div></section>
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-135892271-3', 'auto');
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Blogs</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
 	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.80.0" />
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<!-- Start Blog Section -->
+<section id="blog" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!-- section title -->
+        <div class="title text-center wow fadeInDown">
+          <h2> Latest <span class="color">
+               Posts </span></h2>
+          <div class="border-meghna"></div>
+        </div>
+      </div>
+      <!-- /section title -->
+      
+      
+      <article class="col-lg-4 col-md-6 col-12 clearfix wow fadeInUp mb-4" data-wow-duration="500ms">
+  <div class="post-block">
+    <div class="media-wrapper">
+
+    </div>
+
+    <div class="content">
+      <h3><a href="https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">Espressif ESP32: Bypassing Encrypted Secure Boot …</a></h3>
+      <p>We arrived at the last post about our Fault Injection research on the ESP32. Please read our …</p>
+      <a class="btn btn-transparent" href="https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">Read more</a>
+    </div>
+  </div>
+</article>
+
+      
+      <article class="col-lg-4 col-md-6 col-12 clearfix wow fadeInUp mb-4" data-wow-duration="500ms">
+  <div class="post-block">
+    <div class="media-wrapper">
+
+    </div>
+
+    <div class="content">
+      <h3><a href="https://raelize.com/blog/espressif-systems-esp32-bypassing-flash-encryption/">Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)</a></h3>
+      <p>In our previous post we described an attack where we load an arbitrary value indirectly into the PC …</p>
+      <a class="btn btn-transparent" href="https://raelize.com/blog/espressif-systems-esp32-bypassing-flash-encryption/">Read more</a>
+    </div>
+  </div>
+</article>
+
+      
+      <article class="col-lg-4 col-md-6 col-12 clearfix wow fadeInUp mb-4" data-wow-duration="500ms">
+  <div class="post-block">
+    <div class="media-wrapper">
+
+    </div>
+
+    <div class="content">
+      <h3><a href="https://raelize.com/blog/espressif-systems-esp32-controlling-pc-during-sb/">Espressif ESP32: Controlling PC during Secure Boot</a></h3>
+      <p>In our previous post we demonstrated that the ESP32 chip is vulnerable to EMFI. We used this to …</p>
+      <a class="btn btn-transparent" href="https://raelize.com/blog/espressif-systems-esp32-controlling-pc-during-sb/">Read more</a>
+    </div>
+  </div>
+</article>
+
+      
+      <article class="col-lg-4 col-md-6 col-12 clearfix wow fadeInUp mb-4" data-wow-duration="500ms">
+  <div class="post-block">
+    <div class="media-wrapper">
+
+    </div>
+
+    <div class="content">
+      <h3><a href="https://raelize.com/blog/raelize-fi-reference-model/">Fault Injection Reference Model (FIRM)</a></h3>
+      <p>In today's world, physical access to a device is considered a significant threat as devices often …</p>
+      <a class="btn btn-transparent" href="https://raelize.com/blog/raelize-fi-reference-model/">Read more</a>
+    </div>
+  </div>
+</article>
+
+      
+      <article class="col-lg-4 col-md-6 col-12 clearfix wow fadeInUp mb-4" data-wow-duration="500ms">
+  <div class="post-block">
+    <div class="media-wrapper">
+
+    </div>
+
+    <div class="content">
+      <h3><a href="https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/">Espressif ESP32: Bypassing Secure Boot using EMFI</a></h3>
+      <p>Our research during the last few years definitely points out our interest in Fault Injection (FI) …</p>
+      <a class="btn btn-transparent" href="https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/">Read more</a>
+    </div>
+  </div>
+</article>
+
+      
+      <article class="col-lg-4 col-md-6 col-12 clearfix wow fadeInUp mb-4" data-wow-duration="500ms">
+  <div class="post-block">
+    <div class="media-wrapper">
+
+    </div>
+
+    <div class="content">
+      <h3><a href="https://raelize.com/blog/d-link-dsl-2640b-security-advisories/">Security Advisories: D-Link DSL-2640B</a></h3>
+      <p>In a previous post we shared our considerations on the impact of vulnerabilities in Internet …</p>
+      <a class="btn btn-transparent" href="https://raelize.com/blog/d-link-dsl-2640b-security-advisories/">Read more</a>
+    </div>
+  </div>
+</article>
+
+      
+      <div class="col-12">
+        
+<ul class="pagination">
+  <li class="page-item">
+    <a href="/blog/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item disabled">
+    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/blog/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/blog/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a href="/blog/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/blog/page/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
+</ul>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /blog -->
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.ebd57d27ce11ffdacdf3f8c7d8b3e6aeb26f8231253ffe8acd77c70536d81020bcab3d4dff78141fa04044164049b6d3.js" integrity="sha384-69V9J84R/9rN8/jH2LPmrrJvgjElP/6KzXfHBTbYECC8qz1N/3gUH6BARBZASbbT"></script>
+
+
 </body>
 
 </html>

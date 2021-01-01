@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Threat After Death: Security Impact of EoL Devices</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.80.0" />
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <hr>
+        <h1>Threat After Death: Security Impact of EoL Devices</h1>
+        <p>Wednesday, Mar 18, 2020</p>
+        <hr>
+        
+      </div>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="post-single-content" background-color=0xff>
+          <p>We identified several vulnerabilities in the <a href="https://eu.dlink.com/uk/en/products/dsl-2640b-adsl-2-wireless-g-router-with-4-port-10-100-switch">D-Link DSL-2640B</a> DSL gateway which will likely not be fixed as the device is <a href="https://en.wikipedia.org/wiki/End-of-life_(product)">EoL</a> (more details will come soon). A vulnerability identified in an EoL device typically has a guaranteed, infinite lifetime. Basically a <strong>NO-day</strong>. Although <a href="https://www.shodan.io/">Shodan</a> only reports only two active devices, we like to stress that the impact of these vulnerabilities should not be neglected.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/DNSChanger">DNSChanger</a> malware has been updated in 2018 to target the DSL-2640B. The attacker's efforts would be hard to explain with just Shodan's figures. An analysis performed by <a href="https://badpackets.net">Bad Packets</a> using data from a different source, identified a much larger device population, excessing 14,000 active devices. The stark difference between device population numbers questions our ability to correctly assess relevance, scale and impact of EoL devices.</p>
+<p>The device population size may be surprising for a device that is EoL for more than 7 years. Taking control of such a large device population allows for attacks at scale, such as contributing significant bandwidth in a DDoS attacks. The data directly challenges the perceived relevance of EoL devices in general.</p>
+<p><strong>Important:</strong> The information described in this blog post was also discussed at <a href="https://nullcon.net/website/">NULLCON 2020</a> for which the slides can be downloaded <a href="/upload/Nullcon_2020_PwdLess_Exploitation_Tales_from_RouterLand_v1.0.pdf">here</a>.</p>
+<h2 id="end-of-life">End-of-Life?</h2>
+<p><strong>End-of-Life</strong> refers to the life-cycle stage of a device, where no support is provided anymore. This typically includes security updates for newly identified vulnerabilities.</p>
+<p>One may expect that the device population rapidly declines once a device becomes EoL. We are not aware of any research that explores an EoL device population evolutions and time it takes before the device disappear from the Internet. It is safe to assume that the lifetime of some devices (e.g. routers, modems, TVs, etc.) may be significantly longer than expected.</p>
+<p>Devices that are EoL are rarely considered interesting for security research as:</p>
+<ul>
+<li>the manufacturer is not interested and vulnerabilities will not be fixed</li>
+<li>exploitation is not interesting as it is simply too easy</li>
+<li>the device is out of scope of any bug bounty program</li>
+<li>the device population will likely go to zero (at some point)</li>
+</ul>
+<p>However, any vulnerability will have an almost guaranteed, infinite life. Any attacker will be able to exploit such a vulnerability, until the last device is disconnected from the Internet.</p>
+<h2 id="d-link-dsl-2640b">D-Link DSL-2640B</h2>
+<p>The D-Link DSL-2640B is a DSL gateway first released in 2007 and sold in several countries. The US version has been in <a href="https://legacy.us.dlink.com/pages/product.aspx?id=e8d4df5edfcb4d3ab3007d8ff835fc40">EoL</a> since 2013. No information is known to us about the devices sold in other countries.</p>
+<p>This device may easily look like an uninteresting target. Until recently, only one CVE was a available for a <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-1308">XSS vulnerability</a>, which was reported in 2012. It's not surprising that the research community is uninterested as Shodan only reports 2 available devices.</p>
+<p style="text-align:center;"><img src="/img/EOL/Shodan_search.png" width="600px"></p>
+<p>This may indicate that this device has disappeared from the Internet and that any identified vulnerability will be practically irrelevant.</p>
+<p>We have reasons to believe that real attackers do not share the same view&hellip;</p>
+<h2 id="learning-from-malware">Learning from malware</h2>
+<p>A DNSChanger malware campaign, which took place between December 2018 and April 2019, hijacked network traffic of users by reconfiguring remotely the DNS servers of several vulnerable consumer routers. <a href="https://badpackets.net">Bad Packets</a> analyzed this DNS hijacking campaign and identified 7 distinct attack waves targeting different routers, sharing their results in a nice <a href="https://badpackets.net/ongoing-dns-hijacking-campaign-targeting-consumer-routers/">blog post</a>.</p>
+<p>The DNSChanger malware was already active in <a href="https://www.proofpoint.com/us/threat-insight/post/home-routers-under-attack-malvertising-windows-android-devices">2016</a>. At that time it was not yet targeting the D-Link DSL-2640B. In 2017, an <a href="https://www.exploit-db.com/exploits/42197">exploit</a> got posted to exploit-db.com that allows unauthenticated modification of the device's DNS server settings. This vulnerability is used by the DNSChanger malware during its 2018-2019 campaign.</p>
+<p>In a nutshell, the DNSChanger malware was <strong>intentionally updated</strong> to support a <strong>target</strong>, which, according to Shodan, had <strong>practically disappeared</strong> from the Internet&hellip;</p>
+<p><em><strong>WHY!?</strong></em></p>
+<h2 id="lies-damned-lies-and-statistics">Lies, damned lies, and statistics</h2>
+<p>An important piece of information in the <a href="https://badpackets.net/ongoing-dns-hijacking-campaign-targeting-consumer-routers/">blog post</a> by <a href="https://badpackets.net">Bad Packets</a> is their estimation of affected devices. Instead of using Shodan for their estimate, they used data provided by <a href="https://www.binaryedge.io/">BinaryEdge</a>. Long story short, they concluded that the device population of the DSL-2640B is a whopping amount of 14,327!</p>
+<p>BinaryEdge's count exceeds Shodan's results by <strong>4 orders of magnitude</strong> (!).</p>
+<p style="text-align:center;"><img src="/img/EOL/BinaryEgde_search.png" width="600px"></p>
+<p>One may wonder whether such results are accurate and which of the two is the most accurate. This is a valid question and it would definitely be interesting to understand the reason for this significant difference. We would love to hear if anybody knows more about his.</p>
+<p>Just to be sure, we performed a few sanity checks on the BinaryEdge data and, based on our limited capabilities (i.e. we cannot simply exploit these devices to check), we concluded that the count may be realistic.</p>
+<p><strong>NOTE</strong>:<br>
+For consistency reasons, the same search string has been used for both search engines, with the intent to show of how strikingly different figures may be obtained.
+More tailored queries may yield different numbers on each of the search engines. For instance, we have been pointed to our best Shodan query so far, which yields slightly above 1k devices. This is still one order of magnitude different from BinaryEdge.</p>
+<p style="text-align:center;"><img src="/img/EOL/Shodan_search_all.png" width="600px"></p>
+<h2 id="impact">Impact</h2>
+<p>if we assume that the BinaryEdge data is realistic, we need to reconsider the relevance of vulnerabilities affecting the D-Link DSL-2640B.</p>
+<p><strong>Firstly</strong>, it's interesting that even after 7 (!) years of EoL 10,000 device are still reachable over the Internet. This directly challenges the assumption that EoL devices's population declines to extinction in a considerable amount of time. In other words, if the numbers are correct, it's clear that a rapid disappearance of EoL devices cannot be safely assumed and it fully justifies the malware's choice to include the device in its list of targets.</p>
+<p><strong>Secondly</strong>, the relevance of exploits affecting EoL devices, with a guaranteed infinite lifetime, increases drastically when such devices do not actually disappear. This directly challenges the assumption that exploits affecting EoL devices are useless as the population count rapidly approaches zero. Exploits are definitely not useless when they affect 10,000+ Internet connected devices.</p>
+<p><strong>Lastly</strong>, attackers are always interested in exploiting large populations of Internet connected devices, also when old, slow and EoL. The DSL-2640B has an upstream bandwidth of 3.5 Mbps and therefore the aggregate bandwidth of the 10,000 devices is 35 Gbps. This would be a significant contribution in DDoS attacks, especially if further amplified via various techniques like <a href="https://blog.cloudflare.com/deep-inside-a-dns-amplification-ddos-attack/">DNS Amplification</a>, <a href="https://www.cloudflare.com/learning/ddos/ntp-amplification-ddos-attack/">NTP Amplification</a> or <a href="https://blog.radware.com/security/2019/11/threat-alert-tcp-reflection-attacks/">TCP Reflection</a>.</p>
+<p>This made us wonder&hellip; what is the <strong>actual value</strong> of an exploit for an EoL device?</p>
+<p>We have not been able to find solid data on the value of exploits for EoL devices. In March of this year a new <a href="https://ktln2.org/2020/03/05/cve-2020-9544/">vulnerability</a> for the DSL-2640B was released affecting a specific firmware version. This vulnerability enables an attacker to perform  an unauthenticated firmware update. <a href="https://vuldb.com/?id.150966">VulDB</a> provides an estimated value between 5,000 USD and and 25,000 USD. We wonder if this estimate takes the device population size into account. Nonetheless, it should be evident that a larger population would make the exploit more valuable.</p>
+<h2 id="final-thoughts">Final thoughts</h2>
+<p>More and more devices will become EoL each year. We also know that users will keep on using them, regardless of security recommendations. This situation is not easy to address, for instance, kill switches implemented by the manufacturers are likely undesired or even illegal.  A possible measure may inform users of the EoL status of the device and its risk, potentially fueling device replacement/disconnection.</p>
+<p>We believe that it is also fundamental to provide adequate methods for mapping the device population of EoL devices. Services like Shodan and BinaryEdge are definitely useful, but we have shown how they can provide greatly conflicting data, potentially leading to incorrect conclusions.</p>
+<p>Someone may also suggest that ISPs (or Manufacturers) should be responsible for tracking, and reporting, Internet connected devices. Protocols like <a href="https://en.wikipedia.org/wiki/TR-069">TR-069</a> are actually used by ISPs already and may facilitate this purpose as well.</p>
+<p>Regardless of the solution, we believe that it takes more than just technical measures to effectively address the threat posed by EoL devices to the Internet ecosystem.</p>
+<p>We would love to hear your thoughts: <a href="https://twitter.com/raelizecom">@raelizecom</a>.</p>
+
+        </div>
+        
+        
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.ebd57d27ce11ffdacdf3f8c7d8b3e6aeb26f8231253ffe8acd77c70536d81020bcab3d4dff78141fa04044164049b6d3.js" integrity="sha384-69V9J84R/9rN8/jH2LPmrrJvgjElP/6KzXfHBTbYECC8qz1N/3gUH6BARBZASbbT"></script>
+
+
+</body>
+
+</html>

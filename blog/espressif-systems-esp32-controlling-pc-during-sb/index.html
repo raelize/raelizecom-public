@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Espressif ESP32: Controlling PC during Secure Boot</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.80.0" />
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <hr>
+        <h1>Espressif ESP32: Controlling PC during Secure Boot</h1>
+        <p>Tuesday, Sep 8, 2020</p>
+        <hr>
+        
+      </div>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="post-single-content" background-color=0xff>
+          <p>In our <a href="/posts/espressif-systems-esp32-bypassing-sb-using-emfi/">previous post</a> we demonstrated that the <strong>ESP32</strong> chip is vulnerable to <strong>EMFI</strong>. We used this to bypass the <strong>Secure Boot</strong> implementation of the <strong>ESP32</strong>. During this post we also shared already that our goal was to put our previously conducted research, where we turn <strong>Data Transfers</strong> into <strong>Code Execution</strong>, into practice.</p>
+<p>When a target is undergoing a <strong>Fault Injection</strong> attack, it's extremely difficult to guarantee that the hardware operates as intended. This subverts a fundamental assumption of software engineering, where it's assumed that the hardware always flawlessly executes the instructions. <strong>Fault Injection</strong> attacks undermine the execution of software at the lowest level.</p>
+<p>As a result, any <strong>software security model</strong> is likely compromised when the correct execution of software cannot be guaranteed. Fundamentally, this is the reason why <strong>Fault Injection</strong> is so effective in attacking modern devices as they rely on security implemented by software.</p>
+<p>The key idea of &ldquo;<em><strong>Turning Data Transfers into Code Execution</strong></em>&rdquo; is to inject a glitch into the target while it's copying controlled data, in order to set the processor's program counter (PC) to an arbitrary value. This gives an attacker a powerful primitive which can almost always be used to achieve code execution.</p>
+<p>Most devices copy data from external non-volatile memory (e.g. flash) into volatile memory (e.g. SRAM or DDR) during boot. The data stored in non-volatile memory is usually modifiable by an attacker with physical access. Interestingly, even though the <strong>source</strong>, <strong>destination</strong> and <strong>length</strong> of these copy operations are often carefully checked, the data itself being transferred is generally not considered a security risk.</p>
+<p>In this post, we demonstrate an attack on the <strong>Secure Boot</strong> implementation of the <strong>ESP32</strong> where we load attacker controlled values into the PC register using <strong>EMFI</strong>. This allows us to achieve code execution in the context of the <strong>ROM</strong> code.</p>
+<h2 id="controlling-pc-using-fault-injection">Controlling PC using Fault Injection</h2>
+<p>Our <a href="https://raelize.com/upload/research/2016/2016_FDTC_Controlling-PC-on-ARM-using-Fault-Injection_NT-AS-MW.pdf">research</a> at FDTC in 2016 already pointed out that it's trivial to load arbitrary values into the PC register of <strong>ARM32</strong> chips using <strong>Fault Injection</strong>. On this architecture the attack was easy as the PC register is directly addressable. Moreover, the <strong>load multiple</strong> instructions (i.e. <code>ldm</code>), used on <strong>ARM32</strong> for efficiently copying data, were easy to glitch due to their encoding (i.e. a bitmap is used).</p>
+<p>The processor architecture of the <strong>ESP32</strong>, <strong>Xtensa LX6</strong>, does not support direct loading of immediate values to the PC register. Therefore, the <strong>ARM32</strong> specific attack is not portable as-is. Nonetheless, we already know, as we <a href="/upload/research/2019/2019_PoC_Using-Fault-Injection-to-Turn-Data-Transfers-into-Arbitrary-Execution_CM-NT.pdf">presented</a> in 2019, that variants of this attack are applicable to most, if not all, other architectures as well.</p>
+<p>As you will realize in this post, we just have to load the values indirectly&hellip;</p>
+<h2 id="attack-hypothesis">Attack hypothesis</h2>
+<p>Our <strong>Fault Injection Reference Model (FIRM)</strong> breaks down complex <strong>Fault Injection</strong> attacks in multiple comprehensible stages. It can be used to make a hypothesis about the attack we have in mind as is shown below.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/firm-esp32-rom-code-exec-2.png">
+        <img src="/img/esp32/firm-esp32-rom-code-exec-2.png" style="max-width: 100%; width: 700px">
+    </a>
+</p>
+<p>It's important to realize that, compared to the previous attack, we only change the <strong>Glitch</strong>, <strong>Fault</strong> and <strong>Exploit</strong> stage of <strong>FIRM</strong> whereas the other stages remain the same. Therefore, any knowledge obtained from the stages that did not change, can be reused.</p>
+<p>Moreover, it's important to realize that not all <strong>Fault Injection</strong> vulnerabilities are alike. There are many nuances, many of which are not studied yet thoroughly. For example, using a different <strong>Fault Injection</strong> techniques, or even just different glitch parameters, likely trigger different (hardware) vulnerabilities, causing different type of faults. The result is a multitude of different applicable <strong>Fault Models</strong> which can lead various exploitation strategies.</p>
+<p>We believe <strong>FIRM</strong> is useful for both <strong>offensive</strong> and <strong>defensive</strong> endevours related to <strong>Fault Injection</strong> attacks. Please read our <a href="/posts/raelize-fi-reference-model/">post</a> about <strong>FIRM</strong> if you are interested in more details.</p>
+<h2 id="road-to-">Road to &hellip;</h2>
+<h4 id="probe-location">Probe location</h4>
+<p>We used the same equipment as during the attack we described in our previous <a href="/posts/espressif-systems-esp32-bypassing-sb-using-emfi/"> post</a>. We already know that the <strong>ESP32</strong> is vulnerable to <strong>EMFI</strong>. For this attack, we assumed that the (hardware) vulnerability we exploited during the previous attack would allow of to perform this attack as well. Therefore, left the <strong>EMFI</strong> probe at the current location, assuming it would yield the type of fault we need. Moreover, by targeting the same location, we also know the <strong>Glitch Power</strong> to use for triggering the (hardware) vulnerability.</p>
+<h4 id="flash-modification">Flash modification</h4>
+<p>For this attack, our goal is to load an arbitrary value into the PC register while the processor is copying data. This means we need to make the processor operate on data that is under control of the attacker. We achieve this by simply overwriting the entire bootloader with arbitrary data. The processor will happily copy this arbitrary data as it's copied before the signature is verified and the changes can be detected.</p>
+<p>To identify a successful attack, we fully overwrite the bootloader with the 32-bit pointer to a ROM function that prints something on the serial interface. The successful execution of this function generates the printout on the serial port, which confirms we have successfully loaded one of the pointers stored in external flash into the PC register.</p>
+<p>Moreover, as the entire bootloader is fully overwritten with the same pointer, the glitch timing requirements are practically removed and we can simply glitch (almost) anywhere during the bootloader copy.</p>
+<p>We use the ROM function at address <code>0x4005A980</code>. This function prints the following string on the serial interface: <code>Falling back to built-in command interpreter.\n</code>. A snippet of the original flash image and the modified flash image is shown below. Please note that the address pointer is stored in little endian format in the external flash.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ Original:
+</span><span style="color:#a6e22e">+     00001040    00 50 04 FF AC 00 00 00 48 65 6C 6C 6F 2C 20 49 
+</span><span style="color:#a6e22e">+     00001050    20 61 6D 20 74 68 65 20 62 6F 6F 74 6C 6F 61 64
+</span><span style="color:#a6e22e">+     &lt;cut&gt;
+</span><span style="color:#a6e22e">+     00007850    EE E0 08 00 06 02 00 00 0C 1A 81 5B EE E0 08 00 
+</span><span style="color:#a6e22e">+     00007860    81 95 EE C0 20 00 88 08 F7 68 EC 1D F0 00 00 00 
+</span><span style="color:#a6e22e"></span>
+<span style="color:#f92672">- Modified:
+</span><span style="color:#f92672">-     00001040    00 50 04 FF AC 00 00 00 80 A9 05 40 80 A9 05 40
+</span><span style="color:#f92672">-     00001050    80 A9 05 40 80 A9 05 40 80 A9 05 40 80 A9 05 40
+</span><span style="color:#f92672">-     &lt;cut&gt;
+</span><span style="color:#f92672">-     00007850    80 A9 05 40 80 A9 05 40 80 A9 05 40 80 A9 05 40 
+</span><span style="color:#f92672">-     00007860    80 A9 05 40 80 A9 05 40 80 A9 05 40 80 A9 05 40   
+</span></code></pre></div><h4 id="glitch-timing">Glitch timing</h4>
+<p>The trigger, derived from activity on the external flash bus, was reused. As you can see in the picture below, we generate the trigger (in <span style="color: #e76a72">red</span>) from the activity on <strong>pin1</strong> of the <strong>flash</strong> (in <span style="color: #81dafc">blue</span>), in similar fashion as during the previous attack.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-spi-pin1-copy-glitch.png">
+        <img src="/img/esp32/esp32-spi-pin1-copy-glitch.png" style="max-width: 100%; width: 700px">
+    </a>
+</p>
+<p>We know that the bootloader is copied at the end of the flash activity. Therefore, we inject the glitches in a small <strong>attack window</strong> during the copy of the bootloader which is shown in the above picture.</p>
+<h4 id="attack-cycle">Attack cycle</h4>
+<p>When we are successful, one of the address pointers originating from flash is loaded into the PC register. We take the following steps for each experiment.</p>
+<ol>
+<li>Reset chip</li>
+<li>Wait for trigger</li>
+<li>Inject glitch with randomized parameters (i.e. power, delay)</li>
+<li>Read UART output</li>
+<li>goto next experiment</li>
+</ol>
+<h4 id="results">Results</h4>
+<p>Unfortunately, after more than 1 million experiments, which touch roughly 2 days, we observed no successful glitches. This made us conclude that the above approach does not work and that the glitches we injected were unable to cause the fault that we need.</p>
+<p>During our previous attack we did not anticipated a specific type of fault. We were simply happy when we observed the modified bootloader was executed. Moreover, we were not that interested in what the effect exactly was (i.e. type of fault).</p>
+<p>However, for the attack described in this post, we need a specific fault to be successful. To be precise, we need a fault that allows us to modify one of the <strong>load</strong> instructions when it's operating on controllable data (i.e. data from flash). We simply need a fault that causes <strong>Instruction Corruption</strong>.</p>
+<p>Like we anticipated in the beginning of this post, there are many nuances to consider when conducting <strong>Fault Injection</strong> attacks. Therefore, it's important to never give up as there is always something else to try and success may not be that far away.</p>
+<h2 id="road-to-success">Road to success</h2>
+<p>Of course, we walk the walk, and therefore we never give up, especially not during <strong>Fault Injection</strong> related endeavors. There are simply too many variables available to us before we run out of things to try. One risk that's always present when conducting <strong>Fault Injection</strong> attacks is to rush and minimize the glitch parameter search space too early.</p>
+<h4 id="moving-the-probe">Moving the probe</h4>
+<p>Therefore, after being unsuccessful, the first thing we gave up was our fixed location for the <strong>EMFI</strong> probe. We decided to perform the described experiment while moving the probe across a <strong>30 x 30 grid</strong> across the chip's surface.</p>
+<p>Interestingly, after a day's worth of testing we observed an unexpected string bring printed while surveying a completely different physical location. Even though not successful, an alteration in the expected behavior of the chip merits being further investigated.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-copy-glitch-new-loc.png">
+        <img src="/img/esp32/esp32-copy-glitch-new-loc.png" style="max-width: 100%; width: 400px">
+    </a>
+</p>
+<p>We decided to position the <strong>EMFI</strong> probe at this newly identified location in order to investigate it thoroughly and determine if it will yield the fault we need.</p>
+<h4 id="getting-success">Getting success</h4>
+<p>The picture below show the experiments labeled as <code><span style="color: #74dc8d">expected (●)</span></code>, <code><span style="color: #e76a72">success (◆)</span></code>, <code><span style="color: #ec5598">csum err (x)<cut></span></code> and <code><span style="color: yellow">reset/mute (●)<cut></span></code>. The <strong>X-axis</strong> shows the <strong>glitch delay</strong> relative to the trigger, while the <strong>Y-axis</strong> shows the <strong>glitch power</strong>. After roughly <strong>300,000 experiments</strong> performed in <strong>circa 12 hours</strong>, we observed a successful glitch where the function in <strong>ROM</strong> is executed.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-copy-glitch-result.png">
+        <img src="/img/esp32/esp32-copy-glitch-result.png" style="max-width: 100%; width: 700px">
+    </a>
+</p>
+<p>The results of this campaign are shown below.</p>
+<center>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Count</th>
+<th>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><span style="color: #74dc8d">expected</span></code></td>
+<td>301077</td>
+<td>98,82</td>
+</tr>
+<tr>
+<td><code><span style="color: #e76a72">success</span></code></td>
+<td>1</td>
+<td>0,0003</td>
+</tr>
+<tr>
+<td><code><span style="color: #ec5598">csum err</span></code></td>
+<td>2091</td>
+<td>0,67</td>
+</tr>
+<tr>
+<td><code><span style="color: yellow">mute/reset</span></code></td>
+<td>1516</td>
+<td>0,50</td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<p>The <code><span style="color: #ec5598">csum err</span></code> occurs as the <strong>ROM</strong> code is calculating (and verifying) a checksum before the <strong>Secure Boot</strong> check itself. The glitch we inject impacts the checksum calculation after which the checksum verification fails.</p>
+<h4 id="increasing-the-success-rate">Increasing the success rate</h4>
+<p>To increase the success rate, we fixed the glitch parameters to that of the successful glitch. After roughly 100 minutes, we observed 251 successful glitches where we load a controlled value in the PC register. It shows that the reproducibility for this attack is significant once the glitch parameters are identified.</p>
+<center>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Count</th>
+<th>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code><span style="color: #74dc8d">expected</span></code></td>
+<td>56867</td>
+<td>97,04</td>
+</tr>
+<tr>
+<td><code><span style="color: #e76a72">success</span></code></td>
+<td>251</td>
+<td>0,43</td>
+</tr>
+<tr>
+<td><code><span style="color: yellow">mute/reset</span></code></td>
+<td>1482</td>
+<td>2,53</td>
+</tr>
+</tbody>
+</table>
+</center>
+<br>
+<p>The picture below show the same experiments over time. You see that the success rate is not the same within this 100 minute window. It's important to realize that <strong>Fault Injection</strong> attacks are affected by many variables and therefore the success rate is typically not constant, especially not over longer time periods.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-copy-glitch-result-2.png">
+        <img src="/img/esp32/esp32-copy-glitch-result-2.png" style="max-width: 100%; width: 700px">
+    </a>
+</p>
+<p>To conclude, we achieve a <strong>success rate</strong> of <strong>2.3 successful glitches per minute</strong>.</p>
+<h2 id="why-does-this-work">Why does this work?</h2>
+<p>Well, that's a good question which is not that easy to answer. We know from reverse engineering the ROM code that a fairly complex copy loop is implemented, which copies the bootloader in chunks from the external flash into internal memory. This copy loop is basically a wrapper around a <code>memcpy()</code> function.</p>
+<p>Interestingly, the <strong>Xtensa architecture</strong> uses register <code>a0</code> as the function return address (i.e. when the <code>retw.n</code> instruction is executed). The <code>memcpy()</code> is implemented using <code>l32i</code> and <code>s32i</code> instructions as is shown in the picture below.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/memcpy-disasm.png">
+        <img src="/img/esp32/memcpy-disasm.png" style="max-width: 100%; width: 400px">
+    </a>
+</p>
+<p>Using a glitch that causes <strong>instruction corruption</strong>, it may be possible to corrupt the operand of a <code>l32i</code> instruction allowing to load an attacker controlled value into <code>a0</code> instead of the original register that is used. This would effectively set the PC to a controlled value when the function returns.</p>
+<p>We would not bet our lives on it, you should neither, but we have good confidence this hypothesis is correct.</p>
+<h2 id="next-steps">Next steps</h2>
+<p>Exploiting this vulnerability is trivial as we can replace the plain-text bootloader with <strong>pointers</strong> and <strong>code</strong>. Then, we leverage the vulnerability to load one of those pointers into the PC register in order to execute the code. However, Espressif actually advices their customers to use <strong>Secure Boot</strong> in combination with <strong>Flash Encryption</strong> for secure devices.</p>
+<p>Interestingly, the <strong>Flash Encryption</strong> feature is implemented entirely in hardware. It actually operates transparently to the processor. This means the encrypted data stored in external flash will never reach the processor. In other words, the <strong>load</strong> and <strong>store</strong> instructions will not operate on the attacker controlled data in external flash. Once the <strong>Flash Encryption</strong> feature is enabled, the data originating from external flash will always be decrypted before it reaches the processor.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/esp32-flash-encryption.png">
+        <img src="/img/esp32/esp32-flash-encryption.png" style="max-width: 100%; width: 700px">
+    </a>
+</p>
+<p>The <strong>Flash Encryption</strong> feature itself does not mitigate the (hardware) vulnerability. Nonetheless, effectively, it makes exploiting the vulnerability a lot more difficult as it prevents overwriting the plain-text bootloader with arbitrary code or data.</p>
+<p>In our next post, we show that this vulnerability can still be exploited with <strong>Flash Encryption</strong> enabled by leveraging another vulnerability (i.e. <strong>CVE-2020-15048</strong>).</p>
+
+        </div>
+        
+        
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.ebd57d27ce11ffdacdf3f8c7d8b3e6aeb26f8231253ffe8acd77c70536d81020bcab3d4dff78141fa04044164049b6d3.js" integrity="sha384-69V9J84R/9rN8/jH2LPmrrJvgjElP/6KzXfHBTbYECC8qz1N/3gUH6BARBZASbbT"></script>
+
+
+</body>
+
+</html>
