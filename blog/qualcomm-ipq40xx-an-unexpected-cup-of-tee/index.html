@@ -130,10 +130,11 @@
 <p>We found that QSEE is present on all products we analyzed. However, this does not imply that QSEE is actively used by these devices. For instance, the <a href="https://www.linksys.com/nl/p/P-EA8300/">Linksys EA8300</a> does not seem to use QSEE after its fully booted. We found that the IPQ40xx SDK likely includes QSEE and its bootloader (i.e. SBL1) only in binary form and possibly signed by Qualcomm. Moreover, it seems QSEE is integrated by the SDK into a firmware build by default. Therefore, an OEM like Linksys may only have limited control whether QSEE is present or not.</p>
 <p>During our research, we extracted the QSEE partition from the target devices and reverse engineered the available functionality. For our convenience, we explored the attack surface of QSEE from the U-Boot bootloader. We assumed the attack surface of QSEE is the same once the device is fully booted.</p>
 <p>We identified multiple critical vulnerabilities for which the following CVEs were assigned: <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11256">CVE-2020-11256</a>, <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11257">CVE-2020-11257</a>, <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11258">CVE-2020-11258</a> and <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11258">CVE-2020-11259</a>. We successfully exploited all these vulnerabilities and we were able to execute arbitrary code within QSEE, effectively compromising its additional layer of protection.</p>
-<p>The video demonstrates our exploit for <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11256">CVE-2020-11256</a>.</p>
+<p>The video below demonstrates our exploit for <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11256">CVE-2020-11256</a>.</p>
 <center>
 <iframe src="https://player.vimeo.com/video/512501383" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 </center>
+<br>
 <p>An attacker that&rsquo;s able to execute code within QSEE is likely able to:</p>
 <ul>
 <li>Gain the highest privileges in order to completely compromise the device.</li>
