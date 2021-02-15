@@ -14,7 +14,7 @@
       <pubDate>Mon, 15 Feb 2021 14:00:00 +0200</pubDate>
       
       <guid>https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</guid>
-      <description>The Qualcomm IPQ40xx family of chips, which includes the IPQ4018, IPQ4019, IPQ4028 and IPQ4029, are popular System-on-Chip (SoC) solutions for consumer and enterprise networking products. Many devices like the ASUS RT-AC58U, Cisco Meraki MR33 and Aruba AP-365 use an IPQ40xx chip as the main System-on-Chip (SoC) in their design. The OpenWRT Project supported device database shows at least 34 products, manufactured between 2018 and 2020, built around a IPQ40xx chip. The total number of products is likely to be much larger as many devices, like the Netgear Orbi RB20, are not supported by OpenWrt and therefore not included in the database.</description>
+      <description>The Qualcomm IPQ40xx family of chips, which includes the IPQ4018, IPQ4019, IPQ4028 and IPQ4029, are popular System-on-Chip (SoC) solutions for consumer and enterprise networking products. Many devices like the ASUS RT-AC58U, Cisco Meraki MR33 and Aruba AP-365 use an IPQ40xx chip as the main System-on-Chip (SoC) in their design. The OpenWRT Project supported device database shows at least 34 products, manufactured between 2018 and 2020, that are designed around a IPQ40xx chip.</description>
     </item>
     
     <item>
