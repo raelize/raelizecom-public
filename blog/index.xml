@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright &amp;copy;2020 Raelize B.V. &lt;br&gt; Powered by &lt;a href=#&gt;Hugo&lt;/a&gt; and [Themefisher](https://themefisher.com).</copyright>
-    <lastBuildDate>Tue, 22 Sep 2020 08:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Feb 2021 14:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Qualcomm IPQ40xx: An Unexpected Cup of TEE</title>
+      <link>https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</link>
+      <pubDate>Mon, 15 Feb 2021 14:00:00 +0200</pubDate>
+      
+      <guid>https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</guid>
+      <description>The Qualcomm IPQ40xx family of chips, which includes the IPQ4018, IPQ4019, IPQ4028 and IPQ4029, are popular System-on-Chip (SoC) solutions for consumer and enterprise networking products. Many devices like the ASUS RT-AC58U, Cisco Meraki MR33 and Aruba AP-365 use an IPQ40xx chip as the main System-on-Chip (SoC) in their design. The OpenWRT Project supported device database shows at least 34 products, manufactured between 2018 and 2020, built around a IPQ40xx chip. The total number of products is likely to be much larger as many devices, like the Netgear Orbi RB20, are not supported by OpenWrt and therefore not included in the database.</description>
+    </item>
+    
     <item>
       <title>Espressif ESP32: Bypassing Encrypted Secure Boot (CVE-2020-13629)</title>
       <link>https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</link>

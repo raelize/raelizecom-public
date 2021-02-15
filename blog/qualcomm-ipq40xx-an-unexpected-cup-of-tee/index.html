@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Qualcomm IPQ40xx: An Unexpected Cup of TEE</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.80.0" />
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <hr>
+        <h1>Qualcomm IPQ40xx: An Unexpected Cup of TEE</h1>
+        <p>Monday, Feb 15, 2021</p>
+        <hr>
+        
+      </div>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="post-single-content" background-color=0xff>
+          <p>The Qualcomm IPQ40xx family of chips, which includes the <a href="https://www.qualcomm.com/products/ipq4018">IPQ4018</a>, <a href="https://www.qualcomm.com/products/ipq4019">IPQ4019</a>, <a href="https://www.qualcomm.com/products/ipq4028">IPQ4028</a> and <a href="https://www.qualcomm.com/products/ipq4029">IPQ4029</a>, are popular System-on-Chip (SoC) solutions for consumer and enterprise networking products. Many devices like the <a href="https://www.asus.com/Networking-IoT-Servers/WiFi-Routers/ASUS-WiFi-Routers/RT-AC58U/">ASUS RT-AC58U</a>, <a href="https://meraki.cisco.com/product/wi-fi/indoor-access-points/mr33/">Cisco Meraki MR33</a> and <a href="https://www.arubanetworks.com/products/wireless/access-points/outdoor-ruggedized-access-points/360-series/">Aruba AP-365</a> use an IPQ40xx chip as the main System-on-Chip (SoC) in their design. The <a href="https://openwrt.org/">OpenWRT Project</a> supported device <a href="https://openwrt.org/supported_devices">database</a> shows at least 34 products, manufactured between 2018 and 2020, built around a IPQ40xx chip. The total number of products is likely to be much larger as many devices, like the <a href="https://www.netgear.com/home/wifi/mesh/rbr20">Netgear Orbi RB20</a>, are not supported by OpenWrt and therefore not included in the database.</p>
+<p>We often get the chance to analyze networked devices and it&rsquo;s not surprising that one based on a Qualcomm IPQ40xx SoC found a way to our lab. We got extremely interested once we recognized that this SoC <a href="https://www.qualcomm.com/products/ipq4019">supports</a> <em>Secure Boot</em> and a <em>Trusted Execution Environment (TEE)</em> made by Qualcomm (hereinafter referred to as <em>QSEE</em>).</p>
+<p>During the last decade, the availability of devices with a Trusted Execution Environment (TEE) has increased, answering the need for securing the execution of critical code on multi-purpose devices. They are nowadays widely present on <em>mobile phones</em> to support implementing various use cases with QSEE itself available on all Snapdragon-based models. Moreover, they can also be found on devices like <em>Smart TVs</em> (DRM), <em>set-top-boxes</em> (PayTV) and even <em>ECUs</em> used by modern vehicles. Still, the availability of a TEE on a networking device like the <a href="https://www.linksys.com/nl/p/P-EA8300/">Linksys EA8300</a> is surprising, as, differently from <em>Secure Boot</em>, the use cases therefore have not clearly emerged yet.</p>
+<p>We found that QSEE is present on all products we analyzed. However, this does not imply that QSEE is actively used by these devices. For instance, the <a href="https://www.linksys.com/nl/p/P-EA8300/">Linksys EA8300</a> does not seem to use QSEE after its fully booted. We found that the IPQ40xx SDK likely includes QSEE and its bootloader (i.e. SBL1) only in binary form and possibly signed by Qualcomm. Moreover, it seems QSEE is integrated by the SDK into a firmware build by default. Therefore, an OEM like Linksys may only have limited control whether QSEE is present or not.</p>
+<p>During our research, we extracted the QSEE partition from the target devices and reverse engineered the available functionality. For our convenience, we explored the attack surface of QSEE from the U-Boot bootloader. We assumed the attack surface of QSEE is the same once the device is fully booted.</p>
+<p>We identified multiple critical vulnerabilities for which the following CVEs were assigned: <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11256">CVE-2020-11256</a>, <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11257">CVE-2020-11257</a>, <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11258">CVE-2020-11258</a> and <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11258">CVE-2020-11259</a>. We successfully exploited all these vulnerabilities and we were able to execute arbitrary code within QSEE, effectively compromising its additional layer of protection.</p>
+<p>The video demonstrates our exploit for <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11256">CVE-2020-11256</a>.</p>
+<center>
+<iframe src="https://player.vimeo.com/video/512501383" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+</center>
+<p>An attacker that&rsquo;s able to execute code within QSEE is likely able to:</p>
+<ul>
+<li>Gain the highest privileges in order to completely compromise the device.</li>
+<li>Gain access to any asset; even if protected by QSEE.</li>
+<li>Gain privileged code execution even before the OS is initialized.</li>
+<li>Render any security features implemented by QSEE (e.g. IPS, AV) ineffective.</li>
+</ul>
+<p>The vulnerabilities can be exploited from any code with sufficient privileges for issuing Secure Monitor Call (SMC) instructions. For most devices, this is typically the bootloader or OS Kernel code. An attack in control of an unprivileged application may need to leverage Kernel OS function, often via a dedicated driver, to access QSEE. Another option would be to exploit a vulnerability in the bootloader or OS Kernel to gain privileged code execution.</p>
+<p>We reported these vulnerabilities to Qualcomm in June of 2020 using a coordinated disclosure process. We would like to thank Qualcomm for their positive and professional attitude during the entire disclosure process. In October of 2019 we received confirmation that Qualcomm implemented fixes and notified their customers with adequate measures to mitigate the vulnerabilities. This publication and the posts that will follow are published in agreement with Qualcomm.</p>
+<p>To our surprise, the list of affected products provided by Qualcomm further expands the impact of our findings to different classes of devices, including:</p>
+<ul>
+<li><a href="https://www.qualcomm.com/products/csr8811">CSR8811	Bluetooth v4.2 single-chip radio and baseband IC</a></li>
+<li><a href="https://www.qualcomm.com/products/qca7500">MAC/PHY Transceiver (power line)</a></li>
+<li><a href="https://www.qualcomm.com/products/wcd9340">Qualcomm Aqstic™ Audio Codec</a></li>
+</ul>
+<p>It must be noted that we did not explore the vulnerabilities in the context of all the different affected platforms. Where applicable, additional attack paths and exploitation techniques may be available to an attacker.</p>
+<p>We strongly recommend <em>OEMs</em> to follow Qualcomm&rsquo;s advice. Apply the fixes and roles out the software updates as soon as possible. This advice should be followed even when not explicitly aware of a TEE being present as it may be integrated by default. Moreover, it&rsquo;s important to assign adequate resources to determine what the impact is of these vulnerabilities on your product.</p>
+<p>We will describe the vulnerabilities and ways to exploit them in more detail in future posts which will be published in the upcoming weeks. Stay tuned!</p>
+
+        </div>
+        
+        
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.ebd57d27ce11ffdacdf3f8c7d8b3e6aeb26f8231253ffe8acd77c70536d81020bcab3d4dff78141fa04044164049b6d3.js" integrity="sha384-69V9J84R/9rN8/jH2LPmrrJvgjElP/6KzXfHBTbYECC8qz1N/3gUH6BARBZASbbT"></script>
+
+
+</body>
+
+</html>
