@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.80.0" />
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <hr>
+        <h1>Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities</h1>
+        <p>Tuesday, Mar 2, 2021</p>
+        <hr>
+        
+      </div>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="post-single-content" background-color=0xff>
+          <p>It&rsquo;s time to get technical! In our previous <a href="https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee">blog post</a> we notified you already about the vulnerabilities we identified in Qualcomm&rsquo;s Secure Execution Environment (QSEE). This Trusted Execution Environment (TEE) is found on many Qualcomm-based devices like mobile phones. The vulnerabilities we identified are applicable to (most) devices that are designed around the <a href="https://www.qualcomm.com/products/ipq4019">Qualcomm IPQ40xx SoC family</a>, which is used by major manufacturers like Linksys, Netgear and Cisco. Qualcomm disclosed these vulnerabilities publicly during their <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin">January 2021 Security Bulletin</a> after our coordinated disclosure process was finished.</p>
+<p>These vulnerabilities allowed us to achieve code execution within QSEE, effectively providing us the highest privileges available on the device. Any attack able to issue a Secure Monitor Call (SMC) is able to exploit these vulnerabilities. In this blog post, we describe the following vulnerabilities:</p>
+<ul>
+<li><a href="#cve-2020-11256-tzbsp_blow_fuses_and_reset">CVE-2020-11256 tzbsp_blow_fuses_and_reset</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11256">advisory</a>)</li>
+<li><a href="#cve-2020-11257-usb_calib">CVE-2020-11257 usb_calib</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11257">advisory</a>)</li>
+<li><a href="#cve-2020-11258-tzbsp_version_set">CVE-2020-11258 tzbsp_version_set</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11258">advisory</a>)</li>
+<li><a href="cve-2020-11259-tzbsp_version_get">CVE-2020-11259 tzbsp_version_get</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11259">advisory</a>)</li>
+</ul>
+<p>Don&rsquo;t worry if you are unfamiliar with TEEs and if the above sounds somewhat cryptic. We will describe step-by-step how we identified the vulnerabilities before we dive into the actual nitty gritty details. We finalize this post by explaining what impact these vulnerabilities have on a vulnerable device.</p>
+<h2 id="target-overview">Target overview</h2>
+<hr>
+<p>The <a href="https://www.linksys.com/us/p/P-EA8300/">Linksys EA8300</a> is a AC2200 Wi-Fi Tri-Band Router. Some of the information we used was obtained from <a href="https://openwrt.org/toh/linksys/linksys_ea8300">OpenWRT</a>&rsquo;s website and <a href="https://fccid.io/Q87-EA8300">FCCID</a>&rsquo;s website. This device is designed around the Qualcomm IPQ4019 SoC of which a picture is shown below.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/ipq4019.png">
+        <img src="/img/ipq40xx/ipq4019.png" style="max-width: 60%">
+    </a>
+</p>
+<p>Our interest was immediately piqued after reading its <a href="https://www.qualcomm.com/products/ipq4019">product description</a> as it supports two of our favorite security features <em>Secure Boot</em> and a <em>TEE</em>. At Raelize, we often analyze these technologies in order to provide adequate guidance to our clients. It&rsquo;s not a surprise our upcoming training week is focused on exactly such two embedded security technologies.</p>
+<p style="text-align:center;">
+<a href="https://www.eventbrite.co.uk/e/raelize-training-week-registration-141255379643">
+    <img src="/images/marketing/training-week.png" width=400px/>
+</a>
+</p>
+<p>It&rsquo;s always interesting to start analyzing a new device in a black-box setting and with much anticipation we were looking forward to the activities that lied ahead. We never know what exactly to expect, but we may easily end up into our favourite activity: identifying and exploiting vulnerabilities.</p>
+<h4 id="serial-interface">Serial interface</h4>
+<hr>
+<p>Hardware hacking often starts with opening the device. The OpenWRT website actually provides <a href="https://openwrt.org/toh/linksys/linksys_ea8300#opening_the_case">useful instructions</a> for it. Then, the next step is typically scoping out a serial interface, which, hopefully, provides a (root) shell. It&rsquo;s not uncommon for these type of devices that a serial interface is clearly marked on the printed circuit board (PCB). The Linksys EA8300 we are analyzing exposes the serial interface on an unpopulated connector marked <code>J3</code> as is shown in the picture below.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/ea8300_serial.jpg">
+        <img src="/img/ipq40xx/ea8300_serial.jpg" style="max-width: 90%;">
+    </a>
+</p>
+<p>Again, very conveniently, the pin-out and other information required for communicating with the serial interface can be found on the <a href="https://openwrt.org/toh/linksys/linksys_ea8300#serial">device page</a> of the OpenWRT website. This spares us the probing of the pins for determining the needed parametes. There&rsquo;s no harm done standing on the shoulders of others!</p>
+<h4 id="boot-log">Boot log</h4>
+<hr>
+<p>After connecting to the serial interface, we started the device. Immediately we are presented with a stream of interesting print statements. The printing that&rsquo;s shown below is done by the <em><strong>PBL</strong></em> and <em><strong>SBL1</strong></em> bootloaders, which are developed by Qualcomm. These are likely provided to the OEM (i.e. Linksys) as part of the IPQ40xx SDK. We&rsquo;ve highlighted the most interesting print statements in red.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ Format: Log Type - Time(microsec) - Message - Optional Info
+</span><span style="color:#a6e22e">+ Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
+</span><span style="color:#a6e22e"></span><span style="color:#f92672">- S - QC_IMAGE_VERSION_STRING=BOOT.BF.3.1.1-00108
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ S - IMAGE_VARIANT_STRING=DAACANAZA
+</span><span style="color:#a6e22e">+ S - OEM_IMAGE_VERSION_STRING=CRM
+</span><span style="color:#a6e22e">+ S - Boot Config, 0x00000025
+</span><span style="color:#a6e22e">+ S - Reset status Config, 0x00000010
+</span><span style="color:#a6e22e">+ S - Core 0 Frequency, 0 MHz
+</span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -       261 - PBL, Start
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ B -      1339 - bootable_media_detect_entry, Start
+</span><span style="color:#a6e22e">+ B -      2612 - bootable_media_detect_success, Start
+</span><span style="color:#a6e22e">+ B -      2626 - elf_loader_entry, Start
+</span><span style="color:#a6e22e">+ B -      4036 - auth_hash_seg_entry, Start
+</span><span style="color:#a6e22e">+ B -      6190 - auth_hash_seg_exit, Start
+</span><span style="color:#a6e22e">+ B -     74253 - elf_segs_hash_verify_entry, Start
+</span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -    196174 - PBL, End
+</span><span style="color:#f92672">- B -    196198 - SBL1, Start
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ B -    288239 - pm_device_init, Start
+</span><span style="color:#a6e22e">+ D -         7 - pm_device_init, Delta
+</span><span style="color:#a6e22e">+ B -    289733 - boot_flash_init, Start
+</span><span style="color:#a6e22e">+ D -     87192 - boot_flash_init, Delta
+</span><span style="color:#a6e22e">+ B -    381232 - boot_config_data_table_init, Start
+</span><span style="color:#a6e22e">+ D -     13975 - boot_config_data_table_init, Delta - (419 Bytes)
+</span><span style="color:#a6e22e">+ B -    397970 - clock_init, Start
+</span><span style="color:#a6e22e">+ D -      7587 - clock_init, Delta
+</span><span style="color:#a6e22e">+ B -    408990 - CDT version:2,Platform ID:8,Major ID:1,Minor ID:0,Subtype:6
+</span><span style="color:#a6e22e">+ B -    412402 - sbl1_ddr_set_params, Start
+</span><span style="color:#a6e22e">+ B -    417495 - cpr_init, Start
+</span><span style="color:#a6e22e">+ D -         2 - cpr_init, Delta
+</span><span style="color:#a6e22e">+ B -    421878 - Pre_DDR_clock_init, Start
+</span><span style="color:#a6e22e">+ D -         4 - Pre_DDR_clock_init, Delta
+</span><span style="color:#a6e22e">+ D -     13170 - sbl1_ddr_set_params, Delta
+</span><span style="color:#a6e22e">+ B -    435181 - pm_driver_init, Start
+</span><span style="color:#a6e22e">+ D -         2 - pm_driver_init, Delta
+</span><span style="color:#a6e22e">+ B -    504960 - sbl1_wait_for_ddr_training, Start
+</span><span style="color:#a6e22e">+ D -        28 - sbl1_wait_for_ddr_training, Delta
+</span><span style="color:#a6e22e">+ B -    520319 - Image Load, Start
+</span><span style="color:#a6e22e">+ D -    143867 - QSEE Image Loaded, Delta - (269176 Bytes)
+</span><span style="color:#a6e22e">+ B -    664611 - Image Load, Start
+</span><span style="color:#a6e22e">+ D -      2116 - SEC Image Loaded, Delta - (2048 Bytes)
+</span><span style="color:#a6e22e">+ B -    674745 - Image Load, Start
+</span><span style="color:#a6e22e">+ D -    187171 - APPSBL Image Loaded, Delta - (444263 Bytes)
+</span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -    862309 - QSEE Execution, Start
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ D -        56 - QSEE Execution, Delta
+</span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -    868531 - SBL1, End
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ D -    674334 - SBL1, Delta
+</span><span style="color:#a6e22e">+ S - Flash Throughput, 2087 KB/s  (715906 Bytes,  342873 us)
+</span><span style="color:#a6e22e">+ S - DDR Frequency, 672 MHz
+</span></code></pre></div><p>If you are familiar with Qualcomm-based devices, you may recognize the typical boot flow where the <em><strong>PBL</strong></em> and <em><strong>SBL1</strong></em> are printing timestamped log lines. If you&rsquo;re interested, more details about the boot process of Qualcomm-based mobile phones is provided by this great <a href="https://blog.quarkslab.com/analysis-of-qualcomm-secure-boot-chains.html">blog post</a> by <a href="https://quarkslab.com/">Quarkslab</a>. However, the boot process of our target devices has more commonalities with the one of older mobile phones, as shown in this <a href="https://alephsecurity.com/vulns/aleph-2017026">advisory (2017)</a> by <a href="https://alephsecurity.com/">Aleph Security</a>.</p>
+<p>Once the execution of the <em><strong>SBL1</strong></em> completes, the control is passed to the <em><strong>U-Boot</strong></em> bootloader, which is a common bootloader responsible for loading Linux. Conveniently, we were able to break into the <em><strong>U-Boot</strong></em> console by pressing a key during boot, which is shown below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ U-Boot 2012.07 [Chaos Calmer 15.05.1,r35193] (Nov 02 2017 - 16:33:09)
+</span><span style="color:#a6e22e">+ 
+</span><span style="color:#a6e22e"></span><span style="color:#f92672">- CBT U-Boot ver: 1.2.9
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ 
+</span><span style="color:#a6e22e">+ smem ram ptable found: ver: 1 len: 3
+</span><span style="color:#a6e22e">+ DRAM:  256 MiB
+</span><span style="color:#a6e22e">+ machid : 0x8010006
+</span><span style="color:#a6e22e">+ NAND:  ID = 9590daef
+</span><span style="color:#a6e22e">+ Vendor = ef
+</span><span style="color:#a6e22e">+ Device = da
+</span><span style="color:#a6e22e">+ ONFI device found
+</span><span style="color:#a6e22e">+ SF NAND unsupported id:ff:ff:ff:ffSF: Unsupported manufacturer ff
+</span><span style="color:#a6e22e">+ ipq_spi: SPI Flash not found (bus/cs/speed/mode) = (0/0/48000000/0)
+</span><span style="color:#a6e22e">+ 256 MiB
+</span><span style="color:#a6e22e">+ MMC:   qca_mmc: 0
+</span><span style="color:#a6e22e">+ PCI0 Link Intialized
+</span><span style="color:#a6e22e">+ In:    serial
+</span><span style="color:#a6e22e">+ Out:   serial
+</span><span style="color:#a6e22e">+ Err:   serial
+</span><span style="color:#a6e22e">+ machid: 8010006
+</span><span style="color:#a6e22e">+ flash_type: 2
+</span><span style="color:#a6e22e">+ Net:   MAC0 addr:0:3:7f:ba:db:ad
+</span><span style="color:#a6e22e">+ PHY ID1: 0x4d
+</span><span style="color:#a6e22e">+ PHY ID2: 0xd0b1
+</span><span style="color:#a6e22e">+ ipq40xx_ess_sw_init done
+</span><span style="color:#a6e22e">+ eth0
+</span><span style="color:#a6e22e">+ 
+</span><span style="color:#a6e22e">+ Updating boot_count ... done
+</span><span style="color:#a6e22e">+ 
+</span><span style="color:#a6e22e"></span><span style="color:#f92672">- Hit any key to stop autoboot:  0 
+</span><span style="color:#f92672">- (IPQ40xx) #
+</span></code></pre></div><p>The <em><strong>U-Boot</strong></em> console typically includes very useful commands. However, it really depends on the device which commands are available, as the manufacturer is free to add or remove commands when deemed necessary. Luckily for us, the <em><strong>U-Boot</strong></em> console on this target is fairly rich and we are presented with lots of useful functionality.</p>
+<h2 id="arm-trustzone-refresher">ARM TrustZone refresher</h2>
+<hr>
+<p>In order to have a clear understanding of the different security boundaries let&rsquo;s quickly revisit some basic concepts. The <em>Rich Execution Environment (REE)</em>, or <em>Non-secure World</em>, is the environment where the typical user applications are executed. The <em>Security Extensions</em> of the ARMv7-A architecture, i.e. ARM TrustZone, introduce support for an additional <em>Trusted Execution Environment (TEE)</em>, or <em>Secure World</em>, which is the environment where the security critical tasks are executed.</p>
+<p>The underlying platform (i.e. hardware) is required to securely implement both these environments.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/ree_tee.png">
+        <img src="/img/ipq40xx/ree_tee.png" style="max-width: 90%; width: 700px">
+    </a>
+</p>
+<p>These two environments are distinguished by the Non-Secure (NS) bit (i.e. SCR.NS). This bit set to 1 for execution of REE code and set to 0 when executing TEE code. The transition between these two execution modes is governed by the Monitor mode, which traps the execution of Secure Monitor Call (SMC) instructions. More details about this technology is available in ARM&rsquo;s <a href="https://developer.arm.com/documentation/ddi0406/c/">Architecture Reference Manual</a> for the ARMv7-A architecture.</p>
+<p>When the IPQ40xx SoC is released from reset, execution starts at the highest level of privilege. This allows the code to have unrestricted access to the hardware. The Primary Boot Loader (PBL), implemented in the SoC&rsquo;s read-only memory (ROM), loads the second stage bootloader (SBL1) into internal SRAM. The SBL1 is responsible for several things, including initializing the external DDR, loading QSEE from flash and loading U-Boot (i.e. APPSBL) from flash.</p>
+<p>It&rsquo;s important to raelize that the <em><strong>PBL</strong></em> and <em><strong>SBL1</strong></em> must executed at the highest privilege level as they are responsible for loading the QSEE binary. Moreover, it&rsquo;s likely that the <em><strong>U-Boot</strong></em> bootloader is running at a lower privilege as it&rsquo;s only responsible for loading Linux.</p>
+<h2 id="extracting-the-qsee-binary">Extracting the QSEE binary</h2>
+<hr>
+<p>The <strong>U-Boot</strong> console provides a convenient and powerful environment for accessing the flash. For example, we can use the <code>smeminfo</code> command in order to get an overview of the flash partitions, which is shown below. The QSEE binary that we are after is actually stored in a dedicated partition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ (IPQ40xx) # smeminfo
+</span><span style="color:#a6e22e">+ flash_type:             0x2
+</span><span style="color:#a6e22e">+ flash_index:            0x0
+</span><span style="color:#a6e22e">+ flash_chip_select:      0x0
+</span><span style="color:#a6e22e">+ flash_block_size:       0x20000
+</span><span style="color:#a6e22e">+ flash_density:          0x100000
+</span><span style="color:#a6e22e">+ partition table offset  0x0
+</span><span style="color:#a6e22e">+ No.: Name             Attributes            Start             Size
+</span><span style="color:#a6e22e">+   0: 0:SBL1           0x0000ffff              0x0         0x100000
+</span><span style="color:#a6e22e">+   1: 0:MIBIB          0x0000ffff         0x100000         0x100000
+</span><span style="color:#a6e22e"></span><span style="color:#f92672">-   2: 0:QSEE           0x0000ffff         0x200000         0x100000
+</span><span style="color:#f92672"></span><span style="color:#a6e22e">+   3: 0:CDT            0x0000ffff         0x300000          0x80000
+</span><span style="color:#a6e22e">+   4: 0:APPSBLENV      0x0000ffff         0x380000          0x80000
+</span><span style="color:#a6e22e">+   5: 0:ART            0x0000ffff         0x400000          0x80000
+</span><span style="color:#a6e22e">+   6: 0:APPSBL         0x0000ffff         0x480000         0x200000
+</span><span style="color:#a6e22e">+   7: u_env            0x0000ffff         0x680000          0x80000
+</span><span style="color:#a6e22e">+   8: s_env            0x0000ffff         0x700000          0x40000
+</span><span style="color:#a6e22e">+   9: devinfo          0x0000ffff         0x740000          0x40000
+</span><span style="color:#a6e22e">+  10: kernel           0x0000ffff         0x780000        0x5800000
+</span><span style="color:#a6e22e">+  11: rootfs           0x0000ffff         0xa80000        0x5500000
+</span><span style="color:#a6e22e">+  12: alt_kernel       0x0000ffff        0x5f80000        0x5800000
+</span><span style="color:#a6e22e">+  13: alt_rootfs       0x0000ffff        0x6280000        0x5500000
+</span><span style="color:#a6e22e">+  14: sysdiag          0x0000ffff        0xb780000         0x100000
+</span><span style="color:#a6e22e">+  15: syscfg           0x0000ffff        0xb880000        0x4680000
+</span><span style="color:#a6e22e">+ (IPQ40xx) # 
+</span></code></pre></div><p>Extracting the flash contents is fairly easy using the commands provided by the <strong>U-Boot</strong> console. First, we use the <code>nand</code> command to read the flash contents to volatile memory (e.g. SRAM or DDR). Then, we use the <code>tftpput</code> command to dump the flash contents from volatile memory via the network to our TFTP server. This allows us to extract the entire flash without any soldering. Let&rsquo;s extract the QSEE partition!</p>
+<p>We use the python-based  TFTP server named <code>ptftpd</code> which is very convinient to use.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ptftpd -p <span style="color:#ae81ff">6969</span> eth0 /home/raelize/Desktop
+</code></pre></div><p>Then, we set the <code>serverip</code> environment variable within the <em><strong>U-Boot</strong></em> console and point it to our workstation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # setenv serverip 192.168.1.128
+</code></pre></div><p>Now we need to load the QSEE paritition in flash into memory. But where do we load it? Well, typically we can simply use an unused area within the DDR memory. We determined using the print statements by the <em><strong>U-Boot</strong></em> bootloader that the DDR memory is likely mapped at address <code>0x8000000</code> as the entry point of the Linux Kernel is <code>0x80208000</code>. We simply guessed address <code>0x89000000</code> is unused and can be used to temporarily store the QSEE partition.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # nand read 0x89000000 0x200000 0x100000
+</code></pre></div><p>Then, we use the <code>tftpput</code> command to send the QSEE partition to our TFTP server.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # tftpput 0x89000000 0x100000 QSEE.bin
+</code></pre></div><p>If all went well, we have succesfully extracted the QSEE partition! :)</p>
+<h2 id="analyzing-the-qsee-binary">Analyzing the QSEE binary</h2>
+<hr>
+<p>The QSEE partition is actually a flat binary that can be analyzed directly. Unfortunately, being a flat binary, there is no meta data present in the binary which could tell us about its structure. At least, we know that the IPQ4019 SoC implements the ARMv7 architecture and therefore we know to expect ARM AArch32 Little Endian (LE) code. We load the QSEE binary into IDA Pro and select the ARM32 Little Endian architecture. We quickly determined that the loading address of the QSEE binary is <code>0x87E80000</code> by analyzing the absolute addresses used by the code.</p>
+<p>The ARMv7 exception vector is found at the start of the QSEE binary. It&rsquo;s used to handle the processor&rsquo;s exceptions, including the exception caused when a SMC instruction is executed. The exception vector is standardized and therefore we could simply define the correct names ourselves.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/qsee_exceptions.png">
+        <img src="/img/ipq40xx/qsee_exceptions.png" style="max-width: 90%; width: 700px">
+    </a>
+</p>
+<p>We easily identified the code responsible for handling the SMC instruction by following the <em><strong>Software Interrupt</strong></em> exception handler. This code extracts the SMC ID from register <code>r0</code> in order to determine which SMC handler routine should be called. We determined that all SMC handler routines are defined in a table located at address <code>0x87EB465C</code>.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/smc_handlers.png">
+        <img src="/img/ipq40xx/smc_handlers.png" style="max-width: 90%; width: 700px">
+    </a>
+</p>
+<p>The SMC handler routines can be called using their unique SMC ID, which is also present in the table. For example, the SMC handler routine <code>tzbsp_pil_init_image_ns</code> can be called by using the SMC ID <code>0x805</code>. The table also contains other useful information when reverse engineering the code, like the name of the SMC handler routine.</p>
+<h4 id="secure-range-checks">Secure range checks</h4>
+<hr>
+<p>The memory is partitioned in <em><strong>Secure</strong></em> and <em><strong>Non-secure</strong></em> memory, using hardware controllers that are configured when the TEE is initialized. This is likely done by the <em><strong>SBL1</strong></em> bootloader during boot. All code and data related to QSEE, including any Trusted Application (TA), should be stored within secure memory. In other words, none of the code and data used by QSEE should be accessible by the REE.</p>
+<p>The REE passes the SMC handler routine&rsquo;s arguments by register. For example, ARG1 is stored in register <code>R1</code>, ARG2 is stored in <code>R2</code> and so on. Buffers are passed by reference using memory that&rsquo;s accessible by both the REE and TEE. Typically this is simply just non-secure memory. As QSEE has no knowledge of the REE&rsquo;s virtual mapping, all pointers passed by the REE should point to physical memory.</p>
+<p>It&rsquo;s a QSEE responsibility to carefully check the arguments received from the REE. QSEE should check whether the buffer passed by the REE, described by a pointer and a size argument, is not located within secure memory. While analyzing the SMC handler routines, we&rsquo;ve identified the functions responsible for performing these range checks.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/range_check_ext.png">
+        <img src="/img/ipq40xx/range_check_ext.png" style="max-width: 90%; width: 700px">
+    </a>
+</p>
+<p>The function naming is done by us. Nonetheless, we aimed to remain somewhat consistent with the naming used by Gal Beniamini in his excellent <a href="http://bits-please.blogspot.com/2015/08/full-trustzone-exploit-for-msm8974.html">exploitation</a> of TEE vulnerability.</p>
+<p>The function <code>tzbsp_is_nsec_range</code> validates the buffer passed by the REE using the <code>is_allowed_range</code> function. This function uses a table with secure ranges to determine what memory should be considered secure memory. This function checks, among a few other things, if the start of the buffer (i.e. <code>pointer</code>) and end of the buffer (i.e. <code>pointer</code> + <code>size</code>)  are overlapping with secure memory.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/is_allowed_range.png">
+        <img src="/img/ipq40xx/is_allowed_range.png" style="max-width: 90%; width: 700px">
+    </a>
+</p>
+<p>The table, that defines three secure ranges, is shown below.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/secure_ranges.png">
+        <img src="/img/ipq40xx/secure_ranges.png" style="max-width: 90%; width: 700px">
+    </a>
+</p>
+<p>This means, that whenever the <code>tzbsp_is_nsec_range</code> function is used to sanitize the SMC handler routine&rsquo;s arguments, the buffer passed by the REE cannot overlap with: <code>0x0</code> to <code>0x7ffffff</code>, <code>0x90000000</code> to <code>0xffffffff</code> and <code>0x87E80000</code> to <code>0x87ffffff</code>. In other words, buffers are only considered to be allowed when they are between <code>0x80000000</code> to <code>0x87E80000</code> and <code>0x88000000</code> to <code>0x90000000</code>.</p>
+<p>Until now, everything looks secure!</p>
+<h2 id="identifying-qsee-vulnerabilities">Identifying QSEE vulnerabilities</h2>
+<hr>
+<p>It&rsquo;s expected that functionality exists to sanitize the arguments passed to the SMC handler routines. However, it would definitely not be the first time that such functionality is not used, or used incorrectly. Therefore, it&rsquo;s always a good idea to first explore the code handling data under attacker control.</p>
+<p>Long story short, we&rsquo;ve identified 4 vulnerable code paths where the arguments passed to the SMC handler routines are not properly sanitized. The range checks were either not used at all or used incorrectly.</p>
+<h5 id="cve-2020-11256-tzbsp_blow_fuses_and_reset">CVE-2020-11256 tzbsp_blow_fuses_and_reset</h5>
+<hr>
+<p>The SMC handler routine named <code>tzbsp_blow_fuses_and_reset()</code> requires two arguments, namely <code>arg1</code> and <code>arg2</code>. The decompilation for this routine is shown below.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/cve_2020_11256_h.png">
+        <img src="/img/ipq40xx/cve_2020_11256_h.png" style="max-width: 90%; width: 700px">
+    </a>
+</p>
+<p>The argument <code>arg1</code> is an input pointer, which is sanitized using the function <code>is_allowed_range()</code>. The argument <code>arg2</code> is an output pointer, which is only checked to be <code>NULL</code>. The argument <code>arg2</code> is dereferenced in order to write a value to an arbitrary memory address. The value that&rsquo;s written, is either <code>1</code> or <code>2</code>, which depends on whether <code>arg1</code> is set to <code>0</code> or not.</p>
+<p>This vulnerability allows an attacker to write <code>1</code> or <code>2</code> to an arbitrary address accessible by QSEE, including QSEE memory. Even though it&rsquo;s not possible to write arbitrary memory, these type of restricted writes may lead to arbitrary QSEE code execution (i.e. compromise the TEE).</p>
+<h5 id="cve-2020-11257-usb_calib">CVE-2020-11257 usb_calib</h5>
+<hr>
+<p>The SMC handler routine named <code>usb_calib()</code> requires one parameter, namely <code>arg1</code>. The decompilation for this routine is shown below.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/cve_2020_11257_h.png">
+        <img src="/img/ipq40xx/cve_2020_11257_h.png" style="max-width: 60%; width: 700px">
+    </a>
+</p>
+<p>The argument <code>arg1</code> is an output pointer which is not sanitized. This means that there is no check to assure that <code>arg1</code> points to REE memory. It&rsquo;s dereferenced in order to write the value stored at <code>0x580e0</code> to the passed memory address. For our target device this value is set to <code>0x787</code>.</p>
+<p>This vulnerability allows an attacker to write <code>0x787</code> to an arbitrary address accessible by QSEE, including QSEE memory. Even though it&rsquo;s not possible to write arbitrary values, these type of restricted writes may lead to arbitrary QSEE code execution (i.e. compromise the TEE).</p>
+<h5 id="cve-2020-11258-tzbsp_version_set">CVE-2020-11258 tzbsp_version_set</h5>
+<hr>
+<p>The SMC handler routine named <code>tzbsp_version_set()</code> requires four arguments, namely <code>arg1</code>, <code>arg2</code>, <code>arg3</code> and <code>arg4</code>. The decompilation for this routine is shown below.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/cve_2020_11258_h.png">
+        <img src="/img/ipq40xx/cve_2020_11258_h.png" style="max-width: 90%; width: 700px">
+    </a>
+</p>
+<p>All four arguments are passed into a function (i.e. <code>sub_87E9056</code>), which returns different values depending on the value of <code>arg1</code>, <code>arg2</code> and <code>arg4</code>. The argument <code>arg3</code> is an output pointer and the code does not assure it points only to REE memory. It&rsquo;s dereferenced in order to write the return value of <code>sub_87E9056</code> (i.e. at least <code>0</code>, <code>5</code> and <code>0xfffffffc</code>) or <code>0x7fffffff</code> to the passed memory address.</p>
+<p>This vulnerability allows an attacker to write various values to an arbitrary address accessible by QSEE, including QSEE memory. Even though it&rsquo;s not possible to write arbitrary values, these type of restricted writes may lead to arbitrary QSEE code execution (i.e. compromise the TEE).</p>
+<h5 id="cve-2020-11259-tzbsp_version_get">CVE-2020-11259 tzbsp_version_get</h5>
+<hr>
+<p>The SMC handler routine named <code>tzbsp_version_set()</code> requires four arguments, namely <code>arg1</code>, <code>arg2</code> and <code>arg3</code>. The decompilation for this routine is shown below.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/cve_2020_11259_h.png">
+        <img src="/img/ipq40xx/cve_2020_11259_h.png" style="max-width: 90%; width: 700px">
+    </a>
+</p>
+<p>The parameter <code>arg1</code> is used as input and can be used to influence the value being written to the output pointer <code>arg2</code>. The arguments <code>arg2</code> and <code>arg3</code> are both output pointers and the code does not assure that they point to REE memory.</p>
+<p>The <code>arg2</code> argument is dereferenced in order to write return value of <code>sub_87E904CE()</code> or <code>sub_87E90370() | 0xf0000</code> to an arbitrary memory address. This includes different values such as <code>0x0</code>, <code>0x000f0000</code> and <code>0xfffffffc</code>. Moreover, the <code>arg3</code> argument is dereferenced in order to write <code>0x0</code> to the passed memory address.</p>
+<p>This vulnerability allows an attacker to write various values to an arbitrary address accessible by QSEE, including QSEE memory. Even though it&rsquo;s not possible to write arbitrary values, these type of restricted writes may lead to arbitrary QSEE code execution (i.e. compromise the TEE).</p>
+<h2 id="exploitation">Exploitation</h2>
+<hr>
+<p>The above vulnerabilities require the ability to issue an SMC request to QSEE, either directly or indirectly. &ldquo;Directly&rdquo; can be achieved by executing any code in the REE with sufficient privileges to execute an SMC instruction (i.e. kernel or even higher privileges). &ldquo;Indirectly&rdquo; can be achieved by leveraging functionality that&rsquo;s already present on the device (i.e. a driver).</p>
+<p>In other words, an attacker in control of e.g. the Linux Kernel or U-Boot, is able to directly exploit the vulnerabilities we identified. It&rsquo;s not sufficient for an attacker to have user privileges, even root privileges do not allow to execute SMC instructions. Nonetheless, an attacker with root privileges will likely have the ability to load kernel modules and/or inject code via /dev/(k)mem.</p>
+<p>It&rsquo;s important to raelize that a non-privileged attacker may still be able to leverage functionality that communicates with QSEE and be able to issue SMC calls. These type of drivers are often available for unprivileged applications. Whether the vulnerabilities are exploitable, really depends on what control the attacker has on the SMC arguments.</p>
+<h2 id="impact">Impact</h2>
+<hr>
+<p>An attacker that&rsquo;s able to successfully exploit the vulnerabilities, is able to:</p>
+<ul>
+<li>get unrestricted access to the underlying hardware</li>
+<li>gain full control of QSEE and the assets it protects</li>
+<li>escalate privileges in the REE (e.g. from user to kernel)</li>
+<li>bypass any security features implemented by QSEE (e.g. IPS, AV)</li>
+</ul>
+<p>The <a href="https://www.linksys.com/us/p/P-EA8300/">Linksys EA8300</a> does not use QSEE for anything relevant during runtime, as far as we can tell. No Trusted Application (TA) is present. This means the attack surface from an unprivileged application is likely minimal.</p>
+<p>The largest risk is that remote attackers (i.e. malware), already in full control of the REE, can hide execution of his code in the secure world. Effectively, this means the REE will be unable to detect if the device is compromised or not. Assuming Secure Boot is implemented securely, it will be required to exploit the REE first before the QSEE vulnerabilities can be exploited. In our research we did not explore ways to modify QSEE persistently (i.e. within the flash), although this may be definitely a possibility under certain conditions.</p>
+<h2 id="conclusion">Conclusion</h2>
+<hr>
+<p>In this blog post we described our approach for identifying and analyzing the vulnerabilities we discovered in the Qualcomm TEE, named QSEE, as implemented on Qualcomm IPQ40xx-based devices.</p>
+<p>Our next blog post will dive into the exploitation of one of the vulnerabilities. We demonstrate that arbitrary code execution within QSEE is possible by leveraging the restricted writes the vulnerabilities grant us.</p>
+<p>Feel free to contact us if you have any questions and stay tuned for the next blog post!</p>
+
+        </div>
+        
+        
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.ebd57d27ce11ffdacdf3f8c7d8b3e6aeb26f8231253ffe8acd77c70536d81020bcab3d4dff78141fa04044164049b6d3.js" integrity="sha384-69V9J84R/9rN8/jH2LPmrrJvgjElP/6KzXfHBTbYECC8qz1N/3gUH6BARBZASbbT"></script>
+
+
+</body>
+
+</html>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright &amp;copy;2020 Raelize B.V. &lt;br&gt; Powered by &lt;a href=#&gt;Hugo&lt;/a&gt; and [Themefisher](https://themefisher.com).</copyright>
-    <lastBuildDate>Mon, 15 Feb 2021 14:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Mar 2021 16:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities</title>
+      <link>https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/</link>
+      <pubDate>Tue, 02 Mar 2021 16:00:00 +0200</pubDate>
+      
+      <guid>https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/</guid>
+      <description>It&amp;rsquo;s time to get technical! In our previous blog post we notified you already about the vulnerabilities we identified in Qualcomm&amp;rsquo;s Secure Execution Environment (QSEE). This Trusted Execution Environment (TEE) is found on many Qualcomm-based devices like mobile phones. The vulnerabilities we identified are applicable to (most) devices that are designed around the Qualcomm IPQ40xx SoC family, which is used by major manufacturers like Linksys, Netgear and Cisco. Qualcomm disclosed these vulnerabilities publicly during their January 2021 Security Bulletin after our coordinated disclosure process was finished.</description>
+    </item>
+    
     <item>
       <title>Qualcomm IPQ40xx: An Unexpected Cup of TEE</title>
       <link>https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</link>
