@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.83.1" />
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <hr>
+        <h1>Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection</h1>
+        <p>Monday, Jun 7, 2021</p>
+        <hr>
+        
+      </div>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="post-single-content" background-color=0xff>
+          <p>We&rsquo;ve identified multiple critical software vulnerabilities in QSEE, Qualcomm&rsquo;s Trusted Execution Environment (TEE), on <a href="https://www.qualcomm.com/media/documents/files/ipq40x8-ipq40x9-product-brief.pdf">Qualcomm IPQ40xx</a>-based devices (see <a href="/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/">blog #1</a> and <a href="/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/">blog #2</a>). We exploited these vulnerabilities in order to disable the secure range checks performed by QSEE in order to execute arbitrary code at the highest privilege (see <a href="/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/">blog #4</a>). As these vulnerabilities are software vulnerabilities, they were easily fixed by Qualcomm after we disclosed them responsibly.</p>
+<p>As you may have already raelized, at Raelize we like to look further than just software vulnerabilities. Therefore, we decided to analyze the resilience of the Qualcomm IPQ40xx-family of chip towards Electromagnetic Fault Injection (EMFI). We used the <a href="https://www.linksys.com/nl/wireless-routers/traditional-routers/linksys-ea8300-max-stream-ac2200-tri-band-wifi-router/p/p-ea8300/">Linksys EA8300</a> WiFi router (see <a href="/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/">blog #2</a>).</p>
+<p>We are fully aware that FI attacks are typically out of scope for a TEE threat model. Actually, ARM specifies this very clearly in their <a href="https://developer.arm.com/documentation/genc009492/c/Introduction/What-are-the-threats-/How-are-devices-attacked-?lang=en">documentation</a>. However, TEEs are also used for devices where FI attacks are considered a reasonable threat. Therefore, even if FI attacks are out of scope for a TEE according to ARM, they may not be for specific devices. The TEE on such devices, may be used to protect assets interesting for an attacker, making it an (very) interesting attack surface. Whenever the underlying platform (i.e. hardware) is vulnerable to FI attacks, the security of a TEE can be (easily) compromised as we will see in this post.</p>
+<p>At first, you may think that the ARM TrustZone hardware primitives (e.g. NS bit, TrustZone controllers, &hellip;) are the most interesting target for a FI attack. However, we decided to target the processor executing the QSEE software in order to show that other approaches are very effective as well.</p>
+<h2 id="emfi">EMFI</h2>
+<p>We use Riscure&rsquo;s EMFI tooling to inject EM glitches in the chip. This tooling drives a high voltage through a coil in order to generate an electromagnetic field. This allows us to introduce faults at the transistor level due to eddy currents within the chip&rsquo;s circuitry. The concept of EMFI is shown in the picture below (<a href="https://byjus.com/physics/what-are-eddy-currents/">source</a>).</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/emfi.png">
+        <img src="/img/ipq40xx/emfi.png" style="max-width: 50%">
+    </a>
+</p>
+<p>A diagram of our setup is shown below. We used the <a href="https://www.riscure.com/product/spider/">Riscure Spider</a>, <a href="https://getquote.riscure.com/en/quote/2101068/em-fi-transient-probe.htm">Riscure EMFI Probe</a> and <a href="https://getquote.riscure.com/en/quote/2101124/xyz-stage-for-em-probe-em-fi-or-compact-laser.htm">Riscure XYZ stage</a>. Additionally, we use a solid-state relay to control the external power supply of the target. We control the all hardware using <a href="https://www.riscure.com/security-tools/inspector-fi/">Riscure&rsquo;s Inspector FI Python</a> framework in order to, among others, the glitch parameters (i.e. position, timing and glitch power) completely automatically.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/setup_new.png">
+        <img src="/img/ipq40xx/setup_new.png" style="max-width: 80%">
+    </a>
+</p>
+<p>We perform the EMFI attack by placing the EM probe directly on the chip’s surface. In order to do so, we opened up the target and removed the chip’s heatsink. We made no other physical (invasive) modifications. An actual picture of the chip is shown below.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/setup_real.jpg">
+        <img src="/img/ipq40xx/setup_real.jpg" style="max-width: 80%">
+    </a>
+</p>
+<p>We often get asked if our lab-grade tooling made by Riscure is really required to perform our attacks. We believe it&rsquo;s definitely possible to perform the same type of attacks using easier to obtain tooling like NewAE&rsquo;s <a href="http://store.newae.com/chipshouter-kit/">ChipShouter</a> or to build your own tooling. However, the tooling we use makes it easier to identify and reproduce the attacks. Nonetheless, we would love to hear from you if you&rsquo;re working on reproducing our research using other tooling.</p>
+<h2 id="characterization">Characterization</h2>
+<p>Whenever possible, we like to start with a FI characterization test in order to determine if the target is vulnerable. We implement the characterization code, which is shown below, as an U-Boot <a href="https://www.denx.de/wiki/view/DULG/UBootStandalone">standalone application</a>. The goal of this characterization test is to identify good glitch parameters (i.e. location and power) in a semi-controlled environment. By repeating the target instruction (i.e. <code>add</code> instruction) we increase the chances for success.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x0102f004</span>);
+
+<span style="color:#66d9ef">if</span>(cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;A&#39;</span>) {
+    <span style="color:#66d9ef">uint32_t</span> counter;
+
+    <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0</span>;                     <span style="color:#75715e">// 1. set trigger high
+</span><span style="color:#75715e"></span>
+    <span style="color:#66d9ef">asm</span> <span style="color:#66d9ef">volatile</span> (
+            <span style="color:#e6db74">&#34;mov r0, #0;&#34;</span>               <span style="color:#75715e">// 2. set counter to 0
+</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#34;add r0, r0, #1;&#34;</span>           <span style="color:#75715e">// 3. increase counter
+</span><span style="color:#75715e"></span>            <span style="color:#f92672">&lt;</span> repeat <span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">000</span> times<span style="color:#f92672">&gt;</span>
+            <span style="color:#e6db74">&#34;mov %[counter], r0;&#34;</span>               
+        <span style="color:#f92672">:</span> [counter] <span style="color:#e6db74">&#34;=r&#34;</span> (counter)
+        <span style="color:#f92672">:</span>
+        <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;r0&#34;</span> );
+
+    <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3</span>;                     <span style="color:#75715e">// 4. set trigger to low
+</span><span style="color:#75715e"></span>
+    printf(<span style="color:#e6db74">&#34;AAAA%08xBBBB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, counter);  <span style="color:#75715e">// 5. print counter on UART
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>We use a GPIO pin of the target as a trigger to time the characterization test. This allows us to exactly inject glitches when the <code>add</code> instructions are executed. If the resulting counter value that&rsquo;s printed on the serial interface is differently than expected, we know we successfully modified the expected behavior of the software.</p>
+<p>After performing roughly 20,000 experiments across the chip&rsquo;s surface, we observed different output, some of which are shown below. Most interesting of course, are the experiments where a modified counter value is returned. An indication that the target is vulnerable.</p>
+<div style="width: 400px; margin:auto;">
+<p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expected</td>
+<td><code><span style="color: #74dc8d">AAAA 00002710 BBBB</span></code></td>
+</tr>
+<tr>
+<td>Reset/Mute</td>
+<td><code><span style="color: #ffff00">no output</span></code></td>
+</tr>
+<tr>
+<td>Success</td>
+<td><code><span style="color: #e76a72">AAAA 0000270f BBBB</span></code></td>
+</tr>
+<tr>
+<td>Success</td>
+<td><code><span style="color: #e76a72">AAAA 0000270e BBBB</span></code></td>
+</tr>
+<tr>
+<td>Success</td>
+<td><code><span style="color: #e76a72">AAAA 0000270b BBBB</span></code></td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<p>We plot the experiments based their classification in order to determine what&rsquo;s a good location for the EMFI probe, which is shown below. Interestingly, we observe that all successful experiments occurred in a specific area on the chip&rsquo;s surface.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/fi_results.png">
+        <img src="/img/ipq40xx/fi_results.png" style="max-width: 80%">
+    </a>
+</p>
+<p>Even though we determined that the target is vulnerable to EMFI, we don&rsquo;t know yet if we can actually alter the QSEE software itself as we targeted only U-Boot code so far. However, as both U-Boot and QSEE are executed by the same processor, just with a different NS bit, we are confident the vulnerable locations we identified will yields faults in QSEE software too. Therefore, we place the probe on one of the locations where we observed a successful glitch. This allows us to target QSEE software without moving the probe, effectively removing the spatial parameter from the glitch parameter search space.</p>
+<h2 id="disabling-secure-ranges">Disabling secure ranges</h2>
+<p>As earlier mentioned, we decided to target the QSEE software instead of the the underlying ARM TrustZone hardware primitives (e.g. NS-bit, TZASC).</p>
+<p>We know from our earlier conducted QSEE software analysis that various security enforcements are entirely implemented by software. This includes for example the secure range checks which are performed by the SMC handler routines on the arguments received from the Rich Execution Environment (REE).</p>
+<p>We decided to target a SMC handler routine that does not include any software vulnerability. One of the candidates that we identified is <code>tzbsp_fver_get_version</code> for which the decompilation is shown below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">tzbsp_fver_get_version</span>(<span style="color:#66d9ef">uint32_t</span> a1, <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>a2, <span style="color:#66d9ef">uint32_t</span> a3)
+{
+    <span style="color:#66d9ef">uint32_t</span> v4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>is_ree_range(off_87EAB290, a2, a2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>) )      <span style="color:#75715e">// range check
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xFFFFFFEE</span>;
+    <span style="color:#66d9ef">if</span> ( a3 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>a2 )                                <span style="color:#75715e">// argument check
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xFFFFFFF0</span>;
+    <span style="color:#f92672">*</span>a2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;                                            <span style="color:#75715e">// NULL-write
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">do</span> {
+        <span style="color:#66d9ef">if</span> ( dword_87EABB48[<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> v4] <span style="color:#f92672">==</span> a1 )             <span style="color:#75715e">// must fail
+</span><span style="color:#75715e"></span>          <span style="color:#f92672">*</span>a2 <span style="color:#f92672">=</span> dword_87EABB48[<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> v4 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+        <span style="color:#f92672">++</span>v4;
+    } <span style="color:#66d9ef">while</span> ( v4 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0xC</span> );
+    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div><p>The <code>is_ree_range</code> function checks if <code>a2</code> and <code>a2 +3</code> point to non-secure memory. This argument is passed from the REE and we assume that this argument is under control of the attacker. Simpler said, this function verifies if the buffer provided from the REE overlaps with secure memory. If it does, <code>tzbsp_fver_get_version</code> will immediately return <code>0xFFFFFFEE</code>.</p>
+<p>Using an EM glitch, we aim to to bypass the restrictions enforced by the <code>is_ree_range</code> function. This allows us to execute the remainder of <code>tzbsp_fver_get_version</code> in order to write <code>NULL</code> to an arbitrary address (incl. secure memory).</p>
+<p>We communicate with <code>tzbsp_fver_get_version</code> from the REE using an U-Boot standalone application, which is shown below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">uint32_t</span> a1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xdeadbeef</span>; <span style="color:#75715e">// pass argument check
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> a2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x87EAB204</span>; <span style="color:#75715e">// secure memory address
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> a3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;          <span style="color:#75715e">// pass argument check
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> a4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;          <span style="color:#75715e">// NA
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x0102f004</span>);                       
+
+<span style="color:#75715e">// trigger up
+</span><span style="color:#75715e"></span><span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0</span>;                                                 
+
+<span style="color:#75715e">// calling tzbsp_fver_get_version()
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> ret1 <span style="color:#f92672">=</span> scm_call_r(<span style="color:#ae81ff">0x6</span>, <span style="color:#ae81ff">0x3</span>, a1, a2, a3, a4, <span style="color:#ae81ff">3</span>);
+
+<span style="color:#75715e">// trigger down
+</span><span style="color:#75715e"></span><span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3</span>;                                                 
+
+<span style="color:#75715e">// calling tzbsp_fver_get_version()
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> ret2 <span style="color:#f92672">=</span> scm_call_r(<span style="color:#ae81ff">0x6</span>, <span style="color:#ae81ff">0x3</span>, a1, a2, a3, a4, <span style="color:#ae81ff">3</span>);
+
+<span style="color:#75715e">// printing to serial interface
+</span><span style="color:#75715e"></span>printf(<span style="color:#e6db74">&#34;AAAA%08x%08x%08xBBBB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret1, ret2, <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)a2);
+</code></pre></div><p>We use a GPIO signal as a trigger to time exactly when <code>tzbsp_fver_get_version</code> exactly is executed. The EM glitch is injected exactly between the moment the trigger is set high and set low, which takes approximately 5.875 microseconds (see picture below).</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/osc.png">
+        <img src="/img/ipq40xx/osc.png" style="max-width: 80%">
+    </a>
+</p>
+<p>In the above code example, by writing <code>NULL</code> to <code>0x87EAB204</code>, we disable one of the secure ranges defined in the secure range table. More details on how this exactly works will be explained in more detail in <a href="/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/">blog #4</a> of this series. For this post, it&rsquo;s sufficient to <strong>raelize</strong> that a successful attack will disable the restrictions enforced by the secure range check for each SMC handler routine.</p>
+<p>We execute <code>tzbsp_fver_get_version</code> a second time, with the same destination address, without injecting any glitch, in order to verify whether the attack was successful. If the secure range is successfully disabled, <code>is_ree_range</code> will consider any address passed from REE in <code>a2</code> as valid, including secure memory addresses. The write to the secure memory address will then successfully complete as well.</p>
+<p>Moreover, in the last line of the code, we dereference the secure range flag field from REE. This is done in order to verify that the malicious TEE write actually happened. It should be noted that, due to the (mis)configuration of the target, we are able to read secure memory from the REE.</p>
+<p>Typically, this is not possible, or should <strong>NOT</strong> be possible, as, otherwise, any secret handled by QSEE would be exposed to the REE. In our setup, we only use this mis-configuration to double verify if an experiment is successful or not.</p>
+<p>We expect at least the following type of results: <span style="color: #74dc8d">expected</span>, <span style="color: #e76a72">successful</span>, <span style="color: #ec5598">processor exception</span> and <span style="color: #ffff00">reset/mute</span> experiments. The table below indicates the serial interface output we expect to receive for each result.</p>
+<div style="width: 500px; margin:auto;">
+<p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Expected</td>
+<td style="text-align:left"><code><span style="color: #74dc8d">AAAAffffffeeffffffee00000002BBBB</span></code></td>
+</tr>
+<tr>
+<td style="text-align:left">Success</td>
+<td style="text-align:left"><code><span style="color: #e76a72">AAAA000000000000000000000000BBBB</span></code></td>
+</tr>
+<tr>
+<td style="text-align:left">Exceptions</td>
+<td style="text-align:left"><code><span style="color: #ec5598">undefined instruction</span></code></td>
+</tr>
+<tr>
+<td style="text-align:left">Reset/Mute</td>
+<td style="text-align:left"><code><span style="color: #ffff00">no output</span></code></td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<p>We performed roughly 300,000 experiments where we inject EM glitches within the entire attack window. We give each experiment a randomized power between 10% and 100%. The EM probe itself is fixed to a vulnerable location on the chip&rsquo;s surface that we identified earlier. This entire campaign lasted roughly 12 hours. We plotted all experiments as is shown in the figure below.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/attack_results2.png">
+        <img src="/img/ipq40xx/attack_results2.png" style="max-width: 80%">
+    </a>
+</p>
+<p>We can summarize the plot as follows:</p>
+<ul>
+<li>In <strong>area 1</strong> we observe many <span style="color: #ec5598">processor exceptions</span>. An indication that the glitch is injected while U-Boot code is being executed. In other words, we inject the glitch too soon.</li>
+<li>In <strong>area 2</strong> we observe many <span style="color: #e76a72">successful</span> experiments. An indication that this is exactly the moment where we wan to inject the glitch. Moreover, this proves that this is the moment where <code>tzbsp_fver_get_version</code> is executed.</li>
+<li>In <strong>area 3</strong> we observe many <span style="color: #ec5598">processor exceptions</span>. An indication that the glitch is injected while U-Boot code is being executed. In other words, we inject the glitch too late.</li>
+</ul>
+<p>The success rate is fairly low. Most experiments, where we observe the <span style="color: #74dc8d">expected</span> response, are not successful. Nonetheless, we observe a success rate of <strong>0.05%</strong>, which, at our testing speeds, translates to roughly 1 <span style="color: #e76a72">successful</span> experiment every <strong>5 minutes</strong>.</p>
+<p>However, if we set the glitch parameters (i.e. glitch delay and glitch power) to that of a <span style="color: #e76a72">successful</span> experiment, we observe a success rate of <strong>5%</strong>, or roughly 1 <span style="color: #e76a72">successful</span> experiment every <strong>20 seconds</strong>. This shows that the reproducibility of bypassing the range check is very high. We feel comfortable saying that we are able to bypass any of the configured range checks, by using an EM glitch.</p>
+<h2 id="achieving-code-execution">Achieving code execution</h2>
+<p>We know from our software vulnerability analysis that we are able to achieve code execution after the secure ranges are disabled. This will be described in full details in <a href="/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/">blog #4</a> (will be released soon).</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We demonstrated that the Qualcomm IPQ40xx family of chips are vulnerable to EMFI. We exploited this vulnerability in order to bypass a secure range check performed by QSEE. This allows us to write a restricted value to an arbitrary address (incl. secure memory).</p>
+<p>The attack can be described using our <a href="/blog/raelize-fi-reference-model/">FIRM</a>, as shown in the figure below. Once the optimal glitch parameters are found, the attack can be reproduced once every 20 seconds, which is a very high success rate.</p>
+<p style="text-align:center;">
+    <a href="/img/ipq40xx/attack_firm2.png">
+        <img src="/img/ipq40xx/attack_firm2.png" style="max-width: 80%">
+    </a>
+</p>
+<p>We targeted the processor executing the QSEE software instead of the ARM TrustZone hardware primitives. This means that hardening these hardware primitives is not sufficient protection for hardening a device against FI attacks. We believe that hardening the processor itself is fundamental.</p>
+<p>The impact of software vulnerabilities is typically much larger than (hardware) attacks that require physical access. Mass exploitation is for example typically not possible with FI attacks. Nonetheless, we like to stress that these type of attacks should not immediately be considered a harmless threat. For instance, they are often used to gain access to secured code or data in order to identify easier to exploit (software) vulnerabilities.</p>
+<p>As a TEE is used to secure important assets, it will always be a very interesting target, also for FI-capable attackers. Of course, especially for devices where FI attacks are specifically included in the threat model and other components (e.g. ROM, bootloaders) are already hardened.</p>
+<p>We&rsquo;ve disclosed this vulnerability responsibly to Qualcomm using a coordinated disclosure process. They indicated that FI attacks are out of scope for the Qualcomm IPQ40xx family of chips and therefore the vulnerability will not be fixed. This choice is understandable, considering the typical TEE threat model. However, as a result, these chips will be vulnerable forever&hellip;</p>
+<p>- Raelize<span style="color:yellow">.</span></p>
+
+        </div>
+        
+        
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.daccb20f977092510d3d744fb8e698106556d33b7cefb035e55f5df7e6336b6a7b7990d200f53689eb695797a83d9ee6.js" integrity="sha384-2syyD5dwklENPXRPuOaYEGVW0zt877A15V9d9&#43;Yza2p7eZDSAPU2ietpV5eoPZ7m"></script>
+
+
+</body>
+
+</html>
