@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.83.1" />
+	<meta name="generator" content="Hugo 0.87.0" />
 
 	<!-- plugins -->
 	
@@ -186,7 +186,7 @@
 <li>print the counter result</li>
 </ul>
 <p>One of the implementations used during our <strong>ESP32</strong> research is shown below. The test code allows us to identify a successful glitch by observing the counter printed on the <strong>serial interface</strong>. If the counter value is different than the expected value (i.e. 10,000), then the glitch we injected <strong>successfully</strong> affected the target's execution without preventing program continuation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">char</span> cmd;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#66d9ef">char</span> cmd;
 <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> counter;
 
 <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>) {
@@ -279,7 +279,7 @@
 <h4 id="perform-a-sanity-check">Perform a sanity check</h4>
 <p>It's always a good idea to perform a so-called &ldquo;<em>sanity check</em>&rdquo; to verify if <strong>Secure Boot</strong> is actually enabled and works as expected. One approach for doing this, is to invalidate the <strong>bootloader</strong> and observe the differences on the <strong>serial interface</strong> output. When there is no <strong>serial interface</strong> output, other information may be used as well, such as the communication with the flash or the chip's power consumption. As fas as we know the <strong>serial interface</strong> output of the <strong>ESP32</strong> cannot be disabled and therefore always available.</p>
 <p>After power-on reset, the <strong>ROM</strong> (<span style="color: #74dc8d"> green </span>) and <strong>bootloader</strong> (<span style="color: #e76a72"> red </span>) print the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
 </span><span style="color:#a6e22e">+ 
 </span><span style="color:#a6e22e">+ rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
 </span><span style="color:#a6e22e">+ configsip: 0, SPIWP:0xee
@@ -301,7 +301,7 @@
 </span><span style="color:#f92672">- 
 </span><span style="color:#f92672">- Hello, I am the bootloader
 </span></code></pre></div><p>We invalidate the <strong>bootloader</strong> by modifying the string <code>bootloader</code>, visible in the last line of the above <strong>serial interface</strong> output, into <code>Raelize!!!</code>. Then, we program the modified <strong>bootloader</strong> to the external flash of the <strong>ESP32</strong>. Then, when we boot up the <strong>ESP32</strong>, we observe the following output printed on the <strong>serial interface</strong>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
 </span><span style="color:#a6e22e">+ 
 </span><span style="color:#a6e22e">+ rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
 </span><span style="color:#a6e22e">+ configsip: 0, SPIWP:0xee
@@ -314,7 +314,7 @@
 </span><span style="color:#a6e22e">+ csum err:0xb5!=0xdf
 </span><span style="color:#a6e22e">+ ets_main.c 371
 </span></code></pre></div><p>The <strong>ROM</strong> verifies a checksum of the <strong>bootloader</strong>, which is invalid due to our modification. The checksum value present in the <strong>flash image</strong>  is easily identified as the required information is printed on the <strong>serial interface</strong>. We simply change <code>0xb5</code> into <code>0xdf</code> to satisfy the checksum operation. As expected, the <strong>ROM</strong> now reports that the <strong>Secure Boot</strong> check failed.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
 </span><span style="color:#a6e22e">+ 
 </span><span style="color:#a6e22e">+ rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
 </span><span style="color:#a6e22e">+ configsip: 0, SPIWP:0xee
@@ -348,7 +348,7 @@
 <li>Store the <strong>serial interface</strong> output in a database for post processing</li>
 </ul>
 <p>After ~35,000 experiments, which took ~55 minutes, we observed <strong>three successful glitches</strong> where we bypassed <strong>Secure Boot</strong> using a <strong>EM</strong> glitch. We can easily identify the successful glitches as <code>Raelize!!!</code>  is printed on the <strong>serial interface</strong> instead of <code>bootloader</code> as is shown below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ ets Jun 8 2016 00:22:57
 </span><span style="color:#a6e22e">+ 
 </span><span style="color:#a6e22e">+ rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
 </span><span style="color:#a6e22e">+ configsip: 0, SPIWP:0xee

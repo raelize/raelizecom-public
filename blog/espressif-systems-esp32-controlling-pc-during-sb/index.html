@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.83.1" />
+	<meta name="generator" content="Hugo 0.87.0" />
 
 	<!-- plugins -->
 	
@@ -152,7 +152,7 @@
 <p>To identify a successful attack, we fully overwrite the bootloader with the 32-bit pointer to a ROM function that prints something on the serial interface. The successful execution of this function generates the printout on the serial port, which confirms we have successfully loaded one of the pointers stored in external flash into the PC register.</p>
 <p>Moreover, as the entire bootloader is fully overwritten with the same pointer, the glitch timing requirements are practically removed and we can simply glitch (almost) anywhere during the bootloader copy.</p>
 <p>We use the ROM function at address <code>0x4005A980</code>. This function prints the following string on the serial interface: <code>Falling back to built-in command interpreter.\n</code>. A snippet of the original flash image and the modified flash image is shown below. Please note that the address pointer is stored in little endian format in the external flash.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ Original:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ Original:
 </span><span style="color:#a6e22e">+     00001040    00 50 04 FF AC 00 00 00 48 65 6C 6C 6F 2C 20 49 
 </span><span style="color:#a6e22e">+     00001050    20 61 6D 20 74 68 65 20 62 6F 6F 74 6C 6F 61 64
 </span><span style="color:#a6e22e">+     &lt;cut&gt;

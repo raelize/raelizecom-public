@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.83.1" />
+	<meta name="generator" content="Hugo 0.87.0" />
 
 	<!-- plugins -->
 	
@@ -153,13 +153,13 @@
 <p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/cfm_protocol.png" style="max-width: 100%; width: 600px"></p>
 <p>Several commands are supported and accessible by specifying the command code in the 2 bytes <code>cmd</code> field. Communication is in plaintext and without authentication. The code only checks, for some commands, that the provided <code>MAC</code> address matches the device <code>MAC</code> address.</p>
 <p>The command <code>\x00\x01</code> allows retrieving system information from the device, including the device administrative password which is returned in plaintext. For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">python <span style="color:#f92672">-</span>c <span style="color:#e6db74">&#39;print(&#34;</span><span style="color:#ae81ff">\x00\x01</span><span style="color:#e6db74">&#34;* 5)&#39;</span> <span style="color:#f92672">|</span> nc <span style="color:#f92672">-</span>u <span style="color:#ae81ff">192.168</span><span style="color:#f92672">.</span><span style="color:#ae81ff">1.1</span> <span style="color:#ae81ff">65002</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">python <span style="color:#f92672">-</span>c <span style="color:#e6db74">&#39;print(&#34;</span><span style="color:#ae81ff">\x00\x01</span><span style="color:#e6db74">&#34;* 5)&#39;</span> <span style="color:#f92672">|</span> nc <span style="color:#f92672">-</span>u <span style="color:#ae81ff">192.168.1.1</span> <span style="color:#ae81ff">65002</span>
 <span style="color:#75715e">####MAC_ADDRESS####&lt;boardID=D-4P-W&gt;&lt;sysVersion=EU_3-10-02-3B00.A2pB022g2.d20h&gt;</span>
 <span style="color:#f92672">&lt;</span>sysModel<span style="color:#f92672">=</span>DSL<span style="color:#f92672">-</span><span style="color:#ae81ff">2640</span>B<span style="color:#f92672">&gt;&lt;</span>local_username<span style="color:#f92672">=</span>admin<span style="color:#f92672">&gt;&lt;</span>local_password<span style="color:#f92672">=</span>password<span style="color:#f92672">&gt;</span>
-<span style="color:#f92672">&lt;</span>local_ipaddress<span style="color:#f92672">=</span><span style="color:#ae81ff">192.168</span><span style="color:#f92672">.</span><span style="color:#ae81ff">1.1</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>local_ipaddress<span style="color:#f92672">=</span><span style="color:#ae81ff">192.168.1.1</span><span style="color:#f92672">&gt;</span>
 </code></pre></div><p>The MAC address check mentioned earlier is not performed for the  <code>\x00\x01</code> command. Any additional bytes are  completely ignored which allowed us to identify the vulnerability in a very trivial manner.</p>
 <p>In fact, we found this vulnerability using a rather dumb fuzzing campaign. To start, we simply piped <code>/dev/urandom</code> into <code>UDP</code> port <code>65002</code>. Obviously, we did not think this approach would yield vulnerabilities in any way. Especially because no traffic monitoring, no payload selection and no target debugging were in place. However, surprisingly, the device kindly returned the administrative password within a few minutes&hellip;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">time cat /dev/urandom | nc -u 192.168.1.1 <span style="color:#ae81ff">65002</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">time cat /dev/urandom | nc -u 192.168.1.1 <span style="color:#ae81ff">65002</span>
 &amp;ZLM���&lt;boardID<span style="color:#f92672">=</span>D-4P-W&gt;&lt;sysVersion<span style="color:#f92672">=</span>EU_3-10-02-3B00.A2pB022g2.d20h&gt;
 &lt;sysModel<span style="color:#f92672">=</span>DSL-2640B&gt;&lt;local_username<span style="color:#f92672">=</span>admin&gt;&lt;local_password<span style="color:#f92672">=</span>a&gt;
 &lt;local_ipaddress<span style="color:#f92672">=</span>192.168.1.1&gt;^C
@@ -179,7 +179,7 @@ sys 0m21.439s
 <p>The <code>default</code> passwords used for authentication are hard-coded in the <code>libpsi.so</code> binary.</p>
 <p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/user_account.png" style="max-width: 100%; width: 600px"></p>
 <p>Reverse engineering this library told us that the following <code>default</code> credentials can be used for logging into the web interface of the device.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">Username: user
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">Username: user
 Password: 00202b004720
 </code></pre></div><p>Although the password of the user <code>user</code> can be changed, no web interface control is provided for modifying it. Therefore, this password will be set to its default state for the entire life time of the device. It is important to note that the account is valid for authenticating to any service relying on <code>lipsi.so</code>, such as <code>ftp</code>, <code>telnet</code> and <code>ssh</code>. As far as we know, the user <code>user</code> has similar capabilities as the <code>admin</code> account.</p>
 <p>Interestingly, even though <code>libpsi.so</code> is only released in binary format, the credentials are clearly visible in the GPL source code of the device (see picture below).</p>
@@ -199,7 +199,7 @@ Password: 00202b004720
 <li>restoreinfo.cgi</li>
 </ul>
 <p>Specifically, the device can be reset to default factory configuration by simply requesting the following URL:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">http://&lt;device_IP_address&gt;/restoreinfo.cgi 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">http://&lt;device_IP_address&gt;/restoreinfo.cgi 
 </code></pre></div><p>An attacker may reset the administrative password to its default value <code>admin</code>, log in and perform any administrative tasks on the device, such as upload of malicious firmware or configuration of malicious DNS servers.</p>
 <p>While the exploitation of this vulnerability requires access to the device LAN interface, it can also be remotely exploited via browser pivoting. An attacker in control of a malicious website may blindly reset the configuration of the device and, under some conditions, take full control of the device.</p>
 <h5 id="cve-2020-9277----d-link-dsl-2640b---cgi-authentication-bypass">CVE-2020-9277 &ndash; D-Link DSL-2640B - CGI Authentication bypass</h5>
@@ -208,7 +208,7 @@ Password: 00202b004720
 <p>The code then identifies (2) special resources for which the authentication is not necessary. Examples are images or <code>Javascript</code> utilities. The code matches the <code>start</code> of an <code>URL</code> with the specific string (e.g: <code>/images/</code>, <code>utils.js</code>) using the <code>strncmp()</code> function. If a match is found, no authentication is  performed, regardless of  the outcome of (1). The request is then further processed as it had been successfully authenticated.</p>
 <p>Finally, if a <code>cgi</code> module is requested, the <code>do_cgi()</code> function determines (3) the module to be executed by searching the module name <code>anywhere</code> in the <code>URL</code>, using the <coed>strstr()</coed> function.</p>
 <p>All the above checks act in isolation, no state is carried over. An attacker can then craft malicious URLs for bypassing authentication for <code>cgi</code> modules. The attack URL below changes the device admin password to <em>newpass</em> without any need for authentication:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">Original URL: http://&lt;device_IP_address&gt;/redpass.cgi?sysPassword=newpass
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">Original URL: http://&lt;device_IP_address&gt;/redpass.cgi?sysPassword=newpass
 Attack URL: http://&lt;device_IP_address&gt;/images/redpass.cgi?sysPassword=newpass
 </code></pre></div><p>This vulnerability gives an attacker full device control and allows performing unauthenticated administrative functions. This vulnerability requires accessing the device LAN interface, but it is suitable for exploitation via browser pivoting, allowing for remote attacks over the Internet.</p>
 <h5 id="cve-2020-9276----d-link-dsl-2640b---do_cgi-buffer-overflow">CVE-2020-9276 &ndash; D-Link DSL-2640B - do_cgi buffer overflow</h5>

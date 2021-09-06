@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.83.1" />
+	<meta name="generator" content="Hugo 0.87.0" />
 
 	<!-- plugins -->
 	
@@ -155,7 +155,7 @@
 <h4 id="boot-log">Boot log</h4>
 <hr>
 <p>After connecting to the serial interface, we started the device. Immediately we are presented with a stream of interesting print statements. The printing that&rsquo;s shown below is done by the <em><strong>PBL</strong></em> and <em><strong>SBL1</strong></em> bootloaders, which are developed by Qualcomm. These are likely provided to the OEM (i.e. Linksys) as part of the IPQ40xx SDK. We&rsquo;ve highlighted the most interesting print statements in red.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ Format: Log Type - Time(microsec) - Message - Optional Info
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ Format: Log Type - Time(microsec) - Message - Optional Info
 </span><span style="color:#a6e22e">+ Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
 </span><span style="color:#a6e22e"></span><span style="color:#f92672">- S - QC_IMAGE_VERSION_STRING=BOOT.BF.3.1.1-00108
 </span><span style="color:#f92672"></span><span style="color:#a6e22e">+ S - IMAGE_VARIANT_STRING=DAACANAZA
@@ -205,7 +205,7 @@
 </span><span style="color:#a6e22e">+ S - DDR Frequency, 672 MHz
 </span></code></pre></div><p>If you are familiar with Qualcomm-based devices, you may recognize the typical boot flow where the <em><strong>PBL</strong></em> and <em><strong>SBL1</strong></em> are printing timestamped log lines. If you&rsquo;re interested, more details about the boot process of Qualcomm-based mobile phones is provided by this great <a href="https://blog.quarkslab.com/analysis-of-qualcomm-secure-boot-chains.html">blog post</a> by <a href="https://quarkslab.com/">Quarkslab</a>. However, the boot process of our target devices has more commonalities with the one of older mobile phones, as shown in this <a href="https://alephsecurity.com/vulns/aleph-2017026">advisory (2017)</a> by <a href="https://alephsecurity.com/">Aleph Security</a>.</p>
 <p>Once the execution of the <em><strong>SBL1</strong></em> completes, the control is passed to the <em><strong>U-Boot</strong></em> bootloader, which is a common bootloader responsible for loading Linux. Conveniently, we were able to break into the <em><strong>U-Boot</strong></em> console by pressing a key during boot, which is shown below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ U-Boot 2012.07 [Chaos Calmer 15.05.1,r35193] (Nov 02 2017 - 16:33:09)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ U-Boot 2012.07 [Chaos Calmer 15.05.1,r35193] (Nov 02 2017 - 16:33:09)
 </span><span style="color:#a6e22e">+ 
 </span><span style="color:#a6e22e"></span><span style="color:#f92672">- CBT U-Boot ver: 1.2.9
 </span><span style="color:#f92672"></span><span style="color:#a6e22e">+ 
@@ -252,7 +252,7 @@
 <h2 id="extracting-the-qsee-binary">Extracting the QSEE binary</h2>
 <hr>
 <p>The <strong>U-Boot</strong> console provides a convenient and powerful environment for accessing the flash. For example, we can use the <code>smeminfo</code> command in order to get an overview of the flash partitions, which is shown below. The QSEE binary that we are after is actually stored in a dedicated partition.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ (IPQ40xx) # smeminfo
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ (IPQ40xx) # smeminfo
 </span><span style="color:#a6e22e">+ flash_type:             0x2
 </span><span style="color:#a6e22e">+ flash_index:            0x0
 </span><span style="color:#a6e22e">+ flash_chip_select:      0x0
@@ -279,13 +279,13 @@
 </span><span style="color:#a6e22e">+ (IPQ40xx) # 
 </span></code></pre></div><p>Extracting the flash contents is fairly easy using the commands provided by the <strong>U-Boot</strong> console. First, we use the <code>nand</code> command to read the flash contents to volatile memory (e.g. SRAM or DDR). Then, we use the <code>tftpput</code> command to dump the flash contents from volatile memory via the network to our TFTP server. This allows us to extract the entire flash without any soldering. Let&rsquo;s extract the QSEE partition!</p>
 <p>We use the python-based  TFTP server named <code>ptftpd</code> which is very convinient to use.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ptftpd -p <span style="color:#ae81ff">6969</span> eth0 /home/raelize/Desktop
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ptftpd -p <span style="color:#ae81ff">6969</span> eth0 /home/raelize/Desktop
 </code></pre></div><p>Then, we set the <code>serverip</code> environment variable within the <em><strong>U-Boot</strong></em> console and point it to our workstation.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # setenv serverip 192.168.1.128
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # setenv serverip 192.168.1.128
 </code></pre></div><p>Now we need to load the QSEE paritition in flash into memory. But where do we load it? Well, typically we can simply use an unused area within the DDR memory. We determined using the print statements by the <em><strong>U-Boot</strong></em> bootloader that the DDR memory is likely mapped at address <code>0x8000000</code> as the entry point of the Linux Kernel is <code>0x80208000</code>. We simply guessed address <code>0x89000000</code> is unused and can be used to temporarily store the QSEE partition.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # nand read 0x89000000 0x200000 0x100000
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # nand read 0x89000000 0x200000 0x100000
 </code></pre></div><p>Then, we use the <code>tftpput</code> command to send the QSEE partition to our TFTP server.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # tftpput 0x89000000 0x100000 QSEE.bin
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # tftpput 0x89000000 0x100000 QSEE.bin
 </code></pre></div><p>If all went well, we have succesfully extracted the QSEE partition! :)</p>
 <h2 id="analyzing-the-qsee-binary">Analyzing the QSEE binary</h2>
 <hr>
