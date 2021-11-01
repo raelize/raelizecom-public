@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright &amp;copy;2020 Raelize B.V. &lt;br&gt; Powered by &lt;a href=#&gt;Hugo&lt;/a&gt; and [Themefisher](https://themefisher.com).</copyright>
-    <lastBuildDate>Mon, 14 Jun 2021 10:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Nov 2021 17:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vulnerable tzdemuxerservice TA on Samsung TVs (J-series)</title>
+      <link>https://raelize.com/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</link>
+      <pubDate>Mon, 01 Nov 2021 17:00:00 +0200</pubDate>
+      
+      <guid>https://raelize.com/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</guid>
+      <description>We often analyze the security of devices that implement a Trusted Execution Environment (TEE) and the information described in this post is a result of that. One of the goals of a Trusted Execution Environment (TEE) is to provide an environment for the secure execution of Trusted Applications (TAs).
+The source code for a TA is rarely available for attackers and often only the binary code is available. As always, there are several exceptions like the default TAs provided by OP-TEE, an open-source TEE OS, and the TAs available for the Ledger hardware wallet which is used for storing cryptocurrencies securely.</description>
+    </item>
+    
     <item>
       <title>Qualcomm IPQ40xx: Achieving QSEE Code Execution</title>
       <link>https://raelize.com/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/</link>
@@ -44,16 +54,6 @@ As you may have already raelized, at Raelize we like to look further than just s
       
       <guid>https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</guid>
       <description>The Qualcomm IPQ40xx family of chips, which includes the IPQ4018, IPQ4019, IPQ4028 and IPQ4029, are popular System-on-Chip (SoC) solutions for consumer and enterprise networking products. Many devices like the ASUS RT-AC58U, Cisco Meraki MR33 and Aruba AP-365 use an IPQ40xx chip as the main System-on-Chip (SoC) in their design. The OpenWRT Project supported device database shows at least 34 products, manufactured between 2018 and 2020, that are designed around a IPQ40xx chip.</description>
-    </item>
-    
-    <item>
-      <title>Vulnerable tzdemuxerservice TA on Samsung TVs (J-series)</title>
-      <link>https://raelize.com/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</link>
-      <pubDate>Thu, 17 Dec 2020 12:00:00 +0200</pubDate>
-      
-      <guid>https://raelize.com/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</guid>
-      <description>We often analyze the security of devices that implement a Trusted Execution Environment (TEE) and the information described in this post is a result of that. One of the goals of a Trusted Execution Environment (TEE) is to provide an environment for the secure execution of Trusted Applications (TAs).
-The source code for a TA is rarely available for attackers and often only the binary code is available. As always, there are several exceptions like the default TAs provided by OP-TEE, an open-source TEE OS, and the TAs available for the Ledger hardware wallet which is used for storing cryptocurrencies securely.</description>
     </item>
     
     <item>
