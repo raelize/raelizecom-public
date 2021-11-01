@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.87.0" />
+	<meta name="generator" content="Hugo 0.88.1" />
 
 	<!-- plugins -->
 	
@@ -305,8 +305,7 @@ LOAD:<span style="color:#ae81ff">87</span>EAB200 <span style="color:#f92672">&lt
   memcpy(dst, src, dst_size);
   <span style="color:#66d9ef">return</span> dst_size;
 }
-</code></pre></div><p>Ok, Ok. Why is this useful? Well, we can use our return-to-QSEE capabilities to call the any function, including the <code>secure_memcpy</code> function. Ideally, We would call the <code>memcpy</code> function directly if we would fully control all arguments. We don&rsquo;t. We actually only fully control <code>r0</code>, <code>r2</code> and <code>r3</code>. Luckily, the <code>secure_memcpy</code> function uses exactly these arguments as arguments for the <code>memcpy</code> function.</p>
-<p>This allows us to leverage the <code>secure_memcpy</code> function as a &lsquo;proxy&rsquo; for calling the <code>memcpy</code> function with arguments we fully control. If you&rsquo;re in the market for an efficient <strong>Read/Write</strong> primitive, it does not get any better&hellip;</p>
+</code></pre></div><p>Why is this useful? Well, we can use our return-to-QSEE capabilities to call any function, including the <code>secure_memcpy</code> function. Ideally, we would call the <code>memcpy</code> function directly, but we do not control all arguments. We actually only control <code>r0</code>, <code>r2</code> and <code>r3</code>. Luckily, the <code>secure_memcpy</code> function uses exactly these arguments as arguments for calling the <code>memcpy</code> function. This allows us to leverage the <code>secure_memcpy</code> function to call the <code>memcpy</code> function with arbitrary arguments in order to create a very efficient <strong>Read/Write</strong> primitive.</p>
 <h2 id="executing-shellcode">Executing shellcode</h2>
 <hr>
 <p>The classical approach would be to write a shellcode in QSEE memory ensure the memory is also executable and then trigger execution. But we actually prefer a slightly more effective approach that practically works in many real cases: store the shellcode in non-secure memory, that we already control and have QSEE execute it from there. This allows very easy shaping of our payloads.</p>
