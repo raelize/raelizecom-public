@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.96.0" />
+	<meta name="generator" content="Hugo 0.87.0" />
 
 	<!-- plugins -->
 	
@@ -150,202 +150,202 @@ requested CVEs for these vulnerabilities. Therefore, no CVEs are available for t
 <p>In this post we do not intend to discuss Samsung's <strong>TEE</strong> or the general aspects of TEEs in detail. Please consider signing up for our <a href="https://raelize.com/training/">TEEPwn training</a> if you're interested in learning more about TEE security in an exciting hands-on exercise driven experience.</p>
 <h1 id="tzdemuxerservice">tzdemuxerservice</h1>
 <p>The entry point for the TA is easily found in the <code>tzdemuxerservice.cpp</code> source file by identifying the <code>TA_InvokeCommandEntryPoint()</code> function.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span>
-</span></span><span style="display:flex;"><span>TEE_Result TA_InvokeCommandEntryPoint(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>sessionContext, 
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint32_t</span> commandID, <span style="color:#66d9ef">uint32_t</span> param_types, TEE_Param param[<span style="color:#ae81ff">4</span>])
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    TA_PRINT(<span style="color:#e6db74">&#34;commandID %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,commandID);
-</span></span><span style="display:flex;"><span>    ...
-</span></span></code></pre></div><p>This entry point implements multiple commands which are implemented using a <code>switch</code> statement where each command is implemented using a dedicated <code>case</code> statement.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">switch</span>(commandID)
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_INIT:
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_INIT_WITH_PRESET_INFO:
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_SUBMIT_NORMAL_DATA:
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_SUBMIT_TS_DATA:
-</span></span><span style="display:flex;"><span>         ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;           
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DUMP_NORMAL_DATA:
-</span></span><span style="display:flex;"><span>         ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DUMP_VIDEO_PACKET:
-</span></span><span style="display:flex;"><span>         ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DROP_PACKET:
-</span></span><span style="display:flex;"><span>         ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_PACKET:
-</span></span><span style="display:flex;"><span>         ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_VIDEO_CODEC_INFO:
-</span></span><span style="display:flex;"><span>         ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_AUDIO_CODEC_INFO:
-</span></span><span style="display:flex;"><span>         ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DEINIT:
-</span></span><span style="display:flex;"><span>         ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
-</span></span></code></pre></div><p>We analyzed the entire <strong>TA</strong> and identified multiple vulnerabilities which can be exploited by an attacker in control of the <strong>REE</strong> or another <strong>TA</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">...
+<span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span>
+TEE_Result TA_InvokeCommandEntryPoint(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>sessionContext, 
+    <span style="color:#66d9ef">uint32_t</span> commandID, <span style="color:#66d9ef">uint32_t</span> param_types, TEE_Param param[<span style="color:#ae81ff">4</span>])
+{
+    TA_PRINT(<span style="color:#e6db74">&#34;commandID %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,commandID);
+    ...
+</code></pre></div><p>This entry point implements multiple commands which are implemented using a <code>switch</code> statement where each command is implemented using a dedicated <code>case</code> statement.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">...
+<span style="color:#66d9ef">switch</span>(commandID)
+{
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_INIT:
+        ...
+        <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_INIT_WITH_PRESET_INFO:
+        ...
+        <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_SUBMIT_NORMAL_DATA:
+        ...
+        <span style="color:#66d9ef">break</span>;    
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_SUBMIT_TS_DATA:
+         ...
+        <span style="color:#66d9ef">break</span>;           
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DUMP_NORMAL_DATA:
+         ...
+        <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DUMP_VIDEO_PACKET:
+         ...
+        <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DROP_PACKET:
+         ...
+        <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_PACKET:
+         ...
+        <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_VIDEO_CODEC_INFO:
+         ...
+        <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_AUDIO_CODEC_INFO:
+         ...
+        <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DEINIT:
+         ...
+        <span style="color:#66d9ef">break</span>;
+</code></pre></div><p>We analyzed the entire <strong>TA</strong> and identified multiple vulnerabilities which can be exploited by an attacker in control of the <strong>REE</strong> or another <strong>TA</strong>.</p>
 <h1 id="vulnerabilities">Vulnerabilities</h1>
 <p>Most of the vulnerabilities identified in this post are applicable as the developers do not check the parameter types of the parameters passed by the <code>REE</code>. This is fundamentally important for assuring the security of a <strong>TA</strong> as is outlined in Section 4.3.6.1 of GlobalPlatform's <a href="https://globalplatform.org/wp-content/uploads/2018/06/GPD_TEE_Internal_Core_API_Specification_v1.1.2.50_PublicReview.pdf">TEE Internal Core API Specification</a>.</p>
 <p>The type for <code>param[0]</code> is not checked and therefore <code>param[0]</code> can be passed to the <strong>TA</strong> as any type (i.e. value or reference). This allows providing a memory reference as a value which means the <strong>TEE OS</strong> does not verify if the parameters (i.e. <code>buf</code> and <code>size</code>) point to valid <strong>REE memory</strong> (i.e. don&rsquo;t overlap with <strong>TEE memory</strong>). Effectively this means the passed parameters can point to any arbitrary address, including <strong>REE memory</strong> and <strong>TEE memory</strong>.</p>
 <p>It must be noted that vulnerability 1 to 5 could also be considered a single vulnerability as the core problem is the <code>param[0]</code> parameter is not checked. However, we decided to also touch upon the different ways the unchecked parameter can be used and therefore listed the paths as seperate vulnerabilities.</p>
 <h2 id="vulnerability-1-restricted-write-to-arbitrary-address">Vulnerability 1: restricted write to arbitrary address</h2>
 <p>As <code>buf</code> can point to any arbitrary address, it's possible to write <code>32768</code> of <code>buffer.data</code> to an arbitrary location with the <strong>TA</strong> memory, which can result in a crash of the <strong>TA</strong> or code execution in the context of the <strong>TA</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>File: tzdemuxerservice.cpp
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">929</span> <span style="color:#f92672">!</span>  buf <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)param[<span style="color:#ae81ff">0</span>].memref.buffer;
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">930</span> <span style="color:#f92672">!</span>  size <span style="color:#f92672">=</span> param[<span style="color:#ae81ff">0</span>].memref.size;
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1103</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DUMP_NORMAL_DATA:
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1104</span>    {
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1105</span>        buffer_s buffer;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1106</span>        buffer_list_h pipelist <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>sctx<span style="color:#f92672">-&gt;</span>pipe_list;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1107</span>        <span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> buffer_list_take(pipelist,<span style="color:#f92672">&amp;</span>buffer,<span style="color:#ae81ff">32768</span>);
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1108</span>        <span style="color:#a6e22e">if</span>(ret <span style="color:#f92672">!=</span> BUFFER_LIST_SUCCESS)
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1109</span>        {
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1110</span>            result <span style="color:#f92672">=</span> TEE_ERROR_GENERIC;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1111</span>            <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1112</span>        }
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1113</span> <span style="color:#f92672">!</span>      memcpy(buf,buffer.data,<span style="color:#ae81ff">32768</span>);
-</span></span><span style="display:flex;"><span>        ...
-</span></span></code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">File: tzdemuxerservice.cpp
+
+        ...
+ <span style="color:#ae81ff">929</span> <span style="color:#f92672">!</span>  buf <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)param[<span style="color:#ae81ff">0</span>].memref.buffer;
+ <span style="color:#ae81ff">930</span> <span style="color:#f92672">!</span>  size <span style="color:#f92672">=</span> param[<span style="color:#ae81ff">0</span>].memref.size;
+        ...
+<span style="color:#ae81ff">1103</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DUMP_NORMAL_DATA:
+<span style="color:#ae81ff">1104</span>    {
+<span style="color:#ae81ff">1105</span>        buffer_s buffer;
+<span style="color:#ae81ff">1106</span>        buffer_list_h pipelist <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>sctx<span style="color:#f92672">-&gt;</span>pipe_list;
+<span style="color:#ae81ff">1107</span>        <span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> buffer_list_take(pipelist,<span style="color:#f92672">&amp;</span>buffer,<span style="color:#ae81ff">32768</span>);
+<span style="color:#ae81ff">1108</span>        <span style="color:#a6e22e">if</span>(ret <span style="color:#f92672">!=</span> BUFFER_LIST_SUCCESS)
+<span style="color:#ae81ff">1109</span>        {
+<span style="color:#ae81ff">1110</span>            result <span style="color:#f92672">=</span> TEE_ERROR_GENERIC;
+<span style="color:#ae81ff">1111</span>            <span style="color:#66d9ef">break</span>;
+<span style="color:#ae81ff">1112</span>        }
+<span style="color:#ae81ff">1113</span> <span style="color:#f92672">!</span>      memcpy(buf,buffer.data,<span style="color:#ae81ff">32768</span>);
+        ...
+</code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in REE memory.</p>
 <h2 id="vulnerability-2-restricted-write-to-arbitrary-address">Vulnerability 2: restricted write to arbitrary address</h2>
 <p>As <code>buf</code> can point to any arbitrary address, it's possible to write <code>pkt.size</code> of <code>pkt.data</code> to an arbitrary location with the <strong>TA</strong> memory, which can result in a crash of the <strong>TA</strong> or code execution in the context of the <strong>TA</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>File: tzdemuxerservice.cpp
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">929</span> <span style="color:#f92672">!</span>  buf <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)param[<span style="color:#ae81ff">0</span>].memref.buffer;
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">930</span> <span style="color:#f92672">!</span>  size <span style="color:#f92672">=</span> param[<span style="color:#ae81ff">0</span>].memref.size;
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1118</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DUMP_VIDEO_PACKET:
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1119</span>    {
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1120</span>        TA_PRINT(<span style="color:#e6db74">&#34;CMD_TZDEMUXER_CLIENT_DUMP_VIDEO_PACKET</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1121</span>        AVPacket pkt;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1122</span>        <span style="color:#a6e22e">memset</span>(<span style="color:#f92672">&amp;</span>pkt,<span style="color:#ae81ff">0x0</span>,<span style="color:#66d9ef">sizeof</span>(AVPacket));
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1123</span>        <span style="color:#66d9ef">int</span> r <span style="color:#f92672">=</span> packet_queue_get(<span style="color:#f92672">&amp;</span>sctx<span style="color:#f92672">-&gt;</span>pkt_queue,<span style="color:#f92672">&amp;</span>pkt,PACKET_QUEUE_NON_BLOCK_MODE);
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1124</span>        <span style="color:#a6e22e">if</span>(r <span style="color:#f92672">!=</span> PACKET_QUEUE_SUCCESS)
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1125</span>        {
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1126</span>            result <span style="color:#f92672">=</span> TEE_ERROR_GENERIC;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1127</span>            TA_PRINT(<span style="color:#e6db74">&#34;ERROR in</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1128</span>            <span style="color:#66d9ef">if</span>(r <span style="color:#f92672">==</span> PACKET_QUEUE_NO_PACKET)
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1129</span>            {
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1130</span>                TA_PRINT(<span style="color:#e6db74">&#34;TEE_ERROR_NO_DATA in</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1131</span>                result <span style="color:#f92672">=</span> TEE_ERROR_NO_DATA;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1132</span>            }
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1133</span>            <span style="color:#66d9ef">break</span>;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1134</span>        }
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1135</span>        <span style="color:#a6e22e">if</span>(sctx<span style="color:#f92672">-&gt;</span>streams[pkt.stream_index] <span style="color:#f92672">==</span> CODEC_TYPE_VIDEO)
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1136</span>        {
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1137</span>            TA_PRINT(<span style="color:#e6db74">&#34; Dump Video r %d, pkt.size %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,r,pkt.size);
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1138</span> <span style="color:#f92672">!</span>          memcpy(buf,pkt.data,pkt.size);        
-</span></span><span style="display:flex;"><span>                ...
-</span></span></code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">File: tzdemuxerservice.cpp
+
+        ...
+ <span style="color:#ae81ff">929</span> <span style="color:#f92672">!</span>  buf <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)param[<span style="color:#ae81ff">0</span>].memref.buffer;
+ <span style="color:#ae81ff">930</span> <span style="color:#f92672">!</span>  size <span style="color:#f92672">=</span> param[<span style="color:#ae81ff">0</span>].memref.size;
+        ...
+
+        ...
+<span style="color:#ae81ff">1118</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DUMP_VIDEO_PACKET:
+<span style="color:#ae81ff">1119</span>    {
+<span style="color:#ae81ff">1120</span>        TA_PRINT(<span style="color:#e6db74">&#34;CMD_TZDEMUXER_CLIENT_DUMP_VIDEO_PACKET</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+<span style="color:#ae81ff">1121</span>        AVPacket pkt;
+<span style="color:#ae81ff">1122</span>        <span style="color:#a6e22e">memset</span>(<span style="color:#f92672">&amp;</span>pkt,<span style="color:#ae81ff">0x0</span>,<span style="color:#66d9ef">sizeof</span>(AVPacket));
+<span style="color:#ae81ff">1123</span>        <span style="color:#66d9ef">int</span> r <span style="color:#f92672">=</span> packet_queue_get(<span style="color:#f92672">&amp;</span>sctx<span style="color:#f92672">-&gt;</span>pkt_queue,<span style="color:#f92672">&amp;</span>pkt,PACKET_QUEUE_NON_BLOCK_MODE);
+<span style="color:#ae81ff">1124</span>        <span style="color:#a6e22e">if</span>(r <span style="color:#f92672">!=</span> PACKET_QUEUE_SUCCESS)
+<span style="color:#ae81ff">1125</span>        {
+<span style="color:#ae81ff">1126</span>            result <span style="color:#f92672">=</span> TEE_ERROR_GENERIC;
+<span style="color:#ae81ff">1127</span>            TA_PRINT(<span style="color:#e6db74">&#34;ERROR in</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+<span style="color:#ae81ff">1128</span>            <span style="color:#66d9ef">if</span>(r <span style="color:#f92672">==</span> PACKET_QUEUE_NO_PACKET)
+<span style="color:#ae81ff">1129</span>            {
+<span style="color:#ae81ff">1130</span>                TA_PRINT(<span style="color:#e6db74">&#34;TEE_ERROR_NO_DATA in</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+<span style="color:#ae81ff">1131</span>                result <span style="color:#f92672">=</span> TEE_ERROR_NO_DATA;
+<span style="color:#ae81ff">1132</span>            }
+<span style="color:#ae81ff">1133</span>            <span style="color:#66d9ef">break</span>;
+<span style="color:#ae81ff">1134</span>        }
+<span style="color:#ae81ff">1135</span>        <span style="color:#a6e22e">if</span>(sctx<span style="color:#f92672">-&gt;</span>streams[pkt.stream_index] <span style="color:#f92672">==</span> CODEC_TYPE_VIDEO)
+<span style="color:#ae81ff">1136</span>        {
+<span style="color:#ae81ff">1137</span>            TA_PRINT(<span style="color:#e6db74">&#34; Dump Video r %d, pkt.size %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,r,pkt.size);
+<span style="color:#ae81ff">1138</span> <span style="color:#f92672">!</span>          memcpy(buf,pkt.data,pkt.size);        
+                ...
+</code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in <strong>REE</strong> memory.</p>
 <h2 id="vulnerability-3-restricted-write-to-arbitrary-address">Vulnerability 3: restricted write to arbitrary address</h2>
 <p>As <code>buf</code> can point to any arbitrary address, it's possible to write multiple restricted values to an arbitrary location with the <strong>TA</strong> memory, which can result in a crash of the <strong>TA</strong> or code execution in the context of the <strong>TA</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>File: tzdemuxerservice.cpp
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">929</span> <span style="color:#f92672">!</span>  buf <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)param[<span style="color:#ae81ff">0</span>].memref.buffer;
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">930</span> <span style="color:#f92672">!</span>  size <span style="color:#f92672">=</span> param[<span style="color:#ae81ff">0</span>].memref.size;
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1205</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_PACKET:
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1206</span>    {
-</span></span><span style="display:flex;"><span>            ...
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1292</span> <span style="color:#f92672">!</span>      packet_handle_s<span style="color:#f92672">*</span> retHandle <span style="color:#f92672">=</span> (packet_handle_s<span style="color:#f92672">*</span>)buf;
-</span></span><span style="display:flex;"><span>            ...
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1308</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>size <span style="color:#f92672">=</span> pkt.size;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1309</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>handle <span style="color:#f92672">=</span> handle;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1310</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>stream_index <span style="color:#f92672">=</span> pkt.stream_index;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1311</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">=</span> pkt.flags;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1312</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>pts <span style="color:#f92672">=</span> pts;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1313</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>duration <span style="color:#f92672">=</span> duration;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1314</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>codec_type <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>streams[pkt.stream_index];
-</span></span><span style="display:flex;"><span>            ...
-</span></span></code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">File: tzdemuxerservice.cpp
+        ...
+ <span style="color:#ae81ff">929</span> <span style="color:#f92672">!</span>  buf <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)param[<span style="color:#ae81ff">0</span>].memref.buffer;
+ <span style="color:#ae81ff">930</span> <span style="color:#f92672">!</span>  size <span style="color:#f92672">=</span> param[<span style="color:#ae81ff">0</span>].memref.size;
+        ...
+
+<span style="color:#ae81ff">1205</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_PACKET:
+<span style="color:#ae81ff">1206</span>    {
+            ...
+<span style="color:#ae81ff">1292</span> <span style="color:#f92672">!</span>      packet_handle_s<span style="color:#f92672">*</span> retHandle <span style="color:#f92672">=</span> (packet_handle_s<span style="color:#f92672">*</span>)buf;
+            ...
+<span style="color:#ae81ff">1308</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>size <span style="color:#f92672">=</span> pkt.size;
+<span style="color:#ae81ff">1309</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>handle <span style="color:#f92672">=</span> handle;
+<span style="color:#ae81ff">1310</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>stream_index <span style="color:#f92672">=</span> pkt.stream_index;
+<span style="color:#ae81ff">1311</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>flags <span style="color:#f92672">=</span> pkt.flags;
+<span style="color:#ae81ff">1312</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>pts <span style="color:#f92672">=</span> pts;
+<span style="color:#ae81ff">1313</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>duration <span style="color:#f92672">=</span> duration;
+<span style="color:#ae81ff">1314</span> <span style="color:#f92672">!</span>      retHandle<span style="color:#f92672">-&gt;</span>codec_type <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>streams[pkt.stream_index];
+            ...
+</code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in <strong>REE</strong> memory.</p>
 <h2 id="vulnerability-4-restricted-write-to-arbitrary-address">Vulnerability 4: restricted write to arbitrary address</h2>
 <p>As <code>buf</code> can point to any arbitrary address, it's possible to write multiple restricted values to an arbitrary location with the <strong>TA</strong> memory, which can result in a crash of the <strong>TA</strong> or code execution in the context of the <strong>TA</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>File: tzdemuxerservice.cpp
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">929</span> <span style="color:#f92672">!</span>  buf <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)param[<span style="color:#ae81ff">0</span>].memref.buffer;
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">930</span> <span style="color:#f92672">!</span>  size <span style="color:#f92672">=</span> param[<span style="color:#ae81ff">0</span>].memref.size;
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1322</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_VIDEO_CODEC_INFO:
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1323</span>    {
-</span></span><span style="display:flex;"><span>            ...
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1326</span> <span style="color:#f92672">!</span>      video_codec_info_s<span style="color:#f92672">*</span> codec_info <span style="color:#f92672">=</span> (video_codec_info_s<span style="color:#f92672">*</span>)buf;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1327</span> <span style="color:#f92672">!</span>      codec_info<span style="color:#f92672">-&gt;</span>codec_id <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>video_codec_info.codec_id;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1328</span> <span style="color:#f92672">!</span>      codec_info<span style="color:#f92672">-&gt;</span>width <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>video_codec_info.width;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1329</span> <span style="color:#f92672">!</span>      codec_info<span style="color:#f92672">-&gt;</span>height <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>video_codec_info.height;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1330</span> <span style="color:#f92672">!</span>      codec_info<span style="color:#f92672">-&gt;</span>framerate_num <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>video_codec_info.framerate_num;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1331</span> <span style="color:#f92672">!</span>      codec_info<span style="color:#f92672">-&gt;</span>framerate_den <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>video_codec_info.framerate_den;
-</span></span><span style="display:flex;"><span>            ...
-</span></span></code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">File: tzdemuxerservice.cpp
+        ...
+ <span style="color:#ae81ff">929</span> <span style="color:#f92672">!</span>  buf <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)param[<span style="color:#ae81ff">0</span>].memref.buffer;
+ <span style="color:#ae81ff">930</span> <span style="color:#f92672">!</span>  size <span style="color:#f92672">=</span> param[<span style="color:#ae81ff">0</span>].memref.size;
+        ...
+
+<span style="color:#ae81ff">1322</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_VIDEO_CODEC_INFO:
+<span style="color:#ae81ff">1323</span>    {
+            ...
+<span style="color:#ae81ff">1326</span> <span style="color:#f92672">!</span>      video_codec_info_s<span style="color:#f92672">*</span> codec_info <span style="color:#f92672">=</span> (video_codec_info_s<span style="color:#f92672">*</span>)buf;
+<span style="color:#ae81ff">1327</span> <span style="color:#f92672">!</span>      codec_info<span style="color:#f92672">-&gt;</span>codec_id <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>video_codec_info.codec_id;
+<span style="color:#ae81ff">1328</span> <span style="color:#f92672">!</span>      codec_info<span style="color:#f92672">-&gt;</span>width <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>video_codec_info.width;
+<span style="color:#ae81ff">1329</span> <span style="color:#f92672">!</span>      codec_info<span style="color:#f92672">-&gt;</span>height <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>video_codec_info.height;
+<span style="color:#ae81ff">1330</span> <span style="color:#f92672">!</span>      codec_info<span style="color:#f92672">-&gt;</span>framerate_num <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>video_codec_info.framerate_num;
+<span style="color:#ae81ff">1331</span> <span style="color:#f92672">!</span>      codec_info<span style="color:#f92672">-&gt;</span>framerate_den <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>video_codec_info.framerate_den;
+            ...
+</code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in <strong>REE</strong> memory.</p>
 <h2 id="vulnerability-5-restricted-write-to-arbitrary-address">Vulnerability 5: restricted write to arbitrary address</h2>
 <p>As <code>buf</code> can point to any arbitrary address, it's possible to write multiple restricted values to an arbitrary location with the <strong>TA</strong> memory, which can result in a crash of the <strong>TA</strong> or code execution in the context of the <strong>TA</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>File: tzdemuxerservice.cpp
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">929</span>    buf <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)param[<span style="color:#ae81ff">0</span>].memref.buffer;
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">930</span>    size <span style="color:#f92672">=</span> param[<span style="color:#ae81ff">0</span>].memref.size;
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1334</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_AUDIO_CODEC_INFO:
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1335</span>    {
-</span></span><span style="display:flex;"><span>            ...
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1337</span>        audio_codec_info_s<span style="color:#f92672">*</span> codec_info <span style="color:#f92672">=</span> (audio_codec_info_s<span style="color:#f92672">*</span>)buf;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1338</span>        codec_info<span style="color:#f92672">-&gt;</span>codec_id <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>audio_codec_info.codec_id;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1339</span>        codec_info<span style="color:#f92672">-&gt;</span>sample_rate <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>audio_codec_info.sample_rate;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1340</span>        codec_info<span style="color:#f92672">-&gt;</span>channels <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>audio_codec_info.channels;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1341</span>        codec_info<span style="color:#f92672">-&gt;</span>framerate_num <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>audio_codec_info.framerate_num;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1342</span>        codec_info<span style="color:#f92672">-&gt;</span>framerate_den <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>audio_codec_info.framerate_den;
-</span></span><span style="display:flex;"><span>        ...
-</span></span></code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">File: tzdemuxerservice.cpp
+        ...
+ <span style="color:#ae81ff">929</span>    buf <span style="color:#f92672">=</span> (<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>)param[<span style="color:#ae81ff">0</span>].memref.buffer;
+ <span style="color:#ae81ff">930</span>    size <span style="color:#f92672">=</span> param[<span style="color:#ae81ff">0</span>].memref.size;
+        ...
+
+<span style="color:#ae81ff">1334</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_GET_AUDIO_CODEC_INFO:
+<span style="color:#ae81ff">1335</span>    {
+            ...
+<span style="color:#ae81ff">1337</span>        audio_codec_info_s<span style="color:#f92672">*</span> codec_info <span style="color:#f92672">=</span> (audio_codec_info_s<span style="color:#f92672">*</span>)buf;
+<span style="color:#ae81ff">1338</span>        codec_info<span style="color:#f92672">-&gt;</span>codec_id <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>audio_codec_info.codec_id;
+<span style="color:#ae81ff">1339</span>        codec_info<span style="color:#f92672">-&gt;</span>sample_rate <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>audio_codec_info.sample_rate;
+<span style="color:#ae81ff">1340</span>        codec_info<span style="color:#f92672">-&gt;</span>channels <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>audio_codec_info.channels;
+<span style="color:#ae81ff">1341</span>        codec_info<span style="color:#f92672">-&gt;</span>framerate_num <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>audio_codec_info.framerate_num;
+<span style="color:#ae81ff">1342</span>        codec_info<span style="color:#f92672">-&gt;</span>framerate_den <span style="color:#f92672">=</span> sctx<span style="color:#f92672">-&gt;</span>audio_codec_info.framerate_den;
+        ...
+</code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in <strong>REE</strong> memory.</p>
 <h2 id="vulnerability-6-return-value-of-malloc-not-checked">Vulnerability 6: return value of malloc not checked</h2>
 <p>The <strong>TA</strong> makes use of dynamic memory allocations using <code>malloc</code>. It's a security best practice to verify the return value of a <code>malloc</code> call in order to check if the request memory actually could be allocated. If it's not done, and the memory allocation fails, the subsequent writes to memory will be done to address <code>0</code>. This will cause a crash of the <strong>TA</strong> or potentially memory corruption of address <code>0</code> is mapped within the <strong>TA</strong>'s memory space.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>File: tzdemuxerservice.cpp
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">385</span>    sub_buffer.data <span style="color:#f92672">=</span> malloc(needed_size);
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">386</span>    <span style="color:#a6e22e">memcpy</span>((<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)sub_buffer.data,(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)cur_node<span style="color:#f92672">-&gt;</span>buffer.data <span style="color:#f92672">+</span> skip , needed_size);
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">402</span>    merge_buffer.data <span style="color:#f92672">=</span> malloc(needed_size);
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">403</span>    <span style="color:#75715e">//TA_PRINT(&#34;step 1\n&#34;);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> <span style="color:#ae81ff">404</span>    memcpy((<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)merge_buffer.data, (<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)cur_node<span style="color:#f92672">-&gt;</span>buffer.data <span style="color:#f92672">+</span> skip , hsize <span style="color:#f92672">-</span> skip);
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">749</span>    sctx <span style="color:#f92672">=</span> (tzdemuxer_service_s<span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">750</span>    <span style="color:#a6e22e">memset</span>(sctx,<span style="color:#ae81ff">0x0</span>,<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">797</span>    sctx <span style="color:#f92672">=</span> (tzdemuxer_service_s<span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">798</span>    <span style="color:#a6e22e">memset</span>(sctx,<span style="color:#ae81ff">0x0</span>,<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">825</span>    sctx<span style="color:#f92672">-&gt;</span>preset_info <span style="color:#f92672">=</span> malloc(size);
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">826</span>    <span style="color:#a6e22e">memcpy</span>(sctx<span style="color:#f92672">-&gt;</span>preset_info,data,size);
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">964</span>    buffer.data <span style="color:#f92672">=</span> malloc(size);
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">965</span>    buffer.size <span style="color:#f92672">=</span> size;
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">966</span>    <span style="color:#a6e22e">memcpy</span>(buffer.data,buf,size);
-</span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1009</span>    buffer.data <span style="color:#f92672">=</span> malloc(size);
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1010</span>    buffer.size <span style="color:#f92672">=</span> size;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1011</span>    <span style="color:#a6e22e">memcpy</span>(buffer.data,pBuffer,size);
-</span></span></code></pre></div><p><strong>Samsung's fix:</strong> Samsung indicated to us that the return value for each <code>malloc</code> call is now correctly verified. This prevents the possibility for writing data to an unallocated (i.e. NULL) address.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C">File: tzdemuxerservice.cpp
+
+ <span style="color:#ae81ff">385</span>    sub_buffer.data <span style="color:#f92672">=</span> malloc(needed_size);
+ <span style="color:#ae81ff">386</span>    <span style="color:#a6e22e">memcpy</span>((<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)sub_buffer.data,(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)cur_node<span style="color:#f92672">-&gt;</span>buffer.data <span style="color:#f92672">+</span> skip , needed_size);
+        ...
+ <span style="color:#ae81ff">402</span>    merge_buffer.data <span style="color:#f92672">=</span> malloc(needed_size);
+ <span style="color:#ae81ff">403</span>    <span style="color:#75715e">//TA_PRINT(&#34;step 1\n&#34;);
+</span><span style="color:#75715e"></span> <span style="color:#ae81ff">404</span>    memcpy((<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)merge_buffer.data, (<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)cur_node<span style="color:#f92672">-&gt;</span>buffer.data <span style="color:#f92672">+</span> skip , hsize <span style="color:#f92672">-</span> skip);
+        ...
+ <span style="color:#ae81ff">749</span>    sctx <span style="color:#f92672">=</span> (tzdemuxer_service_s<span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
+ <span style="color:#ae81ff">750</span>    <span style="color:#a6e22e">memset</span>(sctx,<span style="color:#ae81ff">0x0</span>,<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
+        ...
+ <span style="color:#ae81ff">797</span>    sctx <span style="color:#f92672">=</span> (tzdemuxer_service_s<span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
+ <span style="color:#ae81ff">798</span>    <span style="color:#a6e22e">memset</span>(sctx,<span style="color:#ae81ff">0x0</span>,<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
+        ...
+ <span style="color:#ae81ff">825</span>    sctx<span style="color:#f92672">-&gt;</span>preset_info <span style="color:#f92672">=</span> malloc(size);
+ <span style="color:#ae81ff">826</span>    <span style="color:#a6e22e">memcpy</span>(sctx<span style="color:#f92672">-&gt;</span>preset_info,data,size);
+        ...
+ <span style="color:#ae81ff">964</span>    buffer.data <span style="color:#f92672">=</span> malloc(size);
+ <span style="color:#ae81ff">965</span>    buffer.size <span style="color:#f92672">=</span> size;
+ <span style="color:#ae81ff">966</span>    <span style="color:#a6e22e">memcpy</span>(buffer.data,buf,size);
+        ...
+<span style="color:#ae81ff">1009</span>    buffer.data <span style="color:#f92672">=</span> malloc(size);
+<span style="color:#ae81ff">1010</span>    buffer.size <span style="color:#f92672">=</span> size;
+<span style="color:#ae81ff">1011</span>    <span style="color:#a6e22e">memcpy</span>(buffer.data,pBuffer,size);
+</code></pre></div><p><strong>Samsung's fix:</strong> Samsung indicated to us that the return value for each <code>malloc</code> call is now correctly verified. This prevents the possibility for writing data to an unallocated (i.e. NULL) address.</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>We identified several critical vulnerabilities in the <strong>tzdemuxerservice</strong> <strong>TA</strong> developed for <strong>Samsung TVs (J-Series)</strong>. The fixes for these vulnerabilities were pushed to the vulnerable TVs in 2016, but the updated source code was never made available publicly. Therefore, we could only determine the effectiveness of the fixes based on the information provided by <strong>Samsung</strong> via email. The parameter types are now correctly checked and therefore it's not possible any more to write controlled data to arbitrary addresses.</p>
 
@@ -413,7 +413,7 @@ verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequ
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.0cbd4813fbbb669e71425de8399d8571feb2458480159a463a1b7c8a01155cd36552a8d3405b9944407004ba3b021624.js" integrity="sha384-DL1IE/u7Zp5xQl3oOZ2Fcf6yRYSAFZpGOht8igEVXNNlUqjTQFuZREBwBLo7AhYk"></script>
+<script src="https://raelize.com/js/script.min.daccb20f977092510d3d744fb8e698106556d33b7cefb035e55f5df7e6336b6a7b7990d200f53689eb695797a83d9ee6.js" integrity="sha384-2syyD5dwklENPXRPuOaYEGVW0zt877A15V9d9&#43;Yza2p7eZDSAPU2ietpV5eoPZ7m"></script>
 
 
 </body>
