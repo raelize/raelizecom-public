@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.87.0" />
+	<meta name="generator" content="Hugo 0.101.0" />
 
 	<!-- plugins -->
 	
@@ -149,33 +149,33 @@
 <h4 id="rom-printing">ROM printing</h4>
 <p>Conveniently, the <strong>ROM</strong> prints during its execution, on the serial interface, information about these parts. This printing cannot be disabled as far as we know and is therefore always available. This information allows us to know, without analyzing the flash communication itself, exactly when what is copied.</p>
 <p>We concluded the following:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ load:0x3fff0008,len:4         &lt;-- C
-</span><span style="color:#a6e22e">+ load:0x3fff000c,len:3220      &lt;-- D
-</span><span style="color:#a6e22e">+ load:0x40078000,len:4816      &lt;-- E
-</span><span style="color:#a6e22e">+ load:0x40080400,len:18640     &lt;-- F
-</span><span style="color:#a6e22e">+ entry 0x40080740
-</span></code></pre></div><p>The <strong>ROM</strong> extracts the <strong>load address</strong> and <strong>length</strong> for each part from the external flash itself. This information is stored in so-called headers which is stored at the beginning of each part. For example, the header for part '<strong>C</strong>' is shown below. The last two 4-byte words are the <strong>load</strong> and <strong>len</strong> in the above snippet.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">00001010    00 00 00 00 00 00 00 01 08 00 FF 3F 04 00 00 00
-</code></pre></div><p>It's important to realize that this information is printed before any signature is verified. For example, the <strong>ROM</strong> will print the following if these values are set to <code>0x41414141</code>, even though it will result in a chip that does not boot as these values are invalid. Note, <code>1094795585</code> is <code>0x41414141</code> in decimal.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">load:0x41414141,len:1094795585
-</code></pre></div><h4 id="encryption">Encryption</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ load:0x3fff0008,len:4         &lt;-- C
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ load:0x3fff000c,len:3220      &lt;-- D
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ load:0x40078000,len:4816      &lt;-- E
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ load:0x40080400,len:18640     &lt;-- F
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ entry 0x40080740
+</span></span></span></code></pre></div><p>The <strong>ROM</strong> extracts the <strong>load address</strong> and <strong>length</strong> for each part from the external flash itself. This information is stored in so-called headers which is stored at the beginning of each part. For example, the header for part '<strong>C</strong>' is shown below. The last two 4-byte words are the <strong>load</strong> and <strong>len</strong> in the above snippet.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>00001010    00 00 00 00 00 00 00 01 08 00 FF 3F 04 00 00 00
+</span></span></code></pre></div><p>It's important to realize that this information is printed before any signature is verified. For example, the <strong>ROM</strong> will print the following if these values are set to <code>0x41414141</code>, even though it will result in a chip that does not boot as these values are invalid. Note, <code>1094795585</code> is <code>0x41414141</code> in decimal.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>load:0x41414141,len:1094795585
+</span></span></code></pre></div><h4 id="encryption">Encryption</h4>
 <p>Unfortunately, all data is encrypted once <strong>Flash Encryption</strong> is enabled, including these headers. This means we cannot simply set the values contained in the header to arbitrary values as they will be decrypted into garbage as we do this research under the assumption that we do not have access to the decryption key.</p>
 <p>Interestingly, Espressif's SDK stores the different parts of the flash image next to each other. This is shown in the picture below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">...
-<span style="color:#a6e22e">+ 00002F70    20 00 A8 08 92 AB FF 90 9A 10 C0 20 00 99 08 C0
-</span><span style="color:#a6e22e">+ 00002F80    20 00 A8 08 91 CE FB 90 5C 7A 00 40 00 99 08 8C
-</span><span style="color:#a6e22e"></span><span style="color:#f92672">- 00002F90    12 65 ED FF 1D F0 00 00 00 04 08 40 D0 48 00 00
-</span><span style="color:#f92672">- 00002FA0    28 00 FF 3F 00 00 00 04 44 00 FF 3F 54 7D 00 40
-</span><span style="color:#f92672"></span>...
-</code></pre></div><p>The <span style="color: #74dc8d">green</span> data is loaded during part '<strong>E</strong>' and the <span style="color: #e76a72">red</span> data is loaded during part '<strong>F</strong>'. The last 16-byte block of part '<strong>E</strong>' is encrypted with the same key as the first 16-byte block of part '<strong>F</strong>'.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ 00002F70    20 00 A8 08 92 AB FF 90 9A 10 C0 20 00 99 08 C0
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ 00002F80    20 00 A8 08 91 CE FB 90 5C 7A 00 40 00 99 08 8C
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- 00002F90    12 65 ED FF 1D F0 00 00 00 04 08 40 D0 48 00 00
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- 00002FA0    28 00 FF 3F 00 00 00 04 44 00 FF 3F 54 7D 00 40
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>...
+</span></span></code></pre></div><p>The <span style="color: #74dc8d">green</span> data is loaded during part '<strong>E</strong>' and the <span style="color: #e76a72">red</span> data is loaded during part '<strong>F</strong>'. The last 16-byte block of part '<strong>E</strong>' is encrypted with the same key as the first 16-byte block of part '<strong>F</strong>'.</p>
 <p>Interestingly, because last block of part '<strong>E</strong>' and the first block of part '<strong>F</strong>' are encrypted with the same key, we can leak the last two 4-byte words of part '<strong>E</strong>'. This works as the first block of part '<strong>F</strong>' is actually the header that contains the information that is printed on the serial interface prior to the <strong>Secure Boot</strong> check.</p>
 <p>For example, if we overwrite the last block of part '<strong>E</strong>' with the first block of part '<strong>F</strong>', the <strong>ROM</strong> prints the following.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ load:0x3fff0008,len:4
-</span><span style="color:#a6e22e">+ load:0x3fff000c,len:3220
-</span><span style="color:#a6e22e">+ load:0x40078000,len:4816
-</span><span style="color:#a6e22e"></span><span style="color:#f92672">- load:0x40007a5c,len:2349373696    # last two 4-byte words of part &#39;E&#39;
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ entry 0x40080740
-</span></code></pre></div><p>Please note that the both blocks are encrypted and we actually copy an encrypted block over another encrypted block. We cannot do anything else as we assume we do not have access to the <strong>decryption key</strong>, similarly as a real-world attacker.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ load:0x3fff0008,len:4
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ load:0x3fff000c,len:3220
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ load:0x40078000,len:4816
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- load:0x40007a5c,len:2349373696    # last two 4-byte words of part &#39;E&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+ entry 0x40080740
+</span></span></span></code></pre></div><p>Please note that the both blocks are encrypted and we actually copy an encrypted block over another encrypted block. We cannot do anything else as we assume we do not have access to the <strong>decryption key</strong>, similarly as a real-world attacker.</p>
 <h4 id="brute-forcing">Brute forcing</h4>
 <p>This sequence of choices made during the design and implementation of the <strong>ESP32</strong>'s <strong>Secure Boot</strong> implementation allows us to <strong>brute force</strong> arbitrary values of the last two 4-byte words of part '<strong>E</strong>'. Nonetheless, brute forcing an arbitrary value, considering we do roughly 10 experiments per second, takes more than 10 years (i.e. search space is 2^32). Optimizations are likely possible, but we did not investigate this.</p>
 <p>Regardless if we can optimize the brute force to something reasonable, we do not know if it's even feasible to load a value into the PC register if we can only control a single 4-byte value. Therefore, we decided to determine exactly that before we deal with the limitations imposed to us by the brute force requirement.</p>
@@ -296,7 +296,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.daccb20f977092510d3d744fb8e698106556d33b7cefb035e55f5df7e6336b6a7b7990d200f53689eb695797a83d9ee6.js" integrity="sha384-2syyD5dwklENPXRPuOaYEGVW0zt877A15V9d9&#43;Yza2p7eZDSAPU2ietpV5eoPZ7m"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

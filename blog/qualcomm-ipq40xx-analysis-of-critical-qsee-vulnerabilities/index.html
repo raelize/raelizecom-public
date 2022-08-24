@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.87.0" />
+	<meta name="generator" content="Hugo 0.101.0" />
 
 	<!-- plugins -->
 	
@@ -155,88 +155,88 @@
 <h4 id="boot-log">Boot log</h4>
 <hr>
 <p>After connecting to the serial interface, we started the device. Immediately we are presented with a stream of interesting print statements. The printing that&rsquo;s shown below is done by the <em><strong>PBL</strong></em> and <em><strong>SBL1</strong></em> bootloaders, which are developed by Qualcomm. These are likely provided to the OEM (i.e. Linksys) as part of the IPQ40xx SDK. We&rsquo;ve highlighted the most interesting print statements in red.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ Format: Log Type - Time(microsec) - Message - Optional Info
-</span><span style="color:#a6e22e">+ Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
-</span><span style="color:#a6e22e"></span><span style="color:#f92672">- S - QC_IMAGE_VERSION_STRING=BOOT.BF.3.1.1-00108
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ S - IMAGE_VARIANT_STRING=DAACANAZA
-</span><span style="color:#a6e22e">+ S - OEM_IMAGE_VERSION_STRING=CRM
-</span><span style="color:#a6e22e">+ S - Boot Config, 0x00000025
-</span><span style="color:#a6e22e">+ S - Reset status Config, 0x00000010
-</span><span style="color:#a6e22e">+ S - Core 0 Frequency, 0 MHz
-</span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -       261 - PBL, Start
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ B -      1339 - bootable_media_detect_entry, Start
-</span><span style="color:#a6e22e">+ B -      2612 - bootable_media_detect_success, Start
-</span><span style="color:#a6e22e">+ B -      2626 - elf_loader_entry, Start
-</span><span style="color:#a6e22e">+ B -      4036 - auth_hash_seg_entry, Start
-</span><span style="color:#a6e22e">+ B -      6190 - auth_hash_seg_exit, Start
-</span><span style="color:#a6e22e">+ B -     74253 - elf_segs_hash_verify_entry, Start
-</span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -    196174 - PBL, End
-</span><span style="color:#f92672">- B -    196198 - SBL1, Start
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ B -    288239 - pm_device_init, Start
-</span><span style="color:#a6e22e">+ D -         7 - pm_device_init, Delta
-</span><span style="color:#a6e22e">+ B -    289733 - boot_flash_init, Start
-</span><span style="color:#a6e22e">+ D -     87192 - boot_flash_init, Delta
-</span><span style="color:#a6e22e">+ B -    381232 - boot_config_data_table_init, Start
-</span><span style="color:#a6e22e">+ D -     13975 - boot_config_data_table_init, Delta - (419 Bytes)
-</span><span style="color:#a6e22e">+ B -    397970 - clock_init, Start
-</span><span style="color:#a6e22e">+ D -      7587 - clock_init, Delta
-</span><span style="color:#a6e22e">+ B -    408990 - CDT version:2,Platform ID:8,Major ID:1,Minor ID:0,Subtype:6
-</span><span style="color:#a6e22e">+ B -    412402 - sbl1_ddr_set_params, Start
-</span><span style="color:#a6e22e">+ B -    417495 - cpr_init, Start
-</span><span style="color:#a6e22e">+ D -         2 - cpr_init, Delta
-</span><span style="color:#a6e22e">+ B -    421878 - Pre_DDR_clock_init, Start
-</span><span style="color:#a6e22e">+ D -         4 - Pre_DDR_clock_init, Delta
-</span><span style="color:#a6e22e">+ D -     13170 - sbl1_ddr_set_params, Delta
-</span><span style="color:#a6e22e">+ B -    435181 - pm_driver_init, Start
-</span><span style="color:#a6e22e">+ D -         2 - pm_driver_init, Delta
-</span><span style="color:#a6e22e">+ B -    504960 - sbl1_wait_for_ddr_training, Start
-</span><span style="color:#a6e22e">+ D -        28 - sbl1_wait_for_ddr_training, Delta
-</span><span style="color:#a6e22e">+ B -    520319 - Image Load, Start
-</span><span style="color:#a6e22e">+ D -    143867 - QSEE Image Loaded, Delta - (269176 Bytes)
-</span><span style="color:#a6e22e">+ B -    664611 - Image Load, Start
-</span><span style="color:#a6e22e">+ D -      2116 - SEC Image Loaded, Delta - (2048 Bytes)
-</span><span style="color:#a6e22e">+ B -    674745 - Image Load, Start
-</span><span style="color:#a6e22e">+ D -    187171 - APPSBL Image Loaded, Delta - (444263 Bytes)
-</span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -    862309 - QSEE Execution, Start
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ D -        56 - QSEE Execution, Delta
-</span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -    868531 - SBL1, End
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ D -    674334 - SBL1, Delta
-</span><span style="color:#a6e22e">+ S - Flash Throughput, 2087 KB/s  (715906 Bytes,  342873 us)
-</span><span style="color:#a6e22e">+ S - DDR Frequency, 672 MHz
-</span></code></pre></div><p>If you are familiar with Qualcomm-based devices, you may recognize the typical boot flow where the <em><strong>PBL</strong></em> and <em><strong>SBL1</strong></em> are printing timestamped log lines. If you&rsquo;re interested, more details about the boot process of Qualcomm-based mobile phones is provided by this great <a href="https://blog.quarkslab.com/analysis-of-qualcomm-secure-boot-chains.html">blog post</a> by <a href="https://quarkslab.com/">Quarkslab</a>. However, the boot process of our target devices has more commonalities with the one of older mobile phones, as shown in this <a href="https://alephsecurity.com/vulns/aleph-2017026">advisory (2017)</a> by <a href="https://alephsecurity.com/">Aleph Security</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ Format: Log Type - Time(microsec) - Message - Optional Info
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- S - QC_IMAGE_VERSION_STRING=BOOT.BF.3.1.1-00108
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+ S - IMAGE_VARIANT_STRING=DAACANAZA
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ S - OEM_IMAGE_VERSION_STRING=CRM
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ S - Boot Config, 0x00000025
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ S - Reset status Config, 0x00000010
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ S - Core 0 Frequency, 0 MHz
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -       261 - PBL, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+ B -      1339 - bootable_media_detect_entry, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -      2612 - bootable_media_detect_success, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -      2626 - elf_loader_entry, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -      4036 - auth_hash_seg_entry, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -      6190 - auth_hash_seg_exit, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -     74253 - elf_segs_hash_verify_entry, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -    196174 - PBL, End
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- B -    196198 - SBL1, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+ B -    288239 - pm_device_init, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -         7 - pm_device_init, Delta
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    289733 - boot_flash_init, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -     87192 - boot_flash_init, Delta
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    381232 - boot_config_data_table_init, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -     13975 - boot_config_data_table_init, Delta - (419 Bytes)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    397970 - clock_init, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -      7587 - clock_init, Delta
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    408990 - CDT version:2,Platform ID:8,Major ID:1,Minor ID:0,Subtype:6
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    412402 - sbl1_ddr_set_params, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    417495 - cpr_init, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -         2 - cpr_init, Delta
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    421878 - Pre_DDR_clock_init, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -         4 - Pre_DDR_clock_init, Delta
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -     13170 - sbl1_ddr_set_params, Delta
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    435181 - pm_driver_init, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -         2 - pm_driver_init, Delta
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    504960 - sbl1_wait_for_ddr_training, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -        28 - sbl1_wait_for_ddr_training, Delta
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    520319 - Image Load, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -    143867 - QSEE Image Loaded, Delta - (269176 Bytes)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    664611 - Image Load, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -      2116 - SEC Image Loaded, Delta - (2048 Bytes)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ B -    674745 - Image Load, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ D -    187171 - APPSBL Image Loaded, Delta - (444263 Bytes)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -    862309 - QSEE Execution, Start
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+ D -        56 - QSEE Execution, Delta
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- B -    868531 - SBL1, End
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+ D -    674334 - SBL1, Delta
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ S - Flash Throughput, 2087 KB/s  (715906 Bytes,  342873 us)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ S - DDR Frequency, 672 MHz
+</span></span></span></code></pre></div><p>If you are familiar with Qualcomm-based devices, you may recognize the typical boot flow where the <em><strong>PBL</strong></em> and <em><strong>SBL1</strong></em> are printing timestamped log lines. If you&rsquo;re interested, more details about the boot process of Qualcomm-based mobile phones is provided by this great <a href="https://blog.quarkslab.com/analysis-of-qualcomm-secure-boot-chains.html">blog post</a> by <a href="https://quarkslab.com/">Quarkslab</a>. However, the boot process of our target devices has more commonalities with the one of older mobile phones, as shown in this <a href="https://alephsecurity.com/vulns/aleph-2017026">advisory (2017)</a> by <a href="https://alephsecurity.com/">Aleph Security</a>.</p>
 <p>Once the execution of the <em><strong>SBL1</strong></em> completes, the control is passed to the <em><strong>U-Boot</strong></em> bootloader, which is a common bootloader responsible for loading Linux. Conveniently, we were able to break into the <em><strong>U-Boot</strong></em> console by pressing a key during boot, which is shown below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ U-Boot 2012.07 [Chaos Calmer 15.05.1,r35193] (Nov 02 2017 - 16:33:09)
-</span><span style="color:#a6e22e">+ 
-</span><span style="color:#a6e22e"></span><span style="color:#f92672">- CBT U-Boot ver: 1.2.9
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+ 
-</span><span style="color:#a6e22e">+ smem ram ptable found: ver: 1 len: 3
-</span><span style="color:#a6e22e">+ DRAM:  256 MiB
-</span><span style="color:#a6e22e">+ machid : 0x8010006
-</span><span style="color:#a6e22e">+ NAND:  ID = 9590daef
-</span><span style="color:#a6e22e">+ Vendor = ef
-</span><span style="color:#a6e22e">+ Device = da
-</span><span style="color:#a6e22e">+ ONFI device found
-</span><span style="color:#a6e22e">+ SF NAND unsupported id:ff:ff:ff:ffSF: Unsupported manufacturer ff
-</span><span style="color:#a6e22e">+ ipq_spi: SPI Flash not found (bus/cs/speed/mode) = (0/0/48000000/0)
-</span><span style="color:#a6e22e">+ 256 MiB
-</span><span style="color:#a6e22e">+ MMC:   qca_mmc: 0
-</span><span style="color:#a6e22e">+ PCI0 Link Intialized
-</span><span style="color:#a6e22e">+ In:    serial
-</span><span style="color:#a6e22e">+ Out:   serial
-</span><span style="color:#a6e22e">+ Err:   serial
-</span><span style="color:#a6e22e">+ machid: 8010006
-</span><span style="color:#a6e22e">+ flash_type: 2
-</span><span style="color:#a6e22e">+ Net:   MAC0 addr:0:3:7f:ba:db:ad
-</span><span style="color:#a6e22e">+ PHY ID1: 0x4d
-</span><span style="color:#a6e22e">+ PHY ID2: 0xd0b1
-</span><span style="color:#a6e22e">+ ipq40xx_ess_sw_init done
-</span><span style="color:#a6e22e">+ eth0
-</span><span style="color:#a6e22e">+ 
-</span><span style="color:#a6e22e">+ Updating boot_count ... done
-</span><span style="color:#a6e22e">+ 
-</span><span style="color:#a6e22e"></span><span style="color:#f92672">- Hit any key to stop autoboot:  0 
-</span><span style="color:#f92672">- (IPQ40xx) #
-</span></code></pre></div><p>The <em><strong>U-Boot</strong></em> console typically includes very useful commands. However, it really depends on the device which commands are available, as the manufacturer is free to add or remove commands when deemed necessary. Luckily for us, the <em><strong>U-Boot</strong></em> console on this target is fairly rich and we are presented with lots of useful functionality.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ U-Boot 2012.07 [Chaos Calmer 15.05.1,r35193] (Nov 02 2017 - 16:33:09)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ 
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- CBT U-Boot ver: 1.2.9
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+ 
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ smem ram ptable found: ver: 1 len: 3
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ DRAM:  256 MiB
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ machid : 0x8010006
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ NAND:  ID = 9590daef
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ Vendor = ef
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ Device = da
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ ONFI device found
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ SF NAND unsupported id:ff:ff:ff:ffSF: Unsupported manufacturer ff
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ ipq_spi: SPI Flash not found (bus/cs/speed/mode) = (0/0/48000000/0)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ 256 MiB
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ MMC:   qca_mmc: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ PCI0 Link Intialized
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ In:    serial
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ Out:   serial
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ Err:   serial
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ machid: 8010006
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ flash_type: 2
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ Net:   MAC0 addr:0:3:7f:ba:db:ad
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ PHY ID1: 0x4d
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ PHY ID2: 0xd0b1
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ ipq40xx_ess_sw_init done
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ eth0
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ 
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ Updating boot_count ... done
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ 
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- Hit any key to stop autoboot:  0 
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- (IPQ40xx) #
+</span></span></span></code></pre></div><p>The <em><strong>U-Boot</strong></em> console typically includes very useful commands. However, it really depends on the device which commands are available, as the manufacturer is free to add or remove commands when deemed necessary. Luckily for us, the <em><strong>U-Boot</strong></em> console on this target is fairly rich and we are presented with lots of useful functionality.</p>
 <h2 id="arm-trustzone-refresher">ARM TrustZone refresher</h2>
 <hr>
 <p>In order to have a clear understanding of the different security boundaries let&rsquo;s quickly revisit some basic concepts. The <em>Rich Execution Environment (REE)</em>, or <em>Non-secure World</em>, is the environment where the typical user applications are executed. The <em>Security Extensions</em> of the ARMv7-A architecture, i.e. ARM TrustZone, introduce support for an additional <em>Trusted Execution Environment (TEE)</em>, or <em>Secure World</em>, which is the environment where the security critical tasks are executed.</p>
@@ -252,41 +252,41 @@
 <h2 id="extracting-the-qsee-binary">Extracting the QSEE binary</h2>
 <hr>
 <p>The <strong>U-Boot</strong> console provides a convenient and powerful environment for accessing the flash. For example, we can use the <code>smeminfo</code> command in order to get an overview of the flash partitions, which is shown below. The QSEE binary that we are after is actually stored in a dedicated partition.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"><span style="color:#a6e22e">+ (IPQ40xx) # smeminfo
-</span><span style="color:#a6e22e">+ flash_type:             0x2
-</span><span style="color:#a6e22e">+ flash_index:            0x0
-</span><span style="color:#a6e22e">+ flash_chip_select:      0x0
-</span><span style="color:#a6e22e">+ flash_block_size:       0x20000
-</span><span style="color:#a6e22e">+ flash_density:          0x100000
-</span><span style="color:#a6e22e">+ partition table offset  0x0
-</span><span style="color:#a6e22e">+ No.: Name             Attributes            Start             Size
-</span><span style="color:#a6e22e">+   0: 0:SBL1           0x0000ffff              0x0         0x100000
-</span><span style="color:#a6e22e">+   1: 0:MIBIB          0x0000ffff         0x100000         0x100000
-</span><span style="color:#a6e22e"></span><span style="color:#f92672">-   2: 0:QSEE           0x0000ffff         0x200000         0x100000
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+   3: 0:CDT            0x0000ffff         0x300000          0x80000
-</span><span style="color:#a6e22e">+   4: 0:APPSBLENV      0x0000ffff         0x380000          0x80000
-</span><span style="color:#a6e22e">+   5: 0:ART            0x0000ffff         0x400000          0x80000
-</span><span style="color:#a6e22e">+   6: 0:APPSBL         0x0000ffff         0x480000         0x200000
-</span><span style="color:#a6e22e">+   7: u_env            0x0000ffff         0x680000          0x80000
-</span><span style="color:#a6e22e">+   8: s_env            0x0000ffff         0x700000          0x40000
-</span><span style="color:#a6e22e">+   9: devinfo          0x0000ffff         0x740000          0x40000
-</span><span style="color:#a6e22e">+  10: kernel           0x0000ffff         0x780000        0x5800000
-</span><span style="color:#a6e22e">+  11: rootfs           0x0000ffff         0xa80000        0x5500000
-</span><span style="color:#a6e22e">+  12: alt_kernel       0x0000ffff        0x5f80000        0x5800000
-</span><span style="color:#a6e22e">+  13: alt_rootfs       0x0000ffff        0x6280000        0x5500000
-</span><span style="color:#a6e22e">+  14: sysdiag          0x0000ffff        0xb780000         0x100000
-</span><span style="color:#a6e22e">+  15: syscfg           0x0000ffff        0xb880000        0x4680000
-</span><span style="color:#a6e22e">+ (IPQ40xx) # 
-</span></code></pre></div><p>Extracting the flash contents is fairly easy using the commands provided by the <strong>U-Boot</strong> console. First, we use the <code>nand</code> command to read the flash contents to volatile memory (e.g. SRAM or DDR). Then, we use the <code>tftpput</code> command to dump the flash contents from volatile memory via the network to our TFTP server. This allows us to extract the entire flash without any soldering. Let&rsquo;s extract the QSEE partition!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ (IPQ40xx) # smeminfo
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ flash_type:             0x2
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ flash_index:            0x0
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ flash_chip_select:      0x0
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ flash_block_size:       0x20000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ flash_density:          0x100000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ partition table offset  0x0
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ No.: Name             Attributes            Start             Size
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   0: 0:SBL1           0x0000ffff              0x0         0x100000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   1: 0:MIBIB          0x0000ffff         0x100000         0x100000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">-   2: 0:QSEE           0x0000ffff         0x200000         0x100000
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+   3: 0:CDT            0x0000ffff         0x300000          0x80000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   4: 0:APPSBLENV      0x0000ffff         0x380000          0x80000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   5: 0:ART            0x0000ffff         0x400000          0x80000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   6: 0:APPSBL         0x0000ffff         0x480000         0x200000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   7: u_env            0x0000ffff         0x680000          0x80000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   8: s_env            0x0000ffff         0x700000          0x40000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+   9: devinfo          0x0000ffff         0x740000          0x40000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+  10: kernel           0x0000ffff         0x780000        0x5800000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+  11: rootfs           0x0000ffff         0xa80000        0x5500000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+  12: alt_kernel       0x0000ffff        0x5f80000        0x5800000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+  13: alt_rootfs       0x0000ffff        0x6280000        0x5500000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+  14: sysdiag          0x0000ffff        0xb780000         0x100000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+  15: syscfg           0x0000ffff        0xb880000        0x4680000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ (IPQ40xx) # 
+</span></span></span></code></pre></div><p>Extracting the flash contents is fairly easy using the commands provided by the <strong>U-Boot</strong> console. First, we use the <code>nand</code> command to read the flash contents to volatile memory (e.g. SRAM or DDR). Then, we use the <code>tftpput</code> command to dump the flash contents from volatile memory via the network to our TFTP server. This allows us to extract the entire flash without any soldering. Let&rsquo;s extract the QSEE partition!</p>
 <p>We use the python-based  TFTP server named <code>ptftpd</code> which is very convinient to use.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ptftpd -p <span style="color:#ae81ff">6969</span> eth0 /home/raelize/Desktop
-</code></pre></div><p>Then, we set the <code>serverip</code> environment variable within the <em><strong>U-Boot</strong></em> console and point it to our workstation.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # setenv serverip 192.168.1.128
-</code></pre></div><p>Now we need to load the QSEE paritition in flash into memory. But where do we load it? Well, typically we can simply use an unused area within the DDR memory. We determined using the print statements by the <em><strong>U-Boot</strong></em> bootloader that the DDR memory is likely mapped at address <code>0x8000000</code> as the entry point of the Linux Kernel is <code>0x80208000</code>. We simply guessed address <code>0x89000000</code> is unused and can be used to temporarily store the QSEE partition.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # nand read 0x89000000 0x200000 0x100000
-</code></pre></div><p>Then, we use the <code>tftpput</code> command to send the QSEE partition to our TFTP server.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">(IPQ40xx) # tftpput 0x89000000 0x100000 QSEE.bin
-</code></pre></div><p>If all went well, we have succesfully extracted the QSEE partition! :)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ptftpd -p <span style="color:#ae81ff">6969</span> eth0 /home/raelize/Desktop
+</span></span></code></pre></div><p>Then, we set the <code>serverip</code> environment variable within the <em><strong>U-Boot</strong></em> console and point it to our workstation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>(IPQ40xx) # setenv serverip 192.168.1.128
+</span></span></code></pre></div><p>Now we need to load the QSEE paritition in flash into memory. But where do we load it? Well, typically we can simply use an unused area within the DDR memory. We determined using the print statements by the <em><strong>U-Boot</strong></em> bootloader that the DDR memory is likely mapped at address <code>0x8000000</code> as the entry point of the Linux Kernel is <code>0x80208000</code>. We simply guessed address <code>0x89000000</code> is unused and can be used to temporarily store the QSEE partition.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>(IPQ40xx) # nand read 0x89000000 0x200000 0x100000
+</span></span></code></pre></div><p>Then, we use the <code>tftpput</code> command to send the QSEE partition to our TFTP server.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>(IPQ40xx) # tftpput 0x89000000 0x100000 QSEE.bin
+</span></span></code></pre></div><p>If all went well, we have succesfully extracted the QSEE partition! :)</p>
 <h2 id="analyzing-the-qsee-binary">Analyzing the QSEE binary</h2>
 <hr>
 <p>The QSEE partition is actually a flat binary that can be analyzed directly. Unfortunately, being a flat binary, there is no meta data present in the binary which could tell us about its structure. At least, we know that the IPQ4019 SoC implements the ARMv7 architecture and therefore we know to expect ARM AArch32 Little Endian (LE) code. We load the QSEE binary into IDA Pro and select the ARM32 Little Endian architecture. We quickly determined that the loading address of the QSEE binary is <code>0x87E80000</code> by analyzing the absolute addresses used by the code.</p>
@@ -460,7 +460,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.daccb20f977092510d3d744fb8e698106556d33b7cefb035e55f5df7e6336b6a7b7990d200f53689eb695797a83d9ee6.js" integrity="sha384-2syyD5dwklENPXRPuOaYEGVW0zt877A15V9d9&#43;Yza2p7eZDSAPU2ietpV5eoPZ7m"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

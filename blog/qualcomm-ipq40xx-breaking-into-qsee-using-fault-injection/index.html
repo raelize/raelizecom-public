@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.87.0" />
+	<meta name="generator" content="Hugo 0.101.0" />
 
 	<!-- plugins -->
 	
@@ -150,27 +150,27 @@
 <p>We often get asked if our lab-grade tooling made by Riscure is really required to perform our attacks. We believe it&rsquo;s definitely possible to perform the same type of attacks using easier to obtain tooling like NewAE&rsquo;s <a href="http://store.newae.com/chipshouter-kit/">ChipShouter</a> or to build your own tooling. However, the tooling we use makes it easier to identify and reproduce the attacks. Nonetheless, we would love to hear from you if you&rsquo;re working on reproducing our research using other tooling.</p>
 <h2 id="characterization">Characterization</h2>
 <p>Whenever possible, we like to start with a FI characterization test in order to determine if the target is vulnerable. We implement the characterization code, which is shown below, as an U-Boot <a href="https://www.denx.de/wiki/view/DULG/UBootStandalone">standalone application</a>. The goal of this characterization test is to identify good glitch parameters (i.e. location and power) in a semi-controlled environment. By repeating the target instruction (i.e. <code>add</code> instruction) we increase the chances for success.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x0102f004</span>);
-
-<span style="color:#66d9ef">if</span>(cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;A&#39;</span>) {
-    <span style="color:#66d9ef">uint32_t</span> counter;
-
-    <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0</span>;                     <span style="color:#75715e">// 1. set trigger high
-</span><span style="color:#75715e"></span>
-    <span style="color:#66d9ef">asm</span> <span style="color:#66d9ef">volatile</span> (
-            <span style="color:#e6db74">&#34;mov r0, #0;&#34;</span>               <span style="color:#75715e">// 2. set counter to 0
-</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#34;add r0, r0, #1;&#34;</span>           <span style="color:#75715e">// 3. increase counter
-</span><span style="color:#75715e"></span>            <span style="color:#f92672">&lt;</span> repeat <span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">000</span> times<span style="color:#f92672">&gt;</span>
-            <span style="color:#e6db74">&#34;mov %[counter], r0;&#34;</span>               
-        <span style="color:#f92672">:</span> [counter] <span style="color:#e6db74">&#34;=r&#34;</span> (counter)
-        <span style="color:#f92672">:</span>
-        <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;r0&#34;</span> );
-
-    <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3</span>;                     <span style="color:#75715e">// 4. set trigger to low
-</span><span style="color:#75715e"></span>
-    printf(<span style="color:#e6db74">&#34;AAAA%08xBBBB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, counter);  <span style="color:#75715e">// 5. print counter on UART
-</span><span style="color:#75715e"></span>}
-</code></pre></div><p>We use a GPIO pin of the target as a trigger to time the characterization test. This allows us to exactly inject glitches when the <code>add</code> instructions are executed. If the resulting counter value that&rsquo;s printed on the serial interface is differently than expected, we know we successfully modified the expected behavior of the software.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x0102f004</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;A&#39;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint32_t</span> counter;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0</span>;                     <span style="color:#75715e">// 1. set trigger high
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">asm</span> <span style="color:#66d9ef">volatile</span> (
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;mov r0, #0;&#34;</span>               <span style="color:#75715e">// 2. set counter to 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#34;add r0, r0, #1;&#34;</span>           <span style="color:#75715e">// 3. increase counter
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#f92672">&lt;</span> repeat <span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">000</span> times<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;mov %[counter], r0;&#34;</span>               
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">:</span> [counter] <span style="color:#e6db74">&#34;=r&#34;</span> (counter)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;r0&#34;</span> );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3</span>;                     <span style="color:#75715e">// 4. set trigger to low
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;AAAA%08xBBBB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, counter);  <span style="color:#75715e">// 5. print counter on UART
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>We use a GPIO pin of the target as a trigger to time the characterization test. This allows us to exactly inject glitches when the <code>add</code> instructions are executed. If the resulting counter value that&rsquo;s printed on the serial interface is differently than expected, we know we successfully modified the expected behavior of the software.</p>
 <p>After performing roughly 20,000 experiments across the chip&rsquo;s surface, we observed different output, some of which are shown below. Most interesting of course, are the experiments where a modified counter value is returned. An indication that the target is vulnerable.</p>
 <div style="width: 400px; margin:auto;">
 <p>
@@ -217,47 +217,47 @@
 <p>As earlier mentioned, we decided to target the QSEE software instead of the the underlying ARM TrustZone hardware primitives (e.g. NS-bit, TZASC).</p>
 <p>We know from our earlier conducted QSEE software analysis that various security enforcements are entirely implemented by software. This includes for example the secure range checks which are performed by the SMC handler routines on the arguments received from the Rich Execution Environment (REE).</p>
 <p>We decided to target a SMC handler routine that does not include any software vulnerability. One of the candidates that we identified is <code>tzbsp_fver_get_version</code> for which the decompilation is shown below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">tzbsp_fver_get_version</span>(<span style="color:#66d9ef">uint32_t</span> a1, <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>a2, <span style="color:#66d9ef">uint32_t</span> a3)
-{
-    <span style="color:#66d9ef">uint32_t</span> v4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>is_ree_range(off_87EAB290, a2, a2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>) )      <span style="color:#75715e">// range check
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xFFFFFFEE</span>;
-    <span style="color:#66d9ef">if</span> ( a3 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>a2 )                                <span style="color:#75715e">// argument check
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xFFFFFFF0</span>;
-    <span style="color:#f92672">*</span>a2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;                                            <span style="color:#75715e">// NULL-write
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">do</span> {
-        <span style="color:#66d9ef">if</span> ( dword_87EABB48[<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> v4] <span style="color:#f92672">==</span> a1 )             <span style="color:#75715e">// must fail
-</span><span style="color:#75715e"></span>          <span style="color:#f92672">*</span>a2 <span style="color:#f92672">=</span> dword_87EABB48[<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> v4 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
-        <span style="color:#f92672">++</span>v4;
-    } <span style="color:#66d9ef">while</span> ( v4 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0xC</span> );
-    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div><p>The <code>is_ree_range</code> function checks if <code>a2</code> and <code>a2 +3</code> point to non-secure memory. This argument is passed from the REE and we assume that this argument is under control of the attacker. Simpler said, this function verifies if the buffer provided from the REE overlaps with secure memory. If it does, <code>tzbsp_fver_get_version</code> will immediately return <code>0xFFFFFFEE</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">tzbsp_fver_get_version</span>(<span style="color:#66d9ef">uint32_t</span> a1, <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>a2, <span style="color:#66d9ef">uint32_t</span> a3)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint32_t</span> v4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span>is_ree_range(off_87EAB290, a2, a2 <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>) )      <span style="color:#75715e">// range check
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xFFFFFFEE</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( a3 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>a2 )                                <span style="color:#75715e">// argument check
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0xFFFFFFF0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">*</span>a2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;                                            <span style="color:#75715e">// NULL-write
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ( dword_87EABB48[<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> v4] <span style="color:#f92672">==</span> a1 )             <span style="color:#75715e">// must fail
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>          <span style="color:#f92672">*</span>a2 <span style="color:#f92672">=</span> dword_87EABB48[<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> v4 <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">++</span>v4;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">while</span> ( v4 <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0xC</span> );
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>is_ree_range</code> function checks if <code>a2</code> and <code>a2 +3</code> point to non-secure memory. This argument is passed from the REE and we assume that this argument is under control of the attacker. Simpler said, this function verifies if the buffer provided from the REE overlaps with secure memory. If it does, <code>tzbsp_fver_get_version</code> will immediately return <code>0xFFFFFFEE</code>.</p>
 <p>Using an EM glitch, we aim to to bypass the restrictions enforced by the <code>is_ree_range</code> function. This allows us to execute the remainder of <code>tzbsp_fver_get_version</code> in order to write <code>NULL</code> to an arbitrary address (incl. secure memory).</p>
 <p>We communicate with <code>tzbsp_fver_get_version</code> from the REE using an U-Boot standalone application, which is shown below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">uint32_t</span> a1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xdeadbeef</span>; <span style="color:#75715e">// pass argument check
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> a2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x87EAB204</span>; <span style="color:#75715e">// secure memory address
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> a3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;          <span style="color:#75715e">// pass argument check
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> a4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;          <span style="color:#75715e">// NA
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x0102f004</span>);                       
-
-<span style="color:#75715e">// trigger up
-</span><span style="color:#75715e"></span><span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0</span>;                                                 
-
-<span style="color:#75715e">// calling tzbsp_fver_get_version()
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> ret1 <span style="color:#f92672">=</span> scm_call_r(<span style="color:#ae81ff">0x6</span>, <span style="color:#ae81ff">0x3</span>, a1, a2, a3, a4, <span style="color:#ae81ff">3</span>);
-
-<span style="color:#75715e">// trigger down
-</span><span style="color:#75715e"></span><span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3</span>;                                                 
-
-<span style="color:#75715e">// calling tzbsp_fver_get_version()
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> ret2 <span style="color:#f92672">=</span> scm_call_r(<span style="color:#ae81ff">0x6</span>, <span style="color:#ae81ff">0x3</span>, a1, a2, a3, a4, <span style="color:#ae81ff">3</span>);
-
-<span style="color:#75715e">// printing to serial interface
-</span><span style="color:#75715e"></span>printf(<span style="color:#e6db74">&#34;AAAA%08x%08x%08xBBBB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret1, ret2, <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)a2);
-</code></pre></div><p>We use a GPIO signal as a trigger to time exactly when <code>tzbsp_fver_get_version</code> exactly is executed. The EM glitch is injected exactly between the moment the trigger is set high and set low, which takes approximately 5.875 microseconds (see picture below).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">uint32_t</span> a1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xdeadbeef</span>; <span style="color:#75715e">// pass argument check
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> a2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x87EAB204</span>; <span style="color:#75715e">// secure memory address
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> a3 <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;          <span style="color:#75715e">// pass argument check
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> a4 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;          <span style="color:#75715e">// NA
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x0102f004</span>);                       
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// trigger up
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0</span>;                                                 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// calling tzbsp_fver_get_version()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> ret1 <span style="color:#f92672">=</span> scm_call_r(<span style="color:#ae81ff">0x6</span>, <span style="color:#ae81ff">0x3</span>, a1, a2, a3, a4, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// trigger down
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3</span>;                                                 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// calling tzbsp_fver_get_version()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> ret2 <span style="color:#f92672">=</span> scm_call_r(<span style="color:#ae81ff">0x6</span>, <span style="color:#ae81ff">0x3</span>, a1, a2, a3, a4, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// printing to serial interface
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>printf(<span style="color:#e6db74">&#34;AAAA%08x%08x%08xBBBB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret1, ret2, <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)a2);
+</span></span></code></pre></div><p>We use a GPIO signal as a trigger to time exactly when <code>tzbsp_fver_get_version</code> exactly is executed. The EM glitch is injected exactly between the moment the trigger is set high and set low, which takes approximately 5.875 microseconds (see picture below).</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/osc.png">
         <img src="/img/ipq40xx/osc.png" style="max-width: 80%">
@@ -392,7 +392,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.daccb20f977092510d3d744fb8e698106556d33b7cefb035e55f5df7e6336b6a7b7990d200f53689eb695797a83d9ee6.js" integrity="sha384-2syyD5dwklENPXRPuOaYEGVW0zt877A15V9d9&#43;Yza2p7eZDSAPU2ietpV5eoPZ7m"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

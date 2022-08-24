@@ -63,7 +63,7 @@ As you may have already raelized, at Raelize we like to look further than just s
       
       <guid>https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</guid>
       <description>We arrived at the last post about our Fault Injection research on the ESP32. Please read our previous posts as it provides context to the results described in this post.
- Espressif ESP32: Bypassing Secure Boot using EMFI Espressif ESP32: Controlling PC during Secure Boot Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)  During our Fault Injection research on the ESP32, we gradually took steps forward in order to identify the required vulnerabilities that allowed us to bypass Secure Boot and Flash Encryption with a single EM glitch.</description>
+Espressif ESP32: Bypassing Secure Boot using EMFI Espressif ESP32: Controlling PC during Secure Boot Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048) During our Fault Injection research on the ESP32, we gradually took steps forward in order to identify the required vulnerabilities that allowed us to bypass Secure Boot and Flash Encryption with a single EM glitch.</description>
     </item>
     
     <item>
@@ -114,7 +114,7 @@ Like many of you, our curiosity is constantly sparked and therefore we cannot pr
       <guid>https://raelize.com/blog/d-link-dsl-2640b-security-advisories/</guid>
       <description>In a previous post we shared our considerations on the impact of vulnerabilities in Internet connected devices that are EoL. We used the vulnerabilities that we identified in the D-Link DSL-2640B DSL gateway as a use case to support our considerations. In this post we describe the technical details of these vulnerabilities.
 Before we dive into the technical details, it&#39;s important to note that:
- all vulnerabilities are (at least) applicable to the D-Link DSL-2640B (HW revision B2, Firmware version: EU_4.</description>
+all vulnerabilities are (at least) applicable to the D-Link DSL-2640B (HW revision B2, Firmware version: EU_4.</description>
     </item>
     
     <item>
