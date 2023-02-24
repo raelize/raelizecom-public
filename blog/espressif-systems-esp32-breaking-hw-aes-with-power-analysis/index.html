@@ -118,7 +118,7 @@
       <div class="col-lg-8 offset-lg-2 text-center">
         <hr>
         <h1>Espressif ESP32: Breaking HW AES with Power Analysis</h1>
-        <p>Thursday, Feb 23, 2023</p>
+        <p>Friday, Feb 24, 2023</p>
         <hr>
         
       </div>
@@ -513,7 +513,7 @@
 </span></span><span style="display:flex;"><span>    ...
 </span></span></code></pre></div></small>
 <p>Using this approach, we are able to acquire 200,000 measurements, an amount sufficient to recover the entire key without brute forcing, in only ~16 seconds.</p>
-<p>The traces processing performed with Riscure&rsquo;s Inspector allows us to successfully recover the key in ~1 minute, as shown below.</p>
+<p>The traces processing performed with Riscure&rsquo;s Inspector allows us to successfully recover the key in ~1 minute, as is shown below.</p>
 <small>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 200000 traces
 </span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 0 with rdm: 2.6537:
@@ -617,7 +617,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@time</span> rankData <span style="color:#f92672">=</span> sca(trs, params, <span style="color:#ae81ff">1</span>, numberOfTraces)
 </span></span></code></pre></div></small>
-<p>Using the above script, of which the output is shown below, we were able to extract the entire key in less than 10 seconds.</p>
+<p>Using the above script, of which the output is shown below, we were able to extract the entire key in less than 10 seconds, without any brute forcing.</p>
 <small>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>julia attack.jl
 </span></span><span style="display:flex;"><span>Opened ESP32-HW-AES-SINGLE-SAMPLE-200k.trs
@@ -742,7 +742,7 @@
 </span></span><span style="display:flex;"><span>recovered key: 1a7a8edb19ce775d413941a4412721ba
 </span></span><span style="display:flex;"><span>Runtime (s): 8.682181 seconds (43.60 M allocations: 1.897 GiB, ...)
 </span></span></code></pre></div></small>
-<p>To summarize, by combining Picoscope&rsquo;s <a href="https://www.picotech.com/helpfiles/6000a-api/rapidblockmode.html">rapid block mode</a> and Riscure&rsquo;s <a href="https://github.com/Riscure/Jlsca">Jlsca</a> toolkit, we are able to acquire 200k traces and perform the CPA attack in order to extract the entire key in ~25 seconds.</p>
+<p>To summarize, by combining Picoscope&rsquo;s <a href="https://www.picotech.com/helpfiles/6000a-api/rapidblockmode.html">Rapid Block Mode</a>, Riscure&rsquo;s FiPy and Riscure&rsquo;s <a href="https://github.com/Riscure/Jlsca">Jlsca</a> toolkit, we are able to acquire 200,000 traces and perform the CPA attack in order to extract the entire key in ~25 seconds, without any brute forcing.</p>
 <h2 id="final-words">Final words</h2>
 <p>Power analysis attacks on cryptographic algorithms, like AES, are known to be effective for over multiple decades. Therefore, it&rsquo;s not surprising at all, that the ESP32&rsquo;s hardware AES engine is vulnerable to a straight-forward power analysis attack. It&rsquo;s simply not protected against such threats.</p>
 <p>The abundance of available tooling and knowledge in today&rsquo;s world definitely decreases the complexity for extracting cryptographic keys.</p>
