@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.105.0">
+	<meta name="generator" content="Hugo 0.110.0">
 
 	<!-- plugins -->
 	
@@ -191,10 +191,10 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>) {
 </span></span><span style="display:flex;"><span>	cmd <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span>	uart_rx_one_char(<span style="color:#f92672">&amp;</span>cmd);					<span style="color:#75715e">// receive command
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">uart_rx_one_char</span>(<span style="color:#f92672">&amp;</span>cmd);					<span style="color:#75715e">// receive command
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span>(cmd <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;A&#39;</span>) {
-</span></span><span style="display:flex;"><span>		GPIO_OUTPUT_SET(<span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">0</span>);				<span style="color:#75715e">// trigger high
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_OUTPUT_SET</span>(<span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">0</span>);				<span style="color:#75715e">// trigger high
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>				
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">asm</span> <span style="color:#66d9ef">volatile</span> (						<span style="color:#75715e">// set unused registers
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#e6db74">&#34;movi a0, 0x40404040;&#34;</span>
@@ -216,10 +216,10 @@
 </span></span><span style="display:flex;"><span>			<span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f92672">:</span> 	<span style="color:#e6db74">&#34;a6&#34;</span>, <span style="color:#e6db74">&#34;a0&#34;</span>, <span style="color:#e6db74">&#34;a1&#34;</span>, <span style="color:#e6db74">&#34;a2&#34;</span>, <span style="color:#e6db74">&#34;a3&#34;</span>, <span style="color:#e6db74">&#34;a4&#34;</span>, <span style="color:#e6db74">&#34;a5&#34;</span>, <span style="color:#e6db74">&#34;a7&#34;</span>, <span style="color:#e6db74">&#34;a8&#34;</span>, <span style="color:#e6db74">&#34;a9&#34;</span> );
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		GPIO_OUTPUT_SET(<span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">1</span>);				<span style="color:#75715e">// trigger low
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">GPIO_OUTPUT_SET</span>(<span style="color:#ae81ff">26</span>, <span style="color:#ae81ff">1</span>);				<span style="color:#75715e">// trigger low
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;AAAA%08xBBBB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, counter);	<span style="color:#75715e">// send result back
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;AAAA%08xBBBB</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, counter);	<span style="color:#75715e">// send result back
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
 </span></span></code></pre></div><p>We generate the <strong>trigger high</strong> and the <strong>trigger low</strong> signal by driving a <strong>GPIO</strong> pin. This allows us to create a measurable <strong>attack window</strong> that encompasses the sled of <code>add</code> instructions. This increases our chances of injecting a successful glitch and allows us to identify the presence of a hardware vulnerability.</p>
 <h2 id="location">Location</h2>

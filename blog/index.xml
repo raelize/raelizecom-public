@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright &amp;copy;2020 Raelize B.V. &lt;br&gt; Powered by &lt;a href=#&gt;Hugo&lt;/a&gt; and [Themefisher](https://themefisher.com).</copyright>
-    <lastBuildDate>Mon, 01 Nov 2021 17:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Feb 2023 10:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Espressif ESP32: Breaking HW AES with Power Analysis</title>
+      <link>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/</link>
+      <pubDate>Thu, 23 Feb 2023 10:00:00 +0200</pubDate>
+      
+      <guid>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/</guid>
+      <description>Side Channel Analysis (SCA) attacks are commonly used for extracting the secret key of cryptographic engines found in modern devices. They exploit side channels, such as Timing, Power and Electromagnetic (EM) leaks, to obtain information about the secret key used by the cryptography algorithm. Even though these type of attacks were traditionally performed on smart cards, they are effective on embedded devices as well.
+Even the strongest cryptography algorithms, such as AES, are susceptible to SCA attacks, especially if no countermeasures are in place.</description>
+    </item>
+    
     <item>
       <title>Vulnerable tzdemuxerservice TA on Samsung TVs (J-series)</title>
       <link>https://raelize.com/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</link>

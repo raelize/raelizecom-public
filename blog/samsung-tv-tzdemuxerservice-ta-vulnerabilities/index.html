@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize company website!">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.105.0">
+	<meta name="generator" content="Hugo 0.110.0">
 
 	<!-- plugins -->
 	
@@ -152,10 +152,10 @@ requested CVEs for these vulnerabilities. Therefore, no CVEs are available for t
 <p>The entry point for the TA is easily found in the <code>tzdemuxerservice.cpp</code> source file by identifying the <code>TA_InvokeCommandEntryPoint()</code> function.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> <span style="color:#e6db74">&#34;C&#34;</span>
-</span></span><span style="display:flex;"><span>TEE_Result TA_InvokeCommandEntryPoint(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>sessionContext, 
+</span></span><span style="display:flex;"><span>TEE_Result <span style="color:#a6e22e">TA_InvokeCommandEntryPoint</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>sessionContext, 
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint32_t</span> commandID, <span style="color:#66d9ef">uint32_t</span> param_types, TEE_Param param[<span style="color:#ae81ff">4</span>])
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    TA_PRINT(<span style="color:#e6db74">&#34;commandID %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,commandID);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">TA_PRINT</span>(<span style="color:#e6db74">&#34;commandID %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,commandID);
 </span></span><span style="display:flex;"><span>    ...
 </span></span></code></pre></div><p>This entry point implements multiple commands which are implemented using a <code>switch</code> statement where each command is implemented using a dedicated <code>case</code> statement.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
@@ -211,13 +211,13 @@ requested CVEs for these vulnerabilities. Therefore, no CVEs are available for t
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1104</span>    {
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1105</span>        buffer_s buffer;
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1106</span>        buffer_list_h pipelist <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>sctx<span style="color:#f92672">-&gt;</span>pipe_list;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1107</span>        <span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> buffer_list_take(pipelist,<span style="color:#f92672">&amp;</span>buffer,<span style="color:#ae81ff">32768</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1107</span>        <span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">buffer_list_take</span>(pipelist,<span style="color:#f92672">&amp;</span>buffer,<span style="color:#ae81ff">32768</span>);
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1108</span>        <span style="color:#a6e22e">if</span>(ret <span style="color:#f92672">!=</span> BUFFER_LIST_SUCCESS)
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1109</span>        {
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1110</span>            result <span style="color:#f92672">=</span> TEE_ERROR_GENERIC;
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1111</span>            <span style="color:#66d9ef">break</span>;
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1112</span>        }
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1113</span> <span style="color:#f92672">!</span>      memcpy(buf,buffer.data,<span style="color:#ae81ff">32768</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1113</span> <span style="color:#f92672">!</span>      <span style="color:#a6e22e">memcpy</span>(buf,buffer.data,<span style="color:#ae81ff">32768</span>);
 </span></span><span style="display:flex;"><span>        ...
 </span></span></code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in REE memory.</p>
@@ -233,25 +233,25 @@ verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequ
 </span></span><span style="display:flex;"><span>        ...
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1118</span>    <span style="color:#66d9ef">case</span> CMD_TZDEMUXER_CLIENT_DUMP_VIDEO_PACKET:
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1119</span>    {
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1120</span>        TA_PRINT(<span style="color:#e6db74">&#34;CMD_TZDEMUXER_CLIENT_DUMP_VIDEO_PACKET</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1120</span>        <span style="color:#a6e22e">TA_PRINT</span>(<span style="color:#e6db74">&#34;CMD_TZDEMUXER_CLIENT_DUMP_VIDEO_PACKET</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1121</span>        AVPacket pkt;
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1122</span>        <span style="color:#a6e22e">memset</span>(<span style="color:#f92672">&amp;</span>pkt,<span style="color:#ae81ff">0x0</span>,<span style="color:#66d9ef">sizeof</span>(AVPacket));
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1123</span>        <span style="color:#66d9ef">int</span> r <span style="color:#f92672">=</span> packet_queue_get(<span style="color:#f92672">&amp;</span>sctx<span style="color:#f92672">-&gt;</span>pkt_queue,<span style="color:#f92672">&amp;</span>pkt,PACKET_QUEUE_NON_BLOCK_MODE);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1123</span>        <span style="color:#66d9ef">int</span> r <span style="color:#f92672">=</span> <span style="color:#a6e22e">packet_queue_get</span>(<span style="color:#f92672">&amp;</span>sctx<span style="color:#f92672">-&gt;</span>pkt_queue,<span style="color:#f92672">&amp;</span>pkt,PACKET_QUEUE_NON_BLOCK_MODE);
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1124</span>        <span style="color:#a6e22e">if</span>(r <span style="color:#f92672">!=</span> PACKET_QUEUE_SUCCESS)
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1125</span>        {
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1126</span>            result <span style="color:#f92672">=</span> TEE_ERROR_GENERIC;
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1127</span>            TA_PRINT(<span style="color:#e6db74">&#34;ERROR in</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1127</span>            <span style="color:#a6e22e">TA_PRINT</span>(<span style="color:#e6db74">&#34;ERROR in</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1128</span>            <span style="color:#66d9ef">if</span>(r <span style="color:#f92672">==</span> PACKET_QUEUE_NO_PACKET)
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1129</span>            {
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1130</span>                TA_PRINT(<span style="color:#e6db74">&#34;TEE_ERROR_NO_DATA in</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1130</span>                <span style="color:#a6e22e">TA_PRINT</span>(<span style="color:#e6db74">&#34;TEE_ERROR_NO_DATA in</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1131</span>                result <span style="color:#f92672">=</span> TEE_ERROR_NO_DATA;
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1132</span>            }
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1133</span>            <span style="color:#66d9ef">break</span>;
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1134</span>        }
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1135</span>        <span style="color:#a6e22e">if</span>(sctx<span style="color:#f92672">-&gt;</span>streams[pkt.stream_index] <span style="color:#f92672">==</span> CODEC_TYPE_VIDEO)
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1136</span>        {
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1137</span>            TA_PRINT(<span style="color:#e6db74">&#34; Dump Video r %d, pkt.size %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,r,pkt.size);
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1138</span> <span style="color:#f92672">!</span>          memcpy(buf,pkt.data,pkt.size);        
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1137</span>            <span style="color:#a6e22e">TA_PRINT</span>(<span style="color:#e6db74">&#34; Dump Video r %d, pkt.size %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,r,pkt.size);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1138</span> <span style="color:#f92672">!</span>          <span style="color:#a6e22e">memcpy</span>(buf,pkt.data,pkt.size);        
 </span></span><span style="display:flex;"><span>                ...
 </span></span></code></pre></div><p><strong>Samsung&rsquo;s fix:</strong> Samsung indicated to us that the <code>param[0]</code> parameter is now
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in <strong>REE</strong> memory.</p>
@@ -322,27 +322,27 @@ verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequ
 <p>The <strong>TA</strong> makes use of dynamic memory allocations using <code>malloc</code>. It's a security best practice to verify the return value of a <code>malloc</code> call in order to check if the request memory actually could be allocated. If it's not done, and the memory allocation fails, the subsequent writes to memory will be done to address <code>0</code>. This will cause a crash of the <strong>TA</strong> or potentially memory corruption of address <code>0</code> is mapped within the <strong>TA</strong>'s memory space.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>File: tzdemuxerservice.cpp
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">385</span>    sub_buffer.data <span style="color:#f92672">=</span> malloc(needed_size);
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">385</span>    sub_buffer.data <span style="color:#f92672">=</span> <span style="color:#a6e22e">malloc</span>(needed_size);
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">386</span>    <span style="color:#a6e22e">memcpy</span>((<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)sub_buffer.data,(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)cur_node<span style="color:#f92672">-&gt;</span>buffer.data <span style="color:#f92672">+</span> skip , needed_size);
 </span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">402</span>    merge_buffer.data <span style="color:#f92672">=</span> malloc(needed_size);
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">402</span>    merge_buffer.data <span style="color:#f92672">=</span> <span style="color:#a6e22e">malloc</span>(needed_size);
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">403</span>    <span style="color:#75715e">//TA_PRINT(&#34;step 1\n&#34;);
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> <span style="color:#ae81ff">404</span>    memcpy((<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)merge_buffer.data, (<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)cur_node<span style="color:#f92672">-&gt;</span>buffer.data <span style="color:#f92672">+</span> skip , hsize <span style="color:#f92672">-</span> skip);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> <span style="color:#ae81ff">404</span>    <span style="color:#a6e22e">memcpy</span>((<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)merge_buffer.data, (<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)cur_node<span style="color:#f92672">-&gt;</span>buffer.data <span style="color:#f92672">+</span> skip , hsize <span style="color:#f92672">-</span> skip);
 </span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">749</span>    sctx <span style="color:#f92672">=</span> (tzdemuxer_service_s<span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">749</span>    sctx <span style="color:#f92672">=</span> (tzdemuxer_service_s<span style="color:#f92672">*</span>)<span style="color:#a6e22e">malloc</span>(<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">750</span>    <span style="color:#a6e22e">memset</span>(sctx,<span style="color:#ae81ff">0x0</span>,<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
 </span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">797</span>    sctx <span style="color:#f92672">=</span> (tzdemuxer_service_s<span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">797</span>    sctx <span style="color:#f92672">=</span> (tzdemuxer_service_s<span style="color:#f92672">*</span>)<span style="color:#a6e22e">malloc</span>(<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">798</span>    <span style="color:#a6e22e">memset</span>(sctx,<span style="color:#ae81ff">0x0</span>,<span style="color:#66d9ef">sizeof</span>(tzdemuxer_service_s));
 </span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">825</span>    sctx<span style="color:#f92672">-&gt;</span>preset_info <span style="color:#f92672">=</span> malloc(size);
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">825</span>    sctx<span style="color:#f92672">-&gt;</span>preset_info <span style="color:#f92672">=</span> <span style="color:#a6e22e">malloc</span>(size);
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">826</span>    <span style="color:#a6e22e">memcpy</span>(sctx<span style="color:#f92672">-&gt;</span>preset_info,data,size);
 </span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">964</span>    buffer.data <span style="color:#f92672">=</span> malloc(size);
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">964</span>    buffer.data <span style="color:#f92672">=</span> <span style="color:#a6e22e">malloc</span>(size);
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">965</span>    buffer.size <span style="color:#f92672">=</span> size;
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">966</span>    <span style="color:#a6e22e">memcpy</span>(buffer.data,buf,size);
 </span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1009</span>    buffer.data <span style="color:#f92672">=</span> malloc(size);
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1009</span>    buffer.data <span style="color:#f92672">=</span> <span style="color:#a6e22e">malloc</span>(size);
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1010</span>    buffer.size <span style="color:#f92672">=</span> size;
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1011</span>    <span style="color:#a6e22e">memcpy</span>(buffer.data,pBuffer,size);
 </span></span></code></pre></div><p><strong>Samsung's fix:</strong> Samsung indicated to us that the return value for each <code>malloc</code> call is now correctly verified. This prevents the possibility for writing data to an unallocated (i.e. NULL) address.</p>

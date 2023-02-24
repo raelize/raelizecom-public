@@ -1,0 +1,1442 @@
+[2023-02-07 16:23:57]
+Loaded function module: C:\Program Files\Inspector-2022.2.3-sca-fi\modules\crypto2\KnownKeyAnalysis.class
+
+Results after 5000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 6, candidate:  26 (0x1A), confidence: 0.0303 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 11, candidate: 122 (0x7A), confidence: 0.0303 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0345 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 220, candidate: 219 (0xDB), confidence: 0.0022 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 118, candidate:  25 (0x19), confidence: 0.0118 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 231, candidate: 206 (0xCE), confidence: 0.0015 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 39, candidate: 119 (0x77), confidence: 0.0238 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 225, candidate:  93 (0x5D), confidence: 0.0020 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 6, candidate:  65 (0x41), confidence: 0.0351 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 113, candidate:  57 (0x39), confidence: 0.0092 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 19, candidate:  65 (0x41), confidence: 0.0275 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 107, candidate: 164 (0xA4), confidence: 0.0124 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 6, candidate:  65 (0x41), confidence: 0.0437 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 174, candidate:  39 (0x27), confidence: 0.0077 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 148, candidate:  33 (0x21), confidence: 0.0089 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 31, candidate: 186 (0xBA), confidence: 0.0230 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 117.76169086832422
+
+Results after 10000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 7, candidate:  26 (0x1A), confidence: 0.0216 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 19, candidate: 122 (0x7A), confidence: 0.0172 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 4, candidate: 142 (0x8E), confidence: 0.0227 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 70, candidate: 219 (0xDB), confidence: 0.0107 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 115, candidate:  25 (0x19), confidence: 0.0082 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 14, candidate: 206 (0xCE), confidence: 0.0193 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0304 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 17, candidate:  93 (0x5D), confidence: 0.0176 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 5, candidate:  65 (0x41), confidence: 0.0316 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 28, candidate:  57 (0x39), confidence: 0.0169 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0342 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 7, candidate: 164 (0xA4), confidence: 0.0205 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0413 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 203, candidate:  39 (0x27), confidence: 0.0033 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 187, candidate:  33 (0x21), confidence: 0.0038 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 59, candidate: 186 (0xBA), confidence: 0.0127 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 99.03855555365388
+
+Results after 15000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 3, candidate:  26 (0x1A), confidence: 0.0207 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0277 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 3, candidate: 142 (0x8E), confidence: 0.0186 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 129, candidate: 219 (0xDB), confidence: 0.0048 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 56, candidate:  25 (0x19), confidence: 0.0116 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 20, candidate: 206 (0xCE), confidence: 0.0152 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 2, candidate: 119 (0x77), confidence: 0.0235 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0215 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0297 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 109, candidate:  57 (0x39), confidence: 0.0077 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0339 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 3, candidate: 164 (0xA4), confidence: 0.0218 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 3, candidate:  65 (0x41), confidence: 0.0361 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 139, candidate:  39 (0x27), confidence: 0.0061 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 198, candidate:  33 (0x21), confidence: 0.0027 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 8, candidate: 186 (0xBA), confidence: 0.0170 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 93.0517553417923
+
+Results after 20000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 3, candidate:  26 (0x1A), confidence: 0.0191 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0254 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 4, candidate: 142 (0x8E), confidence: 0.0143 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 9, candidate: 219 (0xDB), confidence: 0.0139 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 2, candidate:  25 (0x19), confidence: 0.0202 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 24, candidate: 206 (0xCE), confidence: 0.0137 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0232 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 2, candidate:  93 (0x5D), confidence: 0.0215 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0265 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 12, candidate:  57 (0x39), confidence: 0.0170 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0305 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 5, candidate: 164 (0xA4), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 3, candidate:  65 (0x41), confidence: 0.0322 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 99, candidate:  39 (0x27), confidence: 0.0067 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 208, candidate:  33 (0x21), confidence: 0.0019 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 4, candidate: 186 (0xBA), confidence: 0.0169 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 72.95224633180278
+
+Results after 25000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 2, candidate:  26 (0x1A), confidence: 0.0211 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0221 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0183 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 19, candidate: 219 (0xDB), confidence: 0.0110 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0195 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 17, candidate: 206 (0xCE), confidence: 0.0140 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0231 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 3, candidate:  93 (0x5D), confidence: 0.0200 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0223 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 2, candidate:  57 (0x39), confidence: 0.0224 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0291 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 5, candidate: 164 (0xA4), confidence: 0.0160 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0360 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 12, candidate:  39 (0x27), confidence: 0.0125 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 178, candidate:  33 (0x21), confidence: 0.0031 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0189 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 54.534735566687736
+
+Results after 30000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0234 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0223 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0213 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 4, candidate: 219 (0xDB), confidence: 0.0136 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 2, candidate:  25 (0x19), confidence: 0.0169 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 5, candidate: 206 (0xCE), confidence: 0.0169 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0238 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 2, candidate:  93 (0x5D), confidence: 0.0171 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 5, candidate:  65 (0x41), confidence: 0.0168 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0225 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0316 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0196 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0352 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 12, candidate:  39 (0x27), confidence: 0.0121 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 80, candidate:  33 (0x21), confidence: 0.0084 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0209 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 41.461069485092096
+
+Results after 35000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0252 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0169 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0236 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 2, candidate: 219 (0xDB), confidence: 0.0138 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 2, candidate:  25 (0x19), confidence: 0.0159 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 4, candidate: 206 (0xCE), confidence: 0.0171 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0230 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 2, candidate:  93 (0x5D), confidence: 0.0165 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 5, candidate:  65 (0x41), confidence: 0.0160 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0235 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0302 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0191 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 3, candidate:  65 (0x41), confidence: 0.0334 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 2, candidate:  39 (0x27), confidence: 0.0136 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 54, candidate:  33 (0x21), confidence: 0.0103 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 3, candidate: 186 (0xBA), confidence: 0.0161 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 45.62448663614189
+
+Results after 40000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0249 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0175 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0196 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0145 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 2, candidate:  25 (0x19), confidence: 0.0150 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 2, candidate: 206 (0xCE), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0214 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0154 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0179 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0218 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0291 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0182 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0335 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0148 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 71, candidate:  33 (0x21), confidence: 0.0087 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 2, candidate: 186 (0xBA), confidence: 0.0145 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 46.64607234165663
+
+Results after 45000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0255 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0219 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0148 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0160 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 3, candidate: 206 (0xCE), confidence: 0.0146 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0209 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 5, candidate:  93 (0x5D), confidence: 0.0120 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0196 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0216 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0266 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0296 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0133 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 48, candidate:  33 (0x21), confidence: 0.0091 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 2, candidate: 186 (0xBA), confidence: 0.0160 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 45.063256031521696
+
+Results after 50000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0253 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0191 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0203 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 4, candidate: 219 (0xDB), confidence: 0.0113 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 2, candidate:  25 (0x19), confidence: 0.0156 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 5, candidate: 206 (0xCE), confidence: 0.0125 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0190 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0135 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0200 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0205 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0257 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0202 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 5, candidate:  65 (0x41), confidence: 0.0265 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0142 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 69, candidate:  33 (0x21), confidence: 0.0075 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 2, candidate: 186 (0xBA), confidence: 0.0157 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 45.14807426161486
+
+Results after 55000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0253 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0183 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0145 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 2, candidate:  25 (0x19), confidence: 0.0150 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 3, candidate: 206 (0xCE), confidence: 0.0133 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0171 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0160 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0218 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0205 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0289 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0191 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 8, candidate:  65 (0x41), confidence: 0.0258 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 62, candidate:  33 (0x21), confidence: 0.0078 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0172 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 31.496716116144757
+
+Results after 60000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0243 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0190 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0187 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0138 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 2, candidate:  25 (0x19), confidence: 0.0161 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 6, candidate: 206 (0xCE), confidence: 0.0123 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0175 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0161 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0213 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0206 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0264 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0176 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 5, candidate:  65 (0x41), confidence: 0.0259 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0157 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 32, candidate:  33 (0x21), confidence: 0.0106 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0180 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 26.104144710407983
+
+Results after 65000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0234 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0171 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0204 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 3, candidate: 219 (0xDB), confidence: 0.0127 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 2, candidate:  25 (0x19), confidence: 0.0154 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 5, candidate: 206 (0xCE), confidence: 0.0127 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0178 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0153 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0213 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0205 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0241 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0173 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 7, candidate:  65 (0x41), confidence: 0.0254 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0147 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 15, candidate:  33 (0x21), confidence: 0.0133 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0181 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 21.443533445708823
+
+Results after 70000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0218 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0163 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0223 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0136 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 2, candidate:  25 (0x19), confidence: 0.0155 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 2, candidate: 206 (0xCE), confidence: 0.0147 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0175 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0152 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0212 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0198 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0238 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0169 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 6, candidate:  65 (0x41), confidence: 0.0255 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0144 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 11, candidate:  33 (0x21), confidence: 0.0131 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0170 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 15.498849206531725
+
+Results after 75000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0203 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0220 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0128 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 2, candidate:  25 (0x19), confidence: 0.0150 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 2, candidate: 206 (0xCE), confidence: 0.0156 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0192 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0160 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0221 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0208 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0230 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0170 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 3, candidate:  65 (0x41), confidence: 0.0253 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0145 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 8, candidate:  33 (0x21), confidence: 0.0144 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0178 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 10.044394119358454
+
+Results after 80000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0186 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0226 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 2, candidate: 219 (0xDB), confidence: 0.0113 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0144 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 2, candidate: 206 (0xCE), confidence: 0.0150 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0182 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0168 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0222 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0201 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0216 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0177 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 4, candidate:  65 (0x41), confidence: 0.0250 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0153 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 4, candidate:  33 (0x21), confidence: 0.0154 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0183 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 13.610909487788778
+
+Results after 85000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0197 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0227 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 3, candidate: 219 (0xDB), confidence: 0.0105 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0144 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0159 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0182 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0209 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0191 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0210 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0175 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0254 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0150 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 4, candidate:  33 (0x21), confidence: 0.0149 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0186 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 9.157346935362844
+
+Results after 90000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0194 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0178 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0217 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 2, candidate: 219 (0xDB), confidence: 0.0106 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0142 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0159 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0184 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0162 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0206 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0186 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0209 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0171 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0259 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0150 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 5, candidate:  33 (0x21), confidence: 0.0136 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0199 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 10.988684686772167
+
+Results after 95000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0189 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0175 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0213 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0128 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0148 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0147 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0195 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0161 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0202 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0187 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0196 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0256 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0150 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 5, candidate:  33 (0x21), confidence: 0.0136 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0187 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 9.784634845557521
+
+Results after 100000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0165 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0212 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0125 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0146 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0129 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0197 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0171 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0203 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0194 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0200 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0161 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0260 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0148 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 5, candidate:  33 (0x21), confidence: 0.0133 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0185 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 7.8392037880969445
+
+Results after 105000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0184 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0208 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0130 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0154 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0124 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0202 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0162 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0194 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0190 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0201 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0156 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0262 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0144 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 4, candidate:  33 (0x21), confidence: 0.0135 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0170 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 5.357552004618084
+
+Results after 110000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0181 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0171 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0203 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0133 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0159 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0123 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0191 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0159 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0198 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 2, candidate:  65 (0x41), confidence: 0.0196 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0166 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0275 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0141 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 5, candidate:  33 (0x21), confidence: 0.0129 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0173 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 5.491853096329675
+
+Results after 115000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0169 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0205 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0123 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0109 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0193 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0157 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0192 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0196 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0161 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0273 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0140 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 6, candidate:  33 (0x21), confidence: 0.0136 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0171 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 4.169925001442312
+
+Results after 120000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0177 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0172 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0211 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0122 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0163 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0111 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0192 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0168 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0195 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0193 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0154 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0274 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0140 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 5, candidate:  33 (0x21), confidence: 0.0132 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0164 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 2.584962500721156
+
+Results after 125000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0170 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0163 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0214 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0130 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0154 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0115 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0187 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0172 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0171 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0188 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0190 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0154 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0275 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0152 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 2, candidate:  33 (0x21), confidence: 0.0134 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0166 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 1.0
+
+Results after 130000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0172 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0209 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0138 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0144 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0106 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0186 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0171 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0184 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0187 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0162 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0282 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0145 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0141 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0167 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 135000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0161 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0214 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0144 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0148 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0104 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0186 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0182 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0170 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0185 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0179 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0173 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0278 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0134 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0138 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0169 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 140000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0155 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0166 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0213 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0152 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0154 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0101 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0193 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0183 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0181 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0177 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0285 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0126 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0130 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0176 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 145000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0154 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0165 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0214 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0149 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0160 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0105 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0190 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0184 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0173 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0184 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0173 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0181 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0290 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0129 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0134 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0170 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 150000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0160 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0159 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0223 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0153 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0162 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0106 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0189 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0186 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0184 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0293 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0137 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0127 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0174 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 155000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0152 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0159 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0221 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0155 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0105 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0185 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0176 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0291 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0144 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0128 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0174 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 160000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0155 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0152 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0216 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0157 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0165 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0105 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0183 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0179 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0170 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0188 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0292 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0145 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0130 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0181 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 165000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0153 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0145 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0218 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0157 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0170 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0110 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0179 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0182 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0185 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0289 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0148 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0131 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0179 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 170000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0158 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0141 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0226 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0157 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0175 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0108 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0181 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0179 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0168 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0173 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0286 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0146 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0138 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0181 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 175000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0157 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0144 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0228 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0159 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0101 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0185 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0177 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0157 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0160 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0175 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0186 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0288 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0145 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0132 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0174 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 180000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0162 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0144 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0230 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0159 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0179 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0099 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0185 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0181 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0178 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0182 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0285 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0145 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0136 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0175 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 185000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0162 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0138 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0227 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0179 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0099 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0186 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0183 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0175 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0163 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0172 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0182 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0288 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0138 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0132 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0176 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 190000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0156 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0136 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0232 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0177 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0101 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0193 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0183 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0178 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0174 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0183 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0288 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0140 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 2, candidate:  33 (0x21), confidence: 0.0128 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0168 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 195000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0152 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0134 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0236 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0176 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0102 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0191 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0185 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0164 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0169 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0181 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0286 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0136 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0129 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0168 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+
+Results after 200000 traces
+Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
+Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
+rank: 1, candidate:  26 (0x1A), confidence: 0.0150 at position: 402
+Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+rank: 1, candidate: 122 (0x7A), confidence: 0.0137 at position: 402
+Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+rank: 1, candidate: 142 (0x8E), confidence: 0.0234 at position: 402
+Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+rank: 1, candidate: 219 (0xDB), confidence: 0.0168 at position: 402
+Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+rank: 1, candidate:  25 (0x19), confidence: 0.0172 at position: 402
+Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+rank: 1, candidate: 206 (0xCE), confidence: 0.0096 at position: 402
+Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+rank: 1, candidate: 119 (0x77), confidence: 0.0195 at position: 402
+Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+rank: 1, candidate:  93 (0x5D), confidence: 0.0186 at position: 402
+Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0184 at position: 402
+Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+rank: 1, candidate:  57 (0x39), confidence: 0.0163 at position: 402
+Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0167 at position: 402
+Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+rank: 1, candidate: 164 (0xA4), confidence: 0.0180 at position: 402
+Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+rank: 1, candidate:  65 (0x41), confidence: 0.0284 at position: 402
+Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+rank: 1, candidate:  39 (0x27), confidence: 0.0135 at position: 402
+Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+rank: 1, candidate:  33 (0x21), confidence: 0.0130 at position: 402
+Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+rank: 1, candidate: 186 (0xBA), confidence: 0.0174 at position: 402
+Best global key rank estimate in the range 402 till 403 (entropy): 0.0
