@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Espressif ESP32: Breaking HW AES with Electromagnetic Analysis</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.111.1">
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <hr>
+        <h1>Espressif ESP32: Breaking HW AES with Electromagnetic Analysis</h1>
+        <p>Thursday, Mar 2, 2023</p>
+        <hr>
+        
+      </div>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="post-single-content" background-color=0xff>
+          <p>In our <a href="/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/">previous blog post</a>, we&rsquo;ve shown how we extracted the secret key from the ESP32&rsquo;s hardware AES accelerator using a <em>Power Analysis</em> attack. In this blog post, we measure the electromagnetic emissions from the chip in order to extract the same secret key.</p>
+<p>Important, please read our <a href="/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/">previous blog post</a> on power analysis first if you have not done that yet. Espressif released an <a href="https://www.espressif.com/sites/default/files/advisory_downloads/AR2022-003%20Security%20Advisory%20Concerning%20Breaking%20the%20Hardware%20AES%20Core%20and%20Firmware%20Encryption%20of%20ESP32%20Chip%20Revision%20v3.0%20-%20V2.0%20EN.pdf">advisory</a> after Ledger <a href="https://www.blackhat.com/us-22/briefings/schedule/#unlimited-results-breaking-firmware-encryption-of-esp32-v3-26345">demonstrated</a> the hardware AES accelerator of the ESP32 chip is vulnerable.</p>
+<h2 id="test-code">Test code</h2>
+<p>We decided to optimize the test application by setting the trigger signal high and low closer to the AES operation. During our <em>Power Analysis</em> attack, we used a ROM API function call (i.e., <code>ets_aes_crypt</code>) to perform an AES encryption. This function performs several operations (e.g., copying of data to input registers), that also can be implemented in the bootloader where our test code is implemented as well.</p>
+<p>We dumped the ROM and reversed this function in order to implement our own. This allows us to set the trigger high signal much closer to the start of the AES operation and the trigger low signal much closer to the end of the AES operation. The resulting test code is shown below.</p>
+<small>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// copy input to AES engine from input buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF01030</span>) <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>input_buffer[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF01030</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>) <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>input_buffer[<span style="color:#ae81ff">4</span>];
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF01030</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>) <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>input_buffer[<span style="color:#ae81ff">8</span>];
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF01030</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">12</span>) <span style="color:#f92672">=</span> (<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>input_buffer[<span style="color:#ae81ff">12</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// set trigger high
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">GPIO_OUTPUT_SET</span>(<span style="color:#ae81ff">26</span>,<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// start AES engine
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF01000</span>) <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// poll AES engine to be ready
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">do</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">asm</span> <span style="color:#66d9ef">volatile</span> (<span style="color:#e6db74">&#34;memw&#34;</span>);
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">while</span>(<span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF01004</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>);     
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// set trigger low
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">GPIO_OUTPUT_SET</span>(<span style="color:#ae81ff">26</span>,<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// copy output from AES engine to output buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>output_buffer[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF01030</span>);
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>output_buffer[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF01030</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>output_buffer[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF01030</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">8</span>);
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)<span style="color:#f92672">&amp;</span>output_buffer[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF01030</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">12</span>);
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div></small>
+<p>Execution the above test application results in a trigger window (i.e., time between trigger up and down) of roughly 1.0 μs as is shown below. This trigger window was 3.1 μs when we used to ROM API function.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/em-fast-trigger.png" style="max-width: 100%; width: 600px">
+    <figcaption>Optimized trigger window</figcaption>
+</p>
+<p>This trigger window is significantly smaller than the trigger we used during the <em>Power Analysis</em> attack. This should facilitate smaller traces as we have to measure less samples, this should yield a faster acquisition speed.</p>
+<p>We performed a quick <em>Known Key Correlation</em> analysis by measuring the power in order to identify where in this trigger window the AES operation is performed. Note, this measurement was made without the delay that&rsquo;s shown in the trigger window trace shown above.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/power-optimized-known-key-correlation.png" style="max-width: 100%; width: 600px">
+    <figcaption>Known Key Correlation with optimized application (Power Analysis)</figcaption>
+</p>
+<p>The intermediate correlation tells us that round 1 of the AES operation is started around sample 150. According to Espressif (see Section 22.3.5 in the <a href="https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf">Technical Reference Manual</a>), the AES encryption should take between 11 and 15 clock cycles. We use this information in order to optimize the acquisition for the EM Analysis described in the remainder of this blog post. We could measure e.g. sample 150 to sample 200. However, we decided to take a sub-optimal approach by simply measuring the first 200 samples.</p>
+<h2 id="setup">Setup</h2>
+<p>We use <a href="https://www.riscure.com/">Riscure</a>&rsquo;s <a href="https://getquote.riscure.com/en/quote/2101073/high-precision-em-probe.htm">High Precision EM Probe</a> to measure the electromagnetic emissions coming from the chip. The output of this EM probe, as well as the GPIO pin for the trigger, is connected to a <a href="https://www.picotech.com/oscilloscope/3000/picoscope-3000-oscilloscope-specifications">Picoscope 3206D</a> oscilloscope. We use a standard FTDI-based USB-to-UART adapter for communication.</p>
+<p>The probe is placed in <a href="https://www.riscure.com/">Riscure</a>&rsquo;s <a href="https://getquote.riscure.com/en/quote/2101064/em-probe-station.htm">EM Probe Station</a> which allows us to adjust the location of the probe automatically. This is convenient as we will have to find locations where we can measure electromagnetic emissions related to AES operation.</p>
+<p>A diagram of the power analysis setup that we used is shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/em-setup.png" style="max-width: 100%; width: 800px">
+</p>
+<p>The actual setup in our lab is shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/em-setup-real.jpg" style="max-width: 100%; width: 600px">
+</p>
+<p>We use <a href="https://www.riscure.com/">Riscure</a>&rsquo;s FiPy to control the setup during the acquisition. This is a Python framework that is configured through the browser and can be used to configure the EM Probe station. The menu to configure the EM Probe Station is shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/em-fipy.png" style="max-width: 100%; width: 600px">
+</p>
+<p>We define a square grid by setting three reference points: top left corner (A), to right corner (B) and bottom right corner (C). Even though this Python framework is typically used for Fault Injection attacks, it can be used conveniently for SCA acquisition as well.</p>
+<p>Needless to say, we prefer to use our custom board, even though we could use a standard development board for this <em>EM Analysis</em> attack, as no specific modifications are required. We prefer our custom board as it allows us to perform <em>Power Analysis</em> and <em>EM Analysis</em> conveniently at the same time.</p>
+<h2 id="location">Location</h2>
+<p>One of the most significant advantages of <em>EM Analysis</em> over <em>Power Analysis</em> is that you do not need to make a power cut in order to measure a specific component of a chip. The <em>EM Probe</em> is simply placed on top of the chip in order to measure the electromagnetic emissions. One significant disadvantage is that it is required to find a good location to place the <em>EM Probe</em> in order to measure electromagnetic emissions that are related to the cryptographic operation.</p>
+<p>Usually, a good location for the <em>EM Probe</em> is found by performing a XYZ scan across the surface of the chip. For example, this can be done in a grid of 20x20 (i.e., 400 locations) or 30x30 (i.e., 900 locations). As you can imagine, the larger the grid the longer it takes to complete.</p>
+<p>At each location a measurement is taken and the frequency spectrum is computed. This allows you to determine what frequencies are prominently present during the execution of the cryptographic operation. This activity often results in nice and interesting pictures as is shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/em-spectrum-xyz1.png" style="max-width: 20%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-spectrum-xyz2.png" style="max-width: 20%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-spectrum-xyz3.png" style="max-width: 20%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-spectrum-xyz4.png" style="max-width: 20%; width: 600px">
+    <figcaption>Spectrum (XY) for 40 MHz, 60 MHz, 80 MHz and 100 MHz</figcaption>
+</p>
+<p>For this research, we are interested in finding the location of the hardware AES engine. As far as we know, this engine is running at the same speed as the processor, which we configured to be 80 MHz. We tried out a few strategies for determining at what location the <em>EM Probe</em> picks up EM emissions related to the AES operation.</p>
+<p>For example, we performed a XY <em>Spectrum Analysis</em> with executing the AES operation and without executing it. Our hypothesis was, that using these differential measurements would allow us to determine at what location there is activity related to the AES operation. Unfortunately, after trying this, and a bunch other things, we were unable to identify a good location.</p>
+<p>Therefore, we decided to take a different approach, leveraging our super fast acquisition method, described in our <a href="/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/">previous blog post</a>. This method, based on Picoscope&rsquo;s <em>Rapid Block Mode</em>, enable us to measure thousands of encryption operations per second (i.e., 1e9 per day). This allows us to perform a <em>Known Key Correlation</em> at each location, in a reasonably sized grid, as long as we do not take too many measurements.</p>
+<p>We performed a XY scan in a 30x30 grid across the chip&rsquo;s surface (i.e., 900 locations in total). For each location, we take 1,500 averaged traces, where for each trace 1,000 measurements are averaged with the same data. In other words, for each location we have a trace set consisting of 1500 averaged traces, representing 1.5M encryption operations. We average the traces because the level of noise is much more significant than during the <em>Power Analysis</em> attack. For each location, it took ~75 seconds to acquire the trace set, which means, with some additional time required for moving the <em>EM Probe</em> across the chip&rsquo;s surface, that the entire XY scan took roughly a day to complete. This lengthy process also shows the importance of being able to automate this process.</p>
+<p>Then, for each resulting trace set, we performed a <em>Known Key Correlation</em> analysis. Whenever the EM Probe picks up EM emissions related to the AES engine&rsquo;s operation, we should see correlation peaks at a specific moment in time. Interestingly, we identified multiple, significantly different, locations on the chip&rsquo;s surface. We selected, by visually analyzing the traces, two seemingly good locations for which the intermediate correlation traces are shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/em-location-1.png" style="max-width: 100%; width: 600px">
+    <figcaption>Location A</figcaption>
+</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/em-location-3.png" style="max-width: 100%; width: 600px">
+    <figcaption>Location B</figcaption>
+</p>
+<p>The above traces show intermediate leakage at the same sample (i.e., 158), which is expected for a hardware AES accelerator. To identify the location on the grid, we summed the absolute correlation values (i.e., for each intermediate) at sample 158 for each location and plotted the result on a 30x30 grid.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/heatmap.png" style="max-width: 100%; width: 400px">
+</p>
+<p>Then, using the color map shown above, we color the locations depending on the resulting correlation value (i.e., dark is low correlation and light is high correlation). The actual location of the probe, in the real-world and on the resulting scatter plot are shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/em-location-1-real.jpg" style="max-width: 40%; width: 400px">
+    <img src="/img/esp32/sca/resized/em-location-A.png" style="max-width: 40%; width: 400px">
+    <figcaption>Position of the EM probe for location A</figcaption>
+</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/em-location-3-real.jpg" style="max-width: 40%; width: 400px">
+    <img src="/img/esp32/sca/resized/em-location-B.png" style="max-width: 40%; width: 400px">
+    <figcaption>Position of the EM probe for location B</figcaption>
+</p>
+<p>The scatter plot shows that our manual selection is within or close to the regions that show good correlation (i.e, dots are light colored). Even though there are other, potentially better, locations where we observe good correlation, we will focus only on location A and B for the remainder of this blog post.</p>
+<p><strong>Averaged traces</strong></p>
+<p>An averaged trace, where 1,000 encryption operations with the same data are averaged, is shown below for location A and B. There is no distinctive pattern visible, which shows that identifying a good location merely based on the shape of the trace is not possible. The distorted signal in the first 80 ns of the traces is related to the trigger (i.e., not related to the cryptographic operation).</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/em-location-1-trace.png" style="max-width: 100%; width: 600px">
+    <figcaption>Averaged trace for location A</figcaption>
+</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca/resized/em-location-3-trace.png" style="max-width: 100%; width: 600px">
+    <figcaption>Averaged trace for location B</figcaption>
+</p>
+<p>To analyze location A and B in more detail, we acquire for each location a trace set of 10,000 averaged traces. Each averaged trace consists of 1,000 averaged measurements during the encryption of the same input data. In total this yields us a trace set that represents 10M encryption operation in total. We measure only 200 samples, as we know this should include the AES operation. We use an acquisition speed of 500 MSa/s. The total time it took to acquire this trace set for each location is ~8 minutes.</p>
+<p>Please note, a faster method that could be used to determine if a location is good is a so-called t-test, the underlying equation used by <a href="https://csrc.nist.gov/csrc/media/events/non-invasive-attack-testing-workshop/documents/08_goodwill.pdf">Test Vector Leakage Assessment (TVLA)</a>, which is a testing methodology for evaluating the resistance of a cryptographic algorithm to side-channel leakage. It can also be perfectly used for finding the optimal locations for placing the EM Probe on the chip&rsquo;s surface. Even though we were aware of this method, we did not use it.</p>
+<h2 id="known-key-correlation">Known Key Correlation</h2>
+<p>We compute the correlation with the intermediate state, after the SBox in Round1, using the <em>Known Key Correlation</em> module from <a href="https://www.riscure.com/">Riscure</a>&rsquo;s Inspector software. This effectively mean that we target the <code>HW(SBox Out)</code> leakage model, which we already know is effective for extracting the key from the ESP32&rsquo;s AES engine.</p>
+<p>The resulting correlation trace for location A, including a zoomed version, is shown below. As expected, it shows significant correlation at sample 158. This shows that we were successful in moving the EM Probe back to the same location that was identified during the XY scan. The correlation at this point is negative.</p>
+<p style="text-align:center;">
+        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-1.png" style="max-width: 100%; width: 600px">
+        <br>
+        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-1-zoomed.png" style="max-width: 100%; width: 600px">
+        <figcaption>Known Key Correlation @ Location A</figcaption>
+</p>
+<p>The resulting correlation trace for location B, including a zoomed version, is shown below. As expected, it shows significant correlation at sample 158. This shows that we were successful in moving the EM Probe back to the same location that was identified during the XY scan. The correlation at this point is positive.</p>
+<p style="text-align:center;">
+        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-3.png" style="max-width: 100%; width: 600px">
+        <br>
+        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-3-zoomed.png" style="max-width: 100%; width: 600px">
+        <figcaption>Known Key Correlation @ Location B</figcaption>
+</p>
+<p>The correlation traces for location A and location B indicate significant correlation at a specific sample (i.e., 158). This result is different from what we obtained in our Power Analysis attack, where the leakage was spread across multiple samples. As we use the same trigger, this cannot be attributed to a jittery signal.</p>
+<p>We believe that this is related to the fact that our measured power consumption is a function of the power consumption of different components relevant to the cryptographic operation, which may leak at different clock cycles due to the propagation of data propagation path (i.e., relevant data is processed at a different point in time).</p>
+<p>On the other hand, the spatial nature of EM measurements allows to focus on a specific area of the chip. This allows leakage to be mostly found within a single sample, as most of the leaking components would have a short data propagation path between them, and would be operating on data within a shorter time frame.</p>
+<h2 id="known-key-analysis">Known Key Analysis</h2>
+<p>Using the trace sets, containing 10,000 averaged traces, we perform a known key analysis using the <em>Known Key Analysis</em> module from Riscure&rsquo;s Inspector software. This gives us an idea how many traces are required to extract the entire key.</p>
+<p>The <em>Key Rank Evolution</em> for Location A is shown below. It shows that already at 4,000 averaged traces the key bytes fully converge to zero (i.e., correct key bytes rank 1). This indicates to us that we can extract the entire key with much less than the 10,0000 averaged traces we acquired.</p>
+<p style="text-align:center;">
+        <img src="/img/esp32/sca/resized/em-rank-evolution-location-1.png" style="max-width: 100%; width: 600px">
+        <figcaption>Key Rank Evolution @ Location A</figcaption>
+</p>
+<p>The <em>Key Rank Evolution</em> for Location B is shown below. It shows that already at 6,000 averaged traces the key bytes fully converge to zero (i.e., correct key bytes rank 1). This indicates to us that we can extract the entire key with much less than the 10,0000 averaged traces we acquired.</p>
+<p style="text-align:center;">
+        <img src="/img/esp32/sca/resized/em-rank-evolution-location-3.png" style="max-width: 100%; width: 600px">
+        <figcaption>Key Rank Evolution @ Location B</figcaption>
+</p>
+<p>Based on the above <em>Key Rank Evolution</em> plots, we are confident we are able to extract the entire key without any knowledge of the key.</p>
+<h2 id="first-order-analysis">First Order Analysis</h2>
+<p>We perform a first order analysis using the <em>First Order Analysis</em> module from Riscure&rsquo;s Inspector software. This is the same type of attack an attacker would have to perform without any knowledge of the key.</p>
+<p><strong>Location A</strong></p>
+<p>For location A, we were able to extract the entire key with a little bit of brute forcing with 2500 averaged traces, in ~1.5 seconds, as is shown below. The brute forcing is required as not all the key bytes were guessed correctly.</p>
+<small>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 2500 traces
+</span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 0 with rdm: 2.0651:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:   0 (0x00), confidence: 0.1145 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 162 (0xA2), confidence: 0.0804 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  36 (0x24), confidence: 0.0662 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 245 (0xF5), confidence: 0.0643 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 0, Row 1 with rdm: 4.2601:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:  17 (0x11), confidence: 0.1164 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 154 (0x9A), confidence: 0.0537 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 233 (0xE9), confidence: 0.0525 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 215 (0xD7), confidence: 0.0521 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 0, Row 2 with rdm: 0.1037:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 1, candidate:   3 (0x03), confidence: 0.0564 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 2, candidate: 212 (0xD4), confidence: 0.0551 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  78 (0x4E), confidence: 0.0534 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:   8 (0x08), confidence: 0.0490 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 0, Row 3 with rdm: 0.9572:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:  51 (0x33), confidence: 0.0737 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  96 (0x60), confidence: 0.0605 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  55 (0x37), confidence: 0.0577 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:   2 (0x02), confidence: 0.0546 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 1, Row 0 with rdm: 2.2417:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:  68 (0x44), confidence: 0.0950 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 233 (0xE9), confidence: 0.0618 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 255 (0xFF), confidence: 0.0610 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 221 (0xDD), confidence: 0.0608 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 1, Row 1 with rdm: 0.4459:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:  85 (0x55), confidence: 0.0847 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 110 (0x6E), confidence: 0.0786 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 159 (0x9F), confidence: 0.0582 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 240 (0xF0), confidence: 0.0545 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 1, Row 2 with rdm: 1.8712:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 102 (0x66), confidence: 0.0906 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 219 (0xDB), confidence: 0.0643 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  19 (0x13), confidence: 0.0582 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 195 (0xC3), confidence: 0.0571 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 1, Row 3 with rdm: 0.2740:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 119 (0x77), confidence: 0.0657 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  76 (0x4C), confidence: 0.0616 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 188 (0xBC), confidence: 0.0583 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 246 (0xF6), confidence: 0.0576 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 2, Row 0 with rdm: 1.8463:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 136 (0x88), confidence: 0.0824 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 254 (0xFE), confidence: 0.0583 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  97 (0x61), confidence: 0.0520 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  48 (0x30), confidence: 0.0509 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 2, Row 1 with rdm: 1.5553:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 153 (0x99), confidence: 0.0831 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  67 (0x43), confidence: 0.0629 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  30 (0x1E), confidence: 0.0558 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  90 (0x5A), confidence: 0.0551 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 2, Row 2 with rdm: 1.7023:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 1, candidate:  42 (0x2A), confidence: 0.0999 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+ rank: 2, candidate: 170 (0xAA), confidence: 0.0746 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 3, candidate: 168 (0xA8), confidence: 0.0694 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 139 (0x8B), confidence: 0.0614 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 2, Row 3 with rdm: 1.5761:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 187 (0xBB), confidence: 0.0873 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  86 (0x56), confidence: 0.0658 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 186 (0xBA), confidence: 0.0631 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  11 (0x0B), confidence: 0.0611 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 3, Row 0 with rdm: 0.2054:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 204 (0xCC), confidence: 0.0805 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 182 (0xB6), confidence: 0.0773 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  12 (0x0C), confidence: 0.0675 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 132 (0x84), confidence: 0.0609 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 3, Row 1 with rdm: 2.6011:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 221 (0xDD), confidence: 0.1137 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 206 (0xCE), confidence: 0.0725 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 214 (0xD6), confidence: 0.0699 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 227 (0xE3), confidence: 0.0660 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 3, Row 2 with rdm: 2.9664:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 238 (0xEE), confidence: 0.0937 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  43 (0x2B), confidence: 0.0567 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 102 (0x66), confidence: 0.0516 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  70 (0x46), confidence: 0.0499 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 3, Row 3 with rdm: 2.1367:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 255 (0xFF), confidence: 0.1104 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  11 (0x0B), confidence: 0.0757 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:   4 (0x04), confidence: 0.0712 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 233 (0xE9), confidence: 0.0651 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Unverified key: (0x001103334455667788992abbccddeeff)
+</span></span><span style="display:flex;"><span>Preparing for key enumeration (SKEA)
+</span></span><span style="display:flex;"><span>Press abort to stop searching
+</span></span><span style="display:flex;"><span>Starting SKEA algorithm to a maximum of 30 bits
+</span></span><span style="display:flex;"><span>Wed Feb 08 15:04:19 CET 2023: explored search space of 20 bits... (2.41M keys/sec,  max remaining time: 000h 07m 24s,   ETA: Wed Feb 08 15:11:43 CET 2023)
+</span></span><span style="display:flex;"><span>Process finished after evaluating 1.90M key candidates
+</span></span><span style="display:flex;"><span>Correct key found: 00112233445566778899aabbccddeeff
+</span></span><span style="display:flex;"><span>Runtime (s): 1.5172439
+</span></span></code></pre></div></small>
+<p>When we perform the analysis on 5,000 averaged traces, we are able to extract the entire key without brute forcing in ~1.3 seconds.</p>
+<p><strong>Location B</strong></p>
+<p>For location B, we were able to extract the entire key without brute forcing with 5,000 averaged traces, in ~1.3 seconds, as is shown below.</p>
+<small>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 5000 traces
+</span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 0 with rdm: 1.9495:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:   0 (0x00), confidence: 0.0817 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 127 (0x7F), confidence: 0.0581 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 201 (0xC9), confidence: 0.0529 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 250 (0xFA), confidence: 0.0522 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 0, Row 1 with rdm: 2.5242:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:  17 (0x11), confidence: 0.0804 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:   2 (0x02), confidence: 0.0533 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 215 (0xD7), confidence: 0.0491 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:   7 (0x07), confidence: 0.0388 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 0, Row 2 with rdm: 3.3484:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:  34 (0x22), confidence: 0.0810 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  49 (0x31), confidence: 0.0470 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  63 (0x3F), confidence: 0.0414 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  57 (0x39), confidence: 0.0407 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 0, Row 3 with rdm: 0.1426:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:  51 (0x33), confidence: 0.0454 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  33 (0x21), confidence: 0.0440 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 193 (0xC1), confidence: 0.0410 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 239 (0xEF), confidence: 0.0409 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 1, Row 0 with rdm: 3.6023:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:  68 (0x44), confidence: 0.0927 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 249 (0xF9), confidence: 0.0525 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  87 (0x57), confidence: 0.0448 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  98 (0x62), confidence: 0.0447 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 1, Row 1 with rdm: 2.2057:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate:  85 (0x55), confidence: 0.0806 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 204 (0xCC), confidence: 0.0559 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  25 (0x19), confidence: 0.0480 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  22 (0x16), confidence: 0.0424 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 1, Row 2 with rdm: 2.2359:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 102 (0x66), confidence: 0.0823 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 109 (0x6D), confidence: 0.0561 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 105 (0x69), confidence: 0.0523 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  53 (0x35), confidence: 0.0483 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 1, Row 3 with rdm: 3.5057:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 119 (0x77), confidence: 0.0911 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  72 (0x48), confidence: 0.0520 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  43 (0x2B), confidence: 0.0450 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  32 (0x20), confidence: 0.0432 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 2, Row 0 with rdm: 2.4459:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 136 (0x88), confidence: 0.0775 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  13 (0x0D), confidence: 0.0503 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 174 (0xAE), confidence: 0.0479 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  53 (0x35), confidence: 0.0474 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 2, Row 1 with rdm: 2.3875:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 153 (0x99), confidence: 0.0636 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  21 (0x15), confidence: 0.0401 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  87 (0x57), confidence: 0.0372 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 240 (0xF0), confidence: 0.0363 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 2, Row 2 with rdm: 2.8678:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 170 (0xAA), confidence: 0.0772 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 198 (0xC6), confidence: 0.0455 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 221 (0xDD), confidence: 0.0445 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 204 (0xCC), confidence: 0.0443 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 2, Row 3 with rdm: 4.1119:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 187 (0xBB), confidence: 0.0884 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  25 (0x19), confidence: 0.0445 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 252 (0xFC), confidence: 0.0430 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 115 (0x73), confidence: 0.0417 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 3, Row 0 with rdm: 1.1710:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 204 (0xCC), confidence: 0.0678 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  31 (0x1F), confidence: 0.0546 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 209 (0xD1), confidence: 0.0528 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 160 (0xA0), confidence: 0.0522 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 3, Row 1 with rdm: 1.2794:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 221 (0xDD), confidence: 0.0710 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 198 (0xC6), confidence: 0.0574 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 145 (0x91), confidence: 0.0489 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 178 (0xB2), confidence: 0.0402 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 3, Row 2 with rdm: 2.2306:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 238 (0xEE), confidence: 0.0632 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate:  13 (0x0D), confidence: 0.0421 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate: 234 (0xEA), confidence: 0.0414 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate: 108 (0x6C), confidence: 0.0394 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Best score for Round 0: Key: Column 3, Row 3 with rdm: 4.4732:
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ rank: 1, candidate: 255 (0xFF), confidence: 0.0998 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- rank: 2, candidate: 154 (0x9A), confidence: 0.0504 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 3, candidate:  17 (0x11), confidence: 0.0444 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- rank: 4, candidate:  86 (0x56), confidence: 0.0419 at position: 158
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span>Unverified key: (0x00112233445566778899aabbccddeeff)
+</span></span><span style="display:flex;"><span>Process finished after evaluating 1.00 key candidates
+</span></span><span style="display:flex;"><span>Correct key found: 00112233445566778899aabbccddeeff
+</span></span><span style="display:flex;"><span>Runtime (s): 1.3346911
+</span></span></code></pre></div></small>
+<p>The level of correlation is quite similar for both locations, even though the probe is on a significantly different location on the chip&rsquo;s surface. Optimizing the analysis using a faster tool like <a href="https://github.com/Riscure/Jlsca">Jlsca</a> is not required as the analysis required to extract the entire key is fast enough in Riscure&rsquo;s Inspector.</p>
+<h2 id="final-words">Final words</h2>
+<p>It took us longer to extract the entire key for <em>EM Analysis</em>, from start to end, than <em>Power Analysis</em>. The most time consuming activities include finding a good location for placing the <em>EM Probe</em> and a slight increase in the required (averaged) measurements that are required. Still, we are able to extract the entire key in less than a day.</p>
+<p>It&rsquo;s really target dependent if <em>EM Analysis</em> or <em>Power Analysis</em> is preferred. For example, the target modifications required for <em>Power Analysis</em> may simply be too complex (e.g., complex PCB, complex SoC, etc.) in order to measure the power efficiently. On the other hand, placing the <em>EM Probe</em> on a location where the EM emissions can be measured may be not trivial (e.g., heat sinks, stacked chips, shields, etc.).</p>
+<p>We believe there are definitely opportunities to improve our <em>EM Analysis</em> by:</p>
+<ul>
+<li>finding a better location (i.e., using a higher resolution grid)</li>
+<li>using different EM Probe tips</li>
+<li>using different EM probes (e.g., <a href="https://www.langer-emv.de/en/category/near-field-microprobe-sets-h-and-e-field/69">Langer Microprobe</a>)</li>
+<li>making invasive modifications to the ESP32 chip (e.g., decapping)</li>
+<li>take measurements from the back-side of the chip (requires decapping)</li>
+<li>high-end oscilloscope</li>
+<li>analog filters</li>
+<li>pre-processing of traces</li>
+<li>&hellip;</li>
+</ul>
+<p>Needless to say, some of the above improvements may also yield disadvantages, such as an increased attack complexity, requirements on expertise, requirement on tooling, etc.</p>
+<p>Feel free to reach out for questions or remarks related to this research. As always, we are available to give training related to our research, during which you will gain hands-on experience exploiting the vulnerabilities described in this blog post.</p>
+<p>- Raelize<span style="color:yellow">.</span></p>
+
+        </div>
+        
+        
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+
+
+</body>
+
+</html>
