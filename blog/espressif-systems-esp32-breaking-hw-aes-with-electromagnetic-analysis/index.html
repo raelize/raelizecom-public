@@ -176,14 +176,18 @@
 <p>A diagram of the power analysis setup that we used is shown below.</p>
 <p style="text-align:center;">
     <img src="/img/esp32/sca/em-setup.png" style="max-width: 100%; width: 800px">
+    <figcaption>EM Analysis setup</figcaption>
 </p>
 <p>The actual setup in our lab is shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-setup-real.jpg" style="max-width: 100%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-setup-real.jpg" style="max-width: 45%; width: 600px">
+    <img src="/img/esp32/sca/em_setup_real_zoomed.jpg" style="max-width: 45%; width: 600px">
+    <figcaption>EM Analysis setup</figcaption>
 </p>
 <p>We use <a href="https://www.riscure.com/">Riscure</a>&rsquo;s FiPy to control the setup during the acquisition. This is a Python framework that is configured through the browser and can be used to configure the EM Probe station. The menu to configure the EM Probe Station is shown below.</p>
 <p style="text-align:center;">
     <img src="/img/esp32/sca/resized/em-fipy.png" style="max-width: 100%; width: 600px">
+    <figcaption>EM Probe Station (XYZ table) control</figcaption>
 </p>
 <p>We define a square grid by setting three reference points: top left corner (A), to right corner (B) and bottom right corner (C). Even though this Python framework is typically used for Fault Injection attacks, it can be used conveniently for SCA acquisition as well.</p>
 <p>Needless to say, we prefer to use our custom board, even though we could use a standard development board for this <em>EM Analysis</em> attack, as no specific modifications are required. We prefer our custom board as it allows us to perform <em>Power Analysis</em> and <em>EM Analysis</em> conveniently at the same time.</p>
