@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Espressif ESP32: Glitching The OTP Data Transfer</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.111.2">
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <hr>
+        <h1>Espressif ESP32: Glitching The OTP Data Transfer</h1>
+        <p>Friday, Mar 10, 2023</p>
+        <hr>
+        
+      </div>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="post-single-content" background-color=0xff>
+          <p>Modern System-on-Chips (SoCs) include security critical features which are often configured securely using One-Time Programmable (OTP) bits, often implemented using electronic fuses (i.e., <a href="https://en.wikipedia.org/wiki/EFuse">eFuses</a>). Most SoCs will transfer these configuration bits from OTP memory to dedicated shadow registers from where they will be consumed by either hardware modules (e.g. cryptographic engines) or software (e.g. ROM code). These bits must be transferred correctly during boot to ensure the SoC is configured as intended. This mechanism is referred to by us in the remainder of this blog post as the <em>OTP Data Transfer</em> or simply the <em>OTP Transfer</em>. When the <em>OTP Transfer</em> is completed, the SoC is assumed to operate as expected, according to the supplied (security) configuration. However, what if we can break this fundamental assumption?</p>
+<p>Fault Injection (FI) attacks have become increasingly popular as a means of breaking into devices, such as consoles, especially when no software vulnerabilities have yet been identified. These attacks are typically used to manipulate software control flow, but they can also impact the intended behavior of functionality implemented purely in hardware, including the <em>OTP Transfer</em>.</p>
+<p>During our <a href="https://raelize.com/upload/research/2019/2019_BlueHat-IL_Hardening-Secure-Boot-on-Embedded-Devices-for-Hostile-Environments_NT-AS-CM.pdf">presentation</a> at Blue Hat IL 2019, we introduced the concept of glitching the <em>OTP Data Transfer</em> of modern chips. At that time, we did not focus on any particular target. However, since then, <a href="https://limitedresults.com/2019/11/pwn-the-esp32-forever-flash-encryption-and-sec-boot-keys-extraction/">LimitedResults</a> glitched the OTP transfer of the ESP32 using Voltage Fault Injection in order to extract the Secure Boot and Flash Encryption keys. To further explore this technique, we decided to apply Electromagnetic Fault Injection (EMFI), which offers several notable advantages.</p>
+<p>In this blog post, we describe how we were able to successfully execute an EMFI attack on the OTP transfer process of the ESP32 using commercially available tooling. We <a href="https://raelize.com/upload/research/2022/hardwear_io_US2022_-_Breaking_SoC_Security_by_Glitching_OTP_Data_Transfers_v1.0.pdf">presented</a> this work at <a href="https://hardwear.io/usa-2022/speakers/cristofaro-mune.php">hardwear.io USA 2022</a>.</p>
+<p>It&rsquo;s important to point out, we performed this attack on the original ESP32, we did not test any other ESP32 chip. Espressif actually updated the security architecture of the original ESP32, resulting in the ESP32-V3, which is hardened against Fault Injection attacks. Espressif released two advisories (<a href="https://www.espressif.com/en/news/Espressif_Security_Advisory_Concerning_Fault_Injection_and_Secure_Boot">CVE-2019-15894</a> and <a href="https://www.espressif.com/en/news/Security_Advisory_Concerning_Fault_Injection_and_eFuse_Protections">CVE-2019-17391</a>) providing more details about the changes. Interestingly, in line with this Espressif&rsquo;s advisories, <a href="https://donjon.ledger.com/">Ledger</a>&rsquo;s researchers found that the ESP32-V3 is indeed hardened against Fault Injection attacks. You can find more information on this in their <a href="https://www.blackhat.com/us-22/briefings/schedule/#unlimited-results-breaking-firmware-encryption-of-esp-v-26345">presentation</a> or <a href="https://eprint.iacr.org/2023/090.pdf">paper</a>).</p>
+<h4 id="otp-memory">OTP Memory</h4>
+<p>Let&rsquo;s take a moment to discuss OTP memory. Most chips, notably SoCs, include OTP memory, which is used to store configuration bits and cryptographic material, such as keys. There are a variety of different technologies that can be used to implement OTP memory (e.g. eFuse, Anti-fuse, Floating gate-based, etc.). From a conceptual point of view, they typically share at least one characteristic, once a bit is set to one (1), it cannot be set to zero (0) any more. This means, once a security feature is enabled using a dedicated OTP bit, it cannot be disabled any more.</p>
+<p>The data from OTP memory is typically not directly consumed (i.e., read) from OTP memory. There&rsquo;s often a dedicated OTP controller implemented around the OTP PHY in order to read and write to the OTP memory. Depending on the chip the bits may be transferred to intermediate shadow registers or directly to the register of the destination IP. These intermediate transfers are often done early during boot, as the values configure security critical features, such as Secure Boot.</p>
+<p>Some of the data may be actually accessible by the CPU, which often means the shadow registers containing such information are memory mapped. A diagram visualizing a potential OTP memory design of a chip is shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/design.png" style="max-width: 100%; width: 600px">
+    <figcaption>Data Path of OTP Memory</figcaption>
+</p>
+<p>The above design is potentially vulnerable to several Fault Injection attacks. For example, an attacker can inject a glitch when the OTP PHY is read, OTP memory is transfer and OTP memory is stored. Then, each time the hardware of CPU accesses these bits, whether from dedicated or shadow registers, an attacker can glitch it again. This shows the important of data integrity at the moment of transfer and moment of rest. If such integrity is not assured adequately, it provides an attacker an opportunity, one of which is described in this blog post.</p>
+<h4 id="target">Target</h4>
+<p>During this research we targeted the original ESP32 in a 6mm x 6mm package (i.e., <code>D0WDQ6</code>) as is shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/target.png" style="max-width: 100%; width: 300px">
+    <figcaption>ESP32 DevKitC development board & ESP32-D0WDQ6</figcaption>
+</p>
+<p>The chip itself is housed on a DevKitC development board which are publicly available.</p>
+<h4 id="test-application">Test application</h4>
+<p>We programmed a bootloader that prints the entire OTP memory from shadow registers as is shown in the snippet below for block 0 (i.e., 28 bytes in total).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">uint32_t</span> block0[<span style="color:#ae81ff">7</span>] <span style="color:#f92672">=</span> { <span style="color:#ae81ff">0</span> };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>block0[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF5A000</span>);
+</span></span><span style="display:flex;"><span>block0[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF5A004</span>);
+</span></span><span style="display:flex;"><span>block0[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF5A008</span>);
+</span></span><span style="display:flex;"><span>block0[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF5A00C</span>);
+</span></span><span style="display:flex;"><span>block0[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF5A010</span>);
+</span></span><span style="display:flex;"><span>block0[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF5A014</span>);
+</span></span><span style="display:flex;"><span>block0[<span style="color:#ae81ff">6</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">*</span>(<span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>)(<span style="color:#ae81ff">0x3FF5A018</span>);
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>The expected output (i.e., no glitch) of this test application is shown below.</p>
+<small>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (expected)
+</span></span></span></code></pre></div></small>
+<p>Any change in the expected output is an indication were were successful in affecting the OTP transfer.</p>
+<h4 id="setup">Setup</h4>
+<p>We used <a href="https://www.riscure.com/">Riscure</a>&rsquo;s <a href="https://www.riscure.com/products/em-fi-transient-probe/">EM-FI Transient Probe</a> to inject EM glitches into the target&rsquo;s circuitry. Riscure&rsquo;s <a href="https://getquote.riscure.com/en/quote/2101064/em-probe-station.htm">EM Probe Station</a> allows us to move the EMFI Probe accross the chip&rsquo;s surface.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/setup-diagram.png" style="max-width: 100%; width: 400px">
+    <figcaption>EMFI Setup Diagram</figcaption>
+</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/setup-real.png" style="max-width: 49%; width: 400px">
+    <img src="/img/esp32/otp/setup-real-zoomed.png" style="max-width: 49%; width: 400px">
+    <figcaption>Actual EMFI Setup</figcaption>
+</p>
+<p>The advantages of injecting injecting EM glitches, compared to voltage glitches, is that the required target modifications are limited and that it&rsquo;s possible to affect specific parts of the chip&rsquo;s circuitry. On the other hand, there is a disadvantage as well, as it&rsquo;s required to identify a vulnerable location where the <em>OTP Transfer</em> can be affected. However, using the Riscure setup, we were able to perform our experiments at different locations automatically.</p>
+<h4 id="timing">Timing</h4>
+<p>The glitches are timed based of the reset signal. The attack window we used, is the time between reset and the time we observe the first activity on the flash lines. This yield an attack window of about 1.25 ms.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/timing_flash.png" style="max-width: 100%; width: 400px">
+    <figcaption>Attack window (flash activity)</figcaption>
+</p>
+<p>We decreased the attack window slightly by injecting only glitches before the first print on the <code>UART</code> interface is observed.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/timing_uart.png" style="max-width: 100%; width: 400px">
+    <figcaption>Attack window (UART activity)</figcaption>
+</p>
+<p>This yielded us an attack window of roughly 969 μs which we consider not too small and not too large.</p>
+<h4 id="location">Location</h4>
+<p>We scanned the entire surface of the chip in a 30x30 grid while injecting a glitches during boot. This means, for each experiment, we performed a reset of the chip.</p>
+<p>We performed ~60,000 experiments of which a plot is shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/xy1.png" style="max-width: 24%; width: 200px">
+    <img src="/img/esp32/otp/xy2.png" style="max-width: 24%; width: 200px">
+    <img src="/img/esp32/otp/xy3.png" style="max-width: 24%; width: 200px">
+    <img src="/img/esp32/otp/xy4.png" style="max-width: 24%; width: 200px">
+    <figcaption>XY results (1: all, 2: expected, 3: resets, 4: exceptions)</figcaption>
+</p>
+<p>Interestingly, we observed 9 successful glitches for which the output is shown below.</p>
+<small>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (no glitch)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched)
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched)
+</span></span></span></code></pre></div></small>
+<p>These are actually located at four different locations as is shown below. We decided to fix the EM Probe at the location where we observed most of the successful glitches.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/xy5.png" style="max-width: 49%; width: 400px">
+    <img src="/img/esp32/otp/xy5-arrow.png" style="max-width: 49%; width: 400px">
+    <figcaption>XY results (1: successful experiments, 2: fixed location)</figcaption>
+</p>
+<p>Fixing the EM Probe at a specific location decreases the glitch parameter search space. Of course, if a bad location is chosen, then it will be impossible to get a successful glitch. However, as we already observed successful glitches, we were confident that this would be the right move.</p>
+<h4 id="exploration">Exploration</h4>
+<p>We performed ~165,000 experiments with a glitch power randomized between 50% and 100%. The results of this glitch campaign are shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/success.png" style="max-width: 100%; width: 600px">
+    <figcaption>Successful glitches</figcaption>
+</p>
+<p>When we analyze the successful glitches, we see that we are able to perform bit-level corruptions inside the data stored in the shadow registers as is shown below.</p>
+<small>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (no glitch)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- Block 0: 00000100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched)
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- Block 0: 00020100 a3d2c0e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched)
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- Block 0: 00020100 a3d2c1e0 0001c889 0000a000 00000132 00000000 00000014 (glitched)
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000032 00000000 00000014 (glitched)
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000004 (glitched)
+</span></span></span></code></pre></div></small>
+<p>When we analyze the area where we observe the successful glitches, we see that there are specific moments in time where we are able to affect the data stored in the shadow registers.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/success-zoomed.png" style="max-width: 100%; width: 600px">
+    <figcaption>Successful glitches</figcaption>
+</p>
+<p>As expected, as it&rsquo;s likely that the OTP memory is copied into the shadow registers sequentially, we will need to glitch earlier if we want to corrupt a bit at the start of block 0 and later when we want to corrupt a bit at the end. This timing dependency is visualized in the plot below.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/timing1.png" style="max-width: 100%; width: 600px">
+    <figcaption>Timing dependency</figcaption>
+</p>
+<small>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (no glitch)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span><span style="color:#f92672">- Block 0: 00000100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched; early)
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000004 (glitched; late)
+</span></span></span></code></pre></div></small>
+<p>To conclude our analysis, using an EM glitch, we are able to affect the <em>OTP Data Transfer</em>, at the bit-level, which may allow us to disable security critical features like Secure Boot. At this point in time, we do not know if all the (security) features actually consume these modified bits. In principle, they could be reading them from a completely different location (i.e., register). Therefore, we needed to perform the actual attacks in order to confirm that we are successful in disabling or reconfiguring security critical features.</p>
+<h4 id="attack-1-reading-secure-boot-key">Attack 1: Reading Secure Boot Key</h4>
+<p>One of the first attacks we performed is to read out the Secure Boot Key. This key is stored in the <code>BLK2</code> region of the OTP memory and cannot be read as the read protection for this region should be enabled. Note, for this version of the ESP32 chip, the Secure Boot key is a symmetric key (i.e., shared secret). An attacker with access to this key is able to sign arbitrary payloads (e.g., bootloader).</p>
+<p>We prepared the target by setting the following fuses:</p>
+<ul>
+<li><code>ABS_DONE0</code> for enabling Secure Boot</li>
+<li><code>SECURE_BOOT_KEY</code> (BLK2) for setting the Secure Boot key</li>
+<li><code>RD_DIS_BLK2</code> for enabling read protection of Secure Boot key</li>
+</ul>
+<p>The goal is to modify the <code>RD_DIS_BLK2</code> which will remove the read protection of the <code>BLK2</code> region, which allows us to read out the Secure Boot key.</p>
+<p>We programmed a correctly signed bootloader that prints all the fuses, this allowed us to identify a successful attack. Also, it allows us to identify if we glitch too early (i.e., we modify a bit before the read protection bit) and similarly when we are too late.</p>
+<p>We performed 450,000 experiments, which resulted in 189 successful glitches where we were able to read out the Secure Boot key.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/attack-1-success.png" style="max-width: 100%; width: 600px">
+    <figcaption>Attack 1 (Successful glitches)</figcaption>
+</p>
+<p>As you can see in the glitched output below, the read protection bit changed from 1 to 0 which allowed us to read out the Secure Boot key.</p>
+<small>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ No Glitch
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ Block 2: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">- Successful Glitch
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- Block 0: 00000100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">- Block 2: 570b8325 8df3b44a 8dbe92d8 934a7e19 b9e116d4 8c0b50fc ebe4b056 688860da
+</span></span></span></code></pre></div></small>
+<p>When we focus the glitch parameters around the region where we observe the successful glitches, we have a success rate of roughly 1%, which allows us to read out the Secure Boot key within minutes.</p>
+<h4 id="attack-2-bypass-secure-boot--read-secure-boot-key">Attack 2: Bypass Secure Boot &amp; Read Secure Boot Key</h4>
+<p>Of course, an attacker willing to extract the Secure Boot key, may also need to bypass Secure Boot itself. Therefore, we decided to test if it&rsquo;s possible to modify two OTP configuration bits, one to disable Secure Boot and one to read out the Secure Boot key.</p>
+<p>We prepared the target by setting the following fuses:</p>
+<ul>
+<li><code>ABS_DONE0</code> for enabling Secure Boot</li>
+<li><code>SECURE_BOOT_KEY</code> (<code>BLK2</code>) for setting the Secure Boot key</li>
+<li><code>RD_DIS_BLK2</code> for enabling read protection of Secure Boot key</li>
+</ul>
+<p>The goals is to modify the <code>ABS_DONE0</code> and <code>RD_DIS_BLK2</code> bits in order to disable Secure Boot and remove the read protection of the <code>BLK2</code> region, which allows us to read out the Secure Boot key.</p>
+<p>We programmed an <em>invalid bootloader</em> that prints all the fuses, this allowed us to identify that we bypassed Secure Boot and that we modified the <code>RD_DIS_BLK2</code> correctly.</p>
+<p>As you can imagine, for this attack to succeed, we needed two glitches, one to changed <code>RD_DIS_BLK2</code> and one to change <code>ABS_DONE0</code>. We timed the first glitch from reset and the second glitch from the moment in time we inject the first glitch.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/attack-2-success.png" style="max-width: 100%; width: 800px">
+    <figcaption>Attack 2 (Successful glitches)</figcaption>
+</p>
+<p>When we focus the glitch parameters around the region where we observe the successful glitches, we have a success rate of roughly ~0.05%, which allows us to bypass Secure Boot and read out the Secure Boot key within a hour.</p>
+<h4 id="attack-3-bypass-flash-encryption-bypass-secure-boot--read-keys">Attack 3: Bypass Flash Encryption, Bypass Secure Boot &amp; Read Keys</h4>
+<p>Espressif recommends, besides Secure Boot, to also enable Flash Encryption. When this feature is enabled, the entire bootloader is encrypted, which prevents an attacker from making trivial modifications (e.g., to read out the fuses or the Secure Boot key).</p>
+<p>We decided to devise a method for levaring the vulnerable <em>OTP transfer</em> in order to bypass Secure Boot, bypass Flash Encryption and read out both Secure Boot key and Flash Encryption key. We tried a few interesting things, but we failed to succeed.</p>
+<p>Let&rsquo;s try something else&hellip;</p>
+<h4 id="attack-4-bypass-jtag-protection">Attack 4: Bypass JTAG Protection</h4>
+<p>The ESP32 contains a <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/jtag-debugging/index.html">hardware JTAG interface</a> which can be used for a wide variety of purposes (e.g. RW memory, debug software, etc.). This interface allows an attacker to access the internals of the ESP32 and access the unencrypted flash. Therefore, there is a dedicated security feature to disable the JTAG interface, which is enabled with a dedicated OTP bit: <code>DISABLE_JTAG</code>. You probably already realize where this is going&hellip;</p>
+<p>We prepared the target by setting the following fuses:</p>
+<ul>
+<li><code>ABS_DONE0</code> for enabling Secure Boot</li>
+<li><code>SECURE_BOOT_KEY</code> (<code>BLK2</code>) for setting the Secure Boot key</li>
+<li><code>RD_DIS_BLK2</code> for enabling read protection of Secure Boot key</li>
+<li><code>FLASH_CRYPT_CNT</code> for enabling Flash Encryption</li>
+<li><code>FLASH_ENCRYPTION_KEY</code> (<code>BLK1</code>) for setting the Flash Encryption key</li>
+<li><code>RD_DIS_BLK1</code> for enabling read protection of Flash Encryption key</li>
+<li><code>DISABLE_JTAG</code> for disabling the JTAG interface</li>
+</ul>
+<p>Needless to say, the above configuration, the is the configuration that Espressif recommended for security sensitive devices.</p>
+<p>The goal of this attack is to open the JTAG interface (i.e., unset <code>DISABLE_JTAG</code>) during the <em>OTP Transfer</em>. Then, with the opened JTAG, extract the plaintext firmware in order to bypass Flash Encryption. Once unlocked, the JTAG interface can also be used to execute arbitrary code (i.e., bypass Secure Boot).</p>
+<p>We programmed a valid bootloader, but it&rsquo;s no so relevant for this attack as we are aiming to affect hardware instead of software.</p>
+<p>We performed 250,000 experiments, which resulted in 14 successful glitches where we were able to enable the JTAG interfaces in order to extract the unencrypted flash contents.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/attack-4-success.png" style="max-width: 100%; width: 600px">
+    <figcaption>Attack 4 (Successful glitches)</figcaption>
+</p>
+<p>In the screenshot below we demonstrate reading out the unencrypted flash contents using the JTAG interface. We used a standard FT2232 from FTDI to interface with the JTAG interface using the OpenOCD software found in Espressif&rsquo;s ESP-IDF.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/otp/attack-4-success2.png" style="max-width: 100%; width: 600px">
+    <figcaption>Attack 4 (Reading out the flash contents)</figcaption>
+</p>
+<p>When we focus the glitch parameters around the region where we observe the successful glitches, we have a success rate of roughly ~0.12%, which allows us to unlock the JTAG interface within a few minutes.</p>
+<h2 id="final-words">Final words</h2>
+<p>Using an EM glitch on the <em>OTP transfer</em>, we were successful in bypassing most of the security features of the original ESP32 chip. By enabling the JTAG interface, by modifying the OTP bit responsible for disabling it, we were able to bypass the <em>Secure Boot</em> and <em>Flash Encryption</em>, using a single glitch.</p>
+<p>This type of attack is not specific for Espressif&rsquo;s ESP32 chip and may be applicable chips made by other manufacturers as well. Espressif actually updated the security architecture of the original ESP32, resulting in the ESP32-V3, where the OTP transfer is hardened against Fault Injection attacks. Espressif released two advisories (<a href="https://www.espressif.com/en/news/Espressif_Security_Advisory_Concerning_Fault_Injection_and_Secure_Boot">#1</a> and <a href="https://www.espressif.com/en/news/Security_Advisory_Concerning_Fault_Injection_and_eFuse_Protections">#2</a>) providing more details about the changes. Furthermore, for their <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/security/secure-boot-v2.html">Secure Boot v2</a> scheme, they use an asymmetric algorithm which requires no shared secret to be stored in OTP memory for assuring the integrity of the contents stored in external flash. Hence Secure Boot cannot be bypassed by extracting a secret from OTP memory.</p>
+<p>Interestingly, research conducted by <a href="https://donjon.ledger.com/">Ledger</a>&rsquo;s team has found that the ESP32-V3 seems to be hardened against the attack described in this blog post. You can find more information on this in their <a href="https://www.blackhat.com/us-22/briefings/schedule/#unlimited-results-breaking-firmware-encryption-of-esp-v-26345">presentation</a> or <a href="https://eprint.iacr.org/2023/090.pdf">paper</a>).</p>
+<p>When Fault Injection attacks are considered by a chip&rsquo;s threat model, the integrity of data, especially when transferred from one location to another, cannot be guaranteed any more. Therefore, in order to mitigate this attack, great care must be taken to assure the integrity of the (most) security critical data stored in OTP memory. This must be done at rest when the chip is off, at boot when the chip is starting and at runtime when the software is running.</p>
+<p>Feel free to reach out for questions or remarks related to this research. As always, we are available to give training on the research we perform, during which you will gain hands-on experience exploiting the vulnerabilities described in this blog post.</p>
+<p>- Raelize<span style="color:yellow">.</span></p>
+
+        </div>
+        
+        
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+
+
+</body>
+
+</html>
