@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Measuring Billions of Traces Per Day using Segmented Memory</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize company website!">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.111.3">
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+
+
+<section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <hr>
+        <h1>Measuring Billions of Traces Per Day using Segmented Memory</h1>
+        <p>Monday, Apr 3, 2023</p>
+        <hr>
+        
+      </div>
+      <div class="col-lg-8 offset-lg-2">
+        <div class="post-single-content" background-color=0xff>
+          <p>Side Channel Analysis (SCA) attacks generally speaking consisting of three phases: acquisition, pre-processing and analysis. The time it takes to extract a key from an embedded devices is the sum of these three phases combined. In our previous blog posts about <a href="https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/">Power Analysis</a> and <a href="https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/">Electromagnetic Analysis</a>, we discussed how we extracted the key from the ESP32&rsquo;s hardware AES accelerator. In this blog post we discuss in more details how we were able to perform a super fast acquisition using our <a href="https://www.picotech.com/oscilloscope/3000/picoscope-3000-oscilloscope-specifications">Piscoscope</a> oscilloscope.</p>
+<p>The time required for the acquisition phase depends on the overall time needed for performing <em>repeated</em> cryptographic operations. The cryptographic operation itself may be fast, like it typically is for a hardware implementation, other factors may slow down the acquisition speed significantly. For instance, if the interface towards the cryptographic operation is slow (e.g., a reboot is required every so many operations), then the acquisition speed is going to be affected negatively. However, often, at least under certain conditions, the hardware cryptographic accelerator can be accessed directly by writing into its registers. In such case, the implementation may not be the bottleneck, but rather the approach that&rsquo;s taken for communicating with the target and acquiring the traces.</p>
+<p>The time required for the pre-processing phase depends on the actual processing to be performed. For example, an unprotected cryptographic implementation, often does not need any pre-processing whatsoever. On the other hand, a protected cryptographic engine may require alignment or other pre-processing steps, aimed at increasing the signal to noise ratio (SNR), before performing the analysis. Of course, besides the pre-processing operations themselves, the amount of traces being processed has an impact on the overall pre-processing time.</p>
+<p>The time required for the analysis phase mostly depends on the computations being performed, e.g., Correlation Power Analysis (CPA), as well as the amount of traces.</p>
+<p>It&rsquo;s important to point out that the acquisition phase depends on the target, while the pre-processing and analysis phases are performed off-target. In other words, the highest acquisition speed achievable is defined by the target&rsquo;s speed, while the highest pre-processing/analysis speed achievable is defined by the speed of the software that&rsquo;s used. The goal of a fast and efficient acquisition test bench minimizes the overhead during the overhead during the acquisition, pre-processing and analysis phase.</p>
+<p>In this blog post we describe, in more detail than already done in our previous blog posts on SCA attacks, our approach for speeding up the acquisition phase compared to traditional methods typically used by academia and industry. Note, we did not invent this approach ourselves, moreover, it&rsquo;s even a standard oscilloscope feature (see <a href="https://www.keysight.com/us/en/assets/7018-01736/data-sheets/5989-7833.pdf">Keysight</a> and <a href="https://www.picotech.com/helpfiles/6000a-api/usingrapidblockmode.html">Picoscope</a>), which has already been used and/or mentioned by several academic papers (e.g., <a href="https://ieeexplore.ieee.org/document/8383902">Moschos et. al.</a>) and in industry tooling (e.g., Riscure&rsquo;s <a href="https://github.com/Riscure/Jlsca">Jlsca</a>). However, as far as we know, nobody has really shed any bright light yet on how fast cryptographic operations can be measured.</p>
+<h2 id="segmented-memory">Segmented Memory</h2>
+<p>The typical method for acquiring a measurement during a cryptographic operation is to perform the following</p>
+<ol>
+<li>Arm the scope</li>
+<li>Send the input data</li>
+<li>Set a signal, e.g., a GPIO pin</li>
+<li>Start the cryptographic operation</li>
+<li>Obtain the output data</li>
+<li>Receive measurement from scope</li>
+<li>Go to step 1</li>
+</ol>
+<p>After the cryptographic operation is completed, the measurement is sent back to the computer and available for the pre-processing and analysis phases. With such an approach, it&rsquo;s possible to acquire millions of traces per day, which is often sufficient for extracting a key from an unprotected target.</p>
+<p>The time required for a single encryption performed with the ESP32&rsquo;s hardware AES accelerator is shown below and is about 3μs. The red signal is a GPIO pin that&rsquo;s set high just before the API call to start the cryptographic engine and set low when this API call returns. Such signal is commonly referred to as a <em>trigger</em>.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca2/segmented_memory_1_iterations_with_timing.png" style="max-width: 80%; width: 600px">
+    <figcaption>Time required for 1 single encryption</figcaption>
+</p>
+<p>The time between two consecutive cryptographic operations (i.e., the overhead) is quite significant, i.e., about 16ms) as shown in the picture below. In other words, each measurement takes roughly 16ms to complete, even though the cryptographic operation only takes a fraction of that.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca2/segmented_memory_1_iterations_with_timing_between_encryptions.png" style="max-width: 80%; width: 600px">
+    <figcaption>Time required between the start of two consecutive encryptions</figcaption>
+</p>
+<p>Needless to say, even though often sufficiently fast, in some situations, one cannot afford to wait a day, or, the leakage is so minimal that many millions of traces may be required for extracting the key. Hence, a faster acquisition speed is required. The most significant slow-down for this approach is the overhead introduced by the communications that occurs for each of the measurements. This includes both the communications with the oscilloscope and the communications with the target.</p>
+<p>Interestingly, most oscilloscopes, support an efficient acquisition mode, referred to by Keysight as <em>Segmented Memory Acquisition</em> and by Picoscope as <em>Rapid Block Mode</em>. In such modes, the internal memory of the oscilloscope is segmented, i.e., divided in multiple segments, where each segment can be used to store a single measurement. This enables a user to measure multiple cryptographic operations that are all stored inside the oscilloscope&rsquo;s internal memory. Even better, the user can define which samples, before or after the trigger, are to be stored for each of the measurements being performed. This allows the user to only store the relevant samples, i.e., the samples that leak, into dedicated segments. Then, once the internal memory is filled up, the measurements are communicated back to the user&rsquo;s computer system. This minimizes both the overhead of communicating with the oscilloscope and the overhead of communicating with the target.</p>
+<p>By using segmented memory, the time between two consecutive cryptographic operations, as is shown in the picture below, can be significantly reduced to less than a μs compared to the 16ms of a singular acquisition.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca2/segmented_memory_20_iterations_with_timing.png" style="max-width: 100%; width: 600px">
+    <figcaption>Time between the start of two cryptographic operations</figcaption>
+</p>
+<p>Of course, the overhead of communicating still needs to be added, as the segmented buffers need to be retrieved from the oscilloscope. As is visible in the picture below, the overhead between two consecutive batches of cryptographic operations is still similar, even though in absolute time forty (40) cryptographic operations have been performed instead of two (2).</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/sca2/segmented_memory_20_iterations_with_timing_between_batches.png" style="max-width: 100%; width: 600px">
+    <figcaption>Time it takes between the start of two consecutive batches of 20 encryptions</figcaption>
+</p>
+<p>Note, the number of performing twenty (20) cryptographic operations, of which the measurement is stored in twenty (20) segments, is just taken as an example. Depending on the amount of samples to be measured, one can segment the internal memory of an oscilloscope into thousands of buffers. A memory depth of many million samples is not unlikely for a modern multi-purpose oscilloscope like our <a href="https://www.picotech.com/oscilloscope/3000/picoscope-3000-oscilloscope-specifications">Picoscope 3206d</a>. This means, that if the cryptographic operation is sufficiently short (i.e., less than 1000 samples), one can store thousands of measurements before returning the data back to the user, significantly reducing the communication overhead.</p>
+<h2 id="inputoutput-data">Input/Output Data</h2>
+<p>When performing an SCA attack, the input data you provide to it should conform to the type of attack to be performed. The standard SCA attack requires uniformly distributed input data, whereas more advanced attacks may require carefully chosen input data. We consider these more complex approaches out of scope, even though more complex input requirements do not necessarily void the findings described in this blog post.</p>
+<p>For the standard SCA attack, where uniformly distributed input data is required, one can decided to randomize it for each cryptographic operation or keep it the same for a certain amount. Measuring multiple cryptographic operations with the same, yet still random, input data, allows for averaging the acquired traces. Such averaging allows for increasing the SNR as it&rsquo;s assumed most of the noise is somewhat uniformly distributed while the signal is not as the input data and key are the same.</p>
+<p>When there are no requirements for speed, it&rsquo;s perfectly fine to generate the input data off-target on a computer system. However, when speed is important, and multiple cryptographic operations are stored in the segmented memory of the oscilloscope, it becomes preferred to generate the input data on the target itself. This removes the communication overhead introduced to provide input data from the computer system to the target for each cryptographic operation.</p>
+<p>We decided to use the ESP32&rsquo;s hardware AES accelerator as a PRNG to generate input data at the same time we are attacking it. This means that the output of the AES operation that we are attacking is used as input for the next AES operation. We only provide the target a 128-bit value that&rsquo;s used as the input, i.e., seed, for the first AES operation. The code we used for implementation this approach is shown below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> iterations; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">GPIO_OUTPUT_SET</span>(<span style="color:#ae81ff">26</span>,<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ets_aes_crypt</span>(input, input);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">GPIO_OUTPUT_SET</span>(<span style="color:#ae81ff">26</span>,<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>To the best of our knowledge, this may be the first time that this approach is used like this. We are confident, as our initial seed is sampled from a sufficiently random source, that the outputs of the AES operation are sufficiently random to perform most SCA attacks. Please let us know if we missed in any way, any academia or industry researchers, utilizing this approach already.</p>
+<h2 id="speedy-gonzalez">Speedy Gonzalez</h2>
+<p>So, how fast can we really go? Well, of course, the title of this blog post gave it away. However, needless to say, the speed is determined by a wide variety of variables, which can all be considered, but that will be a time consuming activity. Therefore, we like to just talk about the speeds we obtained while measuring the ESP32&rsquo;s hardware AES accelerator. Note, we only performed AES-128 encryption operation, no decryption operations and we did not perform any AES-256 operations.</p>
+<p>The ESP32 chip&rsquo;s AES accelerator encryption operation takes between 11 and 15 clock cycles. This means, if it would be clocked at 100 MHz, it should be possible to perform 576 billion operations per day. However, as you can imagine, we have to consider the overhead of interfacing with the hardware as well as the communication with both the target and the scope. Using the ROM API of the ESP32 chip, we were able to perform a single encryption in about 3.2μs as is demonstrated earlier in this blog post. We set for ourselves the goal to reach the maximum speed of 27 billion measurements per day (i.e., number of microseconds in a day divided by 3.2).</p>
+<p>The tables below showcases the acquisition speeds we achieved under various conditions. We tested the speed for different sample sizes and with both averaged and non-averaged traces. All measured for all experiments at 500 MSa. The speed for storing the traces to disk with averaging is shown below.</p>
+<div style="width: 800px;">
+<p>
+<table>
+<thead>
+<tr>
+<th><strong>Experiment</strong></th>
+<th style="text-align:right"><strong>Samples</strong></th>
+<th style="text-align:right"><strong>Averaged</strong></th>
+<th style="text-align:right"><strong>Nr Of Segments</strong></th>
+<th style="text-align:right"><strong>Speed Per Day</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td style="text-align:right">1600</td>
+<td style="text-align:right">No</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">5.34E+06</td>
+</tr>
+<tr>
+<td>A2</td>
+<td style="text-align:right">1600</td>
+<td style="text-align:right">Yes</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">1.68E+06</td>
+</tr>
+<tr>
+<td>A3</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">Yes</td>
+<td style="text-align:right">1000</td>
+<td style="text-align:right">1.16E+09</td>
+</tr>
+<tr>
+<td>A4</td>
+<td style="text-align:right">200</td>
+<td style="text-align:right">Yes</td>
+<td style="text-align:right">4000</td>
+<td style="text-align:right">2.64E+09</td>
+</tr>
+<tr>
+<td>A5</td>
+<td style="text-align:right">100</td>
+<td style="text-align:right">Yes</td>
+<td style="text-align:right">8000</td>
+<td style="text-align:right">4.17E+09</td>
+</tr>
+<tr>
+<td>A6</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">Yes</td>
+<td style="text-align:right">16000</td>
+<td style="text-align:right">7.57E+09</td>
+</tr>
+<tr>
+<td>A7</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">Yes</td>
+<td style="text-align:right">64000</td>
+<td style="text-align:right">8.55E+09</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<p>The acquisition speed is higher for averaged traces for most trace sizes as less data needs to be written to disk and no on-target data generator is required. The speed for storing the traces to disk without averaging is shown below. As you can see in the table, at some point the speed does not drastically increase any more, likely caused by the bottleneck of writing to disk.</p>
+<div style="width: 800px;">
+<p>
+<table>
+<thead>
+<tr>
+<th><strong>Experiment</strong></th>
+<th style="text-align:right"><strong>Samples</strong></th>
+<th style="text-align:right"><strong>Averaged</strong></th>
+<th style="text-align:right"><strong>Nr Of Segments</strong></th>
+<th style="text-align:right"><strong>Speed Per Day</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B1</td>
+<td style="text-align:right">1600</td>
+<td style="text-align:right">No</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">5.34E+06</td>
+</tr>
+<tr>
+<td>B2</td>
+<td style="text-align:right">1600</td>
+<td style="text-align:right">No</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">1.68E+06</td>
+</tr>
+<tr>
+<td>B3</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">No</td>
+<td style="text-align:right">1000</td>
+<td style="text-align:right">1.39E+09</td>
+</tr>
+<tr>
+<td>B4</td>
+<td style="text-align:right">200</td>
+<td style="text-align:right">No</td>
+<td style="text-align:right">4000</td>
+<td style="text-align:right">1.70E+09</td>
+</tr>
+<tr>
+<td>B5</td>
+<td style="text-align:right">100</td>
+<td style="text-align:right">No</td>
+<td style="text-align:right">8000</td>
+<td style="text-align:right">1.80E+09</td>
+</tr>
+<tr>
+<td>B6</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">No</td>
+<td style="text-align:right">16000</td>
+<td style="text-align:right">1.92E+09</td>
+</tr>
+<tr>
+<td>B7</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">No</td>
+<td style="text-align:right">64000</td>
+<td style="text-align:right">1.94E+09</td>
+</tr>
+</tbody>
+</table>
+</p>
+</div>
+<p>Note, we selected the number samples and number of segments manually, without too much consideration. It&rsquo;s likely possible to optimize these numbers in a way to achieve higher speeds, even with the equipment available to us (i.e., <a href="https://www.picotech.com/oscilloscope/3000/picoscope-3000-oscilloscope-specifications">Picoscope 3204d</a> and a modern computer system). We are confident that with a high-end scope, that supports faster means of communication, and a faster computer system, it should be possible to get closer to the upper bound of 27 million measurements per day.</p>
+<h2 id="impact">Impact</h2>
+<p>If it&rsquo;s possible to measure billions of cryptographic operations per day, should a hardware cryptographic accelerator be considered sufficiently hardened, when it&rsquo;s demonstrated to be impossible if the keys cannot be extracted with <em>only</em> millions of measurements? Well, probably not, especially considering most attackers will be willing to measure for multiple days if that would yield information about a secret key they are after.</p>
+<p>With the approach outlined in this blog post, we have been able to acquire more than a billion measurements in a single day. Therefore, we believe, that a statement like, <em><a href="https://www.rambus.com/security/dpa-countermeasures/dpa-resistant-core/">&ldquo;reveal no leakage beyond 100 million traces&rdquo;</a></em>, may actually not carry as much weight one may think. Manufacturers should really thoroughly investigate if there is also no leakage when traces sets are used of many billions of traces compared to millions.</p>
+<h2 id="final-words">Final words</h2>
+<p>Even though we were already aware that leveraging an oscilloscope&rsquo;s segmented memory would yield higher acquisition speeds, we were surprised about the speed we actually achieved. Of course, in the light of the ESP32 chip, as we already demonstrated in our previous blog posts, these type of speeds may be completely unnecessary. However, depending on the task at hand, these type of speeds may be relevant for both unprotected implementations like found in the ESP32 chip and of course protected implementations.</p>
+<p>We found this very high acquisition speed very useful for identifying good locations to place our EM probe. The overhead of testing multiple locations is significant when you want to test all locations in a 30x30 grid. Differently said, if the acquisition takes about a day at each of those locations, performing at all these 900 locations takes almost three (3) years. In such situation, speeding up the acquisition phase by a factor 1000 is likely obligatory.</p>
+<p>Protected cryptographic accelerators typically aim to minimize the signal-to-noise (SNR) ratio. Like previously mentioned, if you&rsquo;re unable to find sufficient leakage with millions of measurements, maybe sufficient leakage can be found with billions of measurements, or even trillions. To the best of our knowledge, this technique, which enables attackers to acquire trace sets consisting of a substantial amount of traces, and its implications, are not often discussed thoroughly.</p>
+<p>This acquisition approach is not necessarily voided by protected implementations that require alignment due to, e.g., random delays. We like to point out that such protected implementations still need to be sufficient and therefore the manufacturer cannot afford to randomly stretch the cryptographic operation too much. As our numbers have shown, we still manage to achieve speeds above 1 billion of traces per day when we are measuring 500 samples, which will easily encompass an implementation 10 to 50 times slower than a typical symmetric cryptographic operation like AES. One can envision that, the pre-processing step for aligning the traces can be done in parallel to the acquisition, as long as each measurements is long enough to compensate for the misalignment. In other words, the pre-processing step may not affect the acquisition speed at all.</p>
+<p>Even though we did not really approach the upper bound of ~27 billion measurements per day, we believe it should be possible to get closer to this number. In fact, one can envision custom equipment that&rsquo;s able to stream the measurements directly to super fast storage. This likely requires very expensive equipment that&rsquo;s certainly not available to most attackers. However, this is likely an approach manufacturers of hardened implementations may want to consider to verify if there is any leakage.</p>
+<p>Feel free to reach out for questions or remarks related to this research. As always, we are available to give training on the research we perform, during which you will gain hands-on experience exploiting the vulnerabilities described in this blog post.</p>
+<p>- Raelize<span style="color:yellow">.</span></p>
+
+        </div>
+        
+        
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+
+
+</body>
+
+</html>
