@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright &amp;copy;2020 Raelize B.V. &lt;br&gt; Powered by &lt;a href=#&gt;Hugo&lt;/a&gt; and [Themefisher](https://themefisher.com).</copyright>
-    <lastBuildDate>Mon, 03 Apr 2023 22:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Apr 2023 20:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Measuring Billions of Traces Per Day using Segmented Memory</title>
       <link>https://raelize.com/blog/measuring-billions-of-traces-per-day-using-segmented-memory/</link>
-      <pubDate>Mon, 03 Apr 2023 22:00:00 +0200</pubDate>
+      <pubDate>Mon, 03 Apr 2023 20:00:00 +0200</pubDate>
       
       <guid>https://raelize.com/blog/measuring-billions-of-traces-per-day-using-segmented-memory/</guid>
       <description>Side Channel Analysis (SCA) attacks generally speaking consisting of three phases: acquisition, pre-processing and analysis. The time it takes to extract a key from an embedded devices is the sum of these three phases combined. In our previous blog posts about Power Analysis and Electromagnetic Analysis, we discussed how we extracted the key from the ESP32&amp;rsquo;s hardware AES accelerator. In this blog post we discuss in more details how we were able to perform a super fast acquisition using our Piscoscope oscilloscope.</description>
