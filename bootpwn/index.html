@@ -130,17 +130,24 @@
             
             <div style="width: 650px; padding: 10px" >
 
-                <p>Secure Boot is fundamental for assuring the authenticity of the Trusted Code Base (TCB) of secure devices. Recent attacks on Secure Boot against a wide variety of devices such as video game consoles and mobile phones, are a clear indicator that Secure Boot vulnerabilities are widespread.</p>
+                <p>Secure Boot is fundamental for assuring the authenticity of the Trusted Code Base (TCB) of embedded devices. Recent attacks on Secure Boot, on a wide variety of devices such as video game consoles and mobile phones, indicate that Secure Boot vulnerabilities are widespread.</p>
 
-                <p>Are you interested in learning and experiencing what it takes to break Secure Boot leveraging more than just software vulnerabilities?</p>
+                <p>The BootPwn experience puts you in the attacker's seat in order to explore the attack surface of Secure Boot while identifying and exploiting interesting vulnerabilities applicable to real-world devices. Moreover, it’s hands-on, well-guided and driven by an exciting jeopardy-style format.</p>
 
-                <p>Then, this is THE experience for you!</p>
+                <p>Your journey starts with achieving a comprehensive understanding of Secure Boot. You will learn how hardware and software are used to assure the integrity and confidentiality of the software of an embedded device. You will then use this understanding for identifying interesting vulnerabilities across the entire Secure Boot attack surface. You will be challenged to exploit these vulnerabilities using multiple realistic scenarios. </p>
 
-                <p>The BootPwn experience puts you in the attacker's seat in order to explore the attack surface of Secure Boot while identifying and exploiting interesting vulnerabilities applicable to real-world devices. The experience itself is exercise-driven and gamified using an exciting jeopardy-style Capture-The-Flag (CTF).</p>
+                <p>All practical exercises are performed on our custom emulated attack platform which is based on publicly available code bases.</p>
 
-                <p>Using an emulated device, which is based on publicly available code bases, you will be challenged to identify and exploit interesting vulnerabilities specific to Secure Boot. Even though the emulated device implements the ARMv8 (AArch64) architecture, many exercises are at the same time architecture independent.</p>
+                <p>As an attacker, you will be able to:</p>
 
-                <p>Do no worry if your reverse engineering or exploiting skills are rusty or non-existing. You do not need to be an software security expert nor do we aim to make you one. Nevertheless, most exercises can be completed in various ways which are interesting for experiences attendees as well. Moreover, hardware attacks like Fault Injection, which are a very relevant threat for Secure Boot, are discussed and simulated where possible.</p>
+                <ul>
+                    <li>open the device and make physical modifications</li>
+                    <li>communicate with the internal and external interface</li>
+                    <li>program the external flash of the device</li>
+                    <li>perform hardware attacks like fault injection</li>
+                </ul>
+
+                <p>You will be guided towards an interesting range attack vectors and vulnerabilities specific for Secure Boot, which can be leveraged for novel and creative exploits, allowing you to refine your skills to a new level.</p>
 
                 <center>
                     <p><a href="/bootpwn#contact">Please contact us for more information!</a></p>
@@ -250,16 +257,18 @@
                 <h4>Agenda</h4>
 
                 <ul>
-                    <li>Secure Boot introduction</li>
-                    <li>Secure Boot fundamentals</li>
+                    <li>Fundamentals</li>
                     <ul>
-                        <li>Embedded technology</li>
-                        <li>Flash image parsing</li>
-                        <li>Cryptography (e.g. authentication or decryption)</li>
+                        <li>Embedded devices</li>
+                        <li>Verification</li>
+                        <li>Decryption</li>
                     </ul>
-                    <li>Secure Boot attack surface</li>
-                    <li>Real-world Secure Boot attacks</li>
-                    <li>Identify Secure Boot vulnerabilities by analyzing</li>
+                    <li>Secure Boot</li>
+                    <ul>
+                        <li>Attack surface</li>
+                        <li>Real-world attacks</li>
+                    </ul>
+                    <li>Identifying Secure Boot vulnerabilities</li>
                     <ul>
                         <li>Design information</li>
                         <li>Flash dumps</li>
@@ -270,27 +279,29 @@
                     <ul>
                         <li>Insecure designs</li>
                         <li>Vulnerable software</li>
-                        <li>Using weak or incorrect cryptography</li>
-                        <li>Too flexible configurations</li>
+                        <li>Weak cryptography</li>
+                        <li>Incorrect cryptography</li>
+                        <li>Configuration issues</li>
                         <li>Incorrect checks</li>
                         <li>Insecure parsing</li>
                         <li>Vulnerable hardware</li>
-                        <li>Anti-Rollback</li>
-                        <li>Fault injection</li>
+                        <li>Fault Injection</li>
                     </ul>
                 </ul>
 
                 <h4>Requirements</h4>
 
-                <p>Anyone with a technical background should be able to complete the BootPwn experience. Less-experienced attendees will rely on hints and/or solutions available during the hands-on exercises whereas more-experienced attendees will not. Nonetheless, familiarity with the following come in handy:</p>
-
+                <p>The students of the  BootPwn experience are expected to:</p>
+                
                 <ul>
-                    <li>Embedded technologies and devices</li>
-                    <li>Basic programming (Python and C)</li>
-                    <li>Reverse engineering (ARM AArch64)</li>
-                    <li>Cryptography (RSA, AES and SHA)</li>
-                    <li>Linux command line</li>
+                    <li>have experience with Python/C programming</li>
+                    <li>have experience with the ARM architecture (AArch64)</li>
+                    <li>have an understanding of typical software v/ulnerabilities </li>
+                    <li>be familiar with reverse engineering (AArch64)</li>
+                    <li>be familiar with common cryptography (RSA, AES and SHA)</li>
                 </ul>
+
+                <p>Don’t worry if you don’t meet all of the above expectations. Less-experienced students can rely on our guidance, hints and solutions, whereas more-experienced students will not.</p>
 
                 <center>
                     <p><a href="/bootpwn#contact">Please contact us for more information!</a></p>
@@ -327,37 +338,7 @@
 			
 
 
-            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
-                <div class="counters-item" style="min-width:280px">
-                    <a href="https://zer0con.org/#training-section"><img src="../img/teepwn.png" height=40px /></a>
-                    <center>
-                        <table style="text-align: left; margin: 20px 0px">
-                            <tr><td>Host</td><td><a href="https://zer0con.org/#training-section">Zer0Con</a></td></tr>
-                            <tr><td>Date</td><td>Apr 10-12, 2023</td></tr>
-                            <tr><td>Type</td><td>Classroom</td></tr>
-                            <tr><td>Location</td><td>Seoul, Korea</td></tr>
-                            <tr><td>Language</td><td>English</td></tr>
-                        </table>
-                    </center>
-                    <p><a href="https://zer0con.org/#training-section">Buy your ticket here!</a></p>
-                </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
-                <div class="counters-item" style="min-width:280px">
-                    <a href="https://sectrain.hitb.org/courses/bootpwn-breaking-secure-boot-by-experience-hitb2023ams/"><img src="../img/bootpwn.png" height=40px /></a>
-                    <center>
-                        <table style="text-align: left; margin: 20px 0px">
-                            <tr><td>Host</td><td><a href="https://sectrain.hitb.org/courses/bootpwn-breaking-secure-boot-by-experience-hitb2023ams/">HITBSecTrain</a></td></tr>
-                            <tr><td>Date</td><td>Apr 17-20, 2023</td></tr>
-                            <tr><td>Type</td><td>Classroom</td></tr>
-                            <tr><td>Location</td><td>Amsterdam</td></tr>
-                            <tr><td>Language</td><td>English</td></tr>
-                        </table>
-                    </center>
-                    <p><a href="https://sectrain.hitb.org/courses/bootpwn-breaking-secure-boot-by-experience-hitb2023ams/">Buy your ticket here!</a></p>
-                </div>
-            </div>
 
             <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
                 <div class="counters-item" style="min-width:280px">
@@ -391,9 +372,21 @@
                 </div>
             </div>
 
-
-
-
+            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
+                <div class="counters-item" style="min-width:280px">
+                    <a href="https://ringzer0.training/trainings/bootpwn-breaking-secureboot.html"><img src="../img/bootpwn.png" height=40px /></a>
+                    <center>
+                        <table style="text-align: left; margin: 20px 0px">
+                            <tr><td>Host</td><td><a href="https://ringzer0.training/trainings/bootpwn-breaking-secureboot.html">Ringzer0</a></td></tr>
+                            <tr><td>Date</td><td>Aug 5-8, 2023</td></tr>
+                            <tr><td>Type</td><td>Classroom</td></tr>
+                            <tr><td>Location</td><td>Las Vegas</td></tr>
+                            <tr><td>Language</td><td>English</td></tr>
+                        </table>
+                    </center>
+                    <p><a href="https://ringzer0.training/trainings/bootpwn-breaking-secureboot.html">Buy your ticket here!</a></p>
+                </div>
+            </div>
 
             
 		</div>
