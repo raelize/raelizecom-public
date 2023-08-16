@@ -5,7 +5,6 @@
     <link>https://raelize.com/categories/</link>
     <description>Recent content in Categories on Raelize</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>Copyright &amp;copy;2020 Raelize B.V. &lt;br&gt; Powered by &lt;a href=#&gt;Hugo&lt;/a&gt; and [Themefisher](https://themefisher.com).</copyright><atom:link href="https://raelize.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://raelize.com/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <title>The Art of Fault Injection (TAOFI) - Advanced Fault Injection Techniques & Attacks</title>
+
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="The TEEPwn training puts you in the attacker's seat in order to explore the attack surface of a Trusted Execution Environment (TEE) while identifying and exploiting interesting vulnerabilities applicable to real-world devices.">
+    
+    <meta name="author" content="Raelize B.V.">
+    <meta name="generator" content="Hugo 0.117.0">
+
+    <!-- plugins -->
+    
+    <link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+    
+    <link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+    
+    <link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+    
+
+    <!-- Main Stylesheet -->
+    
+    <link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+    <!-- Custom stylesheet - for your changes -->
+    
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+    <link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+    
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-135892271-3');
+    </script>
+    
+
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    <section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+    
+
+<!-- Start empty -->
+<section id="services" class="bg-one section" style="padding: 20px 0; padding-top: 60px;">
+    
+    <div class="container" style="background-color: #292f36;">
+        <div class="row justify-content-center">
+            <div class="col-lg-12" style="margin: 0px 0;">
+                <br>
+                <div class="title text-center wow fadeIn" data-wow-duration="500ms" style="padding-bottom: 20px;">
+                    <img src="../img/TAoFI_logo_transparent.png" width=300px/>
+
+                    <div class="border-meghna"></div>
+                    <br>
+                    <h4><i>The Art of Fault Injection</i></h4>
+                </div>
+            </div>
+            
+            <div style="width: 650px; padding: 10px">
+
+                <p>Fault Injection is often the weapon of choice for breaking into devices when exploitable software vulnerabilities are not known or absent. While <i>Fault Injection</i> attacks are nowadays common, typical concepts, methodologies, techniques, and attacks are often not sufficiently understood. While achieving success by simply glitching a target can yield results, it's important to note that this approach alone doesn't facilitate the creation of innovative attacks. In this training, students will experience and appreciate the <i>Art of Fault Injection (TAoFI)</i> in order to exploit the full potential of <i>Fault Injection</i> attacks.</p>
+
+                <p>This training assumes that students already have some experience with performing <i>Fault Injection</i> attacks, either obtained at work, at home, or at a previously attended training (e.g., from <a href="https://learn.chipwhisperer.io/">Colin</a>, <a href="https://hardwear.io/netherlands-2022/training/practical-hardware-hacking-basics.php">Joe</a>, or <a href="https://hardwear.io/usa-2023/training/applied-fault-injection.php">Thomas</a>). Students are encouraged to work together in teams of two, sharing their experiences, to tackle the challenges together more efficiently. Even though not recommended, students may work individually as well.</p>
+
+                <p>Students will be using advanced techniques to characterize the effects of voltage glitches on the <a href="https://www.espressif.com/en/products/socs/esp32">Espressif ESP32</a> System-on-Chip (SoC). The faults resulting from these voltage glitches are carefully analyzed and described to build a thorough understanding of the target's susceptibility to voltage glitches. This enables the students to create powerful <i>Fault Injection</i> exploits. During this training, rather than focusing on a specific set of tools, the students will focus more on the concepts, methodologies, techniques, and attacks relevant to <i>Fault Injection</i> attacks.</p>
+
+                <p>Students will experience, with guidance from experts, performing real-world <i>Fault Injection</i> attacks, that were either disclosed by Raelize or other security researchers. Students will be using <a href="https://www.newae.com">NewAE</a>'s <a href="https://www.crowdsupply.com/newae/chipwhisperer-husky">ChipWhisperer-Husky</a> and typical hardware lab tooling like an oscilloscope and hardware debuggers. Students are provided with a virtual machine (VM) with all the required tooling installed, as well as access to the required hardware. Students are allowed to bring their own ChipWhisperer or any other voltage glitch tooling they may have.</p>
+
+                <p>Upon completing the training, students will be proficient to execute sophisticated  <i>Fault Injection</i> attacks on real-world targets using commercially available tooling. The knowledge gained from understanding the underlying concepts, methodologies, techniques, and attacks, can be used by the students to perform novel  <i>Fault Injection</i> attacks on other targets of interest.</p>
+
+                <center>
+                    <p><a href="/teepwn#contact">Please contact us for more information!</a></p>
+                </center>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /testimonial -->
+
+
+    
+
+<!-- Start Testimonial -->
+<section id="testimonial" class="testimonial overly section bg-2" style='background-image: url("../images/backgrounds/shutterstock_722319712.jpg"); padding:20px 0' >
+	
+	<img src="../images/backgrounds/shutterstock_722319712.jpg" style="display: none;" onerror="this.onerror=null;this.parentElement.style.backgroundImage= 'url(../images/backgrounds/shutterstock_722319712.jpg)'">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-12">
+				<!-- testimonial wrapper -->
+				<div id="testimonials" class="wow fadeInUp" data-wow-duration="500ms" data-wow-delay="100ms">
+
+					<!-- testimonial single -->
+					
+					<!-- /testimonial single -->
+
+					<!-- testimonial single -->
+					
+					<!-- /testimonial single -->
+
+					<!-- testimonial single -->
+					
+					<!-- /testimonial single -->
+
+					<!-- testimonial single -->
+					
+					<!-- /testimonial single -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- /testimonial -->
+
+    
+
+<!-- Start empty -->
+<section id="services" class="bg-one section" style="padding: 20px 0;">
+    
+    <div class="container"  style="background-color: #292f36;">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <br>
+                <div class="title text-center wow fadeIn" data-wow-duration="500ms" style="padding-bottom: 0px;">
+                    <h2>Additional <span class="color">Info</span></h2>
+                    <div class="border-meghna"></div>
+                </div>
+            </div>
+
+            <div style="width: 650px; padding: 10px">
+
+                <h4>Audience</h4>
+
+                <p>This training is intended for:</p>
+
+                <ul>
+                    <li>Security Analysts, Researchers & Enthusiasts</li>
+                    <li>Forensic Investigators</li>
+                    <li>Anyone else interested in advanced <i>Fault Injection</i> techniques and attacks</li>
+                </ul>
+
+                <p>Note, this is really an advanced course. The fundamentals are addressed in a systematic manner, but students are assumed to be have already experienced injecting <i>Clock</i>, <i>Voltage</i>, <i>ElectroMagnetic</i> or other types of glitches.</p>
+
+                <h4>Agenda</h4>
+
+                <p>The following list of topics are covered by practical exercises (75%) which are supported by (25%) presentations. Most of the exercises are performed on a custom development board based on the Espressif ESP32 System-on-Chip (SoC), on which <b>Raelize</b> performed multiple <i>Fault Injection</i> attacks.</p>
+
+                <p>This training starts by building up a solid understanding of the typical concepts and methodologies <i>Fault Injection</i>. Then, students dive straight into the advanced techniques and attacks, which are used to create powerful <i>Fault Injection</i> exploits. Throughout the training there will be ample opportunity to discuss any relevant topic in order to shape up a deeper understanding of <i>Fault Injection</i> and related topics.</p>
+
+                <ul>
+                    <li><b>Fundamentals</b></li>
+                    <ul>
+                        <li>Overview of Fault Injection</li>
+                        <li><a href="https://raelize.com/blog/raelize-fi-reference-model/">Raelize Fault Injection Reference Model (FIRM)</a></li>
+                        <li>Get familiar with the target (<a href="https://www.espressif.com/en/products/socs/esp32">Espressif ESP32</a>)</li>
+                        <li>Get familiar with the tooling (<a href="https://www.newae.com/chipwhisperer">NewAE ChipWhisperer-Husky</a>)</li>
+                    </ul>
+                    <li><b>Advanced Techniques</b></li>
+                    <ul>
+                        <li>Target characterization (i.e., with custom code)</li>
+                        <li>Target characterization in the dark (i.e., without custom code)</li>
+                        <li>Analyzing faults to identify target behavior</li>
+                        <li>Plotting results to identify target behavior</li>
+                        <li>Modeling faults to build attack primitives</li>
+                        <li>Advanced triggering for timing (GPIO, UART, SPI & Power)</li>
+                        <li>Vulnerability identification by reverse engineering</li>
+                        <li>Vulnerability verification with hardware debugger</li>
+                        <li>Effective glitch parameter selection strategies</li>
+                    </ul>
+                    <li><b>Advanced Attacks</b></li>
+                    <ul>
+                        <li><a href="https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/">Bypassing Secure Boot on ESP32 (CVE-2019-15894)</a></li>
+                        <li><a href="https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">Bypassing Encrypted Secure Boot on ESP32</a></li>
+                        <li><a href="https://raelize.com/blog/espressif-systems-esp32-controlling-pc-during-sb/">Controlling the Program Counter on ESP32</a></li>
+                        <li><a href="https://raelize.com/blog/espressif-systems-esp32-glitching-otp-transfer/">Glitching the OTP Transfer on ESP32 (CVE-2019-17391)</a></li>
+                        <li><a href="https://www.espressif.com/sites/default/files/advisory_downloads/AR2023-005%20Security%20Advisory%20Concerning%20Bypassing%20Secure%20Boot%20and%20Flash%20Encryption%20Using%20EMFI%20EN.pdf">Bypassing Encrypted Secure Boot on ESP32-V3 (CVE-2023-35818)</a></li>
+                    </ul>
+                </ul>
+
+                <p>Note, <b>Raelize</b> used <a href="https://www.riscure.com/">Riscure</a>'s <i>ElectroMagnetic Fault Injection (EMFI)</i> tooling to perform the above research. During this training, as the students will be performing <i>Crowbar Glitching</i> using <a href="https://www.newae.com">NewAE</a>'s <a href="https://www.crowdsupply.com/newae/chipwhisperer-husky">ChipWhipserer-Husky</a> platform, not all attacks may be performed successfully during the training. <a href="https://www.riscure.com/">Riscure</a>'s tooling may be available throughout the training for demonstration purposes.</p>
+
+                <h4>Learning objectives</h4>
+
+                <ul>
+                    <li>Understand <i>Fault Injection</i> techniques and attacks like an expert</li>
+                    <li>Identify non-trivial vulnerabilities using advanced <i>Fault Injection</i> techniques</li>
+                    <li>Create advanced <i>Fault Injection</i> exploits using commercially available tooling</li>
+                    <li>Reproduce top-notch security research performed by <i>Fault Injection</i> experts</li>
+                </ul>
+
+                <h4>Attendee requirements</h4>
+
+                <ul>
+                    <li>have experience performing basic <i>Fault Injection</i> attacks</li>
+                    <li>be familiar with communicating with embedded devices</li>
+                    <li>be familiar with typical hardware lab tooling</li>
+                    <li>be familiar with programming Python and C</li>
+                    <li>be familiar with reverse engineering software</li>
+                    <li>be familiar with common cryptography (RSA, AES and SHA)</li>
+                </ul>
+                
+                <center>
+                    <p><a href="/taofi#contact">Please contact us for more information!</a></p>
+                </center>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /testimonial -->
+
+
+    
+
+<!-- Start Counter Section -->
+<section id="counter" class="parallax-section bg-1 section" style='background-image: url("../images/backgrounds/shutterstock_760170937.jpg")'>
+
+	
+	
+
+	<div class="container">
+
+
+
+		<div class="row justify-content-center">
+
+            
+
+
+            
+
+		
+			
+
+
+
+
+
+
+
+
+
+            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
+                <div class="counters-item" style="min-width:280px">
+                    <a href="https://hardwear.io/netherlands-2023/training/TAoFI-advanced-fault-injection-techniques-and-attacks.php"><img src="../img/TAoFI_logo_transparent.png" height=40px /></a>
+                    <center>
+                        <table style="text-align: left; margin: 20px 0px">
+                            <tr><td>Host</td><td><a href="https://hardwear.io/netherlands-2023/training/TAoFI-advanced-fault-injection-techniques-and-attacks.php">hardwear.io</a></td></tr>
+                            <tr><td>Date</td><td>Oct 30, 2023</td></tr>
+                            <tr><td>Type</td><td>Classroom</td></tr>
+                            <tr><td>Location</td><td>Netherlands</td></tr>
+                            <tr><td>Language</td><td>English</td></tr>
+                        </table>
+                    </center>
+                    <p><a href="https://hardwear.io/netherlands-2023/training/TAoFI-advanced-fault-injection-techniques-and-attacks.php">Buy your ticket here!</a></p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
+                <div class="counters-item" style="min-width:280px">
+                    <a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/bootpwn"><img src="../img/bootpwn-logo.png" height=40px /></a>
+                    <center>
+                        <table style="text-align: left; margin: 20px 0px">
+                            <tr><td>Host</td><td><a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/bootpwn">NFI</a></td></tr>
+                            <tr><td>Date</td><td>Nov 14-17, 2023</td></tr>
+                            <tr><td>Type</td><td>Classroom</td></tr>
+                            <tr><td>Location</td><td>Netherlands</td></tr>
+                            <tr><td>Language</td><td>English</td></tr>
+                        </table>
+                    </center>
+                    <p>Access restricted</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
+                <div class="counters-item" style="min-width:280px">
+                    <a href="https://ringzer0.training/"><img src="../img/TAoFI_logo_transparent.png" height=40px /></a>
+                    <center>
+                        <table style="text-align: left; margin: 20px 0px">
+                            <tr><td>Host</td><td><a href="https://ringzer0.training/">ringzer0</a></td></tr>
+                            <tr><td>Date</td><td>February, 2024</td></tr>
+                            <tr><td>Type</td><td>Classroom</td></tr>
+                            <tr><td>Location</td><td>Austin (USA)</td></tr>
+                            <tr><td>Language</td><td>English</td></tr>
+                        </table>
+                    </center>
+                    <p><a href="https://ringzer0.training/">Buy your ticket soon</a></p>
+                </div>
+            </div>
+            
+
+
+
+
+            
+		</div>
+	</div>
+</section>
+<!-- /Counter Section -->
+
+    
+
+
+
+<!-- Start Contact Us -->
+<section id="contact" class="contact-us section-bg">
+	<div class="container pb-5">
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- section title -->
+				<div class="title text-center wow fadeIn" data-wow-duration="500ms">
+					<h2> Contact <span class="color">
+							  Us </span></h2>
+					<div class="border-meghna"></div>
+				</div>
+			</div>
+			<!-- /section title -->
+
+			<!-- Contact Details -->
+			<div class="contact-info col-lg-6 wow fadeInUp" data-wow-duration="500ms">
+				<h3>Contact Details</h3>
+				<p> Feel free to contact us, we will be happy to listen and support. </p>
+
+				
+				<div class="contact-details">
+					
+					<div class="con-info clearfix">
+						<i class="ti-location-pin"></i>
+						<span>Meeuwenlaan 20, 3055 CL, Rotterdam, The Netherlands</span>
+					</div>
+					
+					<div class="con-info clearfix">
+						<i class="ti-email"></i>
+						<span>Email: info@raelize.com</span>
+					</div>
+					
+					<div class="con-info clearfix">
+						<i class="ti-briefcase"></i>
+						<span>VAT: NL861445934B01</span>
+					</div>
+					
+					<div class="con-info clearfix">
+						<i class="ti-home"></i>
+						<span>KVK: 78549477</span>
+					</div>
+					
+				</div>
+				
+			</div>
+
+			<!-- Contact Form -->
+			
+			
+			<div class="col-lg-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+				<form id="contact-form" class="form-meghna" method="post" action="https://formspree.io/f/mleowyle" role="form">
+					<div class="form-group">
+						<input type="text" placeholder="Your Name" class="form-control" name="name" id="name">
+					</div>
+					<div class="form-group">
+						<input type="email" placeholder="Your Email" class="form-control" name="email" id="email">
+					</div>
+					<div class="form-group">
+						<input type="text" placeholder="Subject" class="form-control" name="subject" id="subject">
+					</div>
+					<div class="form-group">
+						<textarea rows="6" placeholder="Message" class="form-control" name="message" id="message"></textarea>
+					</div>
+					<div id="cf-submit">
+						<button type="submit" id="contact-submit" class="btn btn-transparent btn-block"
+							value="Submit">Submit</button>
+					</div>
+				</form>
+			</div>
+			
+			
+		</div>
+	</div>
+</section>
+<!-- /contact -->
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+
+
+</body>
+
+</html>
+
+
