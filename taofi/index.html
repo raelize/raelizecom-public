@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>The Art of Fault Injection (TAOFI) - Advanced Fault Injection Techniques & Attacks</title>
+    <title>TAoFI - Fault Injection training - Embedded Device Security Training</title>
 
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="The TEEPwn training puts you in the attacker's seat in order to explore the attack surface of a Trusted Execution Environment (TEE) while identifying and exploiting interesting vulnerabilities applicable to real-world devices.">
+    <meta name="description" content="TAoFI is a hands-on embedded device security training on hardware Fault Injection attacks. Students will attack and exploit interesting vulnerabilities applicable to real-world devices.">
     
     <meta name="author" content="Raelize B.V.">
-    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="generator" content="Hugo 0.120.4">
 
     <!-- plugins -->
     
@@ -59,7 +59,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
 				
 			</a>
 
@@ -136,11 +136,11 @@
 
                 <p>Fault Injection is often the weapon of choice for breaking into devices when exploitable software vulnerabilities are not known or absent. While <i>Fault Injection</i> attacks are nowadays common, typical concepts, methodologies, techniques, and attacks are often not sufficiently understood. While achieving success by simply glitching a target can yield results, it's important to note that this approach alone doesn't facilitate the creation of innovative attacks. In this training, students will experience and appreciate the <i>Art of Fault Injection (TAoFI)</i> in order to exploit the full potential of <i>Fault Injection</i> attacks.</p>
 
-                <p>This training assumes that students already have some experience with performing <i>Fault Injection</i> attacks, either obtained at work, at home, or at a previously attended training (e.g., from <a href="https://learn.chipwhisperer.io/">Colin</a>, <a href="https://hardwear.io/netherlands-2022/training/practical-hardware-hacking-basics.php">Joe</a>, or <a href="https://hardwear.io/usa-2023/training/applied-fault-injection.php">Thomas</a>). Students are encouraged to work together in teams of two, sharing their experiences, to tackle the challenges together more efficiently. Even though not recommended, students may work individually as well.</p>
+                <p>This training assumes, though it is not strictly mandatory, that students possess prior experience with performing Fault Injection attacks, either obtained at work, at home, or at a previously attended training (e.g., from <a href="https://learn.chipwhisperer.io/">Colin</a>, <a href="https://hardwear.io/netherlands-2022/training/practical-hardware-hacking-basics.php">Joe</a>, or <a href="https://hardwear.io/usa-2023/training/applied-fault-injection.php">Thomas</a>). Students are encouraged to work together in teams of two, sharing their experiences, to tackle the challenges together more efficiently. Even though not recommended, students may work individually as well.</p>
 
                 <p>Students will be using advanced techniques to characterize the effects of voltage glitches on the <a href="https://www.espressif.com/en/products/socs/esp32">Espressif ESP32</a> System-on-Chip (SoC). The faults resulting from these voltage glitches are carefully analyzed and described to build a thorough understanding of the target's susceptibility to voltage glitches. This enables the students to create powerful <i>Fault Injection</i> exploits. During this training, rather than focusing on a specific set of tools, the students will focus more on the concepts, methodologies, techniques, and attacks relevant to <i>Fault Injection</i> attacks.</p>
 
-                <p>Students will experience, with guidance from experts, performing real-world <i>Fault Injection</i> attacks, that were either disclosed by Raelize or other security researchers. Students will be using <a href="https://www.newae.com">NewAE</a>'s <a href="https://www.crowdsupply.com/newae/chipwhisperer-husky">ChipWhisperer-Husky</a> and typical hardware lab tooling like an oscilloscope and hardware debuggers. Students are provided with a virtual machine (VM) with all the required tooling installed, as well as access to the required hardware. Students are allowed to bring their own ChipWhisperer or any other voltage glitch tooling they may have.</p>
+                <p>Students will experience, with guidance from experts, performing real-world *Fault Injection* attacks, that were either disclosed by Raelize or other security researchers. Students will be using the <a href="https://www.newae.com">NewAE</a>'s <a href="https://www.crowdsupply.com/newae/chipwhisperer-husky">ChipWhisperer-Husky</a>, typical hardware lab tooling like an oscilloscope and a hardware debugger. Students are provided with a virtual machine (VM) with all the required tooling installed, as well as access to the required hardware.</p>
 
                 <p>Upon completing the training, students will be proficient to execute sophisticated  <i>Fault Injection</i> attacks on real-world targets using commercially available tooling. The knowledge gained from understanding the underlying concepts, methodologies, techniques, and attacks, can be used by the students to perform novel  <i>Fault Injection</i> attacks on other targets of interest.</p>
 
@@ -216,8 +216,6 @@
                     <li>Anyone else interested in advanced <i>Fault Injection</i> techniques and attacks</li>
                 </ul>
 
-                <p>Note, this is really an advanced course. The fundamentals are addressed in a systematic manner, but students are assumed to be have already experienced injecting <i>Clock</i>, <i>Voltage</i>, <i>ElectroMagnetic</i> or other types of glitches.</p>
-
                 <h4>Agenda</h4>
 
                 <p>The following list of topics are covered by practical exercises (75%) which are supported by (25%) presentations. Most of the exercises are performed on a custom development board based on the Espressif ESP32 System-on-Chip (SoC), on which <b>Raelize</b> performed multiple <i>Fault Injection</i> attacks.</p>
@@ -234,8 +232,7 @@
                     </ul>
                     <li><b>Advanced Techniques</b></li>
                     <ul>
-                        <li>Target characterization (i.e., with custom code)</li>
-                        <li>Target characterization in the dark (i.e., without custom code)</li>
+                        <li>Target characterization; with and without custom code</li>
                         <li>Analyzing faults to identify target behavior</li>
                         <li>Plotting results to identify target behavior</li>
                         <li>Modeling faults to build attack primitives</li>
@@ -247,13 +244,13 @@
                     <li><b>Advanced Attacks</b></li>
                     <ul>
                         <li><a href="https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/">Bypassing Secure Boot on ESP32 (CVE-2019-15894)</a></li>
-                        <li><a href="https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">Bypassing Encrypted Secure Boot on ESP32</a></li>
                         <li><a href="https://raelize.com/blog/espressif-systems-esp32-controlling-pc-during-sb/">Controlling the Program Counter on ESP32</a></li>
                         <li><a href="https://raelize.com/blog/espressif-systems-esp32-glitching-otp-transfer/">Glitching the OTP Transfer on ESP32 (CVE-2019-17391)</a></li>
+                        <li><a href="https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">Bypassing Encrypted Secure Boot on ESP32</a></li>
                     </ul>
                 </ul>
 
-                <p>Note, <b>Raelize</b> used <a href="https://www.riscure.com/">Riscure</a>'s <i>ElectroMagnetic Fault Injection (EMFI)</i> tooling to perform the above research. During this training, as the students will be performing <i>Crowbar Glitching</i> using <a href="https://www.newae.com">NewAE</a>'s <a href="https://www.crowdsupply.com/newae/chipwhisperer-husky">ChipWhipserer-Husky</a> platform, not all attacks may be performed successfully during the training. <a href="https://www.riscure.com/">Riscure</a>'s tooling may be available throughout the training for demonstration purposes.</p>
+                <p>Note, <b>Raelize</b> used <a href="https://www.riscure.com/">Riscure</a>'s <i>ElectroMagnetic Fault Injection (EMFI)</i> tooling to perform the above research. The students will perform these attacks using the <a href="https://www.newae.com">NewAE</a>'s <a href="https://www.crowdsupply.com/newae/chipwhisperer-husky">ChipWhipserer-Husky</a>.</p>
 
                 <h4>Learning objectives</h4>
 
@@ -261,10 +258,10 @@
                     <li>Understand <i>Fault Injection</i> techniques and attacks like an expert</li>
                     <li>Identify non-trivial vulnerabilities using advanced <i>Fault Injection</i> techniques</li>
                     <li>Create advanced <i>Fault Injection</i> exploits using commercially available tooling</li>
-                    <li>Reproduce top-notch security research performed by <i>Fault Injection</i> experts</li>
+                    <li>Reproduce top-notch security research originally performed by <i>Fault Injection</i> experts</li>
                 </ul>
 
-                <h4>Attendee requirements</h4>
+                <h4>What students need to know</h4>
 
                 <ul>
                     <li>have experience performing basic <i>Fault Injection</i> attacks</li>
@@ -275,6 +272,24 @@
                     <li>be familiar with common cryptography (RSA, AES and SHA)</li>
                 </ul>
                 
+                <h4>What students need to bring</h4>
+
+                <p>The students of this training are expected to bring a modern laptop or workstation:</p>
+
+                <ul>
+                    <li>with sufficient memory (at least 8 GB)</li>
+                    <li>with at least four (4) available USB-A ports (i.e., use a USB hub)</li>
+                    <ul>
+                        <li>Raelize will have extra USB hubs available during the training (USB-C / USB-A)</li>
+                    </ul>
+                    <li>installed with a modern browser (i.e., Google Chrome)</li>
+                    <li>installed with VMware Player/Workstation (or VirtualBox)</li>
+                </ul>
+
+                <p>The Fault Injection tooling will be attached to the VM that Raelize provides. Please, make sure that forwarding different types of USB devices to the VM works as expected. In our experience, this works best using VMware products (e.g., <a href="https://www.vmware.com/nl/products/workstation-player/workstation-player-evaluation.html">VMware Workstation Player</a>). Students with a Linux host may also decide to run the training environment without using a VM.</p>
+
+                <p><b>Important:</b> the required tooling is only tested on x86-64-based systems and it's <b>NOT</b> thoroughly tested on Apple's ARM-based systems (e.g., M2 or M3).</p>
+
                 <center>
                     <p><a href="/taofi#contact">Please contact us for more information!</a></p>
                 </center>
@@ -316,29 +331,31 @@
 
 
 
+
+
             <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
                 <div class="counters-item" style="min-width:280px">
-                    <a href="https://hardwear.io/netherlands-2023/training/TAoFI-advanced-fault-injection-techniques-and-attacks.php"><img src="../img/TAoFI_logo_transparent.png" height=40px /></a>
+                    <a href="https://ringzer0.training/"><img src="../img/TAoFI_logo_transparent.png" height=40px /></a>
                     <center>
                         <table style="text-align: left; margin: 20px 0px">
-                            <tr><td>Host</td><td><a href="https://hardwear.io/netherlands-2023/training/TAoFI-advanced-fault-injection-techniques-and-attacks.php">hardwear.io</a></td></tr>
-                            <tr><td>Date</td><td>Oct 30, 2023</td></tr>
+                            <tr><td>Host</td><td><a href="https://ringzer0.training/">ringzer0</a></td></tr>
+                            <tr><td>Date</td><td>Feb 20-23, 2024</td></tr>
                             <tr><td>Type</td><td>Classroom</td></tr>
-                            <tr><td>Location</td><td>Netherlands</td></tr>
+                            <tr><td>Location</td><td>Austin (USA)</td></tr>
                             <tr><td>Language</td><td>English</td></tr>
                         </table>
                     </center>
-                    <p><a href="https://hardwear.io/netherlands-2023/training/TAoFI-advanced-fault-injection-techniques-and-attacks.php">Buy your ticket here!</a></p>
+                    <p><a href="https://ringzer0.training/">Buy your ticket soon</a></p>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
                 <div class="counters-item" style="min-width:280px">
-                    <a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/bootpwn"><img src="../img/bootpwn-logo.png" height=40px /></a>
+                    <a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/teepwn"><img src="../img/teepwn.png" height=40px /></a>
                     <center>
                         <table style="text-align: left; margin: 20px 0px">
-                            <tr><td>Host</td><td><a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/bootpwn">NFI</a></td></tr>
-                            <tr><td>Date</td><td>Nov 14-17, 2023</td></tr>
+                            <tr><td>Host</td><td><a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/teepwn">NFI</a></td></tr>
+                            <tr><td>Date</td><td>May 21-24, 2024</td></tr>
                             <tr><td>Type</td><td>Classroom</td></tr>
                             <tr><td>Location</td><td>Netherlands</td></tr>
                             <tr><td>Language</td><td>English</td></tr>
@@ -350,17 +367,33 @@
 
             <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
                 <div class="counters-item" style="min-width:280px">
-                    <a href="https://ringzer0.training/"><img src="../img/TAoFI_logo_transparent.png" height=40px /></a>
+                    <a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/bootpwn"><img src="../img/bootpwn-logo.png" height=40px /></a>
                     <center>
                         <table style="text-align: left; margin: 20px 0px">
-                            <tr><td>Host</td><td><a href="https://ringzer0.training/">ringzer0</a></td></tr>
-                            <tr><td>Date</td><td>February, 2024</td></tr>
+                            <tr><td>Host</td><td><a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/bootpwn">NFI</a></td></tr>
+                            <tr><td>Date</td><td>Nov 12-15, 2024</td></tr>
                             <tr><td>Type</td><td>Classroom</td></tr>
-                            <tr><td>Location</td><td>Austin (USA)</td></tr>
+                            <tr><td>Location</td><td>Netherlands</td></tr>
                             <tr><td>Language</td><td>English</td></tr>
                         </table>
                     </center>
-                    <p><a href="https://ringzer0.training/">Buy your ticket soon</a></p>
+                    <p>Access restricted</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
+                <div class="counters-item" style="min-width:280px">
+                    <a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/taofi"><img src="../img/TAoFI_logo_transparent.png" height=40px /></a>
+                    <center>
+                        <table style="text-align: left; margin: 20px 0px">
+                            <tr><td>Host</td><td><a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/taofi">NFI</a></td></tr>
+                            <tr><td>Date</td><td>Feb 25-28, 2025</td></tr>
+                            <tr><td>Type</td><td>Classroom</td></tr>
+                            <tr><td>Location</td><td>Netherlands</td></tr>
+                            <tr><td>Language</td><td>English</td></tr>
+                        </table>
+                    </center>
+                    <p>Access restricted</p>
                 </div>
             </div>
             
@@ -475,7 +508,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

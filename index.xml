@@ -1,249 +1,200 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Raelize</title>
+    <title>Raelize - Embedded Device Security Services Consultancy Testing Research Training</title>
     <link>https://raelize.com/</link>
-    <description>Recent content on Raelize</description>
+    <description>Recent content on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Apr 2023 20:00:00 +0200</lastBuildDate><atom:link href="https://raelize.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Apr 2023 20:00:00 +0200</lastBuildDate>
+    <atom:link href="https://raelize.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Measuring Billions of Traces Per Day using Segmented Memory</title>
       <link>https://raelize.com/blog/measuring-billions-of-traces-per-day-using-segmented-memory/</link>
       <pubDate>Mon, 03 Apr 2023 20:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/measuring-billions-of-traces-per-day-using-segmented-memory/</guid>
       <description>Side Channel Analysis (SCA) attacks generally speaking consisting of three phases: acquisition, pre-processing and analysis. The time it takes to extract a key from an embedded devices is the sum of these three phases combined. In our previous blog posts about Power Analysis and Electromagnetic Analysis, we discussed how we extracted the key from the ESP32&amp;rsquo;s hardware AES accelerator. In this blog post we discuss in more details how we were able to perform a super fast acquisition using our Piscoscope oscilloscope.</description>
     </item>
-    
     <item>
       <title>Espressif ESP32: Glitching The OTP Data Transfer</title>
       <link>https://raelize.com/blog/espressif-systems-esp32-glitching-otp-transfer/</link>
       <pubDate>Fri, 10 Mar 2023 12:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/espressif-systems-esp32-glitching-otp-transfer/</guid>
       <description>Modern System-on-Chips (SoCs) include security critical features which are often configured securely using One-Time Programmable (OTP) bits, often implemented using electronic fuses (i.e., eFuses). Most SoCs will transfer these configuration bits from OTP memory to dedicated shadow registers from where they will be consumed by either hardware modules (e.g. cryptographic engines) or software (e.g. ROM code). These bits must be transferred correctly during boot to ensure the SoC is configured as intended.</description>
     </item>
-    
     <item>
       <title>Espressif ESP32: Breaking HW AES with Electromagnetic Analysis</title>
       <link>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/</link>
       <pubDate>Thu, 02 Mar 2023 22:00:00 +0100</pubDate>
-      
       <guid>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/</guid>
       <description>In our previous blog post, we&amp;rsquo;ve shown how we extracted the secret key from the ESP32&amp;rsquo;s hardware AES accelerator using a Power Analysis attack. In this blog post, we measure the electromagnetic emissions from the chip in order to extract the same secret key.
 Important, please read our previous blog post on power analysis first if you have not done that yet. Espressif released an advisory after Ledger demonstrated the hardware AES accelerator of the ESP32 chip is vulnerable.</description>
     </item>
-    
     <item>
       <title>Espressif ESP32: Breaking HW AES with Power Analysis</title>
       <link>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/</link>
       <pubDate>Fri, 24 Feb 2023 22:00:00 +0100</pubDate>
-      
       <guid>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/</guid>
       <description>Side Channel Analysis (SCA) attacks are commonly used for extracting the secret key of cryptographic engines found in modern devices. They exploit side channels, such as Timing, Power and Electromagnetic (EM) leaks, to obtain information about the secret key used by the cryptography algorithm. Even though these type of attacks were traditionally performed on smart cards, they are effective on embedded devices as well.
 Even the strongest cryptography algorithms, such as AES, are susceptible to SCA attacks, especially if no countermeasures are in place.</description>
     </item>
-    
     <item>
       <title>Vulnerable tzdemuxerservice TA on Samsung TVs (J-series)</title>
       <link>https://raelize.com/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</link>
       <pubDate>Mon, 01 Nov 2021 17:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</guid>
       <description>We often analyze the security of devices that implement a Trusted Execution Environment (TEE) and the information described in this post is a result of that. One of the goals of a Trusted Execution Environment (TEE) is to provide an environment for the secure execution of Trusted Applications (TAs).
 The source code for a TA is rarely available for attackers and often only the binary code is available. As always, there are several exceptions like the default TAs provided by OP-TEE, an open-source TEE OS, and the TAs available for the Ledger hardware wallet which is used for storing cryptocurrencies securely.</description>
     </item>
-    
     <item>
       <title>Qualcomm IPQ40xx: Achieving QSEE Code Execution</title>
       <link>https://raelize.com/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/</link>
       <pubDate>Mon, 14 Jun 2021 10:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/</guid>
       <description>In this post we finally dive into our approach for exploiting the vulnerabilities we&amp;rsquo;ve identified in QSEE, Qualcomm&amp;rsquo;s Trusted Execution Environment (TEE), on Qualcomm IPQ40xx-based devices (see post #1 and post #2). This allowed us to achieve arbitrary code execution in the context of QSEE.
 Interestingly, the exploitation approach described in this post can also be used for the with the Electromagnetic Fault Injection (EMFI) attack we performed as well (see post #3).</description>
     </item>
-    
     <item>
       <title>Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection</title>
       <link>https://raelize.com/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/</link>
       <pubDate>Mon, 07 Jun 2021 11:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/</guid>
       <description>We&amp;rsquo;ve identified multiple critical software vulnerabilities in QSEE, Qualcomm&amp;rsquo;s Trusted Execution Environment (TEE), on Qualcomm IPQ40xx-based devices (see post #1 and post #2). We exploited these vulnerabilities in order to disable the secure range checks performed by QSEE in order to execute arbitrary code at the highest privilege (see post #4). As these vulnerabilities are software vulnerabilities, they were easily fixed by Qualcomm after we disclosed them responsibly.
 As you may have already raelized, at Raelize we like to look further than just software vulnerabilities.</description>
     </item>
-    
     <item>
       <title>Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities</title>
       <link>https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/</link>
       <pubDate>Tue, 02 Mar 2021 16:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/</guid>
       <description>It&amp;rsquo;s time to get technical! In our previous blog post we notified you already about the vulnerabilities we identified in Qualcomm&amp;rsquo;s Secure Execution Environment (QSEE). This Trusted Execution Environment (TEE) is found on many Qualcomm-based devices like mobile phones. The vulnerabilities we identified are applicable to (most) devices that are designed around the Qualcomm IPQ40xx SoC family, which is used by major manufacturers like Linksys, Netgear and Cisco. Qualcomm disclosed these vulnerabilities publicly during their January 2021 Security Bulletin after our coordinated disclosure process was finished.</description>
     </item>
-    
     <item>
       <title>Qualcomm IPQ40xx: An Unexpected Cup of TEE</title>
       <link>https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</link>
       <pubDate>Mon, 15 Feb 2021 14:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</guid>
       <description>The Qualcomm IPQ40xx family of chips, which includes the IPQ4018, IPQ4019, IPQ4028 and IPQ4029, are popular System-on-Chip (SoC) solutions for consumer and enterprise networking products. Many devices like the ASUS RT-AC58U, Cisco Meraki MR33 and Aruba AP-365 use an IPQ40xx chip as the main System-on-Chip (SoC) in their design. The OpenWRT Project supported device database shows at least 34 products, manufactured between 2018 and 2020, that are designed around a IPQ40xx chip.</description>
     </item>
-    
     <item>
       <title>Espressif ESP32: Bypassing Encrypted Secure Boot (CVE-2020-13629)</title>
       <link>https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</link>
       <pubDate>Tue, 22 Sep 2020 08:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</guid>
       <description>We arrived at the last post about our Fault Injection research on the ESP32. Please read our previous posts as it provides context to the results described in this post.
 Espressif ESP32: Bypassing Secure Boot using EMFI Espressif ESP32: Controlling PC during Secure Boot Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048) During our Fault Injection research on the ESP32, we gradually took steps forward in order to identify the required vulnerabilities that allowed us to bypass Secure Boot and Flash Encryption with a single EM glitch.</description>
     </item>
-    
     <item>
       <title>Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)</title>
       <link>https://raelize.com/blog/espressif-systems-esp32-bypassing-flash-encryption/</link>
       <pubDate>Mon, 14 Sep 2020 09:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/espressif-systems-esp32-bypassing-flash-encryption/</guid>
       <description>In our previous post we described an attack where we load an arbitrary value indirectly into the PC register using EMFI. During that attack we achieved our initial goal where we wanted to last year&#39;s research, where we turn Data Transfers into Code Execution, into practice.
 As we already pointed out, the Flash Encryption feature of the ESP32 chip, which Espressif advises to use, significantly increases the complexity for bypassing Secure Boot.</description>
     </item>
-    
     <item>
       <title>Espressif ESP32: Controlling PC during Secure Boot</title>
       <link>https://raelize.com/blog/espressif-systems-esp32-controlling-pc-during-sb/</link>
       <pubDate>Tue, 08 Sep 2020 12:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/espressif-systems-esp32-controlling-pc-during-sb/</guid>
       <description>In our previous post we demonstrated that the ESP32 chip is vulnerable to EMFI. We used this to bypass the Secure Boot implementation of the ESP32. During this post we also shared already that our goal was to put our previously conducted research, where we turn Data Transfers into Code Execution, into practice.
 When a target is undergoing a Fault Injection attack, it&#39;s extremely difficult to guarantee that the hardware operates as intended.</description>
     </item>
-    
     <item>
       <title>Fault Injection Reference Model (FIRM)</title>
       <link>https://raelize.com/blog/raelize-fi-reference-model/</link>
       <pubDate>Wed, 26 Aug 2020 11:00:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/raelize-fi-reference-model/</guid>
       <description>In today&#39;s world, physical access to a device is considered a significant threat as devices often play a central role for the underlying business model. A multitude of assets, intellectual property (IP) and even the devices themselves have become sufficiently valuable to require adequate protection.
 This gave rise to security features specifically designed to mitigate threats related to physical access. These type of security features, for example Secure Boot, are nowadays way more common than they used to be just a handful of years ago.</description>
     </item>
-    
     <item>
       <title>Espressif ESP32: Bypassing Secure Boot using EMFI</title>
       <link>https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/</link>
       <pubDate>Fri, 24 Jul 2020 20:40:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/</guid>
       <description>Our research during the last few years definitely points out our interest in Fault Injection (FI) attacks. We produced numerous publications, which we presented at both academic and security conferences. Among other research, we showed that FI is an effective technique for for bypassing Secure Boot (2016, 2019 and 2019) and escalating privileges on Linux (2017, 2017 and 2017).
 Like many of you, our curiosity is constantly sparked and therefore we cannot prevent ourselves from injecting glitches.</description>
     </item>
-    
     <item>
       <title>Security Advisories: D-Link DSL-2640B</title>
       <link>https://raelize.com/blog/d-link-dsl-2640b-security-advisories/</link>
       <pubDate>Sat, 28 Mar 2020 11:00:00 +0100</pubDate>
-      
       <guid>https://raelize.com/blog/d-link-dsl-2640b-security-advisories/</guid>
       <description>In a previous post we shared our considerations on the impact of vulnerabilities in Internet connected devices that are EoL. We used the vulnerabilities that we identified in the D-Link DSL-2640B DSL gateway as a use case to support our considerations. In this post we describe the technical details of these vulnerabilities.
 Before we dive into the technical details, it&#39;s important to note that:
 all vulnerabilities are (at least) applicable to the D-Link DSL-2640B (HW revision B2, Firmware version: EU_4.</description>
     </item>
-    
     <item>
       <title>Threat After Death: Security Impact of EoL Devices</title>
       <link>https://raelize.com/blog/security-impact-of-eol-devices/</link>
       <pubDate>Wed, 18 Mar 2020 20:30:00 +0200</pubDate>
-      
       <guid>https://raelize.com/blog/security-impact-of-eol-devices/</guid>
       <description>We identified several vulnerabilities in the D-Link DSL-2640B DSL gateway which will likely not be fixed as the device is EoL (more details will come soon). A vulnerability identified in an EoL device typically has a guaranteed, infinite lifetime. Basically a NO-day. Although Shodan only reports only two active devices, we like to stress that the impact of these vulnerabilities should not be neglected.
 The DNSChanger malware has been updated in 2018 to target the DSL-2640B.</description>
     </item>
-    
     <item>
       <title></title>
       <link>https://raelize.com/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://raelize.com/about/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://raelize.com/bootpwn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://raelize.com/bootpwn/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://raelize.com/consultancy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://raelize.com/consultancy/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://raelize.com/publications/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://raelize.com/publications/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://raelize.com/resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://raelize.com/resources/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://raelize.com/taofi/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://raelize.com/taofi/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://raelize.com/teepwn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://raelize.com/teepwn/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://raelize.com/testing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://raelize.com/testing/</guid>
       <description></description>
     </item>
-    
     <item>
       <title></title>
       <link>https://raelize.com/training/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://raelize.com/training/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>
