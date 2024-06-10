@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.120.4">
+	<meta name="generator" content="Hugo 0.127.0">
 
 	<!-- plugins -->
 	
@@ -141,11 +141,11 @@
 <p>The vulnerabilities described in this post may apply to other hardware revisions, other firmware versions and even completely different models. We did not investigate this further and D-Link did not provide any additional insights.</p>
 <p>The following vulnerabilities are described in this post:</p>
 <ul>
-<li><a href="#cve-2020-9275----d-link-dsl-2640b---remote-credentials-exfiltration">CVE-2020-9275 &ndash; D-Link DSL-2640B - Remote credentials exfiltration</a></li>
-<li><a href="#cve-2020-9279----d-link-dsl-2640b---hard-coded-privileged-account">CVE-2020-9279 &ndash; D-Link DSL-2640B - Hard-coded privileged account</a></li>
-<li><a href="#cve-2020-9278----d-link-dsl-2640b---unauthenticated-configuration-reset">CVE-2020-9278 &ndash; D-Link DSL-2640B - Unauthenticated configuration reset</a></li>
-<li><a href="#cve-2020-9277----d-link-dsl-2640b---cgi-authentication-bypass">CVE-2020-9277 &ndash; D-Link DSL-2640B - CGI Authentication bypass</a></li>
-<li><a href="#cve-2020-9276----d-link-dsl-2640b---do_cgi-buffer-overflow">CVE-2020-9276 &ndash; D-Link DSL-2640B - do_cgi buffer overflow</a></li>
+<li><a href="/blog/d-link-dsl-2640b-security-advisories/#cve-2020-9275----d-link-dsl-2640b---remote-credentials-exfiltration">CVE-2020-9275 &ndash; D-Link DSL-2640B - Remote credentials exfiltration</a></li>
+<li><a href="/blog/d-link-dsl-2640b-security-advisories/#cve-2020-9279----d-link-dsl-2640b---hard-coded-privileged-account">CVE-2020-9279 &ndash; D-Link DSL-2640B - Hard-coded privileged account</a></li>
+<li><a href="/blog/d-link-dsl-2640b-security-advisories/#cve-2020-9278----d-link-dsl-2640b---unauthenticated-configuration-reset">CVE-2020-9278 &ndash; D-Link DSL-2640B - Unauthenticated configuration reset</a></li>
+<li><a href="/blog/d-link-dsl-2640b-security-advisories/#cve-2020-9277----d-link-dsl-2640b---cgi-authentication-bypass">CVE-2020-9277 &ndash; D-Link DSL-2640B - CGI Authentication bypass</a></li>
+<li><a href="/blog/d-link-dsl-2640b-security-advisories/#cve-2020-9276----d-link-dsl-2640b---do_cgi-buffer-overflow">CVE-2020-9276 &ndash; D-Link DSL-2640B - do_cgi buffer overflow</a></li>
 </ul>
 <p>We hope we provided sufficient technical details of the identified vulnerabilities. Additional information (e.g. video demonstrations) may be provided in the future.</p>
 <p>We hope you enjoy the technical remainder of this post! :)</p>
@@ -221,7 +221,7 @@
 <p>The <code>do_cgi</code> function, in order to identify the module to be executed, copies the module name on the stack. However, it does not check whether the length of the supplied module name fits in the allocated buffer (see picture).</p>
 <p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/do_cgi_bof.png" style="max-width: 100%; width: 600px"></p>
 <p>A long <code>cgi</code> module name will overwrite the return address saved on the stack, allowing for a classical stack buffer overflow which is easy to exploit.</p>
-<p>The <code>do_cgi()</code> function can, in principle, only be accessed after authentication. However, unauthenticated exploitation of this vulnerability is possible by combining it with <a href="#cve-2020-9277----d-link-dsl-2640b---cgi-authentication-bypass">CVE-2020-9277</a>. In the picture below we exploit this vulnerability without authentication, execute a reverse shell payload.</p>
+<p>The <code>do_cgi()</code> function can, in principle, only be accessed after authentication. However, unauthenticated exploitation of this vulnerability is possible by combining it with <a href="/blog/d-link-dsl-2640b-security-advisories/#cve-2020-9277----d-link-dsl-2640b---cgi-authentication-bypass">CVE-2020-9277</a>. In the picture below we exploit this vulnerability without authentication, execute a reverse shell payload.</p>
 <p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/exploited_b0f.png" style="max-width: 100%; width: 600px"></p>
 <p>While the vulnerability is potentially exploitable via browser pivoting, exploitation may not be trivial due to the URL mangling introduced by the browser when applying URL encoding on the outgoing requests.</p>
 

@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.120.4">
+	<meta name="generator" content="Hugo 0.127.0">
 
 	<!-- plugins -->
 	
@@ -132,9 +132,9 @@
           <p>It&rsquo;s time to get technical! In our previous <a href="https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee">blog post</a> we notified you already about the vulnerabilities we identified in Qualcomm&rsquo;s Secure Execution Environment (QSEE). This Trusted Execution Environment (TEE) is found on many Qualcomm-based devices like mobile phones. The vulnerabilities we identified are applicable to (most) devices that are designed around the <a href="https://www.qualcomm.com/products/ipq4019">Qualcomm IPQ40xx SoC family</a>, which is used by major manufacturers like Linksys, Netgear and Cisco. Qualcomm disclosed these vulnerabilities publicly during their <a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin">January 2021 Security Bulletin</a> after our coordinated disclosure process was finished.</p>
 <p>These vulnerabilities allowed us to achieve code execution within QSEE, effectively providing us the highest privileges available on the device. Any attack able to issue a Secure Monitor Call (SMC) is able to exploit these vulnerabilities. In this blog post, we describe the following vulnerabilities:</p>
 <ul>
-<li><a href="#cve-2020-11256-tzbsp_blow_fuses_and_reset">CVE-2020-11256 tzbsp_blow_fuses_and_reset</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11256">advisory</a>)</li>
-<li><a href="#cve-2020-11257-usb_calib">CVE-2020-11257 usb_calib</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11257">advisory</a>)</li>
-<li><a href="#cve-2020-11258-tzbsp_version_set">CVE-2020-11258 tzbsp_version_set</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11258">advisory</a>)</li>
+<li><a href="/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/#cve-2020-11256-tzbsp_blow_fuses_and_reset">CVE-2020-11256 tzbsp_blow_fuses_and_reset</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11256">advisory</a>)</li>
+<li><a href="/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/#cve-2020-11257-usb_calib">CVE-2020-11257 usb_calib</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11257">advisory</a>)</li>
+<li><a href="/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/#cve-2020-11258-tzbsp_version_set">CVE-2020-11258 tzbsp_version_set</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11258">advisory</a>)</li>
 <li><a href="cve-2020-11259-tzbsp_version_get">CVE-2020-11259 tzbsp_version_get</a> (<a href="https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11259">advisory</a>)</li>
 </ul>
 <p>Don&rsquo;t worry if you are unfamiliar with TEEs and if the above sounds somewhat cryptic. We will describe step-by-step how we identified the vulnerabilities before we dive into the actual nitty gritty details. We finalize this post by explaining what impact these vulnerabilities have on a vulnerable device.</p>
