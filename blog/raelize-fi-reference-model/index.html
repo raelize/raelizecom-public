@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.129.0">
+	<meta name="generator" content="Hugo 0.135.0">
 
 	<!-- plugins -->
 	
@@ -166,8 +166,8 @@ Fault Injection technique, which has an impact on security.&#34; - Raelize
 <h2 id="description-of-firm">Description of FIRM</h2>
 <p>We consider six so-called stages of a <strong>FI</strong> attack: <strong>Activate</strong>, <strong>Inject</strong>, <strong>Glitch</strong>, <strong>Fault</strong>, <strong>Exploit</strong> and <strong>Goal</strong>. These stages, or building blocks, are used to break down a <strong>FI</strong> attack in separate steps or events.</p>
 <p style="text-align:center;">
-	<a href="/img/fimodel/raelize-fi-fault-model-new.png">
-        <img src="/img/fimodel/raelize-fi-fault-model-new.png" width="1000px">
+    <a href="/img/fimodel/raelize-fi-fault-model-new.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-new.png" style="max-width: 100%; width: 700px">
     </a>
 </p>
 <p>From an attacker's point of view, at the start, there are several choices to be made. These are likely steered mostly by attacker's capabilities (i.e. what tooling or expertise is available) and the characteristics of the target (i.e. some <strong>FI</strong> techniques may be difficult to apply).</p>
@@ -184,8 +184,8 @@ Fault Injection technique, which has an impact on security.&#34; - Raelize
 </ul>
 <p>At each stage there is a vast amount of available options and potential outcomes. The picture below presents by no means an exhaustive list. Nonetheless, it gives a <strong>peek in the kitchen</strong> for the amount of variables at play while conducting <strong>FI</strong> attacks.</p>
 <p style="text-align:center;">
-	<a href="/img/fimodel/raelize-fi-fault-model-with-names-new.png">
-        <img src="/img/fimodel/raelize-fi-fault-model-with-names-new.png" width="1000px">
+    <a href="/img/fimodel/raelize-fi-fault-model-with-names-new.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-with-names-new.png" style="max-width: 100%; width: 700px">
     </a>
 </p>
 <p>The choices made during the <strong>Activate</strong>, <strong>Inject</strong> and <strong>Glitch</strong> stage impact the options available in the <strong>Fault</strong>, <strong>Exploit</strong> and <strong>Goal</strong> stage. Therefore, it's extremely important to sufficiently explore the available options during the initial stages before ruling out a certain attack as not applicable. Suboptimal choices will likely lead to suboptimal results.</p>
@@ -196,8 +196,8 @@ Fault Injection technique, which has an impact on security.&#34; - Raelize
 <p><a href="https://media.ccc.de/v/c4.openchaos.2018.06.glitching-the-switch">This publication</a> shows it's possible to bypass the <strong>Secure Boot</strong> feature of the Nintendo Switch using <strong>FI</strong>. The attacker used a home-made, FPGA-based, glitcher to inject glitches into the chip's voltage supply. The attack goal was to bypass the verification of the bootloader in order to extract the decryption keys for some of the contents stored in flash.</p>
 <p>We can describe the attack using <strong>FIRM</strong>:</p>
 <p style="text-align:center;">
-	<a href="/img/fimodel/raelize-fi-fault-model-switch.png">
-        <img src="/img/fimodel/raelize-fi-fault-model-switch.png" width="1000px">
+    <a href="/img/fimodel/raelize-fi-fault-model-switch.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-switch.png" style="max-width: 100%; width: 700px">
     </a>
 </p>
 <p>As far as we know, details regarding the fault itself were never disclosed. From an offensive perspective this is not uncommon. Attackers are often not that interested in what exactly is affected within a chip. In the end, knowing the fault model itself is often not needed for reaching the goal.</p>
@@ -206,16 +206,16 @@ Fault Injection technique, which has an impact on security.&#34; - Raelize
 <p><a href="https://googleprojectzero.blogspot.com/2015/03/exploiting-dram-rowhammer-bug-to-gain.html">This publication</a> from Google's Project Zero (P0) demonstrates how the <strong>Rowhammer</strong> vulnerability can be used to gain Linux Kernel privileges. The authors used software to trigger the hardware vulnerability in the DRAM chip in order to perform this <strong>FI</strong> attack.</p>
 <p>Using <strong>FIRM</strong>, we can describe this <strong>FI</strong> attack as well:</p>
 <p style="text-align:center;">
-	<a href="/img/fimodel/raelize-fi-fault-model-rowhammer.png">
-        <img src="/img/fimodel/raelize-fi-fault-model-rowhammer.png" width="1000px">
+    <a href="/img/fimodel/raelize-fi-fault-model-rowhammer.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-rowhammer.png" style="max-width: 100%; width: 700px">
     </a>
 </p>
 <h2 id="using-firm----designing-defenses">Using FIRM &ndash; Designing defenses</h2>
 <p><strong>FIRM</strong> can also be used from a <strong>defensive</strong> perspective. This can be useful while designing defenses against <strong>FI</strong> attacks.</p>
 <p>The picture below shows how typical <strong>FI</strong> defenses can be actually connected to different <strong>FIRM</strong> stages. It should become more visible how different measures can play a different role in lowering the chance of success, depending the stage they are connected to.</p>
 <p style="text-align:center;">
-	<a href="/img/fimodel/raelize-fi-fault-model-countermeasures.png">
-        <img src="/img/fimodel/raelize-fi-fault-model-countermeasures.png" width="1000px">
+    <a href="/img/fimodel/raelize-fi-fault-model-countermeasures.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-countermeasures.png" style="max-width: 100%; width: 700px">
     </a>
 </p>
 <p>Manufacturers often consider <strong>FI</strong> specific defenses to lower the risk of <strong>FI</strong> attacks. <strong>FIRM</strong> allows them to consider what defense may be useful during what stage of a <strong>FI</strong> attack. Interestingly, some of the defenses applicable against <strong>FI</strong> attacks may not be specific to <strong>FI</strong> at all (e.g. software exploitation mitigations).</p>
@@ -226,8 +226,8 @@ Fault Injection technique, which has an impact on security.&#34; - Raelize
 <p><strong>FIRM</strong> can also be used to envision and reason about new and unexplored attack paths.</p>
 <p>For instance, in the diagram below, the exploitation path is independent from the path taken to trigger the vulnerability. Different <strong>FI</strong> techniques trigger different vulnerabilities but result in the same type of fault. This allows for reusing the same exploit path across different attacks.</p>
 <p style="text-align:center;">
-	<a href="/img/fimodel/raelize-fi-fault-model-different-method-same-fault.png">
-        <img src="/img/fimodel/raelize-fi-fault-model-different-method-same-fault.png" width="1000px">
+    <a href="/img/fimodel/raelize-fi-fault-model-different-method-same-fault.png">
+        <img src="/img/fimodel/raelize-fi-fault-model-different-method-same-fault.png" style="max-width: 100%; width: 700px">
     </a>
 </p>
 <p>Recently we came across an applicable example. The <strong>Secure Boot</strong> implementation of the ESP32 chip has been bypassed using both <strong>voltage glitches</strong> (<a href="https://limitedresults.com/2019/09/pwn-the-esp32-secure-boot/">reference</a>) and <strong>electromagnetic glitches</strong> (<a href="https://raelize.com/posts/espressif-systems-esp32-bypassing-sb-using-emfi/">reference</a>). It's likely both attack trigger different hardware vulnerabilities but still use a similar path for exploitation.</p>

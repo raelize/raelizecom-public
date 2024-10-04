@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.129.0">
+	<meta name="generator" content="Hugo 0.135.0">
 
 	<!-- plugins -->
 	
@@ -247,35 +247,35 @@
 </p>
 <p>The experiments are summarized below. For each type we provided an example of what is observed on the <strong>serial interface</strong>.</p>
 <table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Response</th>
-<th>Amount</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Expected</td>
-<td><code><span style="color: #74dc8d">AAAA00002710BBBB</span></code></td>
-<td>165404</td>
-</tr>
-<tr>
-<td>Exception</td>
-<td><code><span style="color: #ec5598">Fatal exception (0): IllegalInstruction <cut></span></code></td>
-<td>6</td>
-</tr>
-<tr>
-<td>Reset/Mute</td>
-<td><code><span style="color: yellow">ets Jun  8 2016 00:22:57&hellip;.rst:0x1 (POWERON_RESET) <cut></span></code></td>
-<td>1489</td>
-</tr>
-<tr>
-<td>Success</td>
-<td><code><span style="color: #e76a72">AAAA0000270ABBBB</span></code></td>
-<td>1</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Type</th>
+          <th style="text-align: left">Response</th>
+          <th style="text-align: left">Amount</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Expected</td>
+          <td style="text-align: left"><code><span style="color: #74dc8d">AAAA00002710BBBB</span></code></td>
+          <td style="text-align: left">165404</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Exception</td>
+          <td style="text-align: left"><code><span style="color: #ec5598">Fatal exception (0): IllegalInstruction <cut></span></code></td>
+          <td style="text-align: left">6</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Reset/Mute</td>
+          <td style="text-align: left"><code><span style="color: yellow">ets Jun  8 2016 00:22:57&hellip;.rst:0x1 (POWERON_RESET) <cut></span></code></td>
+          <td style="text-align: left">1489</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Success</td>
+          <td style="text-align: left"><code><span style="color: #e76a72">AAAA0000270ABBBB</span></code></td>
+          <td style="text-align: left">1</td>
+      </tr>
+  </tbody>
 </table>
 <p>The <span style="color: #e76a72">red diamond</span> represents a location where we were able to introduce a successful glitch that introduced a fault that effected the increment of the counter without affecting the chip's continuation. Although we observed only a single successful glitch, it shows that the <strong>ESP32</strong> is susceptible to <strong>EM</strong> glitches.</p>
 <p>We achieved our first goal, we identified a hardware vulnerability. Let's see if we can <strong>exploit</strong> it by introducing faults that allow us to build an actual attack. We decided to fix the <strong>EM-FI probe</strong> to the location of the <strong>successful glitch</strong> the bypass of <strong>Secure Boot</strong>. This nicely reduces the glitch parameter search space by one entire dimension.</p>
@@ -383,30 +383,30 @@
 <p>The statistics for these experiments are shown below.</p>
 <div align="center">
 <table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Amount</th>
-<th>%</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span style="color: #74dc8d">Expected</span></td>
-<td>19494</td>
-<td>56.54</td>
-</tr>
-<tr>
-<td><span style="color: yellow">Reset/Mute</span></td>
-<td>14981</td>
-<td>43.45</td>
-</tr>
-<tr>
-<td><span style="color: #e76a72">success</span></td>
-<td>3</td>
-<td>0.01</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Type</th>
+          <th style="text-align: left">Amount</th>
+          <th style="text-align: left">%</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><span style="color: #74dc8d">Expected</span></td>
+          <td style="text-align: left">19494</td>
+          <td style="text-align: left">56.54</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><span style="color: yellow">Reset/Mute</span></td>
+          <td style="text-align: left">14981</td>
+          <td style="text-align: left">43.45</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><span style="color: #e76a72">success</span></td>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left">0.01</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>We can determine the attack's success rate by tuning the glitch parameters. When we simply take the exact same glitch parameters (i.e. <strong>position</strong>, <strong>power</strong> and <strong>timing</strong>) we achieve a <strong>success rate</strong> of <strong>2 successful glitches per minute</strong>. This shows the attack can be easily reproduced once the <strong>glitch parameters</strong> are known.</p>
