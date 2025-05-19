@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.140.1">
+	<meta name="generator" content="Hugo 0.147.3">
 
 	<!-- plugins -->
 	
@@ -149,7 +149,7 @@
 </ul>
 <p>We hope we provided sufficient technical details of the identified vulnerabilities. Additional information (e.g. video demonstrations) may be provided in the future.</p>
 <p>We hope you enjoy the technical remainder of this post! :)</p>
-<h5 id="cve-2020-9275----d-link-dsl-2640b---remote-credentials-exfiltration">CVE-2020-9275 &ndash; D-Link DSL-2640B - Remote credentials exfiltration</h5>
+<h5 id="cve-2020-9275--d-link-dsl-2640b---remote-credentials-exfiltration">CVE-2020-9275 &ndash; D-Link DSL-2640B - Remote credentials exfiltration</h5>
 <p>This <a href="/advisories/CVE-2020-9275_D-Link-DSL-2640B_Remote-Credentials-Exfiltration_v1.0.txt">vulnerability</a> allows retrieval of the administrative password by sending a specific UDP packet to port 65002 of the device.</p>
 <p>An attacker connected to the WiFi or the local LAN, or who is able to reach the internal device interface in any other way, can retrieve the device password with a single <code>UDP</code> request.</p>
 <p>Most functionality of the device, including the administration panel and the web server, are implemented in a single process named <code>cfm</code> executed at startup. The <code>cfm</code> process listens on <code>UDP</code> port <code>65002</code>. Likely to support device configuration from a dedicated application. The screenshot below, shows the function implementing the communication protocol. The function name, <code>pcApplication</code>, is taken directly from the binary's symbols.</p>
@@ -176,7 +176,7 @@
 <p>Our initial test identified the vulnerability is exploitable from the LAN. Nonetheless, the service seems to be listening on all the interfaces (see below).</p>
 <p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/cfm_socket.png" style="max-width: 100%; width: 600px"></p>
 <p>Unfortunately, we were unable to verify the vulnerability on the WAN side as we lacked a suitable DSL connection. Using the information we have, we cannot exclude that the vulnerability is also exploitable on WAN side. Of course, we would be happy to hear more insight on this.</p>
-<h5 id="cve-2020-9279----d-link-dsl-2640b---hard-coded-privileged-account">CVE-2020-9279 &ndash; D-Link DSL-2640B - Hard-coded privileged account</h5>
+<h5 id="cve-2020-9279--d-link-dsl-2640b---hard-coded-privileged-account">CVE-2020-9279 &ndash; D-Link DSL-2640B - Hard-coded privileged account</h5>
 <p>For this <a href="/advisories/CVE-2020-9279_D-Link-DSL-2640B_Hard-coded-privileged-account_v1.0.txt">vulnerability</a> we identified is a hard-coded user account. An attacker may use these credentials to login into the device in order to perform administrative tasks.</p>
 <p>The vulnerability was identified by analyzing the authentication process accessible via the web interface. While the <code>cfm</code> process provides the communication &quot;plumbing&quot;, the actual authentication is delegated to an external library <code>libpsi.so</code>. The library uses an object-oriented approach for handling the authentication credentials and the incoming authentication requests.</p>
 <p>An analysis of the <code>cfm</code> process revealed a code path supporting authentication for the user named <code>user</code>.</p>
@@ -194,7 +194,7 @@
 <p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/asus_account.png" style="max-width: 100%; width: 600px"></p>
 <p>One could say that it's basically an ASUS <code>feature</code> ( :-) ) which ended up for some unknown reason in a D-Link device. The supply chain of IoT devices are definitely not devoid any mysteries. We believe it may be the result of some &quot;supply chain magic&quot; rather than malicious intent.</p>
 <p>The last remark we would like to make is that this vulnerability may be exploited through browser pivoting. A malicious website, visited with any device connected to the WiFi/LAN, may perform crafted requests towards the gateway.</p>
-<h5 id="cve-2020-9278----d-link-dsl-2640b---unauthenticated-configuration-reset">CVE-2020-9278 &ndash; D-Link DSL-2640B - Unauthenticated configuration reset</h5>
+<h5 id="cve-2020-9278--d-link-dsl-2640b---unauthenticated-configuration-reset">CVE-2020-9278 &ndash; D-Link DSL-2640B - Unauthenticated configuration reset</h5>
 <p>This <a href="/advisories/CVE-2020-9278_D-Link-DSL-2640B_Unauthenticated-configuration-reset_v1.0.txt">vulnerability</a> allows an attacker to reset the device to its default configuration by accessing a specific URL. No authentication is required.</p>
 <p>In fact, the following URLs can be accessed without authentication.</p>
 <ul>
@@ -207,7 +207,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>http://&lt;device_IP_address&gt;/restoreinfo.cgi 
 </span></span></code></pre></div><p>An attacker may reset the administrative password to its default value <code>admin</code>, log in and perform any administrative tasks on the device, such as upload of malicious firmware or configuration of malicious DNS servers.</p>
 <p>While the exploitation of this vulnerability requires access to the device LAN interface, it can also be remotely exploited via browser pivoting. An attacker in control of a malicious website may blindly reset the configuration of the device and, under some conditions, take full control of the device.</p>
-<h5 id="cve-2020-9277----d-link-dsl-2640b---cgi-authentication-bypass">CVE-2020-9277 &ndash; D-Link DSL-2640B - CGI Authentication bypass</h5>
+<h5 id="cve-2020-9277--d-link-dsl-2640b---cgi-authentication-bypass">CVE-2020-9277 &ndash; D-Link DSL-2640B - CGI Authentication bypass</h5>
 <p>The CVE-2020-9277 <a href="/advisories/CVE-2020-9277_D-Link-DSL-2640B_CGI-Authentication-bypass_v1.0.txt">vulnerability</a> allows bypassing the authentication process for authenticated resources. An attacker may be able to directly access administrative functions of the web interface, without the need to supply valid credentials.</p>
 <p>The web server first identifies (1) whether the requested <code>URL</code> requires authentication. The check is carried on by analyzing the requested file extension, located at the <code>end</code> of an <code>URL</code>. For instance, accessing administrative <code>cgi</code> modules requires authentication. The authentication is not performed immediately but delayed at a later point in the code.</p>
 <p>The code then identifies (2) special resources for which the authentication is not necessary. Examples are images or <code>Javascript</code> utilities. The code matches the <code>start</code> of an <code>URL</code> with the specific string (e.g: <code>/images/</code>, <code>utils.js</code>) using the <code>strncmp()</code> function. If a match is found, no authentication is  performed, regardless of  the outcome of (1). The request is then further processed as it had been successfully authenticated.</p>
@@ -216,7 +216,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>Original URL: http://&lt;device_IP_address&gt;/redpass.cgi?sysPassword=newpass
 </span></span><span style="display:flex;"><span>Attack URL: http://&lt;device_IP_address&gt;/images/redpass.cgi?sysPassword=newpass
 </span></span></code></pre></div><p>This vulnerability gives an attacker full device control and allows performing unauthenticated administrative functions. This vulnerability requires accessing the device LAN interface, but it is suitable for exploitation via browser pivoting, allowing for remote attacks over the Internet.</p>
-<h5 id="cve-2020-9276----d-link-dsl-2640b---do_cgi-buffer-overflow">CVE-2020-9276 &ndash; D-Link DSL-2640B - do_cgi buffer overflow</h5>
+<h5 id="cve-2020-9276--d-link-dsl-2640b---do_cgi-buffer-overflow">CVE-2020-9276 &ndash; D-Link DSL-2640B - do_cgi buffer overflow</h5>
 <p>This <a href="/advisories/CVE-2020-9276_D-Link-DSL-2640B_do_cgi-buffer-overflow_v1.0.txt">vulnerability</a> is a buffer overflow occurring in the <code>do_cgi()</code> function, while parsing the requested <code>cgi</code> module name. An attacker may execute arbitrary code on the device with administrative privileges, by supplying a malicious <code>cgi</code> module name in the URL.</p>
 <p>The <code>do_cgi</code> function, in order to identify the module to be executed, copies the module name on the stack. However, it does not check whether the length of the supplied module name fits in the allocated buffer (see picture).</p>
 <p style="text-align:center;"><img src="/img/2020-02-D-Link-CVEs/do_cgi_bof.png" style="max-width: 100%; width: 600px"></p>

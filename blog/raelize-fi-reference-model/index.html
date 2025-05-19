@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.140.1">
+	<meta name="generator" content="Hugo 0.147.3">
 
 	<!-- plugins -->
 	
@@ -190,7 +190,7 @@ Fault Injection technique, which has an impact on security.&#34; - Raelize
 </p>
 <p>The choices made during the <strong>Activate</strong>, <strong>Inject</strong> and <strong>Glitch</strong> stage impact the options available in the <strong>Fault</strong>, <strong>Exploit</strong> and <strong>Goal</strong> stage. Therefore, it's extremely important to sufficiently explore the available options during the initial stages before ruling out a certain attack as not applicable. Suboptimal choices will likely lead to suboptimal results.</p>
 <p>It's typically much easier to prove a <strong>FI</strong> attack is possible rather than proving it's impossible. Negative proofs may be even impossible&hellip;</p>
-<h2 id="using-firm----describing-attacks">Using FIRM &ndash; Describing attacks</h2>
+<h2 id="using-firm--describing-attacks">Using FIRM &ndash; Describing attacks</h2>
 <p><strong>FIRM</strong> can be used for effectively describing <strong>FI</strong> attacks. We demonstrate it here using some real-world attacks as an example.</p>
 <h4 id="bypassing-secure-boot-on-the-nintendo-switch">Bypassing Secure Boot on the Nintendo Switch</h4>
 <p><a href="https://media.ccc.de/v/c4.openchaos.2018.06.glitching-the-switch">This publication</a> shows it's possible to bypass the <strong>Secure Boot</strong> feature of the Nintendo Switch using <strong>FI</strong>. The attacker used a home-made, FPGA-based, glitcher to inject glitches into the chip's voltage supply. The attack goal was to bypass the verification of the bootloader in order to extract the decryption keys for some of the contents stored in flash.</p>
@@ -210,7 +210,7 @@ Fault Injection technique, which has an impact on security.&#34; - Raelize
         <img src="/img/fimodel/raelize-fi-fault-model-rowhammer.png" style="max-width: 100%; width: 700px">
     </a>
 </p>
-<h2 id="using-firm----designing-defenses">Using FIRM &ndash; Designing defenses</h2>
+<h2 id="using-firm--designing-defenses">Using FIRM &ndash; Designing defenses</h2>
 <p><strong>FIRM</strong> can also be used from a <strong>defensive</strong> perspective. This can be useful while designing defenses against <strong>FI</strong> attacks.</p>
 <p>The picture below shows how typical <strong>FI</strong> defenses can be actually connected to different <strong>FIRM</strong> stages. It should become more visible how different measures can play a different role in lowering the chance of success, depending the stage they are connected to.</p>
 <p style="text-align:center;">
@@ -222,7 +222,7 @@ Fault Injection technique, which has an impact on security.&#34; - Raelize
 <p>It's important to point out an interesting observation. For example, software mitigations do not affect <strong>FI</strong> attack until the <strong>Exploit</strong> stage is reached. This is both an advantage and a disadvantage. Because the <strong>Exploit</strong> stage occurs after the <strong>Fault</strong> stage, software mitigations are often tailored to a specific <strong>Fault Model</strong>. However, if not all possible <strong>Fault Models</strong> are known in advance, which is likely for a given target, then designing comprehensive software mitigations becomes not trivial at all. Having all the possible fault models by software mitigations may even be an impossible task per se.</p>
 <p>Assuming the amount of applicable <strong>Fault Models</strong> is unknown, then effective defenses can only be implemented at the <strong>Inject</strong> or <strong>Glitch</strong> stage. The focus should shift from mitigating the exploitation to preventing or detecting the glitch before the hardware vulnerability is triggered at all.</p>
 <p>There are many other interesting observations to be made. We leave this up to the reader for now. We will likely touch upon this observations ourselves at a later stage&hellip;</p>
-<h2 id="using-firm----developing-attacks">Using FIRM &ndash; Developing attacks</h2>
+<h2 id="using-firm--developing-attacks">Using FIRM &ndash; Developing attacks</h2>
 <p><strong>FIRM</strong> can also be used to envision and reason about new and unexplored attack paths.</p>
 <p>For instance, in the diagram below, the exploitation path is independent from the path taken to trigger the vulnerability. Different <strong>FI</strong> techniques trigger different vulnerabilities but result in the same type of fault. This allows for reusing the same exploit path across different attacks.</p>
 <p style="text-align:center;">
