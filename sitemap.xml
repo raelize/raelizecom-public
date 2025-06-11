@@ -2,80 +2,80 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://raelize.com/blog/</loc>
+    <loc>http://localhost:1313/blog/</loc>
     <lastmod>2024-02-26T08:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2024-02-26T08:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/measuring-billions-of-traces-per-day-using-segmented-memory/</loc>
+    <loc>http://localhost:1313/blog/measuring-billions-of-traces-per-day-using-segmented-memory/</loc>
     <lastmod>2023-04-03T20:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/espressif-systems-esp32-glitching-otp-transfer/</loc>
+    <loc>http://localhost:1313/blog/espressif-systems-esp32-glitching-otp-transfer/</loc>
     <lastmod>2023-03-10T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/</loc>
+    <loc>http://localhost:1313/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/</loc>
     <lastmod>2023-03-02T22:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/</loc>
+    <loc>http://localhost:1313/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/</loc>
     <lastmod>2023-02-24T22:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</loc>
+    <loc>http://localhost:1313/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</loc>
     <lastmod>2021-11-01T17:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/</loc>
+    <loc>http://localhost:1313/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/</loc>
     <lastmod>2021-06-14T10:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/</loc>
+    <loc>http://localhost:1313/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/</loc>
     <lastmod>2021-06-07T11:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/</loc>
+    <loc>http://localhost:1313/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/</loc>
     <lastmod>2021-03-02T16:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</loc>
+    <loc>http://localhost:1313/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</loc>
     <lastmod>2021-02-15T14:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</loc>
+    <loc>http://localhost:1313/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</loc>
     <lastmod>2020-09-22T08:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/espressif-systems-esp32-bypassing-flash-encryption/</loc>
+    <loc>http://localhost:1313/blog/espressif-systems-esp32-bypassing-flash-encryption/</loc>
     <lastmod>2020-09-14T09:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/espressif-systems-esp32-controlling-pc-during-sb/</loc>
+    <loc>http://localhost:1313/blog/espressif-systems-esp32-controlling-pc-during-sb/</loc>
     <lastmod>2020-09-08T12:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/raelize-fi-reference-model/</loc>
+    <loc>http://localhost:1313/blog/raelize-fi-reference-model/</loc>
     <lastmod>2020-08-26T11:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/</loc>
+    <loc>http://localhost:1313/blog/espressif-systems-esp32-bypassing-sb-using-emfi/</loc>
     <lastmod>2020-07-24T20:40:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/d-link-dsl-2640b-security-advisories/</loc>
+    <loc>http://localhost:1313/blog/d-link-dsl-2640b-security-advisories/</loc>
     <lastmod>2020-03-28T11:00:00+01:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/security-impact-of-eol-devices/</loc>
+    <loc>http://localhost:1313/blog/security-impact-of-eol-devices/</loc>
     <lastmod>2020-03-18T20:30:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
   </url><url>
-    <loc>https://raelize.com/bootpwn/</loc>
+    <loc>http://localhost:1313/bootpwn/</loc>
   </url><url>
-    <loc>https://raelize.com/consultancy/</loc>
+    <loc>http://localhost:1313/consultancy/</loc>
   </url><url>
-    <loc>https://raelize.com/publications/</loc>
+    <loc>http://localhost:1313/publications/</loc>
   </url><url>
-    <loc>https://raelize.com/resources/</loc>
+    <loc>http://localhost:1313/resources/</loc>
   </url><url>
-    <loc>https://raelize.com/taofi/</loc>
+    <loc>http://localhost:1313/taofi/</loc>
   </url><url>
-    <loc>https://raelize.com/teepwn/</loc>
+    <loc>http://localhost:1313/teepwn/</loc>
   </url><url>
-    <loc>https://raelize.com/testing/</loc>
+    <loc>http://localhost:1313/testing/</loc>
   </url><url>
-    <loc>https://raelize.com/training/</loc>
+    <loc>http://localhost:1313/training/</loc>
   </url><url>
-    <loc>https://raelize.com/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url><url>
-    <loc>https://raelize.com/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>
