@@ -2,185 +2,185 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Raelize - Embedded Device Security Services Consultancy Testing Research Training</title>
-    <link>http://localhost:1313/</link>
+    <link>https://raelize.com/</link>
     <description>Recent content on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 03 Apr 2023 20:00:00 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://raelize.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Measuring Billions of Traces Per Day using Segmented Memory</title>
-      <link>http://localhost:1313/blog/measuring-billions-of-traces-per-day-using-segmented-memory/</link>
+      <link>https://raelize.com/blog/measuring-billions-of-traces-per-day-using-segmented-memory/</link>
       <pubDate>Mon, 03 Apr 2023 20:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/measuring-billions-of-traces-per-day-using-segmented-memory/</guid>
+      <guid>https://raelize.com/blog/measuring-billions-of-traces-per-day-using-segmented-memory/</guid>
       <description>&lt;p&gt;Side Channel Analysis (SCA) attacks generally speaking consisting of three phases: acquisition, pre-processing and analysis. The time it takes to extract a key from an embedded devices is the sum of these three phases combined. In our previous blog posts about &lt;a href=&#34;https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/&#34;&gt;Power Analysis&lt;/a&gt; and &lt;a href=&#34;https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/&#34;&gt;Electromagnetic Analysis&lt;/a&gt;, we discussed how we extracted the key from the ESP32&amp;rsquo;s hardware AES accelerator. In this blog post we discuss in more details how we were able to perform a super fast acquisition using our &lt;a href=&#34;https://www.picotech.com/oscilloscope/3000/picoscope-3000-oscilloscope-specifications&#34;&gt;Piscoscope&lt;/a&gt; oscilloscope.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Espressif ESP32: Glitching The OTP Data Transfer</title>
-      <link>http://localhost:1313/blog/espressif-systems-esp32-glitching-otp-transfer/</link>
+      <link>https://raelize.com/blog/espressif-systems-esp32-glitching-otp-transfer/</link>
       <pubDate>Fri, 10 Mar 2023 12:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/espressif-systems-esp32-glitching-otp-transfer/</guid>
+      <guid>https://raelize.com/blog/espressif-systems-esp32-glitching-otp-transfer/</guid>
       <description>&lt;p&gt;Modern System-on-Chips (SoCs) include security critical features which are often configured securely using One-Time Programmable (OTP) bits, often implemented using electronic fuses (i.e., &lt;a href=&#34;https://en.wikipedia.org/wiki/EFuse&#34;&gt;eFuses&lt;/a&gt;). Most SoCs will transfer these configuration bits from OTP memory to dedicated shadow registers from where they will be consumed by either hardware modules (e.g. cryptographic engines) or software (e.g. ROM code). These bits must be transferred correctly during boot to ensure the SoC is configured as intended. This mechanism is referred to by us in the remainder of this blog post as the &lt;em&gt;OTP Data Transfer&lt;/em&gt; or simply the &lt;em&gt;OTP Transfer&lt;/em&gt;. When the &lt;em&gt;OTP Transfer&lt;/em&gt; is completed, the SoC is assumed to operate as expected, according to the supplied (security) configuration. However, what if we can break this fundamental assumption?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Espressif ESP32: Breaking HW AES with Electromagnetic Analysis</title>
-      <link>http://localhost:1313/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/</link>
+      <link>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/</link>
       <pubDate>Thu, 02 Mar 2023 22:00:00 +0100</pubDate>
-      <guid>http://localhost:1313/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/</guid>
-      <description>&lt;p&gt;In our &lt;a href=&#34;http://localhost:1313/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/&#34;&gt;previous blog post&lt;/a&gt;, we&amp;rsquo;ve shown how we extracted the secret key from the ESP32&amp;rsquo;s hardware AES accelerator using a &lt;em&gt;Power Analysis&lt;/em&gt; attack. In this blog post, we measure the electromagnetic emissions from the chip in order to extract the same secret key.&lt;/p&gt;&#xA;&lt;p&gt;Important, please read our &lt;a href=&#34;http://localhost:1313/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/&#34;&gt;previous blog post&lt;/a&gt; on power analysis first if you have not done that yet. Espressif released an &lt;a href=&#34;https://www.espressif.com/sites/default/files/advisory_downloads/AR2022-003%20Security%20Advisory%20Concerning%20Breaking%20the%20Hardware%20AES%20Core%20and%20Firmware%20Encryption%20of%20ESP32%20Chip%20Revision%20v3.0%20-%20V2.0%20EN.pdf&#34;&gt;advisory&lt;/a&gt; after Ledger &lt;a href=&#34;https://www.blackhat.com/us-22/briefings/schedule/#unlimited-results-breaking-firmware-encryption-of-esp32-v3-26345&#34;&gt;demonstrated&lt;/a&gt; the hardware AES accelerator of the ESP32 chip is vulnerable.&lt;/p&gt;</description>
+      <guid>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/</guid>
+      <description>&lt;p&gt;In our &lt;a href=&#34;https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/&#34;&gt;previous blog post&lt;/a&gt;, we&amp;rsquo;ve shown how we extracted the secret key from the ESP32&amp;rsquo;s hardware AES accelerator using a &lt;em&gt;Power Analysis&lt;/em&gt; attack. In this blog post, we measure the electromagnetic emissions from the chip in order to extract the same secret key.&lt;/p&gt;&#xA;&lt;p&gt;Important, please read our &lt;a href=&#34;https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/&#34;&gt;previous blog post&lt;/a&gt; on power analysis first if you have not done that yet. Espressif released an &lt;a href=&#34;https://www.espressif.com/sites/default/files/advisory_downloads/AR2022-003%20Security%20Advisory%20Concerning%20Breaking%20the%20Hardware%20AES%20Core%20and%20Firmware%20Encryption%20of%20ESP32%20Chip%20Revision%20v3.0%20-%20V2.0%20EN.pdf&#34;&gt;advisory&lt;/a&gt; after Ledger &lt;a href=&#34;https://www.blackhat.com/us-22/briefings/schedule/#unlimited-results-breaking-firmware-encryption-of-esp32-v3-26345&#34;&gt;demonstrated&lt;/a&gt; the hardware AES accelerator of the ESP32 chip is vulnerable.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Espressif ESP32: Breaking HW AES with Power Analysis</title>
-      <link>http://localhost:1313/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/</link>
+      <link>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/</link>
       <pubDate>Fri, 24 Feb 2023 22:00:00 +0100</pubDate>
-      <guid>http://localhost:1313/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/</guid>
+      <guid>https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/</guid>
       <description>&lt;p&gt;Side Channel Analysis (SCA) attacks are commonly used for extracting the secret key of cryptographic engines found in modern devices. They exploit side channels, such as &lt;em&gt;Timing&lt;/em&gt;, &lt;em&gt;Power&lt;/em&gt; and &lt;em&gt;Electromagnetic&lt;/em&gt; (EM) leaks, to obtain information about the secret key used by the cryptography algorithm. Even though these type of attacks were traditionally performed on smart cards, they are effective on embedded devices as well.&lt;/p&gt;&#xA;&lt;p&gt;Even the strongest cryptography algorithms, such as &lt;a href=&#34;https://en.wikipedia.org/wiki/Advanced_Encryption_Standard&#34;&gt;AES&lt;/a&gt;, are susceptible to SCA attacks, especially if no countermeasures are in place. That&amp;rsquo;s why, &lt;a href=&#34;https://donjon.ledger.com/&#34;&gt;Ledger Dojon&lt;/a&gt;&amp;rsquo;s discovery that the key used by the flash encryption feature of the ESP32 chip could be extracted through a power analysis attack, was not surprising. Nonetheless, their in-depth research is very cool and we definitely recommend to watch their &lt;a href=&#34;https://www.blackhat.com/us-22/briefings/schedule/#unlimited-results-breaking-firmware-encryption-of-esp32-v3-26345&#34;&gt;Black Hat presentation&lt;/a&gt; and read their &lt;a href=&#34;https://eprint.iacr.org/2023/090.pdf&#34;&gt;paper&lt;/a&gt;. Espressif released an &lt;a href=&#34;https://www.espressif.com/sites/default/files/advisory_downloads/AR2022-003%20Security%20Advisory%20Concerning%20Breaking%20the%20Hardware%20AES%20Core%20and%20Firmware%20Encryption%20of%20ESP32%20Chip%20Revision%20v3.0%20-%20V2.0%20EN.pdf&#34;&gt;advisory&lt;/a&gt; related to their research results.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Vulnerable tzdemuxerservice TA on Samsung TVs (J-series)</title>
-      <link>http://localhost:1313/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</link>
+      <link>https://raelize.com/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</link>
       <pubDate>Mon, 01 Nov 2021 17:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</guid>
+      <guid>https://raelize.com/blog/samsung-tv-tzdemuxerservice-ta-vulnerabilities/</guid>
       <description>&lt;p&gt;We often analyze the security of devices that implement a &lt;strong&gt;Trusted Execution Environment (TEE)&lt;/strong&gt; and the information described in this post is a result of that. One of the goals of a &lt;strong&gt;Trusted Execution Environment (TEE)&lt;/strong&gt; is to provide an environment for the secure execution of &lt;strong&gt;Trusted Applications (TAs)&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;The source code for a &lt;strong&gt;TA&lt;/strong&gt; is rarely available for attackers and often only the binary code is available. As always, there are several exceptions like the default &lt;a href=&#34;https://github.com/OP-TEE/optee_os/tree/master/ta&#34;&gt;TAs provided by OP-TEE&lt;/a&gt;, an open-source TEE OS, and the &lt;a href=&#34;https://github.com/LedgerHQ&#34;&gt;TAs available for the Ledger hardware wallet&lt;/a&gt; which is used for storing cryptocurrencies securely.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Qualcomm IPQ40xx: Achieving QSEE Code Execution</title>
-      <link>http://localhost:1313/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/</link>
+      <link>https://raelize.com/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/</link>
       <pubDate>Mon, 14 Jun 2021 10:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/</guid>
-      <description>&lt;p&gt;In this post we finally dive into our approach for exploiting the vulnerabilities we&amp;rsquo;ve identified in QSEE, Qualcomm&amp;rsquo;s Trusted Execution Environment (TEE), on &lt;a href=&#34;https://www.qualcomm.com/media/documents/files/ipq40x8-ipq40x9-product-brief.pdf&#34;&gt;Qualcomm IPQ40xx&lt;/a&gt;-based devices (see &lt;a href=&#34;http://localhost:1313/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/&#34;&gt;post #1&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/&#34;&gt;post #2&lt;/a&gt;). This allowed us to achieve arbitrary code execution in the context of QSEE.&lt;/p&gt;&#xA;&lt;p&gt;Interestingly, the exploitation approach described in this post can also be used for the with the Electromagnetic Fault Injection (EMFI) attack we performed as well (see &lt;a href=&#34;http://localhost:1313/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/&#34;&gt;post #3&lt;/a&gt;). This allows achieving code execution in absence of any software vulnerability.&lt;/p&gt;</description>
+      <guid>https://raelize.com/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/</guid>
+      <description>&lt;p&gt;In this post we finally dive into our approach for exploiting the vulnerabilities we&amp;rsquo;ve identified in QSEE, Qualcomm&amp;rsquo;s Trusted Execution Environment (TEE), on &lt;a href=&#34;https://www.qualcomm.com/media/documents/files/ipq40x8-ipq40x9-product-brief.pdf&#34;&gt;Qualcomm IPQ40xx&lt;/a&gt;-based devices (see &lt;a href=&#34;https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/&#34;&gt;post #1&lt;/a&gt; and &lt;a href=&#34;https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/&#34;&gt;post #2&lt;/a&gt;). This allowed us to achieve arbitrary code execution in the context of QSEE.&lt;/p&gt;&#xA;&lt;p&gt;Interestingly, the exploitation approach described in this post can also be used for the with the Electromagnetic Fault Injection (EMFI) attack we performed as well (see &lt;a href=&#34;https://raelize.com/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/&#34;&gt;post #3&lt;/a&gt;). This allows achieving code execution in absence of any software vulnerability.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection</title>
-      <link>http://localhost:1313/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/</link>
+      <link>https://raelize.com/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/</link>
       <pubDate>Mon, 07 Jun 2021 11:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/</guid>
-      <description>&lt;p&gt;We&amp;rsquo;ve identified multiple critical software vulnerabilities in QSEE, Qualcomm&amp;rsquo;s Trusted Execution Environment (TEE), on &lt;a href=&#34;https://www.qualcomm.com/media/documents/files/ipq40x8-ipq40x9-product-brief.pdf&#34;&gt;Qualcomm IPQ40xx&lt;/a&gt;-based devices (see &lt;a href=&#34;http://localhost:1313/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/&#34;&gt;post #1&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/&#34;&gt;post #2&lt;/a&gt;). We exploited these vulnerabilities in order to disable the secure range checks performed by QSEE in order to execute arbitrary code at the highest privilege (see &lt;a href=&#34;http://localhost:1313/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/&#34;&gt;post #4&lt;/a&gt;). As these vulnerabilities are software vulnerabilities, they were easily fixed by Qualcomm after we disclosed them responsibly.&lt;/p&gt;&#xA;&lt;p&gt;As you may have already raelized, at Raelize we like to look further than just software vulnerabilities. Therefore, we decided to analyze the resilience of the Qualcomm IPQ40xx-family of chip towards Electromagnetic Fault Injection (EMFI). We used the &lt;a href=&#34;https://www.linksys.com/nl/wireless-routers/traditional-routers/linksys-ea8300-max-stream-ac2200-tri-band-wifi-router/p/p-ea8300/&#34;&gt;Linksys EA8300&lt;/a&gt; WiFi router (see &lt;a href=&#34;http://localhost:1313/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/&#34;&gt;post #2&lt;/a&gt;).&lt;/p&gt;</description>
+      <guid>https://raelize.com/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/</guid>
+      <description>&lt;p&gt;We&amp;rsquo;ve identified multiple critical software vulnerabilities in QSEE, Qualcomm&amp;rsquo;s Trusted Execution Environment (TEE), on &lt;a href=&#34;https://www.qualcomm.com/media/documents/files/ipq40x8-ipq40x9-product-brief.pdf&#34;&gt;Qualcomm IPQ40xx&lt;/a&gt;-based devices (see &lt;a href=&#34;https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/&#34;&gt;post #1&lt;/a&gt; and &lt;a href=&#34;https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/&#34;&gt;post #2&lt;/a&gt;). We exploited these vulnerabilities in order to disable the secure range checks performed by QSEE in order to execute arbitrary code at the highest privilege (see &lt;a href=&#34;https://raelize.com/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/&#34;&gt;post #4&lt;/a&gt;). As these vulnerabilities are software vulnerabilities, they were easily fixed by Qualcomm after we disclosed them responsibly.&lt;/p&gt;&#xA;&lt;p&gt;As you may have already raelized, at Raelize we like to look further than just software vulnerabilities. Therefore, we decided to analyze the resilience of the Qualcomm IPQ40xx-family of chip towards Electromagnetic Fault Injection (EMFI). We used the &lt;a href=&#34;https://www.linksys.com/nl/wireless-routers/traditional-routers/linksys-ea8300-max-stream-ac2200-tri-band-wifi-router/p/p-ea8300/&#34;&gt;Linksys EA8300&lt;/a&gt; WiFi router (see &lt;a href=&#34;https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/&#34;&gt;post #2&lt;/a&gt;).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities</title>
-      <link>http://localhost:1313/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/</link>
+      <link>https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/</link>
       <pubDate>Tue, 02 Mar 2021 16:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/</guid>
+      <guid>https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s time to get technical! In our previous &lt;a href=&#34;https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee&#34;&gt;blog post&lt;/a&gt; we notified you already about the vulnerabilities we identified in Qualcomm&amp;rsquo;s Secure Execution Environment (QSEE). This Trusted Execution Environment (TEE) is found on many Qualcomm-based devices like mobile phones. The vulnerabilities we identified are applicable to (most) devices that are designed around the &lt;a href=&#34;https://www.qualcomm.com/products/ipq4019&#34;&gt;Qualcomm IPQ40xx SoC family&lt;/a&gt;, which is used by major manufacturers like Linksys, Netgear and Cisco. Qualcomm disclosed these vulnerabilities publicly during their &lt;a href=&#34;https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin&#34;&gt;January 2021 Security Bulletin&lt;/a&gt; after our coordinated disclosure process was finished.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Qualcomm IPQ40xx: An Unexpected Cup of TEE</title>
-      <link>http://localhost:1313/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</link>
+      <link>https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</link>
       <pubDate>Mon, 15 Feb 2021 14:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</guid>
+      <guid>https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/</guid>
       <description>&lt;p&gt;The Qualcomm IPQ40xx family of chips, which includes the &lt;a href=&#34;https://www.qualcomm.com/products/ipq4018&#34;&gt;IPQ4018&lt;/a&gt;, &lt;a href=&#34;https://www.qualcomm.com/products/ipq4019&#34;&gt;IPQ4019&lt;/a&gt;, &lt;a href=&#34;https://www.qualcomm.com/products/ipq4028&#34;&gt;IPQ4028&lt;/a&gt; and &lt;a href=&#34;https://www.qualcomm.com/products/ipq4029&#34;&gt;IPQ4029&lt;/a&gt;, are popular System-on-Chip (SoC) solutions for consumer and enterprise networking products. Many devices like the &lt;a href=&#34;https://www.asus.com/Networking-IoT-Servers/WiFi-Routers/ASUS-WiFi-Routers/RT-AC58U/&#34;&gt;ASUS RT-AC58U&lt;/a&gt;, &lt;a href=&#34;https://meraki.cisco.com/product/wi-fi/indoor-access-points/mr33/&#34;&gt;Cisco Meraki MR33&lt;/a&gt; and &lt;a href=&#34;https://www.arubanetworks.com/products/wireless/access-points/outdoor-ruggedized-access-points/360-series/&#34;&gt;Aruba AP-365&lt;/a&gt; use an IPQ40xx chip as the main System-on-Chip (SoC) in their design. The &lt;a href=&#34;https://openwrt.org/&#34;&gt;OpenWRT Project&lt;/a&gt; supported device &lt;a href=&#34;https://openwrt.org/supported_devices&#34;&gt;database&lt;/a&gt; shows at least 34 products, manufactured between 2018 and 2020, that are designed around a IPQ40xx chip. The total number of products is likely much larger as many devices, like the &lt;a href=&#34;https://www.netgear.com/home/wifi/mesh/rbr20&#34;&gt;Netgear Orbi RB20&lt;/a&gt;, are not supported by OpenWRT and therefore not included in the database.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Espressif ESP32: Bypassing Encrypted Secure Boot (CVE-2020-13629)</title>
-      <link>http://localhost:1313/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</link>
+      <link>https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</link>
       <pubDate>Tue, 22 Sep 2020 08:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</guid>
-      <description>&lt;p&gt;We arrived at the last post about our &lt;strong&gt;Fault Injection&lt;/strong&gt; research on the &lt;strong&gt;ESP32&lt;/strong&gt;. Please read our previous posts as it provides context to the results described in this post.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/espressif-systems-esp32-bypassing-sb-using-emfi/&#34;&gt;Espressif ESP32: Bypassing Secure Boot using EMFI&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/espressif-systems-esp32-controlling-pc-during-sb/&#34;&gt;Espressif ESP32: Controlling PC during Secure Boot&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://localhost:1313/posts/espressif-systems-esp32-bypassing-flash-encryption/&#34;&gt;Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;During our &lt;strong&gt;Fault Injection&lt;/strong&gt; research on the &lt;strong&gt;ESP32&lt;/strong&gt;, we gradually took steps forward in order to identify the required vulnerabilities that allowed us to bypass &lt;strong&gt;Secure Boot&lt;/strong&gt; and &lt;strong&gt;Flash Encryption&lt;/strong&gt; with a single &lt;strong&gt;EM&lt;/strong&gt; glitch. Moreover, we did not only achieve &lt;strong&gt;code execution&lt;/strong&gt;, we also extracted the &lt;strong&gt;plain-text flash&lt;/strong&gt; data from the chip.&lt;/p&gt;</description>
+      <guid>https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/</guid>
+      <description>&lt;p&gt;We arrived at the last post about our &lt;strong&gt;Fault Injection&lt;/strong&gt; research on the &lt;strong&gt;ESP32&lt;/strong&gt;. Please read our previous posts as it provides context to the results described in this post.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://raelize.com/posts/espressif-systems-esp32-bypassing-sb-using-emfi/&#34;&gt;Espressif ESP32: Bypassing Secure Boot using EMFI&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://raelize.com/posts/espressif-systems-esp32-controlling-pc-during-sb/&#34;&gt;Espressif ESP32: Controlling PC during Secure Boot&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://raelize.com/posts/espressif-systems-esp32-bypassing-flash-encryption/&#34;&gt;Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;During our &lt;strong&gt;Fault Injection&lt;/strong&gt; research on the &lt;strong&gt;ESP32&lt;/strong&gt;, we gradually took steps forward in order to identify the required vulnerabilities that allowed us to bypass &lt;strong&gt;Secure Boot&lt;/strong&gt; and &lt;strong&gt;Flash Encryption&lt;/strong&gt; with a single &lt;strong&gt;EM&lt;/strong&gt; glitch. Moreover, we did not only achieve &lt;strong&gt;code execution&lt;/strong&gt;, we also extracted the &lt;strong&gt;plain-text flash&lt;/strong&gt; data from the chip.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)</title>
-      <link>http://localhost:1313/blog/espressif-systems-esp32-bypassing-flash-encryption/</link>
+      <link>https://raelize.com/blog/espressif-systems-esp32-bypassing-flash-encryption/</link>
       <pubDate>Mon, 14 Sep 2020 09:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/espressif-systems-esp32-bypassing-flash-encryption/</guid>
-      <description>&lt;p&gt;In our &lt;a href=&#34;http://localhost:1313/posts/espressif-systems-esp32-controlling-pc-during-sb/&#34;&gt;previous post&lt;/a&gt; we described an attack where we load an arbitrary value indirectly into the PC register using &lt;strong&gt;EMFI&lt;/strong&gt;. During that attack we achieved our initial goal where we wanted to last year&#39;s research, where we turn &lt;strong&gt;Data Transfers&lt;/strong&gt; into &lt;strong&gt;Code Execution&lt;/strong&gt;, into practice.&lt;/p&gt;&#xA;&lt;p&gt;As we already pointed out, the &lt;strong&gt;Flash Encryption&lt;/strong&gt; feature of the &lt;strong&gt;ESP32&lt;/strong&gt; chip, which &lt;strong&gt;Espressif&lt;/strong&gt; advises to use, significantly increases the complexity for bypassing &lt;strong&gt;Secure Boot&lt;/strong&gt;. The typical approach of making modifications to the plain-text code or data stored in external flash is not possible any more once &lt;strong&gt;Flash Encryption&lt;/strong&gt; is enabled.&lt;/p&gt;</description>
+      <guid>https://raelize.com/blog/espressif-systems-esp32-bypassing-flash-encryption/</guid>
+      <description>&lt;p&gt;In our &lt;a href=&#34;https://raelize.com/posts/espressif-systems-esp32-controlling-pc-during-sb/&#34;&gt;previous post&lt;/a&gt; we described an attack where we load an arbitrary value indirectly into the PC register using &lt;strong&gt;EMFI&lt;/strong&gt;. During that attack we achieved our initial goal where we wanted to last year&#39;s research, where we turn &lt;strong&gt;Data Transfers&lt;/strong&gt; into &lt;strong&gt;Code Execution&lt;/strong&gt;, into practice.&lt;/p&gt;&#xA;&lt;p&gt;As we already pointed out, the &lt;strong&gt;Flash Encryption&lt;/strong&gt; feature of the &lt;strong&gt;ESP32&lt;/strong&gt; chip, which &lt;strong&gt;Espressif&lt;/strong&gt; advises to use, significantly increases the complexity for bypassing &lt;strong&gt;Secure Boot&lt;/strong&gt;. The typical approach of making modifications to the plain-text code or data stored in external flash is not possible any more once &lt;strong&gt;Flash Encryption&lt;/strong&gt; is enabled.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Espressif ESP32: Controlling PC during Secure Boot</title>
-      <link>http://localhost:1313/blog/espressif-systems-esp32-controlling-pc-during-sb/</link>
+      <link>https://raelize.com/blog/espressif-systems-esp32-controlling-pc-during-sb/</link>
       <pubDate>Tue, 08 Sep 2020 12:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/espressif-systems-esp32-controlling-pc-during-sb/</guid>
-      <description>&lt;p&gt;In our &lt;a href=&#34;http://localhost:1313/posts/espressif-systems-esp32-bypassing-sb-using-emfi/&#34;&gt;previous post&lt;/a&gt; we demonstrated that the &lt;strong&gt;ESP32&lt;/strong&gt; chip is vulnerable to &lt;strong&gt;EMFI&lt;/strong&gt;. We used this to bypass the &lt;strong&gt;Secure Boot&lt;/strong&gt; implementation of the &lt;strong&gt;ESP32&lt;/strong&gt;. During this post we also shared already that our goal was to put our previously conducted research, where we turn &lt;strong&gt;Data Transfers&lt;/strong&gt; into &lt;strong&gt;Code Execution&lt;/strong&gt;, into practice.&lt;/p&gt;&#xA;&lt;p&gt;When a target is undergoing a &lt;strong&gt;Fault Injection&lt;/strong&gt; attack, it&#39;s extremely difficult to guarantee that the hardware operates as intended. This subverts a fundamental assumption of software engineering, where it&#39;s assumed that the hardware always flawlessly executes the instructions. &lt;strong&gt;Fault Injection&lt;/strong&gt; attacks undermine the execution of software at the lowest level.&lt;/p&gt;</description>
+      <guid>https://raelize.com/blog/espressif-systems-esp32-controlling-pc-during-sb/</guid>
+      <description>&lt;p&gt;In our &lt;a href=&#34;https://raelize.com/posts/espressif-systems-esp32-bypassing-sb-using-emfi/&#34;&gt;previous post&lt;/a&gt; we demonstrated that the &lt;strong&gt;ESP32&lt;/strong&gt; chip is vulnerable to &lt;strong&gt;EMFI&lt;/strong&gt;. We used this to bypass the &lt;strong&gt;Secure Boot&lt;/strong&gt; implementation of the &lt;strong&gt;ESP32&lt;/strong&gt;. During this post we also shared already that our goal was to put our previously conducted research, where we turn &lt;strong&gt;Data Transfers&lt;/strong&gt; into &lt;strong&gt;Code Execution&lt;/strong&gt;, into practice.&lt;/p&gt;&#xA;&lt;p&gt;When a target is undergoing a &lt;strong&gt;Fault Injection&lt;/strong&gt; attack, it&#39;s extremely difficult to guarantee that the hardware operates as intended. This subverts a fundamental assumption of software engineering, where it&#39;s assumed that the hardware always flawlessly executes the instructions. &lt;strong&gt;Fault Injection&lt;/strong&gt; attacks undermine the execution of software at the lowest level.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Fault Injection Reference Model (FIRM)</title>
-      <link>http://localhost:1313/blog/raelize-fi-reference-model/</link>
+      <link>https://raelize.com/blog/raelize-fi-reference-model/</link>
       <pubDate>Wed, 26 Aug 2020 11:00:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/raelize-fi-reference-model/</guid>
+      <guid>https://raelize.com/blog/raelize-fi-reference-model/</guid>
       <description>&lt;p&gt;In today&#39;s world, physical access to a device is considered a significant threat as devices often play a central role for the underlying business model. A multitude of assets, intellectual property (IP) and even the devices themselves have become sufficiently valuable to require adequate protection.&lt;/p&gt;&#xA;&lt;p&gt;This gave rise to security features specifically designed to mitigate threats related to physical access. These type of security features, for example &lt;strong&gt;Secure Boot&lt;/strong&gt;, are nowadays way more common than they used to be just a handful of years ago.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Espressif ESP32: Bypassing Secure Boot using EMFI</title>
-      <link>http://localhost:1313/blog/espressif-systems-esp32-bypassing-sb-using-emfi/</link>
+      <link>https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/</link>
       <pubDate>Fri, 24 Jul 2020 20:40:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/espressif-systems-esp32-bypassing-sb-using-emfi/</guid>
-      <description>&lt;p&gt;Our research during the last few years definitely points out our interest in &lt;strong&gt;Fault Injection (FI)&lt;/strong&gt; attacks. We produced numerous publications, which we presented at both &lt;em&gt;&lt;strong&gt;academic&lt;/strong&gt;&lt;/em&gt; and &lt;em&gt;&lt;strong&gt;security&lt;/strong&gt;&lt;/em&gt; conferences. Among other research, we showed that &lt;strong&gt;FI&lt;/strong&gt; is an effective technique for for &lt;strong&gt;bypassing Secure Boot&lt;/strong&gt; (&lt;a href=&#34;http://localhost:1313/upload/research/2016/2016_BlackHat-EU_Bypassing-Secure-Boot-Using-Fault-Injection_NT-AS.pdf&#34;&gt;2016&lt;/a&gt;, &lt;a href=&#34;http://localhost:1313/upload/research/2019/2019_BlueHat-IL_Hardening-Secure-Boot-on-Embedded-Devices-for-Hostile-Environments_NT-AS-CM.pdf&#34;&gt;2019&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/upload//research/2019/2019_Designing-Secure-Boot-Securely_NT-AS.pdf&#34;&gt;2019&lt;/a&gt;) and &lt;strong&gt;escalating privileges on Linux&lt;/strong&gt; (&lt;a href=&#34;http://localhost:1313/upload/research/2017/2017_FDTC_Escalating-Privileges-in-Linux-using-Fault-Injection_NT-CM.pdf&#34;&gt;2017&lt;/a&gt;, &lt;a href=&#34;http://localhost:1313/upload/research/2017/2017_BlueHat-v17_KERNELFAULT-R00ting-the-Unexploitable-using-Hardware-Fault-Injection_CM_NT.pdf&#34;&gt;2017&lt;/a&gt; and &lt;a href=&#34;http://localhost:1313/upload/research/2017/2017_Hardwear-io_Escalating-Privileges-in-Linux-using-Fault-Injection_NT-CM.pdf&#34;&gt;2017&lt;/a&gt;).&lt;/p&gt;&#xA;&lt;p&gt;Like many of you, our curiosity is constantly sparked and therefore we cannot prevent ourselves from injecting glitches. This post will be your first peek into our new and exciting &lt;strong&gt;FI&lt;/strong&gt; research.&lt;/p&gt;</description>
+      <guid>https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/</guid>
+      <description>&lt;p&gt;Our research during the last few years definitely points out our interest in &lt;strong&gt;Fault Injection (FI)&lt;/strong&gt; attacks. We produced numerous publications, which we presented at both &lt;em&gt;&lt;strong&gt;academic&lt;/strong&gt;&lt;/em&gt; and &lt;em&gt;&lt;strong&gt;security&lt;/strong&gt;&lt;/em&gt; conferences. Among other research, we showed that &lt;strong&gt;FI&lt;/strong&gt; is an effective technique for for &lt;strong&gt;bypassing Secure Boot&lt;/strong&gt; (&lt;a href=&#34;https://raelize.com/upload/research/2016/2016_BlackHat-EU_Bypassing-Secure-Boot-Using-Fault-Injection_NT-AS.pdf&#34;&gt;2016&lt;/a&gt;, &lt;a href=&#34;https://raelize.com/upload/research/2019/2019_BlueHat-IL_Hardening-Secure-Boot-on-Embedded-Devices-for-Hostile-Environments_NT-AS-CM.pdf&#34;&gt;2019&lt;/a&gt; and &lt;a href=&#34;https://raelize.com/upload//research/2019/2019_Designing-Secure-Boot-Securely_NT-AS.pdf&#34;&gt;2019&lt;/a&gt;) and &lt;strong&gt;escalating privileges on Linux&lt;/strong&gt; (&lt;a href=&#34;https://raelize.com/upload/research/2017/2017_FDTC_Escalating-Privileges-in-Linux-using-Fault-Injection_NT-CM.pdf&#34;&gt;2017&lt;/a&gt;, &lt;a href=&#34;https://raelize.com/upload/research/2017/2017_BlueHat-v17_KERNELFAULT-R00ting-the-Unexploitable-using-Hardware-Fault-Injection_CM_NT.pdf&#34;&gt;2017&lt;/a&gt; and &lt;a href=&#34;https://raelize.com/upload/research/2017/2017_Hardwear-io_Escalating-Privileges-in-Linux-using-Fault-Injection_NT-CM.pdf&#34;&gt;2017&lt;/a&gt;).&lt;/p&gt;&#xA;&lt;p&gt;Like many of you, our curiosity is constantly sparked and therefore we cannot prevent ourselves from injecting glitches. This post will be your first peek into our new and exciting &lt;strong&gt;FI&lt;/strong&gt; research.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Security Advisories: D-Link DSL-2640B</title>
-      <link>http://localhost:1313/blog/d-link-dsl-2640b-security-advisories/</link>
+      <link>https://raelize.com/blog/d-link-dsl-2640b-security-advisories/</link>
       <pubDate>Sat, 28 Mar 2020 11:00:00 +0100</pubDate>
-      <guid>http://localhost:1313/blog/d-link-dsl-2640b-security-advisories/</guid>
-      <description>&lt;p&gt;In a &lt;a href=&#34;http://localhost:1313/posts/security-impact-of-eol-devices/&#34;&gt;previous post&lt;/a&gt; we shared our considerations on the impact of vulnerabilities in Internet connected devices that are &lt;a href=&#34;https://en.wikipedia.org/wiki/End-of-life_%28product%29&#34;&gt;EoL&lt;/a&gt;. We used the vulnerabilities that we identified in the &lt;a href=&#34;https://eu.dlink.com/uk/en/products/dsl-2640b-adsl-2-wireless-g-router-with-4-port-10-100-switch&#34;&gt;D-Link DSL-2640B DSL gateway&lt;/a&gt; as a use case to support our considerations. In this post we describe the technical details of these vulnerabilities.&lt;/p&gt;&#xA;&lt;p&gt;Before we dive into the technical details, it&#39;s important to note that:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;all vulnerabilities are (at least) applicable to the D-Link DSL-2640B (HW revision B2, Firmware version: EU_4.01B)&lt;/li&gt;&#xA;&lt;li&gt;all vulnerabilities apply to the latest available firmware (as of 27/03/2020)&lt;/li&gt;&#xA;&lt;li&gt;all vulnerabilities have been reported to D-Link&lt;/li&gt;&#xA;&lt;li&gt;we are not aware of any security fix released by D-Link&lt;/li&gt;&#xA;&lt;li&gt;as the device is EoL, following D-Link&#39;s policy, no fix may ever be available&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The vulnerabilities described in this post may apply to other hardware revisions, other firmware versions and even completely different models. We did not investigate this further and D-Link did not provide any additional insights.&lt;/p&gt;</description>
+      <guid>https://raelize.com/blog/d-link-dsl-2640b-security-advisories/</guid>
+      <description>&lt;p&gt;In a &lt;a href=&#34;https://raelize.com/posts/security-impact-of-eol-devices/&#34;&gt;previous post&lt;/a&gt; we shared our considerations on the impact of vulnerabilities in Internet connected devices that are &lt;a href=&#34;https://en.wikipedia.org/wiki/End-of-life_%28product%29&#34;&gt;EoL&lt;/a&gt;. We used the vulnerabilities that we identified in the &lt;a href=&#34;https://eu.dlink.com/uk/en/products/dsl-2640b-adsl-2-wireless-g-router-with-4-port-10-100-switch&#34;&gt;D-Link DSL-2640B DSL gateway&lt;/a&gt; as a use case to support our considerations. In this post we describe the technical details of these vulnerabilities.&lt;/p&gt;&#xA;&lt;p&gt;Before we dive into the technical details, it&#39;s important to note that:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;all vulnerabilities are (at least) applicable to the D-Link DSL-2640B (HW revision B2, Firmware version: EU_4.01B)&lt;/li&gt;&#xA;&lt;li&gt;all vulnerabilities apply to the latest available firmware (as of 27/03/2020)&lt;/li&gt;&#xA;&lt;li&gt;all vulnerabilities have been reported to D-Link&lt;/li&gt;&#xA;&lt;li&gt;we are not aware of any security fix released by D-Link&lt;/li&gt;&#xA;&lt;li&gt;as the device is EoL, following D-Link&#39;s policy, no fix may ever be available&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The vulnerabilities described in this post may apply to other hardware revisions, other firmware versions and even completely different models. We did not investigate this further and D-Link did not provide any additional insights.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Threat After Death: Security Impact of EoL Devices</title>
-      <link>http://localhost:1313/blog/security-impact-of-eol-devices/</link>
+      <link>https://raelize.com/blog/security-impact-of-eol-devices/</link>
       <pubDate>Wed, 18 Mar 2020 20:30:00 +0200</pubDate>
-      <guid>http://localhost:1313/blog/security-impact-of-eol-devices/</guid>
+      <guid>https://raelize.com/blog/security-impact-of-eol-devices/</guid>
       <description>&lt;p&gt;We identified several vulnerabilities in the &lt;a href=&#34;https://eu.dlink.com/uk/en/products/dsl-2640b-adsl-2-wireless-g-router-with-4-port-10-100-switch&#34;&gt;D-Link DSL-2640B&lt;/a&gt; DSL gateway which will likely not be fixed as the device is &lt;a href=&#34;https://en.wikipedia.org/wiki/End-of-life_%28product%29&#34;&gt;EoL&lt;/a&gt; (more details will come soon). A vulnerability identified in an EoL device typically has a guaranteed, infinite lifetime. Basically a &lt;strong&gt;NO-day&lt;/strong&gt;. Although &lt;a href=&#34;https://www.shodan.io/&#34;&gt;Shodan&lt;/a&gt; only reports only two active devices, we like to stress that the impact of these vulnerabilities should not be neglected.&lt;/p&gt;&#xA;&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/DNSChanger&#34;&gt;DNSChanger&lt;/a&gt; malware has been updated in 2018 to target the DSL-2640B. The attacker&#39;s efforts would be hard to explain with just Shodan&#39;s figures. An analysis performed by &lt;a href=&#34;https://badpackets.net&#34;&gt;Bad Packets&lt;/a&gt; using data from a different source, identified a much larger device population, excessing 14,000 active devices. The stark difference between device population numbers questions our ability to correctly assess relevance, scale and impact of EoL devices.&lt;/p&gt;</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://raelize.com/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://raelize.com/about/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/bootpwn/</link>
+      <link>https://raelize.com/bootpwn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/bootpwn/</guid>
+      <guid>https://raelize.com/bootpwn/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/consultancy/</link>
+      <link>https://raelize.com/consultancy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/consultancy/</guid>
+      <guid>https://raelize.com/consultancy/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/publications/</link>
+      <link>https://raelize.com/publications/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/publications/</guid>
+      <guid>https://raelize.com/publications/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/resources/</link>
+      <link>https://raelize.com/resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/resources/</guid>
+      <guid>https://raelize.com/resources/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/taofi/</link>
+      <link>https://raelize.com/taofi/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/taofi/</guid>
+      <guid>https://raelize.com/taofi/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/teepwn/</link>
+      <link>https://raelize.com/teepwn/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/teepwn/</guid>
+      <guid>https://raelize.com/teepwn/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/testing/</link>
+      <link>https://raelize.com/testing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/testing/</guid>
+      <guid>https://raelize.com/testing/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/training/</link>
+      <link>https://raelize.com/training/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/training/</guid>
+      <guid>https://raelize.com/training/</guid>
       <description></description>
     </item>
   </channel>
