@@ -13,7 +13,7 @@
       <link>https://raelize.com/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/</link>
       <pubDate>Wed, 18 Jun 2025 08:00:00 +0200</pubDate>
       <guid>https://raelize.com/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/</guid>
-      <description>In this blog post, we describe our adventure(s) reproducing our attack using NewAE tooling.</description>
+      <description>In this blog post, we describe our adventure(s) reproducing our EMFI attack on Espressif&amp;rsquo;s ESP32 using Crowbar glitches.</description>
     </item>
     <item>
       <title>Measuring Billions of Traces Per Day using Segmented Memory</title>
