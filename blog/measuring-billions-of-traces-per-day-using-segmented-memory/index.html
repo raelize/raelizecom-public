@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.145.0">
+	<meta name="generator" content="Hugo 0.147.8">
 
 	<!-- plugins -->
 	
@@ -55,9 +55,7 @@
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
   <div id="content">
     
-
-
-<section class="sticky-top navigation">
+ <section class="sticky-top navigation">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
@@ -118,18 +116,18 @@
 
 
 <section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <hr>
-        <h1>Measuring Billions of Traces Per Day using Segmented Memory</h1>
-        <p>Monday, Apr 3, 2023</p>
-        <hr>
-        
-      </div>
-      <div class="col-lg-8 offset-lg-2">
-        <div class="post-single-content" background-color=0xff>
-          <p>Side Channel Analysis (SCA) attacks generally speaking consisting of three phases: acquisition, pre-processing and analysis. The time it takes to extract a key from an embedded devices is the sum of these three phases combined. In our previous blog posts about <a href="https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/">Power Analysis</a> and <a href="https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/">Electromagnetic Analysis</a>, we discussed how we extracted the key from the ESP32&rsquo;s hardware AES accelerator. In this blog post we discuss in more details how we were able to perform a super fast acquisition using our <a href="https://www.picotech.com/oscilloscope/3000/picoscope-3000-oscilloscope-specifications">Piscoscope</a> oscilloscope.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>Measuring Billions of Traces Per Day using Segmented Memory</h2>
+                
+                <p>Monday, Apr 3, 2023</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><p>Side Channel Analysis (SCA) attacks generally speaking consisting of three phases: acquisition, pre-processing and analysis. The time it takes to extract a key from an embedded devices is the sum of these three phases combined. In our previous blog posts about <a href="https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/">Power Analysis</a> and <a href="https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/">Electromagnetic Analysis</a>, we discussed how we extracted the key from the ESP32&rsquo;s hardware AES accelerator. In this blog post we discuss in more details how we were able to perform a super fast acquisition using our <a href="https://www.picotech.com/oscilloscope/3000/picoscope-3000-oscilloscope-specifications">Piscoscope</a> oscilloscope.</p>
 <p>The time required for the acquisition phase depends on the overall time needed for performing <em>repeated</em> cryptographic operations. The cryptographic operation itself may be fast, like it typically is for a hardware implementation, other factors may slow down the acquisition speed significantly. For instance, if the interface towards the cryptographic operation is slow (e.g., a reboot is required every so many operations), then the acquisition speed is going to be affected negatively. However, often, at least under certain conditions, the hardware cryptographic accelerator can be accessed directly by writing into its registers. In such case, the implementation may not be the bottleneck, but rather the approach that&rsquo;s taken for communicating with the target and acquiring the traces.</p>
 <p>The time required for the pre-processing phase depends on the actual processing to be performed. For example, an unprotected cryptographic implementation, often does not need any pre-processing whatsoever. On the other hand, a protected cryptographic engine may require alignment or other pre-processing steps, aimed at increasing the signal to noise ratio (SNR), before performing the analysis. Of course, besides the pre-processing operations themselves, the amount of traces being processed has an impact on the overall pre-processing time.</p>
 <p>The time required for the analysis phase mostly depends on the computations being performed, e.g., Correlation Power Analysis (CPA), as well as the amount of traces.</p>
@@ -332,15 +330,14 @@
 <p>Even though we did not really approach the upper bound of 27 billion measurements per day, we believe it should be possible to get closer to this number. In fact, one can envision custom equipment that&rsquo;s able to stream the measurements directly to super fast storage. This likely requires very expensive equipment that&rsquo;s certainly not available to most attackers. However, this is likely an approach manufacturers of hardened implementations may want to consider to verify if there is any leakage.</p>
 <p>Feel free to reach out for questions or remarks related to this research. As always, we are available to give training on the research we perform, during which you will gain hands-on experience exploiting the vulnerabilities described in this blog post.</p>
 <p>- Raelize<span style="color:yellow">.</span></p>
+</div>
+                
 
+                
+                
+            </div>
         </div>
-        
-        
-        
-
-      </div>
     </div>
-  </div>
 </section>
 
 
@@ -397,7 +394,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
 
 
 </body>

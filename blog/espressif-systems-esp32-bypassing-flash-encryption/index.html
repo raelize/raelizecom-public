@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.145.0">
+	<meta name="generator" content="Hugo 0.147.8">
 
 	<!-- plugins -->
 	
@@ -55,9 +55,7 @@
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
   <div id="content">
     
-
-
-<section class="sticky-top navigation">
+ <section class="sticky-top navigation">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
@@ -118,18 +116,18 @@
 
 
 <section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <hr>
-        <h1>Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)</h1>
-        <p>Monday, Sep 14, 2020</p>
-        <hr>
-        
-      </div>
-      <div class="col-lg-8 offset-lg-2">
-        <div class="post-single-content" background-color=0xff>
-          <p>In our <a href="/posts/espressif-systems-esp32-controlling-pc-during-sb/">previous post</a> we described an attack where we load an arbitrary value indirectly into the PC register using <strong>EMFI</strong>. During that attack we achieved our initial goal where we wanted to last year's research, where we turn <strong>Data Transfers</strong> into <strong>Code Execution</strong>, into practice.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>Espressif ESP32: Bypassing Flash Encryption (CVE-2020-15048)</h2>
+                
+                <p>Monday, Sep 14, 2020</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><p>In our <a href="/posts/espressif-systems-esp32-controlling-pc-during-sb/">previous post</a> we described an attack where we load an arbitrary value indirectly into the PC register using <strong>EMFI</strong>. During that attack we achieved our initial goal where we wanted to last year's research, where we turn <strong>Data Transfers</strong> into <strong>Code Execution</strong>, into practice.</p>
 <p>As we already pointed out, the <strong>Flash Encryption</strong> feature of the <strong>ESP32</strong> chip, which <strong>Espressif</strong> advises to use, significantly increases the complexity for bypassing <strong>Secure Boot</strong>. The typical approach of making modifications to the plain-text code or data stored in external flash is not possible any more once <strong>Flash Encryption</strong> is enabled.</p>
 <p>In this post we describe an attack where we leverage the (hardware) vulnerability described in our <a href="/posts/espressif-systems-esp32-controlling-pc-during-sb/">previous post</a> in combination with another vulnerability (i.e. <a href="https://www.espressif.com/sites/default/files/advisory_downloads/Security%20Advisory%20CVE-2020-15048%2C%2013629%20EN%26CN.pdf">CVE-2020-15048</a>) in order to load an arbitrary value into the PC register.</p>
 <h1 id="flash-encryption">Flash Encryption</h1>
@@ -236,15 +234,14 @@
 <p>We acknowledge the limitations imposed by the brute-force requirement and therefore we did not pursue this path any further. Nonetheless, we believe the results described in this post are important  as it shows that <strong>Fault Injection</strong> attacks are effective even when control over the environment is (very) limited.</p>
 <h1 id="next-steps">Next steps</h1>
 <p>Stay tuned for our final post in this series on the <strong>ESP32</strong> where we describe an attack that bypasses <strong>Secure Boot</strong> and <strong>Flash Encryption</strong> in order to extract the plain-text data from external flash using only a single glitch.</p>
+</div>
+                
 
+                
+                
+            </div>
         </div>
-        
-        
-        
-
-      </div>
     </div>
-  </div>
 </section>
 
 
@@ -301,7 +298,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
 
 
 </body>

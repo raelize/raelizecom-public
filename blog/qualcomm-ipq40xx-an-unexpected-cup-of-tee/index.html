@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.145.0">
+	<meta name="generator" content="Hugo 0.147.8">
 
 	<!-- plugins -->
 	
@@ -55,9 +55,7 @@
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
   <div id="content">
     
-
-
-<section class="sticky-top navigation">
+ <section class="sticky-top navigation">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
@@ -118,18 +116,18 @@
 
 
 <section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <hr>
-        <h1>Qualcomm IPQ40xx: An Unexpected Cup of TEE</h1>
-        <p>Monday, Feb 15, 2021</p>
-        <hr>
-        
-      </div>
-      <div class="col-lg-8 offset-lg-2">
-        <div class="post-single-content" background-color=0xff>
-          <p>The Qualcomm IPQ40xx family of chips, which includes the <a href="https://www.qualcomm.com/products/ipq4018">IPQ4018</a>, <a href="https://www.qualcomm.com/products/ipq4019">IPQ4019</a>, <a href="https://www.qualcomm.com/products/ipq4028">IPQ4028</a> and <a href="https://www.qualcomm.com/products/ipq4029">IPQ4029</a>, are popular System-on-Chip (SoC) solutions for consumer and enterprise networking products. Many devices like the <a href="https://www.asus.com/Networking-IoT-Servers/WiFi-Routers/ASUS-WiFi-Routers/RT-AC58U/">ASUS RT-AC58U</a>, <a href="https://meraki.cisco.com/product/wi-fi/indoor-access-points/mr33/">Cisco Meraki MR33</a> and <a href="https://www.arubanetworks.com/products/wireless/access-points/outdoor-ruggedized-access-points/360-series/">Aruba AP-365</a> use an IPQ40xx chip as the main System-on-Chip (SoC) in their design. The <a href="https://openwrt.org/">OpenWRT Project</a> supported device <a href="https://openwrt.org/supported_devices">database</a> shows at least 34 products, manufactured between 2018 and 2020, that are designed around a IPQ40xx chip. The total number of products is likely much larger as many devices, like the <a href="https://www.netgear.com/home/wifi/mesh/rbr20">Netgear Orbi RB20</a>, are not supported by OpenWRT and therefore not included in the database.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>Qualcomm IPQ40xx: An Unexpected Cup of TEE</h2>
+                
+                <p>Monday, Feb 15, 2021</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><p>The Qualcomm IPQ40xx family of chips, which includes the <a href="https://www.qualcomm.com/products/ipq4018">IPQ4018</a>, <a href="https://www.qualcomm.com/products/ipq4019">IPQ4019</a>, <a href="https://www.qualcomm.com/products/ipq4028">IPQ4028</a> and <a href="https://www.qualcomm.com/products/ipq4029">IPQ4029</a>, are popular System-on-Chip (SoC) solutions for consumer and enterprise networking products. Many devices like the <a href="https://www.asus.com/Networking-IoT-Servers/WiFi-Routers/ASUS-WiFi-Routers/RT-AC58U/">ASUS RT-AC58U</a>, <a href="https://meraki.cisco.com/product/wi-fi/indoor-access-points/mr33/">Cisco Meraki MR33</a> and <a href="https://www.arubanetworks.com/products/wireless/access-points/outdoor-ruggedized-access-points/360-series/">Aruba AP-365</a> use an IPQ40xx chip as the main System-on-Chip (SoC) in their design. The <a href="https://openwrt.org/">OpenWRT Project</a> supported device <a href="https://openwrt.org/supported_devices">database</a> shows at least 34 products, manufactured between 2018 and 2020, that are designed around a IPQ40xx chip. The total number of products is likely much larger as many devices, like the <a href="https://www.netgear.com/home/wifi/mesh/rbr20">Netgear Orbi RB20</a>, are not supported by OpenWRT and therefore not included in the database.</p>
 <p>We often analyze networked devices and it&rsquo;s not surprising that an IPQ40xx-based device found a way to our lab. We got extremely interested once we recognized that this SoC [supports <a href="https://www.qualcomm.com/products/ipq4019">Secure Boot</a> and a <a href="https://www.qualcomm.com/products/ipq4019">Trusted Execution Environment (TEE)</a> made by <a href="https://www.qualcomm.com/">Qualcomm</a>, hereinafter simply referred to as <em>&lsquo;QSEE&rsquo;</em>.</p>
 <p>During the last decade, the availability of devices with a TEE has increased, answering the need for securing the execution of critical code on multi-purpose devices. They are nowadays widely present on <em>mobile phones</em> to support implementing various use cases with QSEE itself being available on all <a href="https://www.qualcomm.com/snapdragon">Snapdragon</a>-based models. Moreover, they are also present on devices like <em>Smart TVs</em> (e.g. for DRM), <em>set-top-boxes</em> (e.g. for PayTV) and even <em>ECUs</em> used by modern vehicles. Still, the availability of a TEE on a networking device like the <a href="https://www.linksys.com/nl/p/P-EA8300/">Linksys EA8300</a> is somewhwat surprising. Differently from <em>Secure Boot</em>, the use cases therefore have not clearly emerged yet!</p>
 <p>We found that QSEE is present on all IPQ40xx-based products we analyzed. However, this does not imply that QSEE is actively used. For instance, the <a href="https://www.linksys.com/nl/p/P-EA8300/">Linksys EA8300</a> does not seem to use QSEE after its fully booted. We determined that the IPQ40xx SDK likely includes QSEE and its bootloader (i.e. SBL1) only in binary form. Moreover, we believe it may be signed by Qualcomm as well. Thereofore, it&rsquo;s likely that QSEE is integrated by the SDK into a firmware build by default. This means, an OEM like Linksys, may only have limited control whether QSEE is present or not.</p>
@@ -158,15 +156,14 @@
 <p>It must be noted, that we did not explore the vulnerabilities for all the different affected platforms. Where applicable, additional attack paths and exploitation techniques may be available to an attacker.</p>
 <p>We strongly recommend <em>OEMs</em> to follow Qualcomm&rsquo;s advice and roll out software updates as soon as possible. This advice should be followed even when not explicitly aware of a TEE being present, as it may be integrated by default. Moreover, it&rsquo;s important to assign adequate resources to determine what the impact is of these vulnerabilities on your product. Support from a third-party security lab specializing in TEE security may be helpful.</p>
 <p>- Raelize<span style="color:yellow">.</span></p>
+</div>
+                
 
+                
+                
+            </div>
         </div>
-        
-        
-        
-
-      </div>
     </div>
-  </div>
 </section>
 
 
@@ -223,7 +220,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
 
 
 </body>

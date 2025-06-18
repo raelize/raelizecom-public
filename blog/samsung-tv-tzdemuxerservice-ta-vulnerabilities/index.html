@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.145.0">
+	<meta name="generator" content="Hugo 0.147.8">
 
 	<!-- plugins -->
 	
@@ -55,9 +55,7 @@
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
   <div id="content">
     
-
-
-<section class="sticky-top navigation">
+ <section class="sticky-top navigation">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
@@ -118,18 +116,18 @@
 
 
 <section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <hr>
-        <h1>Vulnerable tzdemuxerservice TA on Samsung TVs (J-series)</h1>
-        <p>Monday, Nov 1, 2021</p>
-        <hr>
-        
-      </div>
-      <div class="col-lg-8 offset-lg-2">
-        <div class="post-single-content" background-color=0xff>
-          <p>We often analyze the security of devices that implement a <strong>Trusted Execution Environment (TEE)</strong> and the information described in this post is a result of that. One of the goals of a <strong>Trusted Execution Environment (TEE)</strong> is to provide an environment for the secure execution of <strong>Trusted Applications (TAs)</strong>.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>Vulnerable tzdemuxerservice TA on Samsung TVs (J-series)</h2>
+                
+                <p>Monday, Nov 1, 2021</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><p>We often analyze the security of devices that implement a <strong>Trusted Execution Environment (TEE)</strong> and the information described in this post is a result of that. One of the goals of a <strong>Trusted Execution Environment (TEE)</strong> is to provide an environment for the secure execution of <strong>Trusted Applications (TAs)</strong>.</p>
 <p>The source code for a <strong>TA</strong> is rarely available for attackers and often only the binary code is available. As always, there are several exceptions like the default <a href="https://github.com/OP-TEE/optee_os/tree/master/ta">TAs provided by OP-TEE</a>, an open-source TEE OS, and the <a href="https://github.com/LedgerHQ">TAs available for the Ledger hardware wallet</a> which is used for storing cryptocurrencies securely.</p>
 <p>While analyzing the open-source code of <strong>Samsung TVs</strong>, made available because of <strong>GPL</strong> licenses, we identified that the published code for the J-series included the source code for a <strong>TA</strong> named <strong>tzdemuxerservice</strong>. This <strong>TA</strong> actually is licenses against <strong>LGPL</strong>. After a quick initial source code review we concluded several vulnerabilities were present as relevant security good practices were not followed.</p>
 <p>We informed <strong>Samsung</strong> about the vulnerabilities via the <a href="https://samsungtvbounty.com/Home.aspx">Samsung Smart TV Security Bug Bounty Program</a>. Samsung indicated to us that all the vulnerabilities described in this post are now fixed in the latest software version. To the best of our knowledge, they only applied to Samsung TVs from the <strong>J-series</strong>, (<a href="https://www.samsung.com/uk/support/tv-audio-video/what-do-samsung-tv-model-numbers-actually-mean-why-are-they-so-long/">produced in 2015</a>).</p>
@@ -353,15 +351,14 @@ verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequ
 </span></span></code></pre></div><p><strong>Samsung's fix:</strong> Samsung indicated to us that the return value for each <code>malloc</code> call is now correctly verified. This prevents the possibility for writing data to an unallocated (i.e. NULL) address.</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>We identified several critical vulnerabilities in the <strong>tzdemuxerservice</strong> <strong>TA</strong> developed for <strong>Samsung TVs (J-Series)</strong>. The fixes for these vulnerabilities were pushed to the vulnerable TVs in 2016, but the updated source code was never made available publicly. Therefore, we could only determine the effectiveness of the fixes based on the information provided by <strong>Samsung</strong> via email. The parameter types are now correctly checked and therefore it's not possible any more to write controlled data to arbitrary addresses.</p>
+</div>
+                
 
+                
+                
+            </div>
         </div>
-        
-        
-        
-
-      </div>
     </div>
-  </div>
 </section>
 
 
@@ -418,7 +415,7 @@ verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequ
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
 
 
 </body>

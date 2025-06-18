@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.145.0">
+	<meta name="generator" content="Hugo 0.147.8">
 
 	<!-- plugins -->
 	
@@ -55,9 +55,7 @@
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
   <div id="content">
     
-
-
-<section class="sticky-top navigation">
+ <section class="sticky-top navigation">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
@@ -118,18 +116,18 @@
 
 
 <section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <hr>
-        <h1>Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection</h1>
-        <p>Monday, Jun 7, 2021</p>
-        <hr>
-        
-      </div>
-      <div class="col-lg-8 offset-lg-2">
-        <div class="post-single-content" background-color=0xff>
-          <p>We&rsquo;ve identified multiple critical software vulnerabilities in QSEE, Qualcomm&rsquo;s Trusted Execution Environment (TEE), on <a href="https://www.qualcomm.com/media/documents/files/ipq40x8-ipq40x9-product-brief.pdf">Qualcomm IPQ40xx</a>-based devices (see <a href="/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/">post #1</a> and <a href="/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/">post #2</a>). We exploited these vulnerabilities in order to disable the secure range checks performed by QSEE in order to execute arbitrary code at the highest privilege (see <a href="/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/">post #4</a>). As these vulnerabilities are software vulnerabilities, they were easily fixed by Qualcomm after we disclosed them responsibly.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection</h2>
+                
+                <p>Monday, Jun 7, 2021</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><p>We&rsquo;ve identified multiple critical software vulnerabilities in QSEE, Qualcomm&rsquo;s Trusted Execution Environment (TEE), on <a href="https://www.qualcomm.com/media/documents/files/ipq40x8-ipq40x9-product-brief.pdf">Qualcomm IPQ40xx</a>-based devices (see <a href="/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/">post #1</a> and <a href="/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/">post #2</a>). We exploited these vulnerabilities in order to disable the secure range checks performed by QSEE in order to execute arbitrary code at the highest privilege (see <a href="/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/">post #4</a>). As these vulnerabilities are software vulnerabilities, they were easily fixed by Qualcomm after we disclosed them responsibly.</p>
 <p>As you may have already raelized, at Raelize we like to look further than just software vulnerabilities. Therefore, we decided to analyze the resilience of the Qualcomm IPQ40xx-family of chip towards Electromagnetic Fault Injection (EMFI). We used the <a href="https://www.linksys.com/nl/wireless-routers/traditional-routers/linksys-ea8300-max-stream-ac2200-tri-band-wifi-router/p/p-ea8300/">Linksys EA8300</a> WiFi router (see <a href="/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/">post #2</a>).</p>
 <p>We are fully aware that FI attacks are typically out of scope for a TEE threat model. Actually, ARM specifies this very clearly in their <a href="https://developer.arm.com/documentation/genc009492/c/Introduction/What-are-the-threats-/How-are-devices-attacked-?lang=en">documentation</a>. However, TEEs are also used for devices where FI attacks are considered a reasonable threat. Therefore, even if FI attacks are out of scope for a TEE according to ARM, they may not be for specific devices. The TEE on such devices, may be used to protect assets interesting for an attacker, making it an (very) interesting attack surface. Whenever the underlying platform (i.e. hardware) is vulnerable to FI attacks, the security of a TEE can be (easily) compromised as we will see in this post.</p>
 <p>At first, you may think that the ARM TrustZone hardware primitives (e.g. NS bit, TrustZone controllers, &hellip;) are the most interesting target for a FI attack. However, we decided to target the processor executing the QSEE software in order to show that other approaches are very effective as well.</p>
@@ -332,15 +330,14 @@
 <p>As a TEE is used to secure important assets, it will always be a very interesting target, also for FI-capable attackers. Of course, especially for devices where FI attacks are specifically included in the threat model and other components (e.g. ROM, bootloaders) are already hardened.</p>
 <p>We&rsquo;ve disclosed this vulnerability responsibly to Qualcomm using a coordinated disclosure process. They indicated that FI attacks are out of scope for the Qualcomm IPQ40xx family of chips and therefore the vulnerability will not be fixed. This choice is understandable, considering the typical TEE threat model. However, as a result, these chips will be vulnerable forever&hellip;</p>
 <p>- Raelize<span style="color:yellow">.</span></p>
+</div>
+                
 
+                
+                
+            </div>
         </div>
-        
-        
-        
-
-      </div>
     </div>
-  </div>
 </section>
 
 
@@ -397,7 +394,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
 
 
 </body>

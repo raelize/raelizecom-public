@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.145.0">
+	<meta name="generator" content="Hugo 0.147.8">
 
 	<!-- plugins -->
 	
@@ -55,9 +55,7 @@
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
   <div id="content">
     
-
-
-<section class="sticky-top navigation">
+ <section class="sticky-top navigation">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
@@ -118,18 +116,18 @@
 
 
 <section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <hr>
-        <h1>Espressif ESP32: Breaking HW AES with Electromagnetic Analysis</h1>
-        <p>Thursday, Mar 2, 2023</p>
-        <hr>
-        
-      </div>
-      <div class="col-lg-8 offset-lg-2">
-        <div class="post-single-content" background-color=0xff>
-          <p>In our <a href="/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/">previous blog post</a>, we&rsquo;ve shown how we extracted the secret key from the ESP32&rsquo;s hardware AES accelerator using a <em>Power Analysis</em> attack. In this blog post, we measure the electromagnetic emissions from the chip in order to extract the same secret key.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>Espressif ESP32: Breaking HW AES with Electromagnetic Analysis</h2>
+                
+                <p>Thursday, Mar 2, 2023</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><p>In our <a href="/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/">previous blog post</a>, we&rsquo;ve shown how we extracted the secret key from the ESP32&rsquo;s hardware AES accelerator using a <em>Power Analysis</em> attack. In this blog post, we measure the electromagnetic emissions from the chip in order to extract the same secret key.</p>
 <p>Important, please read our <a href="/blog/espressif-systems-esp32-breaking-hw-aes-with-power-analysis/">previous blog post</a> on power analysis first if you have not done that yet. Espressif released an <a href="https://www.espressif.com/sites/default/files/advisory_downloads/AR2022-003%20Security%20Advisory%20Concerning%20Breaking%20the%20Hardware%20AES%20Core%20and%20Firmware%20Encryption%20of%20ESP32%20Chip%20Revision%20v3.0%20-%20V2.0%20EN.pdf">advisory</a> after Ledger <a href="https://www.blackhat.com/us-22/briefings/schedule/#unlimited-results-breaking-firmware-encryption-of-esp32-v3-26345">demonstrated</a> the hardware AES accelerator of the ESP32 chip is vulnerable.</p>
 <h2 id="test-code">Test code</h2>
 <p>We decided to optimize the test application by setting the trigger signal high and low closer to the AES operation. During our <em>Power Analysis</em> attack, we used a ROM API function call (i.e., <code>ets_aes_crypt</code>) to perform an AES encryption. This function performs several operations (e.g., copying of data to input registers), that also can be implemented in the bootloader where our test code is implemented as well.</p>
@@ -484,15 +482,14 @@
 <p>Needless to say, some of the above improvements may also yield disadvantages, such as an increased attack complexity, requirements on expertise, requirement on tooling, etc.</p>
 <p>Feel free to reach out for questions or remarks related to this research. As always, we are available to give training related to our research, during which you will gain hands-on experience exploiting the vulnerabilities described in this blog post.</p>
 <p>- Raelize<span style="color:yellow">.</span></p>
+</div>
+                
 
+                
+                
+            </div>
         </div>
-        
-        
-        
-
-      </div>
     </div>
-  </div>
 </section>
 
 
@@ -549,7 +546,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
 
 
 </body>

@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.145.0">
+	<meta name="generator" content="Hugo 0.147.8">
 
 	<!-- plugins -->
 	
@@ -55,9 +55,7 @@
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
   <div id="content">
     
-
-
-<section class="sticky-top navigation">
+ <section class="sticky-top navigation">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
@@ -118,18 +116,18 @@
 
 
 <section class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <hr>
-        <h1>Espressif ESP32: Breaking HW AES with Power Analysis</h1>
-        <p>Friday, Feb 24, 2023</p>
-        <hr>
-        
-      </div>
-      <div class="col-lg-8 offset-lg-2">
-        <div class="post-single-content" background-color=0xff>
-          <p>Side Channel Analysis (SCA) attacks are commonly used for extracting the secret key of cryptographic engines found in modern devices. They exploit side channels, such as <em>Timing</em>, <em>Power</em> and <em>Electromagnetic</em> (EM) leaks, to obtain information about the secret key used by the cryptography algorithm. Even though these type of attacks were traditionally performed on smart cards, they are effective on embedded devices as well.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>Espressif ESP32: Breaking HW AES with Power Analysis</h2>
+                
+                <p>Friday, Feb 24, 2023</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><p>Side Channel Analysis (SCA) attacks are commonly used for extracting the secret key of cryptographic engines found in modern devices. They exploit side channels, such as <em>Timing</em>, <em>Power</em> and <em>Electromagnetic</em> (EM) leaks, to obtain information about the secret key used by the cryptography algorithm. Even though these type of attacks were traditionally performed on smart cards, they are effective on embedded devices as well.</p>
 <p>Even the strongest cryptography algorithms, such as <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a>, are susceptible to SCA attacks, especially if no countermeasures are in place. That&rsquo;s why, <a href="https://donjon.ledger.com/">Ledger Dojon</a>&rsquo;s discovery that the key used by the flash encryption feature of the ESP32 chip could be extracted through a power analysis attack, was not surprising. Nonetheless, their in-depth research is very cool and we definitely recommend to watch their <a href="https://www.blackhat.com/us-22/briefings/schedule/#unlimited-results-breaking-firmware-encryption-of-esp32-v3-26345">Black Hat presentation</a> and read their <a href="https://eprint.iacr.org/2023/090.pdf">paper</a>. Espressif released an <a href="https://www.espressif.com/sites/default/files/advisory_downloads/AR2022-003%20Security%20Advisory%20Concerning%20Breaking%20the%20Hardware%20AES%20Core%20and%20Firmware%20Encryption%20of%20ESP32%20Chip%20Revision%20v3.0%20-%20V2.0%20EN.pdf">advisory</a> related to their research results.</p>
 <p>Ledger&rsquo;s research inspired us, especially because we use the ESP32 chip for our hardware security trainings, to break the hardware AES engine using a power analysis attack as well. The results of this activity are described in this blog post. Other interesting examples include SCA attacks on the <a href="https://hardwear.io/netherlands-2022/speakers/tihmstar.php">iPhone</a> (EM), <a href="https://beta.ivc.no/wiki/index.php/Xbox_360_Timing_Attack">Xbox 360</a> (Timing) and <a href="https://eshard.com/posts/sca-attacks-on-armv8">ARMv8 Cryptographic Extensions (CE)</a> (EM).</p>
 <p>Please note, in this blog post we will not explain the theory behind power analysis attacks, notably Correlation Power Attacks (CPA) on the AES algorithm. There&rsquo;s an abundance of information publicly available where these attacks are described in utmost detail and clarity. For example, by <a href="https://yan1x0s.medium.com/side-channel-attacks-part-2-dpa-cpa-applied-on-aes-attack-66baa356f03f">Yan1x0s</a>, <a href="https://nostarch.com/hardwarehacking">Colin O&rsquo;Flynn and Jasper van Woudenberg</a>, <a href="https://wiki.newae.com/V4:Tutorial_B6_Breaking_AES_%28Manual_CPA_Attack%29">NewAE</a>, <a href="https://github.com/Riscure/Jlsca">Ceesb</a> and <a href="https://www.rambus.com/wp-content/uploads/2015/08/DPA.pdf">Paul Kocher</a>. We definitely used their write-ups for inspiration and reference.</p>
@@ -791,15 +789,14 @@
 <p>In our next blog post, we will perform a similar attack by measuring the electromagnetic emissions emitted from the chip. But, for now, we hope you have enjoyed this write-up.</p>
 <p>Feel free to reach out for questions or remarks related to this research. As always, we are available to give training related to our research, during which you will gain hands-on experience exploiting the vulnerabilities described in this blog post.</p>
 <p>- Raelize<span style="color:yellow">.</span></p>
+</div>
+                
 
+                
+                
+            </div>
         </div>
-        
-        
-        
-
-      </div>
     </div>
-  </div>
 </section>
 
 
@@ -856,7 +853,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
 
 
 </body>
