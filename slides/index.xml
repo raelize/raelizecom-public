@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Slides on Raelize - Embedded Device Security Services Consultancy Testing Research Training</title>
+    <link>https://raelize.com/slides/</link>
+    <description>Recent content in Slides on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://raelize.com/slides/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://raelize.com/slides/2025/3levated-privileges/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://raelize.com/slides/2025/3levated-privileges/</guid>
+      <description>&lt;!doctype html&gt;&#xA;&lt;html lang=&#34;en&#34;&gt;&#xA;&lt;head&gt;&#xA;    &lt;meta charset=&#34;utf-8&#34;&gt;&#xA;    &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&#34;&gt;&#xA;&#xA;    &lt;title&gt;EL3vated Privileges&lt;/title&gt;&#xA;&#xA;    &lt;link rel=&#34;stylesheet&#34; href=&#34;dist/reset.css&#34;&gt;&#xA;    &lt;link rel=&#34;stylesheet&#34; href=&#34;dist/reveal.css&#34;&gt;&#xA;    &lt;link rel=&#34;stylesheet&#34; href=&#34;dist/theme/black.css&#34;&gt;&#xA;&#xA;    &lt;!-- Theme used for syntax highlighted code --&gt;&#xA;    &lt;link rel=&#34;stylesheet&#34; href=&#34;plugin/highlight/zenburn.css&#34;&gt;&#xA;    &lt;link rel=&#34;stylesheet&#34; href=&#34;plugin/highlight/monokai.css&#34;&gt;&#xA;&#xA;    &lt;!-- custom css --&gt;&#xA;    &lt;style&gt;&#xA;        .reveal #grading {&#xA;            width: 45vw !important;&#xA;            max-width: 45vw !important;&#xA;            margin-left: -5vw !important;&#xA;        }&#xA;        .fragment.blur {&#xA;            filter: blur(5px);&#xA;        }&#xA;        .fragment.blur.visible {&#xA;            filter: none;&#xA;        }&#xA;        .container{&#xA;          display: flex;&#xA;        }&#xA;        .col {&#xA;          flex: 1;&#xA;        }&#xA;        /* coder {&#xA;            text-decoration: underline;&#xA;            text-decoration-color: yellow;&#xA;            text-decoration-thickness: 2px;&#xA;            text-underline-offset: 5px;&#xA;        } */&#xA;        coder {&#xA;            /* background-color: #f4f4f4;&#xA;            border: 1px solid #ddd;&#xA;            border-radius: 4px;&#xA;            padding: 1px 1px;&#xA;            font-family: &#39;Courier New&#39;, monospace; */&#xA;            color: #c7254e;&#xA;        }&#xA;    &lt;/style&gt;&#xA;&lt;/head&gt;&#xA;&gt;&#xA;&lt;div class=&#34;reveal&#34;&gt;&#xA;&lt;div class=&#34;slides&#34;&gt;&#xA;&#xA;&lt;!-- --------------&gt;&#xA;&lt;!-- Title       --&gt;&#xA;&lt;!-- --------------&gt;&#xA;&lt;section&gt;&#xA;    &lt;img src=&#34;images/logo.png&#34; width=&#34;200&#34;&gt;&lt;/img&gt;&#xA;    &lt;hr&gt;&#xA;    &lt;h3&gt;EL3vated Privileges&lt;/h3&gt;&#xA;    &lt;p&gt;Glitching Google&#39;s Wifi Pro from Root to EL3&lt;span style=&#34;color: yellow;&#34;&gt;.&lt;/span&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

