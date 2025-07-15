@@ -6,8 +6,15 @@
     <description>Recent content on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Jun 2025 08:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 15 Jul 2025 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://raelize.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Google Wifi Pro: Glitching from Root to EL3</title>
+      <link>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/</link>
+      <pubDate>Tue, 15 Jul 2025 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/</guid>
+      <description>In this first post, we will explain in detail, how we were able to inject EM glitches in order to characterize Qualcomm&amp;rsquo;s IPQ5018 SoC susceptibility to EM glitches.</description>
+    </item>
     <item>
       <title>Espressif ESP32</title>
       <link>https://raelize.com/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/</link>

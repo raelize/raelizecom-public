@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://raelize.com/blog/</loc>
-    <lastmod>2025-06-18T09:20:00+02:00</lastmod>
+    <lastmod>2025-07-17T09:00:00+02:00</lastmod>
   </url><url>
     <loc>https://raelize.com/</loc>
-    <lastmod>2025-06-18T09:20:00+02:00</lastmod>
+    <lastmod>2025-07-17T09:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/</loc>
+    <lastmod>2025-07-15T09:00:00+02:00</lastmod>
   </url><url>
     <loc>https://raelize.com/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/</loc>
     <lastmod>2025-06-18T08:00:00+02:00</lastmod>

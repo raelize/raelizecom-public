@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Google Wifi Pro: Glitching from Root to EL3</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.148.1">
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+ <section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/resources">resources</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>Google Wifi Pro: Glitching from Root to EL3</h2>
+                
+                <h3>Part 1 - Characterization</h3>
+                
+                <p>Tuesday, Jul 15, 2025</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><p>At the end of 2023, we started analyzing the security of Google&rsquo;s <a href="https://store.google.com/product/nest_wifi_pro">Nest Wifi Pro</a>. Of course, besides overcoming several physical practicalities (i.e., dumping the flash), this involves a significant amount of software reverse engineering. As likely evident from our previously conducted research, at Raelize, we like to look beyond the software stack. So, in line with our DNA, while reverse engineering the software stack, we decided to test the resilience of the Google Nest Wifi Pro to electromagnetic (EM) glitches as well.</p>
+<p>Please note, we have actually discovered several software vulnerabilities, mostly in low-level components running at a high privilege. However, none of these vulnerabilities has surfaced yet in Google (or Qualcomm 😗) monthly security bulletins. Hence, we will have to postpone discussing them to a later time.</p>
+<p>In a series of posts, we will discuss a hardware vulnerability that we successfully exploited using EM glitches. Note, this attack was already discussed at at <a href="https://hardwear.io/usa-2025/speakers/cristofaro-mune.php">hardwear.io USA 2025</a> (<a href="https://raelize.com/upload/research/2025/Hw_io-USA-2025_EL3vated-Privileges-Glitching-Google-Wifi-Pro-from-Root-to-EL3_v1.0.pdf">slides</a>).</p>
+<ul>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/">Google Wifi Pro: Glitching from Root to EL3 - Part 1 - Characterization</a></li>
+<li><a href="blog/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write/">Google Wifi Pro: Glitching from Root to EL3 - Part 2 - Arbitrary read/write at EL3</a></li>
+<li><a href="blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/">Google Wifi Pro: Glitching from Root to EL3 - Part 3 - Arbitrary code exec at EL3</a></li>
+</ul>
+<p>In this first post, we will explain how we characterized the <a href="https://www.qualcomm.com/">Qualcomm</a>&rsquo;s <a href="https://www.qualcomm.com/products/networking/n6-platform">IPQ5018</a> SoC to determine its susceptibility towards EM glitches.</p>
+<p>We have organized the content in the following sections:</p>
+<ul>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/#background">Background</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/#characterization">Characterization</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/#characterization-test-code">Characterization test code</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/#characterization-results">Characterization results</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/#conclusion">Conclusion</a></li>
+</ul>
+<p>We hope you appreciate this post; have fun! :)</p>
+<h2 id="background">Background</h2>
+<hr>
+<p>Google&rsquo;s Nest Wifi Pro is a consumer WiFi router available in many areas of the world. We have identified and exploited the vulnerability on a device running firmware version 3.73.406133, which was the latest available version at the time of our research.</p>
+<p>As far as we know, the vulnerability is rooted in hardware and cannot be patched. Also, the code construction that we leveraged for the exploitation remained unchanged in the last released firmware versions. Therefore, the attack described in this post should apply to devices running the latest firmware version.</p>
+<p>Note, the characterization test described in this post relies on the ability to execute arbitrary code in Android. We were able to perform it by leveraging a Secure Boot bypass we disclosed to Google. A successful exploit of such a vulnerability gave us a root shell, along with a few other things, including the privileges to modify the <code>init.rc</code> file, which is used to configure Android at early boot.</p>
+<p>The proc entry <code>/proc/sys/kernel/modules_disabled</code> governs the loading of Linux kernel modules (LKMs) at runtime. If this Linux Kernel security feature is set to <code>1</code>, kernel module loading is disabled until the system is rebooted. The value of this specific entry is set to <code>1</code> in the <code>init.rc</code> file.  Our acquired privileges allowed us to change such setting in <code>init.rc</code>, allowing us to load LKMs at runtime.</p>
+<p>The vulnerability (i.e., <a href="https://nvd.nist.gov/vuln/detail/CVE-2024-22013">CVE-2024-22013</a>) that we used to get a root shell and the power to load custom kernel modules was also found by <a href="https://x.com/hexpl0t">Sergei</a>, which he discussed in more detail in his <a href="https://hardwear.io/netherlands-2024/speakers/sergei-volokitin.php">presentation</a> at <a href="https://hardwear.io/netherlands-2024/">Hardwear.io Netherlands 2024</a>.</p>
+<h2 id="characterization">Characterization</h2>
+<hr>
+<p>Whenever it&rsquo;s possible, we like to characterize the susceptibility of a target to a specific fault injection technique (e.g. EM), before commencing to the real attack. This allows us to determine, in a controlled and favorable setting, if the underlying platform can be affected by our glitches. With this characterization step we were able to successfully identify that the Qualcomm&rsquo;s IPQ5018 SoC is vulnerable to EM glitches.</p>
+<p>This vulnerability, being it a hardware vulnerability, cannot be fixed. In an analogy to software exploitation, you could compare the characterization to the identification of a software vulnerability, whose exploitability and impact get demonstrated by actually exploiting it.</p>
+<h4 id="tooling">Tooling</h4>
+<p>Keysight&rsquo;s EM tooling works very similar to all EMFI tooling. A (very) fast rush of current is driven through a coil, generating a spike (i.e. a rapid variation) in the associated electromagnetic field. This induces eddy currents within the chip&rsquo;s circuits nets, altering transistor&rsquo;s states and introducing faults in the represented logical values. This may, for instance, allow us to affect CPU operations and corrupt the instructions being executed.</p>
+<p>We have been stressing this again and again: considering the skipping of instructions as the only effect of FI attacks, significant limits the exploration of the full potential of FI attacks. Hence, we always think and reason along the lines of corrupting instructions (i.e., changing opcodes and operands) when discussing FI attacks targeting the CPU of a chip.</p>
+<p>A full diagram of the setup is shown below. We used <a href="https://www.keysight.com/">Keysight</a>&rsquo;s <a href="https://www.keysight.com/us/en/product/DS1180A/glitch-pattern-generator.html">DS1180A Glitch Pattern Generator</a>, <a href="https://www.keysight.com/us/en/product/DS1010A/precision-xyz-stage.html">DS1010A Precision XYZ Stage</a> and <a href="https://www.keysight.com/us/en/product/DS1120A/unidirectional-fault-injection-probe.html">DS1120A Unidirectional Fault Injection Probe</a>. Additionally, we used a solid-state relay to control the external power supply of the target, which allowed us to reset the device and bring it to a known state.</p>
+<p style="text-align:center;">
+    <img src="/img/google/wifipro/emfi/wifi_pro_emfi_setup.png" style="max-width: 80%; width: 600px">
+    <figcaption>Diagram of the EMFI setup using Keysight tooling</figcaption>
+</p>
+<p>An actual photo of the setup at our lab is shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/google/wifipro/emfi/setup.png" style="max-width: 80%; width: 600px">
+    <figcaption>Real photo of the EMFI setup using Keysight tooling</figcaption>
+</p>
+<p>The EMFI probe tip is placed very close to, or even better, touching, the surface of the chip. This is shown in the image below.</p>
+<p style="text-align:center;">
+    <img src="/img/google/wifipro/emfi/probe_location.png" style="max-width: 80%; width: 600px">
+    <figcaption>Photo of the EMFI tip on the chip's surface</figcaption>
+</p>
+<h4 id="communication">Communication</h4>
+<p>The device exposes a serial interface (i.e., <code>TX</code> and <code>RX</code>) on the PCB. We found these by probing the various test pads on the PCB of the device. The pads that carry the <code>TX</code> and <code>RX</code> signals of the serial interface are shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/google/wifipro/emfi/uart.png" style="max-width: 80%; width: 600px">
+    <figcaption>Photo of the TX/RX of the serial interface</figcaption>
+</p>
+<p>We use this serial interface to communicate with the test code used for the characterization.</p>
+<h4 id="trigger">Trigger</h4>
+<p>Being able to time the glitch is fundamental for FI attacks. For this target, we decided to leverage the GPIO signal used for the factory reset button. We simply soldered a wire to one of the reset button pads in order to access the GPIO signal at our best convenience.</p>
+<p style="text-align:center;">
+    <img src="/img/google/wifipro/emfi/reset_button.png" style="max-width: 80%; width: 600px">
+    <figcaption>Photo of the factory reset button as a trigger</figcaption>
+</p>
+<p>This GPIO is configured in the <code>init.rc</code> at boot (see below).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>on init
+</span></span><span style="display:flex;"><span>    Export FDR button GPIO
+</span></span><span style="display:flex;"><span>    write /sys/class/gpio/export <span style="color:#e6db74">&#34;487&#34;</span>
+</span></span><span style="display:flex;"><span>    write /sys/class/gpio/gpio487/active_low <span style="color:#e6db74">&#34;1&#34;</span>
+</span></span></code></pre></div><p>As the GPIO signal is configured as an input pin, we re-configure it as an output pin, by modifying the <code>init.rc</code>. This prevents us from performing a factory reset, but that is likely not something we want to do anyways.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>on init
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Export FDR button GPIO</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># write /sys/class/gpio/export &#34;487&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># write /sys/class/gpio/gpio487/active_low &#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    write /sys/class/gpio/export <span style="color:#e6db74">&#34;487&#34;</span>
+</span></span><span style="display:flex;"><span>    write /sys/class/gpio/gpio487/active_low <span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>    write /sys/class/gpio/gpio487/direction <span style="color:#e6db74">&#34;out&#34;</span>
+</span></span><span style="display:flex;"><span>    write /sys/class/gpio/gpio487/value <span style="color:#e6db74">&#34;3&#34;</span>
+</span></span></code></pre></div><p>We confirmed that we can control this GPIO pin using <code>devmem</code> from our root shell.</p>
+<p>We can set the GPIO high (i.e., trigger up). This allows us to identify, using an oscilloscope, when the relevant part of our test code starts executing.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # devmem 0x01016004 32 0x3
+</span></span></code></pre></div><p>We can also set the GPIO low (i.e., trigger down). This allows us to identify, using an oscilloscope, when the test code has finished executing.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # devmem 0x01016004 32 0x0
+</span></span></code></pre></div><p>Now that the address and the values to control the GPIO are known, we can also do this also directly from code (i.e., by simply writing to those addresses).</p>
+<h4 id="reset">Reset</h4>
+<p>When glitches are injected, it&rsquo;s highly likely that, at some point, the target may enter into an erroneous state. A reliable reset procedure is needed to restore the target to a known state and flawlessly continue with the experiments. We decided to perform a power-on reset, whenever we need to reboot the target, by directly controlling the external power supply.</p>
+<p style="text-align:center;">
+    <img src="/img/google/wifipro/emfi/reset_relay.png" style="max-width: 80%; width: 600px">
+    <figcaption>Photo of the relay used for reset</figcaption>
+</p>
+<p>We use a solid state relay, driven by a GPIO pin from our glitcher, to switch the original power supply on and off.</p>
+<h2 id="characterization-test-code">Characterization test code</h2>
+<hr>
+<p>The Linux kernel module we used for the characterization implements the code shown below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;linux/module.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;linux/kernel.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;linux/types.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;linux/dma-mapping.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;asm/cacheflush.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">MODULE_LICENSE</span>(<span style="color:#e6db74">&#34;GPL&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">MODULE_AUTHOR</span>(<span style="color:#e6db74">&#34;Raelize&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">MODULE_DESCRIPTION</span>(<span style="color:#e6db74">&#34;CHARACTERIZATION 1 for Google&#39;s Nest Wi-Fi Pro (3.73.406133)&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">MODULE_VERSION</span>(<span style="color:#e6db74">&#34;1.0&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> u32 _command <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> u32 _iterations <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module_param</span>(_command, uint, S_IRUGO);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module_param</span>(_iterations, uint, S_IRUGO);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define o &#34;add r7, r7, #1;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define t o o o o o o o o o o
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define h t t t t t t t t t t
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define d h h h h h h h h h h
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define x d d d d d d d d d d
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">unrolled_loop</span>(<span style="color:#66d9ef">volatile</span> u32 <span style="color:#f92672">*</span>trigger) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">volatile</span> u32 counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x3</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">asm</span> <span style="color:#66d9ef">volatile</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;mov r7, #0;&#34;</span>
+</span></span><span style="display:flex;"><span>        x
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;mov %[counter], r7;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">:</span> [counter] <span style="color:#e6db74">&#34;=r&#34;</span> (counter)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;r7&#34;</span>, <span style="color:#e6db74">&#34;r12&#34;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">*</span>trigger <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printk</span>(KERN_ALERT <span style="color:#e6db74">&#34;AAAA%08xBBBB%08xCCCC</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, counter, counter);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> __init <span style="color:#a6e22e">characterize_1_init</span>(<span style="color:#66d9ef">void</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>trigger;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printk</span>(KERN_ALERT <span style="color:#e6db74">&#34;characterize_1 (init)!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    trigger <span style="color:#f92672">=</span> <span style="color:#a6e22e">ioremap</span>(<span style="color:#ae81ff">0x01016004</span>, <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(_command <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">unrolled_loop</span>(trigger);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">printk</span>(KERN_ALERT <span style="color:#e6db74">&#34;characterize_1 (command (%d) unsupported)!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, _command);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> __exit <span style="color:#a6e22e">characterize_1_exit</span>(<span style="color:#66d9ef">void</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printk</span>(KERN_ALERT <span style="color:#e6db74">&#34;characterize_1 (exit)!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module_init</span>(characterize_1_init);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module_exit</span>(characterize_1_exit);
+</span></span></code></pre></div><p>The function <code>characterize_1_init</code> is executed directly after the Linux kernel module is loaded using <code>insmod</code>. The module parameter <code>_command</code>, which is passed when the kernel module is loaded, is used to trigger the execution of the <code>unrolled_loop</code> function. This function implements the following steps:</p>
+<ol>
+<li>Set trigger high by writing <code>3</code> to <code>0x01016004</code></li>
+<li>Set register <code>r7</code> to <code>0</code></li>
+<li>Increase the <code>r7</code> with <code>1</code> for <code>10,000</code> times</li>
+<li>Set trigger low by writing <code>0</code> to <code>0x01016004</code></li>
+<li>Print the value contained in <code>r7</code> in the kernel log</li>
+</ol>
+<p>To determine if Qualcomm&rsquo;s IPQ5018 SoC is sensitive to EM glitches, we inject the glitch while the counter is being increased using the <code>add</code> instructions. When the glitch results in a fault altering the intended behavior of an <code>add</code> instruction, we expect to see the output counter value different from the expected value (i.e., <code>10,000</code>).</p>
+<p>We can run the kernel module as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># insmod characterize_1.ko _command=1 _iterations=10000 &amp;&amp; rmmod characterize_1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 1054.149388<span style="color:#f92672">]</span> characterize_1 <span style="color:#f92672">(</span>init<span style="color:#f92672">)</span>!
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 1054.149491<span style="color:#f92672">]</span> AAAA00002710BBBB00002710CCCC
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 1054.176611<span style="color:#f92672">]</span> characterize_1 <span style="color:#f92672">(</span>exit<span style="color:#f92672">)</span>!
+</span></span></code></pre></div><p>In the example above, the counter value is set to <code>0x2710</code> in hex (i.e. <code>10,000</code> in decimal). Printing the counter value twice allows us to identify responses where the counter has been modified by a communication malfunction. This assures that we do not classify experiments incorrectly.</p>
+<h4 id="timing">Timing</h4>
+<p>We measured the time between the trigger up and down moment using an oscilloscope to get an idea of when to inject the glitch.</p>
+<p style="text-align:center;">
+    <img src="/img/google/wifipro/emfi/timing_characterize.png" style="max-width: 80%; width: 600px">
+    <figcaption>Timing of the test code</figcaption>
+</p>
+<p>Based on the above timing, we decided to inject our glitch between 20,000 μs and 40,000 μs after the trigger goes up. This ensures that we are injecting glitches only when the <code>add</code> instructions are executed and no surrounding code is hit. Precise timing of our glitch is not too important to determine whether the Qualcomm&rsquo;s IPQ5018 SoC is vulnerable. It does not matter too much which <code>add</code> instruction we corrupt, as long as we corrupt one.</p>
+<h4 id="boot-time">Boot time</h4>
+<p>The duration of a single experiment is the biggest disadvantage when characterizing using a kernel module. The kernel module can only be loaded after having booted into the root shell. This takes a significant amount of time due to the booting time, especially when compared to implementing the test code directly in the bootloader (e.g., U-Boot). We expect to reset the target often, so the overhead to boot, has a significant impact on the overall characterization.</p>
+<p>We decided to speed up the boot process for an earlier loading of the kernel module. We made the following additions to <code>init.rc</code> at the end of <code>on init</code>, which spawns our root shell very early at boot. This results in a non-functional device, however we confirmed this is sufficient for loading a kernel module.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>on init
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    write /sys/devices/system/cpu/cpu0/online <span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>    write /sys/devices/system/cpu/cpu1/online <span style="color:#e6db74">&#34;0&#34;</span>
+</span></span><span style="display:flex;"><span>    exec /factory/raelize/bin/sh
+</span></span></code></pre></div><p>The <code>/factory/raelize/bin/sh</code> is a symlink to a pre-compiled busybox binary we stored on the device. We also made sure that only core 0 (i.e., <code>cpu0</code>) is available at the moment of testing to prevent any possible issues due to scheduling or parallel execution.</p>
+<h2 id="characterization-results">Characterization results</h2>
+<hr>
+<p>We scanned the surface of Qualcomm&rsquo;s IPQ5018 SoC in a grid of 10 x 10 with Keysight&rsquo;s EMFI probe. After performing roughly 45 experiments at each location,  where we randomize the power of the EM probe between 10% and 100%, we observed several locations where the counter value is different than the expected value.</p>
+<p>We plot the experiments using our <a href="https://github.com/raelize/TAoFI-Analyzer">TAoFI-Analyzer</a>, for which the results are shown below. The red dots represent the locations where we are able to modify the counter value.</p>
+<p style="text-align:center;">
+    <a href="/img/google/wifipro/emfi/characterize_xyz2.png"><img src="/img/google/wifipro/emfi/characterize_xyz2.png" style="max-width: 80%; width: 600px"></a>
+    <figcaption>Plot of the XYZ scan</figcaption>
+</p>
+<p>Several of the interesting results are listed below.</p>
+<div style="width: 800px;">
+<p>
+<table>
+  <thead>
+      <tr>
+          <th><strong>Response</strong></th>
+          <th style="text-align: left"><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>AAAA00002710BBBB00002710CCCC</code></td>
+          <td style="text-align: left">expected (i.e., glitch has no impact)</td>
+      </tr>
+      <tr>
+          <td><code>AAAA0000270fBBBB0000270fCCCC</code></td>
+          <td style="text-align: left">counter - 1</td>
+      </tr>
+      <tr>
+          <td><code>AAAA00002790BBBB00002790CCCC</code></td>
+          <td style="text-align: left">counter + 0x80</td>
+      </tr>
+      <tr>
+          <td><code>AAAA000027c0BBBB000027c0CCCC</code></td>
+          <td style="text-align: left">counter + 0xb0</td>
+      </tr>
+      <tr>
+          <td><code>AAAA4000198eBBBB4000198eCCCC</code></td>
+          <td style="text-align: left">Address in DDR</td>
+      </tr>
+      <tr>
+          <td><code>AAAA6fb91dacBBBB6fb91dacCCCC</code></td>
+          <td style="text-align: left">unknown</td>
+      </tr>
+  </tbody>
+</table>
+</p>
+</div>
+<p>It&rsquo;s difficult to determine what type of fault exactly materialized as a result of the injected EM glitch. However, seeing a counter value of <code>0x270f</code> (i.e., <code>counter - 1</code>) is typically a sign that the target is indeed vulnerable, at least in the widely known instruction skipping interpretation. Moreover, seeing DDR addresses end up in the counter is a good indication for instruction corruption as the content of another register (likely) got moved into the register used for the counter (i.e., we corrupted an operand of the add instruction).</p>
+<p>To increase our chances for success, we decided to fix the EM probe on a location where we were able to change the counter value to <code>0x270f</code> (i.e., <code>counter - 1</code>). Moving the probe across the surface of the Qualcomm&rsquo;s IPQ5018 SoC is a time consuming process. Therefore, by fixing the probe, we can more efficiently search the glitch parameters&rsquo; space (i.e., location, timing and power).</p>
+<h2 id="conclusion">Conclusion</h2>
+<hr>
+<p>We successfully determined Qualcomm&rsquo;s IPQ5018 SoC is susceptible to EM glitches. We determined this by running characterization code in a custom Linux kernel module. Identifying a vulnerable location is fairly simple and can be done within hours.</p>
+<p>The results of the characterization test gave us good confidence we can alter the intended behavior of the instructions executed by the CPU. Given that the Secure Monitor code is executed by the same CPU and the code we executed is not specific to a Non-Secure operation mode (i.e. REE), we felt confident that Secure Monitor code execution could be also affected by EM glitches.</p>
+<p>We decided to move forward with performing an attack on the Secure Monitor (EL3) and this adventure is described in more detail in the next post of this series of posts.</p>
+<h2 id="ending">Ending</h2>
+<hr>
+<p>Feel free to reach out for questions or remarks related to this research. As always, we are available to give training on the research we perform, during which you will gain hands-on experience exploiting the vulnerabilities described in this post.</p>
+<p>- Raelize<span style="color:yellow">.</span></p>
+</div>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+
+
+</body>
+
+</html>
