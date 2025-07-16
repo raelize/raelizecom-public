@@ -6,14 +6,21 @@
     <description>Recent content in Blogs on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Jul 2025 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 16 Jul 2025 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://raelize.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Google Wifi Pro Glitching from Root to EL3</title>
+      <link>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write/</link>
+      <pubDate>Wed, 16 Jul 2025 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write/</guid>
+      <description>In this second post, we explain in detail, how we used a single EM glitch to read and write a 32-bit value from/to an arbitrary address.</description>
+    </item>
     <item>
       <title>Google Wifi Pro: Glitching from Root to EL3</title>
       <link>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/</link>
       <pubDate>Tue, 15 Jul 2025 09:00:00 +0200</pubDate>
       <guid>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/</guid>
-      <description>In this first post, we will explain in detail, how we were able to inject EM glitches in order to characterize Qualcomm&amp;rsquo;s IPQ5018 SoC susceptibility to EM glitches.</description>
+      <description>In this first post, we explain in detail, how we were able to inject EM glitches in order to characterize Qualcomm&amp;rsquo;s IPQ5018 SoC susceptibility to EM glitches.</description>
     </item>
     <item>
       <title>Espressif ESP32</title>
