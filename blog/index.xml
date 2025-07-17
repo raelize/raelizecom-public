@@ -6,8 +6,15 @@
     <description>Recent content in Blogs on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Jul 2025 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 17 Jul 2025 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://raelize.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Google Wifi Pro: Glitching from Root to EL3</title>
+      <link>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/</link>
+      <pubDate>Thu, 17 Jul 2025 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/</guid>
+      <description>In this third blog post, we will explain in detail, how we were able get arbitrary code execution at EL3 leveraging the arbitrary write.</description>
+    </item>
     <item>
       <title>Google Wifi Pro Glitching from Root to EL3</title>
       <link>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write/</link>

