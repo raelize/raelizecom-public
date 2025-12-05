@@ -11,7 +11,7 @@
     <meta name="description" content="Our trainings provide hands-on and exciting device security trainings on Secure Boot Trusted Execution Environment (TEE) and Fault Injection.">
     
     <meta name="author" content="Raelize B.V.">
-    <meta name="generator" content="Hugo 0.148.2">
+    <meta name="generator" content="Hugo 0.152.2">
 
     <!-- plugins -->
     
@@ -145,6 +145,58 @@
     
 
 <!-- Start About Section -->
+<script>
+	const bootpwn = '<b>' +
+					'<span class="bootpwn_1">B</span>' +
+					'<span class="bootpwn_2">o</span>' +
+					'<span class="bootpwn_3">o</span>' + 
+					'<span class="bootpwn_4">t</span>' + 
+					'<span class="bootpwn_5">P</span>' +
+					'<span class="bootpwn_6">w</span>' + 
+					'<span class="bootpwn_7">n</span>' +
+					'</b>';
+	
+	const teepwn = '<b>' +
+					'<span class="teepwn_1">T</span>' +
+					'<span class="teepwn_2">E</span>' +
+					'<span class="teepwn_3">E</span>' + 
+					'<span class="teepwn_4">P</span>' + 
+					'<span class="teepwn_5">w</span>' +
+					'<span class="teepwn_6">n</span>' + 
+					'</b>';
+	
+	const taofi = 	'<b>' +
+					'<span class="taofi_1">T</span>' +
+					'<span class="taofi_2">A</span>' +
+					'<span class="taofi_3">o</span>' + 
+					'<span class="taofi_4">F</span>' + 
+					'<span class="taofi_5">I</span>' +
+					'</b>';
+	
+	const devpwn =  '<b>' +
+					'<span class="devpwn_1">D</span>' +
+					'<span class="devpwn_2">e</span>' +
+					'<span class="devpwn_3">v</span>' + 
+					'<span class="devpwn_4">P</span>' + 
+					'<span class="devpwn_5">w</span>' +
+					'<span class="devpwn_6">n</span>' + 
+					'</b>';
+	
+	const mobsec = 	'<b>' +
+					'<span class="mobsec_1">M</span>' +
+					'<span class="mobsec_2">o</span>' +
+					'<span class="mobsec_3">b</span>' + 
+					'<span class="mobsec_4">S</span>' + 
+					'<span class="mobsec_5">e</span>' +
+					'<span class="mobsec_6">c</span>' + 
+					'</b>';
+
+	const dot = `<span style="color:yellow">.</span>`;
+	function yellow(s) {
+		return `<span style="color:yellow">${s}</span>`;
+	}    
+</script>
+
 <section class="bg-one about section" id="about" style="padding: 10px 0;">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -160,7 +212,8 @@
 					
 					<!-- Express About Yourself -->
 					<div class="content text-center">
-						<a href="/bootpwn"><img src="../img/bootpwn-logo.png" height=80px style="padding: 10px 0; max-width:100%;" /></a>
+						
+						<h1><script>document.write(bootpwn)</script></h1>
 						<p><b><i>Breaking Secure Boot by Experience</i></b></p>
 						<div style="text-align:left;">
 							<p>Secure Boot is fundamental for assuring the authenticity of the trusted code base of secure devices. Recent attacks on Secure Boot, implemented by a wide variety of devices such as video game consoles and mobile phones, are a clear indicator that Secure Boot vulnerabilities are widespread.</p>
@@ -180,7 +233,8 @@
 					
 					<!-- Express About Yourself -->
 					<div class="content text-center">
-						<a href="/teepwn"><img src="../img/teepwn.png" height=80px style="padding: 10px 0; max-width:100%;"/></a>
+						
+						 <h1><script>document.write(teepwn)</script></h1>
 						<p><b><i>Breaking TEEs by Experience</i></b></p>
 						<div style="text-align:left;">
 							<p>It's notoriously hard to secure a Trusted Execution Environment (TEE) due to the interaction between complex hardware and a large trusted code base (TCB). The security provided by a TEE has been broken on a wide variety of devices, including mobile phones, TVs and even autmotive vehicles.</p>
@@ -201,7 +255,8 @@
 					
 					<!-- Express About Yourself -->
 					<div class="content text-center">
-						<a href="/taofi"><img src="../img/TAoFI_logo_transparent.png" height=80px style="padding: 10px 0; max-width:100%;" /></a>
+						
+						<h1><script>document.write(taofi)</script></h1>
 						<p><b><i>The Art of Fault Injection</i></b></p>
 						<div style="text-align:left;">
 							<P>Fault Injection (FI) attacks have became the weapon of choice for breaking into devices for which exploitable software vulnerabilities are unknown. Even though nowadays performed by many, it's not well understood by most. If you just glitch and hope for the best, than you do not exploit the full potential of FI.</P>
@@ -210,6 +265,48 @@
 						</div>
 						<center>
 							<a href='https://raelize.com/taofi/'>Click here for more info!</a>
+						</center>
+					</div>
+				</div>
+			</div>
+
+			<!-- About item -->
+			<div class="col-lg-4 text-center wow fadeInUp" data-wow-duration="500ms">
+				<div class="block" style="min-height:520px; max-width:100%;">
+					
+					<!-- Express About Yourself -->
+					<div class="content text-center">
+						
+						<h1><script>document.write(devpwn)</script></h1>
+						<p><b><i>Breaking Devices by Experience</i></b></p>
+						<div style="text-align:left;">
+							<p>Today's world is full of a variety of (connected) devices. Some implement a specific use case whereas other, more complex, devices may implement multiple ones. Regardless of a device's complexity, compromising its security requires a comprehensive skill set that encompasses both hardware and software expertise.</p>
+
+							<p>Are you interested in experiencing what it takes to break a modern device with a wide variety of attacks?</p>
+						</div>
+						<center>
+							<a href="mailto:info@raelize.com">Contact us for more info!</a>
+						</center>
+					</div>
+				</div>
+			</div>
+
+						<!-- About item -->
+			<div class="col-lg-4 text-center wow fadeInUp" data-wow-duration="500ms">
+				<div class="block" style="min-height:520px; max-width:100%;">
+					
+					<!-- Express About Yourself -->
+					<div class="content text-center">
+						<h1><script>document.write(mobsec)</script></h1>
+						
+						<p><b><i>Mobile Security and Data Protection</i></b></p>
+						<div style="text-align:left;">
+							<p>Mobile devices have nowadays become almost universally accessible, deeply entangled into our personal lives and part of our own personal space. Such information is being protected with complex security architectures, which are difficult to fully grasp, making it increasingly more difficult to understand the security architecture.</p>
+
+							<p>Are you interested in experiencing what it takes to extract the encrypted user data from a modern mobile phone?</p>
+						</div>
+						<center>
+							<a href="mailto:info@raelize.com">Contact us for more info!</a>
 						</center>
 					</div>
 				</div>
@@ -261,56 +358,30 @@
 
 
 
-            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
-                <div class="counters-item" style="min-width: 280px">
-                    <a href="https://romhack.io/training/2025/the-art-of-fault-injection-advanced-techniques-attacks/"
-                        ><img src="../img/TAoFI_logo_transparent.png" height="40px"
-                    /></a>
-                    <center>
-                        <table style="text-align: left; margin: 20px 0px">
-                            <tr>
-                                <td>Host</td>
-                                <td><a href="https://romhack.io/">RomHack</a></td>
-                            </tr>
-                            <tr>
-                                <td>Date</td>
-                                <td>Sep 23-26, 2025</td>
-                            </tr>
-                            <tr>
-                                <td>Type</td>
-                                <td>Classroom</td>
-                            </tr>
-                            <tr>
-                                <td>Location</td>
-                                <td>Italy</td>
-                            </tr>
-                            <tr>
-                                <td>Language</td>
-                                <td>English</td>
-                            </tr>
-                           <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>    
-                        </table>
-                    </center>
-                    <p><a href="https://romhack.io/buy-tickets/">Buy your ticket here!</a></p>
-                </div>
-            </div>
+            
+
+            
+
+            
+
+
+            
+
+            
+
 
             <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
                 <div class="counters-item" style="min-width: 280px">
-                    <a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/teepwn"><img src="../img/teepwn.png" height="40px" /></a>
+                    <script>document.write(mobsec)</script>
                     <center>
                         <table style="text-align: left; margin: 20px 0px">
                             <tr>
                                 <td>Host</td>
-                                <td><a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/teepwn">NFI</a></td>
+                                <td><a href="https://www.forensicinstitute.nl/training-and-expertise/training-and-courses/mobsec">NFI</a></td>
                             </tr>
                             <tr>
                                 <td>Date</td>
-                                <td>Nov 4-7, 2025</td>
+                                <td>Apr 7-10, 2026</td>
                             </tr>
                             <tr>
                                 <td>Type</td>
@@ -324,129 +395,13 @@
                                 <td>Language</td>
                                 <td>English</td>
                             </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>                               
+                           
                         </table>
                     </center>
                     <p>Access restricted</p>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
-                <div class="counters-item" style="min-width: 280px">
-                    <a href="https://raelize.com/teepwn/"><img src="../img/teepwn.png" height="40px" /></a>
-                    <center>
-                        <table style="text-align: left; margin: 20px 0px">
-                            <tr>
-                                <td>Host</td>
-                                <td><a href="https://raelize.com/">Raelize</a></td>
-                            </tr>
-                            <tr>
-                                <td>Date</td>
-                                <td>Nov 10-13, 2025</td>
-                            </tr>
-                            <tr>
-                                <td>Type</td>
-                                <td>Online / Remote</td>
-                            </tr>
-                            <tr>
-                                <td>Time</td>
-                                <td>TBD</td>
-                            </tr>
-                            <tr>
-                                <td>Language</td>
-                                <td>English</td>
-                            </tr>
-                            <tr>
-                                <td>Price</td>
-                                <td>3,000 EUR</td>
-                            </tr>                            
-                            
-
-                        </table>
-                    </center>
-                    <p>
-                        <a href="mailto:info@raelize.com">Email us to register!</a>
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
-                <div class="counters-item" style="min-width: 280px">
-                    <a href="https://hardwear.io/netherlands-2025/training/bootpwn-breaking-secure-boot-by-experience.php"><img src="../img/bootpwn-logo.png" height="40px" /></a>
-                    <center>
-                        <table style="text-align: left; margin: 20px 0px">
-                            <tr>
-                                <td>Host</td>
-                                <td><a href="https://hardwear.io/netherlands-2025/training/bootpwn-breaking-secure-boot-by-experience.php">Hardwear.io</a></td>
-                            </tr>
-                            <tr>
-                                <td>Date</td>
-                                <td>Nov 17-19, 2025</td>
-                            </tr>
-                            <tr>
-                                <td>Type</td>
-                                <td>Classroom</td>
-                            </tr>
-                            <tr>
-                                <td>Location</td>
-                                <td>Amsterdam</td>
-                            </tr>
-                            <tr>
-                                <td>Language</td>
-                                <td>English</td>
-                            </tr>
-                           <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>    
-                        </table>
-                    </center>
-                    <p><a href="https://hardwear.io/netherlands-2025/training/bootpwn-breaking-secure-boot-by-experience.php">Buy your ticket here!</a></p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-12 text-center wow fadeInDown" data-wow-duration="500ms">
-                <div class="counters-item" style="min-width: 280px">
-                    <a href="https://hardwear.io/netherlands-2025/training/TAoFI-advanced-fault-injection-techniques-and-attacks.php"><img src="../img/TAoFI_logo_transparent.png" height="40px" /></a>
-                    <center>
-                        <table style="text-align: left; margin: 20px 0px">
-                            <tr>
-                                <td>Host</td>
-                                <td><a href="https://hardwear.io/netherlands-2025/training/TAoFI-advanced-fault-injection-techniques-and-attacks.php">Hardwear.io</a></td>
-                            </tr>
-                            <tr>
-                                <td>Date</td>
-                                <td>Nov 17-19, 2025</td>
-                            </tr>
-                            <tr>
-                                <td>Type</td>
-                                <td>Classroom</td>
-                            </tr>
-                            <tr>
-                                <td>Location</td>
-                                <td>Amsterdam</td>
-                            </tr>
-                            <tr>
-                                <td>Language</td>
-                                <td>English</td>
-                            </tr>
-                           <tr>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>    
-                        </table>
-                    </center>
-                    <p><a href="https://hardwear.io/netherlands-2025/training/TAoFI-advanced-fault-injection-techniques-and-attacks.php">Buy your ticket here!</a></p>
-                </div>
-            </div>
-
+            
 
         </div>
     </div>
