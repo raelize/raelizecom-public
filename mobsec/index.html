@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Device Security Training on Secure Boot Trusted Execution Environment (TEE) and Fault Injection</title>
-
+    <title>MobSec - Mobile Device Security and Data Protection - Embedded Device Security Training</title>
 
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Our trainings provide hands-on and exciting device security trainings on Secure Boot Trusted Execution Environment (TEE) and Fault Injection.">
+    <meta name="description" content="MobSec is a hands-on embedded device security training on how data is protected on modern Android mobile phones. Students will analyze the security features of Android in detail using various hands-on exercises on a modern Android mobile phone.">
+
     
     <meta name="author" content="Raelize B.V.">
     <meta name="generator" content="Hugo 0.152.2">
@@ -32,7 +32,7 @@
 
     <!-- Custom stylesheet - for your changes -->
     
-   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+    <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
     <!--Favicon-->
     <link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
@@ -52,19 +52,14 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <!-- Custom javascript by Raelize -->
     
     <script src="https://raelize.com/js/custom.min.js"></script>
-    
 </head>
 
 
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
   <div id="content">
-    
-
-    
     <section class="sticky-top navigation">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
@@ -128,18 +123,32 @@
     
     <div class="container" style="background-color: #292f36;">
         <div class="row justify-content-center">
-            <div class="col-lg-12">
+            <div class="col-lg-12" style="margin: 0px 0;">
                 <br>
                 <div class="title text-center wow fadeIn" data-wow-duration="500ms" style="padding-bottom: 20px;">
-                    <h2>Device Security <span class="color">Training</span></h2>
+                    <h1><script>document.write(mobsec)</script></h1>
+
                     <div class="border-meghna"></div>
+                    <br>
+                    <h4><i>Mobile Device Security and Data Protection</i></h4>
                 </div>
             </div>
+            
+            <div style="width: 650px; padding: 10px">
 
-            <div style="width: 650px; margin: 0px 0px; margin-bottom: 0px; background-color: #292f36; padding: 10px">
-                <p>
-                    Raelize offers multiple exciting trainings on various interesting topics related to the security of devices. These experiences, as we like to call them, allow you to take the attacker's seat in order to explore the attack surface of modern devices. Our training includes hands-on exercises for which we leveraged our experience performing real-world attacks.
-                </p>
+                <p>Mobile devices have nowadays become almost universally accessible, deeply entangled into our personal lives and part of our own personal space. As a result, these devices, which now support a wide range of use cases, may often host personal, or otherwise sensitive, information. Such information is being protected with complex security architectures, which are difficult to fully grasp, making it increasingly more difficult for digital forensics experts to understand what is required to access the unprotected information.</p>
+
+                <p>The goal of this training is to educate the participants on the fundamental low-level security features used by modern security architectures of mobile devices. At the end of the training, the participants will understand how mobile devices are able to boot securely, are secured at runtime and assure the confidentiality of the sensitive information. Moreover, they will understand, as well as experience, the impact of: the mobile device state (e.g., BFU and AFU), usage of a Secure Element (SE), vulnerabilities in low-level code (e.g., ROM, Bootloader and TEE), the availability of signed recovery mode loaders (e.g., EDL) and the usage of a custom operating system (e.g., GrapheneOS).</p>
+
+                <p>The participants will analyse commercial off-the-shelf (COTS) mobile devices with Android. Although these mobile devices run Android and serve similar purposes, their low-level security architectures differ significantly, which makes it interesting to analyse solutions from different manufacturers.</p>
+
+                <p>The exercises are designed to provide a hands-on learning experience, during which the participants will: use various tooling, study source code, as well as reverse engineering. Even though not  mandatory, we assume that the participants already familiarized themselves with some of these type of activities on less complex devices.</p>
+
+                <p>The training aims to provide the foundational knowledge required to understand how information is protected on mobile devices. It does not focus on actually identifying or exploiting the type of vulnerabilities that are required to access the information. Nonetheless, the exercises position the participants in a context (i.e., reverse engineering), where vulnerabilities may be found.</p>
+
+                <center>
+                    <p><a href="/teepwn#contact">Please contact us for more information!</a></p>
+                </center>
 
             </div>
         </div>
@@ -147,129 +156,172 @@
 </section>
 <!-- /testimonial -->
 
+
     
 
-<!-- Start About Section -->
-
-<section class="bg-one about section" id="about" style="padding: 10px 0;">
+<!-- Start Testimonial -->
+<section id="testimonial" class="testimonial overly section bg-2" style='background-image: url("../images/backgrounds/shutterstock_722319712.jpg"); padding:20px 0' >
+	
+	<img src="../images/backgrounds/shutterstock_722319712.jpg" style="display: none;" onerror="this.onerror=null;this.parentElement.style.backgroundImage= 'url(../images/backgrounds/shutterstock_722319712.jpg)'">
 	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-12">
-				<!-- section title -->
-			
-			</div>
-			<!-- /section title -->
+		<div class="row">
+			<div class="col-xl-12">
+				<!-- testimonial wrapper -->
+				<div id="testimonials" class="wow fadeInUp" data-wow-duration="500ms" data-wow-delay="100ms">
 
-			<!-- About item -->
-			<div class="col-lg-4 text-center wow fadeInUp" data-wow-duration="500ms">
-				<div class="block" style="min-height:520px; max-width:100%;">
+					<!-- testimonial single -->
 					
-					<!-- Express About Yourself -->
-					<div class="content text-center">
-						
-						<h1><script>document.write(bootpwn)</script></h1>
-						<p><b><i>Breaking Secure Boot by Experience</i></b></p>
-						<div style="text-align:left;">
-							<p>Secure Boot is fundamental for assuring the authenticity of the trusted code base of secure devices. Recent attacks on Secure Boot, implemented by a wide variety of devices such as video game consoles and mobile phones, are a clear indicator that Secure Boot vulnerabilities are widespread.</p>
+					<!-- /testimonial single -->
 
-							<p>Are you interested in learning and experiencing what it takes to break Secure Boot leveraging more than just software vulnerabilities?</p>
-						</div>
-						<center>
-							<a href='https://raelize.com/bootpwn/'>Click here for more info!</a>
-						</center>
-					</div>
+					<!-- testimonial single -->
+					
+					<!-- /testimonial single -->
+
+					<!-- testimonial single -->
+					
+					<!-- /testimonial single -->
+
+					<!-- testimonial single -->
+					
+					<!-- /testimonial single -->
 				</div>
 			</div>
-
-			<!-- About item -->
-			<div class="col-lg-4 text-center wow fadeInUp" data-wow-duration="500ms">
-				<div class="block" style="min-height:520px; max-width:100%;">
-					
-					<!-- Express About Yourself -->
-					<div class="content text-center">
-						
-						 <h1><script>document.write(teepwn)</script></h1>
-						<p><b><i>Breaking TEEs by Experience</i></b></p>
-						<div style="text-align:left;">
-							<p>It's notoriously hard to secure a Trusted Execution Environment (TEE) due to the interaction between complex hardware and a large trusted code base (TCB). The security provided by a TEE has been broken on a wide variety of devices, including mobile phones, TVs and even autmotive vehicles.</p>
-
-							<p>Are you interested in learning and experiencing what it takes to break a modern TEE by more than just a straight forward buffer overflow?</p>
-
-							<center>
-								<a href='https://raelize.com/teepwn/'>Click here for more info!</a>
-							</center>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- About item -->
-			<div class="col-lg-4 text-center wow fadeInUp" data-wow-duration="500ms">
-				<div class="block" style="min-height:520px; max-width:100%;">
-					
-					<!-- Express About Yourself -->
-					<div class="content text-center">
-						
-						<h1><script>document.write(taofi)</script></h1>
-						<p><b><i>The Art of Fault Injection</i></b></p>
-						<div style="text-align:left;">
-							<P>Fault Injection (FI) attacks have became the weapon of choice for breaking into devices for which exploitable software vulnerabilities are unknown. Even though nowadays performed by many, it's not well understood by most. If you just glitch and hope for the best, than you do not exploit the full potential of FI.</P>
-
-							<p>Are you interested in experiencing the full potential of FI attacks from renowned experts who have been advancing the field for over a decade?</p>
-						</div>
-						<center>
-							<a href='https://raelize.com/taofi/'>Click here for more info!</a>
-						</center>
-					</div>
-				</div>
-			</div>
-
-			<!-- About item -->
-			<div class="col-lg-4 text-center wow fadeInUp" data-wow-duration="500ms">
-				<div class="block" style="min-height:520px; max-width:100%;">
-					
-					<!-- Express About Yourself -->
-					<div class="content text-center">
-						
-						<h1><script>document.write(devpwn)</script></h1>
-						<p><b><i>Breaking Devices by Experience</i></b></p>
-						<div style="text-align:left;">
-							<p>Today's world is full of a variety of (connected) devices. Some implement a specific use case whereas other, more complex, devices may implement multiple ones. Regardless of a device's complexity, compromising its security requires a comprehensive skill set that encompasses both hardware and software expertise.</p>
-
-							<p>Are you interested in experiencing what it takes to break a modern device with a wide variety of attacks?</p>
-						</div>
-						<center>
-							<a href="mailto:info@raelize.com">Contact us for more info!</a>
-						</center>
-					</div>
-				</div>
-			</div>
-
-						<!-- About item -->
-			<div class="col-lg-4 text-center wow fadeInUp" data-wow-duration="500ms">
-				<div class="block" style="min-height:520px; max-width:100%;">
-					
-					<!-- Express About Yourself -->
-					<div class="content text-center">
-						<h1><script>document.write(mobsec)</script></h1>
-						
-						<p><b><i>Mobile Security and Data Protection</i></b></p>
-						<div style="text-align:left;">
-							<p>Mobile devices have nowadays become almost universally accessible, deeply entangled into our personal lives and part of our own personal space. Such information is being protected with complex security architectures, which are difficult to fully grasp, making it increasingly more difficult to understand the security architecture.</p>
-
-							<p>Are you interested in experiencing what it takes to extract the encrypted user data from a modern mobile phone?</p>
-						</div>
-						<center>
-							<a href='https://raelize.com/mobsec/'>Click here for more info!</a>
-						</center>
-					</div>
-				</div>
-			</div>
-
 		</div>
 	</div>
 </section>
-<!-- /about -->
+<!-- /testimonial -->
+
+    
+
+<!-- Start empty -->
+<section id="services" class="bg-one section" style="padding: 20px 0;">
+    
+    <div class="container"  style="background-color: #292f36;">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <br>
+                <div class="title text-center wow fadeIn" data-wow-duration="500ms" style="padding-bottom: 0px;">
+                    <h2>Additional <span class="color">Info</span></h2>
+                    <div class="border-meghna"></div>
+                </div>
+            </div>
+
+            <div style="width: 650px; padding: 10px">
+
+                <h4>Audience</h4>
+
+                <p>This training is intended for:</p>
+
+                <ul>
+                    <li>Digital Police investigators</li>
+                    <li>forensic investigators in law-enforcement agencies</li>
+                    <li>Security Analysts, Researchers & Enthusiasts</li>
+                </ul>
+
+                <h4>Level</h4>
+
+                <p>The training level of this training is <b>Intermediate.</b></p>
+
+                <p>Our experienced trainers, as well as the detailed instructions, will guide participants of all skill levels throughout the training. This includes participants with or without reverse engineering experience.</p>
+
+                <h4>Learning objectives</h4>
+                <p>The leaning objectives of this training are:</p>
+
+                <ul>
+                    <li>Understand the security architecture of mobile devices</li>
+                    <li>Understand what is required to decrypt encrypted data stored on mobile devices</li>
+                </ul>
+
+                <h4>Agenda</h4>
+
+                <p>The topics are covered by hands-on exercises (75%) and presentations (25%), which provide context and the required information. During the hands-on exercises, the participants may, for example, perform a physical activity, analyse a document, use a specific hardware or software tool, review source code or reverse engineering.</p>
+
+                <p>Most of the exercises are performed on commercial off-the-shelf (COTS) mobile devices with Android. This allows the participants to get familiar with real-world security architectures that make use of the underlying hardware platform (i.e., System-on-Chip).</p>
+
+                <p>The list of topics shown below provide an overview of what will be discussed during the training. Their order may be scheduled differently during the actual training.</p>
+
+                <ul>
+                    <li><b>Hardware Security</b></li>
+                    <ul>
+                        <li>Booting</li>
+                        <li>Memories (e.g., ROM, SRAM and OTP)</li>
+                        <li>Secure Boot</li>
+                        <li>Recovery Modes (e.g., Emergency Download Mode and Download Mode)</li>
+                        <li>Hardware modules / IP</li>
+                    </ul>
+                    <li><b>Android Security</b></li>
+                    <ul>
+                        <li>Verified Boot</li>
+                        <li>Sandboxing (SELinux)</li>
+                        <li>Authentication (Gatekeeper)</li>
+                        <li>Keystore (Keymaster)</li>
+                        <li>Encryption (FBE / FDE)</li>
+                        <li>StrongBox (eSE / iSE)</li>
+                        <li>Device states (BFU / AFU)</li>
+                        <li>Custom OSes (e.g., GrapheneOS)</li>
+                    </ul>
+                    <li><b>Trusted Execution Environment (TEE)</b></li>
+                    <ul>
+                        <li>Secure Monitor (EL3)</li>
+                        <li>Operating System (S-EL1)</li>
+                        <li>Trusted Application (S-EL0)</li>
+                    </ul>
+                </ul>
+
+                <h4>Exercise examples</h4>
+                <ul>
+                    <li>Analyzing the internals of a mobile device</li>
+                    <li>Booting mobile devices in different modes</li>
+                    <li>Using Bootloader mode (e.g., using fastboot)</li>
+                    <li>Using Recovery mode (e.g., mtkclient)</li>
+                    <li>Analyzing flash dumps using typical tooling (e.g., unblob)</li>
+                    <li>Analyzing the key components of a mobile device (e.g., ROM, bootloader and TEE)</li>
+                    <li>Communicating with the TEE from Linux</li>
+                    <li>Analyzing Kernel-level security features (e.g., DM-Verity, SELinux)</li>
+                    <li>Brute-forcing credentials (and decryption keys)</li>
+                    <li>Identifying how forensic tooling is able to access information</li>
+                </ul>
+
+                <p>This training aims to provide the foundational knowledge required to understand how information is protected on mobile devices. It does not focus on actually identifying or exploiting the type of vulnerabilities that are required to access the decrypted information.</p>
+
+                <h4>What students need to know</h4>
+
+                <p>This training requires the students to be familiar with:</p>
+
+                <ul>
+                    <li>Linux command line tools</li>
+                    <li>programming (Python, C)</li>
+                    <li>cryptography (AES, RSA)</li>
+                    <li>reverse engineering (ARM)</li>
+                </ul>
+
+                <p>Note, above requirements are not a must, the training is set up in such fashion that participants with any skill level or background are able to reach the training's objectives and complete (most) of the exercises.</p>
+                
+                <h4>What students need to bring</h4>
+
+                <p>The students of this training are expected to bring a modern laptop or workstation:</p>
+
+                <ul>
+                    <li>with sufficient memory (~16 GB)</li>
+                    <li>with at least four (2) available USB-A ports</li>
+                    <ul>
+                        <li>Raelize will have extra USB hubs available during the training (USB-C / USB-A)</li>
+                    </ul>
+                    <li>installed with a modern browser (i.e., Google Chrome)</li>
+                    <li>installed with VMware Player/Workstation (or VirtualBox)</li>
+                </ul>
+
+                <p><b>Important:</b> the required tooling is only tested on x86-64-based systems and it's <b>NOT</b> thoroughly tested on Apple's ARM-based systems (e.g., M1, M2 or M3).</p>
+
+                <center>
+                    <p><a href="/taofi#contact">Please contact us for more information!</a></p>
+                </center>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /testimonial -->
 
 
      <!-- Start Counter Section -->
@@ -420,84 +472,6 @@
 </section>
 <!-- /Counter Section -->
 
-
-    
-
-<!-- Start empty -->
-<section id="services" class="bg-one section" style="padding: 20px 0;">
-    
-    <div class="container" style="background-color: #292f36;">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <br>
-                <div class="title text-center wow fadeIn" data-wow-duration="500ms" style="padding-bottom: 20px;">
-                    <h2>Training <span class="color">Format</span></h2>
-                    <div class="border-meghna"></div>
-                </div>
-            </div>
-
-            <div style="width: 650px; margin: 0px 0px; margin-bottom: 0px; background-color: #292f36; padding: 10px" >
-
-                <p>Our trainings are offered in three different standard formats as shown in the table below.</p>
-
-                <center>
-
-                    <table style="margin: 20px 0px">
-                        <tr>
-                            <th>Training</th>
-                            <th>Online (4 days)</th>
-                            <th>In-Person (3 days)</th>
-                            <th>In-Person (4 days)</th>
-                        </tr>
-                        <tr>
-                            <td><script>document.write(bootpwn)</script></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                        </tr>
-                        <tr>
-                            <td><script>document.write(teepwn)</script></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                        </tr>
-                        <tr>
-                            <td><script>document.write(taofi)</script></td>
-                            <td></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                        </tr>
-                        <tr>
-                            <td><script>document.write(devpwn)</script></td>
-                            <td></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                        </tr>
-                        <tr>
-                            <td><script>document.write(mobsec)</script></td>
-                            <td></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                            <td><img src='https://raelize.com/img/yes.svg' width=30px/></td>
-                        </tr>
-                    </table>
-                </center>
-
-                <p>They are available in private and in public. These standard formats can be adjusted according to your preferences.</p>
-
-                <p>All our trainings mix the lectures and hands-on exercises into an exciting format that is driven by a <a href="https://ctfd.io/">jeopardy-style CTF</a>. Our priority is to create a informative, exciting and friendly experience that can be enjoyed by anybody.</p>
-
-                <p>The <b>In-Person</b> format consists of 3 or 4 days of 8 hours. You will be provided with a VM, preloaded with all the required tooling, which is used to complete the exercises.</p>
-
-                <p>The <b>Online</b> format consists of 4 days of 4 hours. We believe having full-days is not desired for an online experience. You will get access to a cloud-based VM, preloaded with all the required tooling, which is accessible from your browser. The lectures will be given through <a href="https://zoom.us/">Zoom</a> and a <a href="https://discord.com/">Discord</a> server is available for support. We will adjust the timing of the training according to your timezone.</p>
-
-                <center>
-                    <p><a href="/training#contact">Please contact us for more information!</a></p>
-                </center>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- /testimonial -->
 
     
 
