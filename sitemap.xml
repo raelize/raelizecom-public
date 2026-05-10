@@ -2,13 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://raelize.com/blog/</loc>
-    <lastmod>2025-07-17T09:00:00+02:00</lastmod>
+    <loc>https://raelize.com/tags/ai/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/</loc>
-    <lastmod>2025-07-17T09:00:00+02:00</lastmod>
+    <loc>https://raelize.com/blog/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/chipwhisperer-husky/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/claude-code/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/esp32/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/fault-injection/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
   </url><url>
     <loc>https://raelize.com/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/secure-boot/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/voltage-glitching/</loc>
+    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/</loc>
     <lastmod>2025-07-17T09:00:00+02:00</lastmod>
   </url><url>
     <loc>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write/</loc>
@@ -89,7 +116,5 @@
     <loc>https://raelize.com/training/</loc>
   </url><url>
     <loc>https://raelize.com/categories/</loc>
-  </url><url>
-    <loc>https://raelize.com/tags/</loc>
   </url>
 </urlset>

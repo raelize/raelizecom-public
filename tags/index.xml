@@ -6,6 +6,56 @@
     <description>Recent content in Tags on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
     <generator>Hugo</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 10 May 2026 15:00:00 +0200</lastBuildDate>
     <atom:link href="https://raelize.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ai</title>
+      <link>https://raelize.com/tags/ai/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Chipwhisperer-Husky</title>
+      <link>https://raelize.com/tags/chipwhisperer-husky/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/chipwhisperer-husky/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Claude-Code</title>
+      <link>https://raelize.com/tags/claude-code/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/claude-code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Esp32</title>
+      <link>https://raelize.com/tags/esp32/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/esp32/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fault-Injection</title>
+      <link>https://raelize.com/tags/fault-injection/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/fault-injection/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Secure-Boot</title>
+      <link>https://raelize.com/tags/secure-boot/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/secure-boot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Voltage-Glitching</title>
+      <link>https://raelize.com/tags/voltage-glitching/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/voltage-glitching/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

@@ -6,8 +6,15 @@
     <description>Recent content on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Jul 2025 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 10 May 2026 15:00:00 +0200</lastBuildDate>
     <atom:link href="https://raelize.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Espressif ESP32: Using Claude Code to Bypass Secure Boot with a Glitch</title>
+      <link>https://raelize.com/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/</guid>
+      <description>We let an AI orchestrate every part of a real fault-injection attack — driving the bench instruments, debugging the setup, reverse-engineering the ROM, building a live monitoring dashboard mid-campaign. The result: an autonomous bypass of ESP32 Secure Boot V1. To our knowledge, this is the first time AI-driven fault injection of this kind has been publicly demonstrated.</description>
+    </item>
     <item>
       <title>Google Wifi Pro: Glitching from Root to EL3</title>
       <link>https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-3-arbitrary-code-exec/</link>
