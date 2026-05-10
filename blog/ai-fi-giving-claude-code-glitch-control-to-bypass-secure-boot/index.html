@@ -2,7 +2,7 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Espressif ESP32: Using Claude Code to Bypass Secure Boot with a Glitch</title>
+	<title>AI-FI: Giving Claude Code Glitch Control to Bypass Secure Boot</title>
 
 	<!-- mobile responsive meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -116,7 +116,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Espressif ESP32: Using Claude Code to Bypass Secure Boot with a Glitch</h2>
+                <h2>AI-FI: Giving Claude Code Glitch Control to Bypass Secure Boot</h2>
                 
                 <p>Sunday, May 10, 2026</p>
                 <hr />
@@ -134,31 +134,31 @@
 -->
 <h2 id="contents">Contents</h2>
 <ol>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#time-line-cest">Time line</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#introduction">Introduction</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#lets-get-started">Let&rsquo;s get started</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#setup">Setup</a>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#time-line-cest">Time line</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#introduction">Introduction</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#lets-get-started">Let&rsquo;s get started</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#setup">Setup</a>
 <ul>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#target">Target</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#riden-rk6006">Riden RK6006</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#newae-chipwhisperer-husky">NewAE ChipWhisperer Husky</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#picoscope-2406b">PicoScope 2406B</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#espressif-esp-prog">Espressif ESP-PROG</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#target">Target</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#riden-rk6006">Riden RK6006</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#newae-chipwhisperer-husky">NewAE ChipWhisperer Husky</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#picoscope-2406b">PicoScope 2406B</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#espressif-esp-prog">Espressif ESP-PROG</a></li>
 </ul>
 </li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#programming-the-flash">Programming the flash</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#reading-the-serial">Reading the serial</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#glitch-monitor">Glitch Monitor</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#attack">Attack</a>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#programming-the-flash">Programming the flash</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#reading-the-serial">Reading the serial</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#glitch-monitor">Glitch Monitor</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#attack">Attack</a>
 <ul>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#hypothesis">Hypothesis</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#timing">Timing</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#attack-flow">Attack flow</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#campaign-1-identification">Campaign 1: Identification</a></li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#campaign-2-maximize-success-rate">Campaign 2: Maximize success rate</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#hypothesis">Hypothesis</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#timing">Timing</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#attack-flow">Attack flow</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#campaign-1-identification">Campaign 1: Identification</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#campaign-2-maximize-success-rate">Campaign 2: Maximize success rate</a></li>
 </ul>
 </li>
-<li><a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#caveats-and-reflections">Caveats and reflections</a></li>
+<li><a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#caveats-and-reflections">Caveats and reflections</a></li>
 </ol>
 <!-- 
     Timeline
@@ -305,11 +305,11 @@
 </table>
 </div>
 <br>
-Then we simply tell **Claude**:
+<p>Then we simply told <strong>Claude</strong>:</p>
 <blockquote>
 <p><strong>Me:</strong> &ldquo;I&rsquo;ve connected channel A to RESET, channel B to SPI CS, channel C to GlitchOut of Husky&rdquo;</p>
 </blockquote>
-<p>And then we simply ask <strong>Claude</strong>:</p>
+<p>And then we simply asked <strong>Claude</strong>:</p>
 <blockquote>
 <p><strong>Me:</strong> &ldquo;Use the picosdk python wrappers to communicate with the scope: <a href="https://github.com/picotech/picosdk-python-wrappers%22">https://github.com/picotech/picosdk-python-wrappers"</a></p>
 </blockquote>
@@ -496,7 +496,7 @@ Then we simply tell **Claude**:
 </span></span></span><span style="display:flex;"><span>    --max <span style="color:#ae81ff">1000</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>    --campaign-id <span style="color:#e6db74">&#34;first-1k-2v2&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>    --campaign-name <span style="color:#e6db74">&#34;First 1000-shot at V=2.2 V — random in 10 µs × 5 µs window&#34;</span>
-</span></span></code></pre></div><p>A thousand attempts at ~4 / s is roughly four minutes of wall-clock time. Pointing the <a href="/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/#glitch-monitor">glitch monitor</a> at the campaign produced a clear pattern almost immediately. The next three plots all share the <strong>same axis</strong> (delay 0–10 µs × length 0–5 µs at V = 2.2 V) — what changes is where we <em>sample</em> from, narrowing in on the densest region.</p>
+</span></span></code></pre></div><p>A thousand attempts at ~4 / s is roughly four minutes of wall-clock time. Pointing the <a href="/blog/ai-fi-giving-claude-code-glitch-control-to-bypass-secure-boot/#glitch-monitor">glitch monitor</a> at the campaign produced a clear pattern almost immediately. The next three plots all share the <strong>same axis</strong> (delay 0–10 µs × length 0–5 µs at V = 2.2 V) — what changes is where we <em>sample</em> from, narrowing in on the densest region.</p>
 <p><strong>Step 1 — broad scan.</strong> Random uniform delay 0–10 µs × length 0–5 µs:</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/zoom-1-broad.png">
