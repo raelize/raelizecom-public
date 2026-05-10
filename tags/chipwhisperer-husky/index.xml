@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chipwhisperer-Husky on Raelize - Embedded Device Security Services Consultancy Testing Research Training</title>
+    <link>http://localhost:1313/tags/chipwhisperer-husky/</link>
+    <description>Recent content in Chipwhisperer-Husky on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 May 2026 15:00:00 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/chipwhisperer-husky/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Espressif ESP32: Using Claude Code to Bypass Secure Boot with a Glitch</title>
+      <link>http://localhost:1313/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/blog/espressif-systems-esp32-using-claude-code-to-bypass-secure-boot-with-a-glitch/</guid>
+      <description>We let an AI orchestrate every part of a real fault-injection attack — driving the bench instruments, debugging the setup, reverse-engineering the ROM, building a live monitoring dashboard mid-campaign. The result: an autonomous bypass of ESP32 Secure Boot V1. To our knowledge, this is the first time AI-driven fault injection of this kind has been demonstrated.</description>
+    </item>
+  </channel>
+</rss>

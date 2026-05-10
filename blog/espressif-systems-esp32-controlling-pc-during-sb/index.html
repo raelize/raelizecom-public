@@ -9,7 +9,7 @@
 	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.152.2">
+	<meta name="generator" content="Hugo 0.161.1">
 
 	<!-- plugins -->
 	
@@ -151,13 +151,13 @@
 <p>To identify a successful attack, we fully overwrite the bootloader with the 32-bit pointer to a ROM function that prints something on the serial interface. The successful execution of this function generates the printout on the serial port, which confirms we have successfully loaded one of the pointers stored in external flash into the PC register.</p>
 <p>Moreover, as the entire bootloader is fully overwritten with the same pointer, the glitch timing requirements are practically removed and we can simply glitch (almost) anywhere during the bootloader copy.</p>
 <p>We use the ROM function at address <code>0x4005A980</code>. This function prints the following string on the serial interface: <code>Falling back to built-in command interpreter.\n</code>. A snippet of the original flash image and the modified flash image is shown below. Please note that the address pointer is stored in little endian format in the external flash.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ Original:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#a6e22e">+ Original:
 </span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+     00001040    00 50 04 FF AC 00 00 00 48 65 6C 6C 6F 2C 20 49 
 </span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+     00001050    20 61 6D 20 74 68 65 20 62 6F 6F 74 6C 6F 61 64
 </span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+     &lt;cut&gt;
 </span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+     00007850    EE E0 08 00 06 02 00 00 0C 1A 81 5B EE E0 08 00 
 </span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+     00007860    81 95 EE C0 20 00 88 08 F7 68 EC 1D F0 00 00 00 
-</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span>
+</span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">- Modified:
 </span></span></span><span style="display:flex;"><span><span style="color:#f92672">-     00001040    00 50 04 FF AC 00 00 00 80 A9 05 40 80 A9 05 40
 </span></span></span><span style="display:flex;"><span><span style="color:#f92672">-     00001050    80 A9 05 40 80 A9 05 40 80 A9 05 40 80 A9 05 40
