@@ -13,7 +13,7 @@
       <link>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</link>
       <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
       <guid>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</guid>
-      <description>We let an AI orchestrate every part of a real fault-injection attack — driving the bench instruments, debugging the setup, reverse-engineering the ROM, building a live monitoring dashboard mid-campaign. The result: an autonomous bypass of ESP32 Secure Boot V1. To our knowledge, this is the first time AI-driven fault injection of this kind has been publicly demonstrated.</description>
+      <description>We let an AI, namely Claude Code, orchestrate every part of a real Fault Injection (FI) attack. Driving the setup, the hardware tooling, debugging the setup, reverse engineering the ROM, building a live monitoring dashboard mid-campaign. The result: an autonomous bypass of ESP32 Secure Boot V1.</description>
     </item>
   </channel>
 </rss>

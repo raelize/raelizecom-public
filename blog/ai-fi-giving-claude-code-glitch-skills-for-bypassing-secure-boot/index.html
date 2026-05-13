@@ -127,7 +127,7 @@
     TL;DR
 -->
 <blockquote>
-<p><strong>TL;DR:</strong> We used <strong>Claude Code</strong> to reproduce a Fault Injection attack where <strong>Secure Boot</strong> is bypassed on an Espressif <strong>ESP32</strong> SoC. We gave <strong>Claude</strong> full control to all the hardware tooling. All software tooling was written by <strong>Claude</strong> using third-party libraries. None of the code was written by humans. All this was created organically while glitches were being injected in the background (i.e., no downtime). As far as we know, this is the first publicly-documented AI-driven Fault Injection attack to date. This type of agentic workflow for finding/exploiting hardware vulnerabilities is likely here to stay, as it will be for software vulnerabilities.</p>
+<p><strong>TL;DR:</strong> We used <strong>Claude Code</strong> to reproduce a Fault Injection attack where <strong>Secure Boot</strong> is bypassed on an Espressif <strong>ESP32</strong> SoC. We gave <strong>Claude</strong> full control to all the hardware tooling. All software tooling was written by <strong>Claude</strong> using third-party libraries. None of the code was written by humans. All this was created organically while glitches were being injected in the background (i.e., no downtime). This type of agentic workflow for finding/exploiting hardware vulnerabilities is likely here to stay, as it will be for software vulnerabilities.</p>
 </blockquote>
 <!--
     Contents
@@ -188,7 +188,7 @@
 <hr>
 <h2 id="introduction">Introduction</h2>
 <p>We reproduced a real <strong>Fault Injection attack</strong>, where <strong>ESP32</strong>&rsquo;s <strong>Secure Boot V1</strong> is bypassed using Voltage crowbar glitches, using <strong>Claude</strong> doing all the engineering. The AI did it all. From configuring the <strong>ChipWhisperer Husky</strong> and the <strong>Riden RK6006</strong> lab supply, to writing the attack script, debugging hardware quirks, reverse-engineering the boot <strong>ROM</strong> with a sub-agent, building a live monitoring dashboard while the campaign was running, and tuning parameters across thousands of glitch attempts. We supervised, asked questions, and looked at the dashboards it created for us.</p>
-<p>To our knowledge, this is the first publicly-documented <strong>AI-driven Fault Injection attack</strong> at this depth. We&rsquo;re sharing this not because the <strong>Secure Boot</strong> bypass itself is novel, that ground has been already covered in our previous blog posts, as well as in research conducted by others. What&rsquo;s new here is the workflow, which is likely here to stay.</p>
+<p>This is among the first publicly documented <strong>Fault Injection</strong> attack carried out with AI assistance. For more <a href="https://github.com/AdamLaurie/raiden-pico">Claude-driven FI work</a>, see the experiments/attacks documented by <a href="https://x.com/rfidiot">Adam Laurie</a>. We&rsquo;re sharing this not because the <strong>Secure Boot</strong> bypass itself is novel, that ground has been already covered in our previous blog posts, as well as in research conducted by others. What&rsquo;s new here is the workflow, which is likely here to stay.</p>
 <p><strong>Disclaimer:</strong> The attack described in this blog post is only applicable to <strong>ESP32 V1</strong> and has since been mitigated by <strong>ESP32 V3</strong> (see Espressif&rsquo;s <a href="https://www.espressif.com/en/news/ESP32_FIA_Analysis">Impact Analysis</a> for more details). Note, the attack is mitigated by modifying the ROM code, the <strong>ESP32 V3</strong> is still vulnerable to Fault Injection attacks (see our other <a href="https://www.usenix.org/conference/woot24/presentation/delvaux">research</a>).</p>
 <hr>
 <h2 id="lets-get-started">Let&rsquo;s get started</h2>
@@ -448,7 +448,7 @@
 <li>The whole arm-to-fire path lives inside the FPGA, so the timing variance from one attempt to the next is bounded by <em>the chip&rsquo;s</em> boot-timing jitter, not by the host&rsquo;s Python scheduler.</li>
 </ol>
 <p>The interesting bit is <strong>picking N</strong>. We anchor on the <strong>last CS edge of the last bootloader-load burst</strong> — the moment after which the chip stops talking to flash and starts running the Secure Boot verify.</p>
-<p>The first attempt at this didn&rsquo;t work — Husky&rsquo;s edge counter was firing far earlier in the boot than expected. Pulling the CS line up on the PicoScope showed why:</p>
+<p>The first attempt at this didn&rsquo;t work as Husky&rsquo;s edge counter was firing far earlier in the boot than expected. Pulling the CS line up on the PicoScope showed why:</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/cs-ghost-edges.png">
         <img src="/images/blog/esp32-sbv1-husky/cs-ghost-edges.png" style="max-width: 100%; width: 1100px">
@@ -569,7 +569,7 @@
 <hr>
 <h2 id="caveats-and-reflections">Caveats and reflections</h2>
 <p><strong>What we don&rsquo;t claim.</strong> This is not &ldquo;AI invented an attack.&rdquo; The Secure Boot bypass mechanism, glitching the <code>bnei</code> or its operands, was already well-known in the public literature. What we <em>do</em> claim is that, given a goal and a setup, <strong>Claude</strong> carried out the full engineering loop end-to-end: code, debug, sweep, analyze, refactor, document. All these steps are often only performed by more-experienced Fault Injection practitioners (i.e., doing more than just glitch and pray). Moreover, it did all of this in little time, without getting tired.</p>
-<p>We&rsquo;re not claiming this scales to a <em>novel</em> attack class with no prior art — we&rsquo;re claiming it scales to <em>operationalizing existing FI knowledge</em>, and we believe this is the first time that&rsquo;s been documented at this depth.</p>
+<p>We&rsquo;re not claiming this scales to a <em>novel</em> attack class that does not exist yet. We&rsquo;re claiming it scales to operationalizing existing FI knowledge in a (very) accessible manner. It will likely enable a larger crowd to perform powerful attacks which require adequate tooling and reasoning.</p>
 <p><strong>What this means for the field.</strong> A few thoughts, in no particular order:</p>
 <ul>
 <li><strong>Skill compression matters.</strong> The AI doesn&rsquo;t replace expertise, it shrinks the iteration time between hypothesis and result. The cycle from &ldquo;I wonder if X helps&rdquo; to &ldquo;X helps by 12 %&rdquo; went from a Wednesday to fifteen minutes.</li>
