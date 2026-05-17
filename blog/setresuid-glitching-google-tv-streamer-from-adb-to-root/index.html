@@ -127,7 +127,7 @@
     TL;DR
 -->
 <blockquote>
-<p><strong>TL;DR:</strong> We presented this attack at <a href="https://hardwear.io/setresuid%e2%9a%a1-glitching-googles-tv-streamer-from-adb-to-root/">hardwear.io NL 2025</a>. Starting from an unprivileged <code>adb</code> shell on Google&rsquo;s TV Streamer 4K, we use an ElectroMagnetic (EM) glitch on the Mediatek MT8696&rsquo;s CPU to bypass the kernel-side capability checks of  the <code>setresuid</code> syscall. The kernel falls through to <code>commit_creds()</code>, our calling process gets <code>uid = 0</code>, and we drop a <code>telnetd-static</code> listener on the device. We&rsquo;re not all the way home, SELinux is still in effect, but the in-kernel security model around credentials does crumble on a 1.8 GHz Cortex-A55 CPU.</p>
+<p><strong>TL;DR:</strong> We presented this attack at <a href="https://hardwear.io/setresuid%e2%9a%a1-glitching-googles-tv-streamer-from-adb-to-root/">hardwear.io NL 2025</a>. Starting from an unprivileged <code>adb</code> shell on Google&rsquo;s TV Streamer 4K, we use an ElectroMagnetic (EM) glitch on the Mediatek MT8696&rsquo;s CPU to bypass the kernel-side capability checks of  the <code>setresuid</code> syscall. The kernel falls through to <code>commit_creds()</code>, our calling process gets <code>uid = 0</code>, and we drop a <code>telnetd-static</code> listener on the device. We&rsquo;re not there all the way, SELinux is still in effect, but the we glitched from shell to root on a 1.8 GHz Cortex-A55 CPU.</p>
 </blockquote>
 <!--
     Contents
@@ -220,7 +220,7 @@
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>The PCB, top and bottom</em></p>
-<p>The Mediatek MT8696 SoC is a quad-core ARM Cortex-A55 SoC clocked at roughly <strong>1.8 GHz</strong>. The actual speed of each core depends of course on the operating system (i.e., Android) controlling it. Hence, it may run at a significiantly lower speed at times.</p>
+<p>The Mediatek MT8696 SoC is a quad-core ARM Cortex-A55 SoC clocked at roughly <strong>1.8 GHz</strong>. The actual speed of each core depends of course on the operating system (i.e., Android) controlling it. Hence, it may run at a significantly lower speed at times.</p>
 <p>The components are (roughly) connected as is shown below.</p>
 <p style="text-align:center;">
     <a href="/images/blog/tvstreamer-emfi-original/streamer-block-diagram.png">
