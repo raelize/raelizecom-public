@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Fault-Injection on Raelize - Embedded Device Security Services Consultancy Testing Research Training</title>
+    <title>Fault Injection on Raelize - Embedded Device Security Services Consultancy Testing Research Training</title>
     <link>https://raelize.com/tags/fault-injection/</link>
-    <description>Recent content in Fault-Injection on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
+    <description>Recent content in Fault Injection on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 17 May 2026 23:00:00 +0200</lastBuildDate>
@@ -13,7 +13,7 @@
       <link>https://raelize.com/blog/setresuid-glitching-google-tv-streamer-from-adb-to-root/</link>
       <pubDate>Sun, 17 May 2026 23:00:00 +0200</pubDate>
       <guid>https://raelize.com/blog/setresuid-glitching-google-tv-streamer-from-adb-to-root/</guid>
-      <description>We attack Google&amp;rsquo;s TV Streamer 4K with an ElectroMagnetic Fault Injection (EMFI) glitch on the Mediatek MT8696&amp;rsquo;s CPU. From an unprivileged adb shell, a single EM glitch during setresuid syscall makes the Linux kernel commit credentials with uid = 0. This is our hardwear.io NL 2025 talk in long form.</description>
+      <description>We attacked Google&amp;rsquo;s TV Streamer 4K with an ElectroMagnetic Fault Injection (EMFI) glitch on the Mediatek MT8696&amp;rsquo;s CPU. From an unprivileged adb shell, a single EM glitch during setresuid syscall makes the Linux kernel commit credentials with uid = 0. This is our hardwear.io NL 2025 talk in long form.</description>
     </item>
     <item>
       <title>AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot</title>
