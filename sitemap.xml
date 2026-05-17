@@ -2,13 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://raelize.com/tags/android/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/blog/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/emfi/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/fault-injection/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/google/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/mediatek/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/mt8696/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/setresuid/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/blog/setresuid-glitching-google-tv-streamer-from-adb-to-root/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://raelize.com/tags/tv-streamer-4k/</loc>
+    <lastmod>2026-05-17T23:00:00+02:00</lastmod>
+  </url><url>
     <loc>https://raelize.com/tags/ai/</loc>
     <lastmod>2026-05-10T15:00:00+02:00</lastmod>
   </url><url>
     <loc>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</loc>
-    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
-  </url><url>
-    <loc>https://raelize.com/blog/</loc>
     <lastmod>2026-05-10T15:00:00+02:00</lastmod>
   </url><url>
     <loc>https://raelize.com/tags/chipwhisperer-husky/</loc>
@@ -20,16 +53,7 @@
     <loc>https://raelize.com/tags/esp32/</loc>
     <lastmod>2026-05-10T15:00:00+02:00</lastmod>
   </url><url>
-    <loc>https://raelize.com/tags/fault-injection/</loc>
-    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
-  </url><url>
-    <loc>https://raelize.com/</loc>
-    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
-  </url><url>
     <loc>https://raelize.com/tags/secure-boot/</loc>
-    <lastmod>2026-05-10T15:00:00+02:00</lastmod>
-  </url><url>
-    <loc>https://raelize.com/tags/</loc>
     <lastmod>2026-05-10T15:00:00+02:00</lastmod>
   </url><url>
     <loc>https://raelize.com/tags/voltage-glitching/</loc>
