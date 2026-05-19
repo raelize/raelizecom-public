@@ -138,9 +138,9 @@
 <p>Most attacks, if not all, are applicable due to the presence a vulnerability. Without a vulnerability, it would be hard to differentiate a feature from an actual attack. While software vulnerabilities have been refined conceptually over the years, no comparable effort has been devoted to <strong>FI</strong> vulnerabilities.</p>
 <p>Without any attempt to be rigorous or complete, we like to use the following definition for describing a <strong>FI</strong> vulnerability.</p>
 <p><i>
-<pre tabindex="0"><code>&#34;The susceptibility of a hardware subsystem to a specific 
-Fault Injection technique, which has an impact on security.&#34; - Raelize
-</code></pre><p></i></p></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#34;The susceptibility of a hardware subsystem to a specific 
+</span></span><span style="display:flex;"><span>Fault Injection technique, which has an impact on security.&#34; - Raelize
+</span></span></code></pre></div><p></i></p></p>
 <p>It should already be apparent from the definition itself that bypassing <strong>Secure Boot</strong> using <strong>voltage glitches</strong> entails exploiting a different vulnerability than doing the same using <strong>optical pulses</strong>. Although the achieved goal is identical, the underlying physics and root cause is entirely different. It's important to point out that these differences become extremely relevant during the development of both effective attacks and defenses.</p>
 <p>Interestingly, specialized tooling is not always required to trigger <strong>FI</strong> vulnerabilities. Examples are <a href="https://www.usenix.org/system/files/conference/usenixsecurity17/sec17-tang.pdf">CLKSCREW</a> and <a href="http://users.ece.cmu.edu/~yoonguk/papers/kim-isca14.pdf">Rowhammer</a> which both use software to trigger <strong>FI</strong> vulnerabilities. Moreover, these attacks showed that <strong>FI</strong> vulnerabilities are applicable to more than just the CPU alone.</p>
 <p>We consider these so-called <em><strong>software-driven</strong></em> attacks to be <strong>FI</strong> attacks and they fit perfectly in <strong>FIRM</strong> as well!</p>

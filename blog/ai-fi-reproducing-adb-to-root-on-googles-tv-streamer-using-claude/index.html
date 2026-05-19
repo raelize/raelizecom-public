@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="utf-8">
+	<title>AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes</title>
+
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	
+	<meta name="author" content="Raelize B.V.">
+	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
+  <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-135892271-3');
+	</script>
+	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
+  <div id="content">
+    
+ <section class="sticky-top navigation">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand p-0" href="/">
+				
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				
+			</a>
+
+			<button class="navbar-toggler rounded-0" type="button" data-toggle="collapse" data-target="#navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navigation">
+				<ul class="navbar-nav ml-auto">
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/about">about</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#services">overview</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/training">training</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/consultancy">consultancy</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/testing">testing</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/publications">publications</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/blog">blog</a>
+					</li>
+					
+					<li class="nav-item">
+            <a class="nav-link" href="https://raelize.com/#contact">contact</a>
+					</li>
+					
+				</ul>
+				
+			</div>
+		</nav>
+	</div>
+</section>
+
+
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <hr />
+                <h2>AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes</h2>
+                
+                <p>Tuesday, May 19, 2026</p>
+                <hr />
+                
+            </div>
+            <div class="col-lg-8 offset-lg-2">
+                <div class="post-single-content" background-color="0xff"><!--
+    TL;DR
+-->
+<blockquote>
+<p><strong>TL;DR:</strong> In 2025 we <a href="https://hardwear.io/setresuid%e2%9a%a1-glitching-googles-tv-streamer-from-adb-to-root/">presented</a> an attack on Google&rsquo;s TV Streamer 4K where we used an ElectroMagnetic (EM) glitch to escalate privileges from a restricted adb shell to root. Back then, we did not use <strong>Claude</strong>. But what if we did? Will <strong>Claude</strong> be capable of reproducing the attack with just our presentation as input and a few manuals for the hardware tooling?</p>
+</blockquote>
+<!--
+    Contents
+-->
+<h2 id="contents">Contents</h2>
+<ol>
+<li><a href="/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/#timeline">Timeline</a></li>
+<li><a href="/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/#introduction">Introduction</a></li>
+<li><a href="/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/#lets-get-started">Let&rsquo;s get started</a></li>
+<li><a href="/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/#setup">Setup</a></li>
+<li><a href="/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/#glitch-monitor">Glitch Monitor</a></li>
+<li><a href="/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/#characterization">Characterization</a></li>
+<li><a href="/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/#attack">Attack</a></li>
+<li><a href="/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/#takeaways">Takeaways</a></li>
+</ol>
+<!--
+    Timeline
+-->
+<h2 id="timeline">Timeline</h2>
+<p>This timeline below, although a bit simplified, is the elapsed time from the first prompt.</p>
+<ul>
+<li><strong>00:00</strong> — <strong>Me</strong>: <em>&ldquo;Reproduce the Raelize attack on Google&rsquo;s TV Streamer using Keysight tooling!&rdquo;</em></li>
+<li><strong>00:30 → 02:00</strong> — Claude reads the 60 pages of our <a href="/upload/research/2025/hwio-nl-2025_setresuid-glitching-google-tv-streamer-from-adb-to-root.pdf">presentation</a> into its context.</li>
+<li><strong>01:30</strong> — <strong>Me</strong>: <em>&quot;/goal Characterize the CPU of the SoC and find a location for instructions corruption.&quot;</em></li>
+<li><strong>02:30</strong> — <strong>Me</strong>: <em>&ldquo;The XYZ is already calibrated. Don&rsquo;t go out of NW/NE/SE bounds. Don&rsquo;t touch Z.&rdquo;</em></li>
+<li><strong>03:30</strong> — <strong>Me</strong>: <em>&ldquo;Target connected via: <a href="https://www.yepkit.com/learn/setup-guide-ykush3_linux">https://www.yepkit.com/learn/setup-guide-ykush3_linux</a></em></li>
+<li><strong>05:00</strong> — <strong>Me</strong>: <em>&ldquo;Inspector pops a GUI dialog. Make the workflow CLI only.&rdquo;</em></li>
+<li><strong>07:00</strong> — <strong>Me</strong>: <em>&ldquo;Build a Flask + Plotly dashboard. Use the colors from the original research.&rdquo;</em></li>
+<li><strong>09:30</strong> — <strong>Me</strong>: <em>&quot;/goal Escalate privileges from shell to root using an EM glitch.&rdquo;</em></li>
+<li><strong>11:00 → 12:00</strong> — Ongoing dashboard improvements while glitches are being injected.</li>
+<li><strong>13:00</strong> — Successfully achieved a root shell! 🎉</li>
+</ul>
+<p>After the setup was built by human; <strong>Claude</strong> reproduced the attack in less than 15 minutes. Wow! 🤯</p>
+<!--
+    Introduction
+-->
+<h2 id="introduction">Introduction</h2>
+<p>In 2025 we <a href="https://hardwear.io/setresuid%e2%9a%a1-glitching-googles-tv-streamer-from-adb-to-root/">presented</a> an attack on Google&rsquo;s TV Streamer 4K where we used an ElectroMagnetic (EM) glitch to escalate privileges from a restricted <code>adb</code> shell to <code>root</code>. We actually blogged about that <a href="/blog/setresuid-glitching-google-tv-streamer-from-adb-to-root/">yesterday</a>. Let&rsquo;s let <strong>Claude</strong> figure it out how to reproduce the attack.</p>
+<p>We shared none of our original scripts or tooling with <strong>Claude</strong>. We only gave it our <a href="/upload/research/2025/hwio-nl-2025_setresuid-glitching-google-tv-streamer-from-adb-to-root.pdf">presentation</a> slides and pointed it to the manuals of the required (hardware) tooling.</p>
+<!-- Let's get started -->
+<h2 id="lets-get-started">Let&rsquo;s get started</h2>
+<p>We simply kicked-off this adventure by telling <strong>Claude</strong> what we were going to do.</p>
+<blockquote>
+<p><strong>Me:</strong> <em>&ldquo;You are the glitcher. Reproduce the Raelize setresuid attack on Google&rsquo;s TV Streamer using Keysight Spider, Keysight XYZ and Keysight EMFI and Inspector. CLI-only; no GUI.&rdquo;</em></p>
+</blockquote>
+<p>The CLI-only constraint matters. Inspector&rsquo;s stock Python examples open a Java/Swing dialog the first time you instantiate <code>Inspector()</code>. That&rsquo;s fine for a human, but it blocks an autonomous agent that&rsquo;s running on a headless laptop overnight. <strong>Claude</strong> quickly worked out the <code>Py4J</code> idiom that bypasses every modal pop-up. We don&rsquo;t even know how to do this ourselves honestly.</p>
+<!-- Setup -->
+<h2 id="setup">Setup</h2>
+<p>We humans built the physical setup. We wired up the Keysight <a href="https://www.keysight.com/us/en/product/DS1180A/glitch-pattern-generator.html">Spider</a>&rsquo;s <code>glitch out 1</code> to the Keysight <a href="https://www.keysight.com/us/en/product/DS1120A/unidirectional-fault-injection-probe.html">EMFI probe</a>&rsquo;s <code>digital glitch</code> input and the Spider&rsquo;s <code>voltage out 1</code> to the probe&rsquo;s <code>pulse amplitude</code>. We also calibrated NW/NE/SE corners for the Keysight <a href="https://www.keysight.com/us/en/product/DS1010A/precision-xyz-stage.html">XYZ stage</a>. We connected the <a href="https://www.yepkit.com/product/300110/YKUSH3">YKUSH3</a> between the laptop and the USB-C port of Google&rsquo;s TV Streamer.</p>
+<p style="text-align:center;">
+    <a href="/images/blog/tvstreamer-emfi-ai/setup_real.png">
+        <img src="/images/blog/tvstreamer-emfi-ai/setup_real.png" style="width:80%; max-width:80%">
+    </a>
+</p>
+<p style="text-align:center; color:#666; font-size:0.9em;"><em>The setup used for reproducing the attack using Keysight's EMFI tooling.</em></p>
+<p><strong>Claude</strong> made the following diagram for us after it figured out how everything was connected:</p>
+<p style="text-align:center;">
+    <a href="/images/blog/tvstreamer-emfi-ai/setup-topology.png">
+        <img src="/images/blog/tvstreamer-emfi-ai/setup-topology.png" style="width:80%; max-width:80%">
+    </a>
+</p>
+<p style="text-align:center; color:#666; font-size:0.9em;"><em>Block diagram of the EMFI setup. The Spider drives the EMFI probe via two analog lines: digital glitch and pulse amplitude. The XYZ stage moves the probe over the SoC. The YKUSH3 lets the host power-cycle the Streamer when needed.</em></p>
+<p><strong>Claude</strong> wrote <em>every line</em> of host software: the Spider driver, the Inspector Py4J wrapper, the YKUSH3 HID driver, the adb wrapper, the attack binaries, the Flask dashboard, the MkDocs wiki and the SQLite database. It made several interesting decisions that we actually did not think of. Hence, <strong>Claude</strong> actually learned us a few things along the way.</p>
+<p><strong>Keysight Spider.</strong></p>
+<p>The Keysight <strong>DS1180A Spider</strong> is the glitcher. We use two of its analog channels: <code>glitch out 1</code> (the digital glitch trigger that fires the EMFI probe&rsquo;s transient generator) and <code>voltage out 1</code> (the analog amplitude, 0–100 %, that controls the probe&rsquo;s pulse strength). The Spider talks to the host over USB-FTDI as <code>/dev/ttyUSBSpider1</code> (a stable symlink to <code>/dev/ttyUSB1</code>).</p>
+<p>We pointed <strong>Claude</strong> to the Spider SDK:</p>
+<blockquote>
+<p><strong>Me:</strong> <em>&ldquo;The Spider SDK is at <code>/opt/keysight/DS1180A-2.4.1/python/</code>&rdquo;</em></p>
+</blockquote>
+<p>The result was <code>host/glitcher.py</code>, a thin <code>EmfiGlitcher</code> wrapper. The fire path is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>ds1180a<span style="color:#ff79c6">.</span>forget_events()
+</span></span><span style="display:flex;"><span>ds1180a<span style="color:#ff79c6">.</span>glitch(GlitchPort<span style="color:#ff79c6">.</span>OUT1, voltage<span style="color:#ff79c6">=</span><span style="color:#bd93f9">3.3</span>, delay<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>ds1180a<span style="color:#ff79c6">.</span>start()
+</span></span><span style="display:flex;"><span>ds1180a<span style="color:#ff79c6">.</span>wait_until_finish(<span style="color:#bd93f9">100</span>)
+</span></span></code></pre></div><p>There is no trigger; <code>delay=0</code> means &ldquo;fire immediately on <code>start()</code>&rdquo;.</p>
+<p><strong>Keysight EM-FI Transient Probe.</strong></p>
+<p>The probe is Keysight&rsquo;s <strong>EM-FI Transient Probe</strong>. The only knob is glitch power (0–100 %), set by <code>voltage out 1</code> on the Spider. The probe sits on the XYZ stage, microns above the chip&rsquo;s exposed package.</p>
+<p><strong>Inspector XYZ stage.</strong></p>
+<p>We use a Keysight Inspector <strong>EMPS 5</strong> XYZ stage on <code>/dev/ttyACM0</code>, driven through the Inspector application&rsquo;s Py4J gateway at <code>127.0.0.1:25333</code>. The XYZ corners (NW, NE, SE) were saved manually in Inspector&rsquo;s GUI before the session; the calibrated rectangle for this Streamer is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>NW = (      0,      0, 0 )
+</span></span><span style="display:flex;"><span>NE = ( 440896,      0, 0 )
+</span></span><span style="display:flex;"><span>SE = ( 440896, 570998, 0 )
+</span></span></code></pre></div><p><strong>Claude</strong>&rsquo;s helper, <code>host/xyz.py</code>, never writes corner points and always clamps to this rectangle. Its <code>make_grid()</code> iterates only inside the calibrated polygon, so any random / scanning routine downstream is mechanically guaranteed not to crash the probe into a heatsink, a connector, or the table.</p>
+<blockquote>
+<p><strong>Me:</strong> <em>&ldquo;The XYZ is already calibrated. Don&rsquo;t go out of NW/NE/SE bounds. Don&rsquo;t touch Z.&rdquo;</em></p>
+</blockquote>
+<p><strong>Claude</strong> persisted this constraint in <code>CLAUDE.md</code> and the <code>inspector-python-api-cli</code> skill. Every XYZ helper it produced uses <code>hop_height = 0</code> and reads <code>Z</code> from the calibrated NW corner. It never writes Z, ever.</p>
+<p>The first time <strong>Claude</strong> opened the XYZ panel it hit a <code>JavaError</code> as the Inspector GUI was holding the device. We closed the GUI tab; from then on the CLI flow worked headlessly.</p>
+<p><strong>YEPKIT YKUSH3.</strong></p>
+<p>The <strong><a href="https://www.yepkit.com/product/300110/YKUSH3">YEPKIT YKUSH3</a></strong> is a smart USB hub that lets us toggle individual downstream ports under software control. Port 1 carries the Streamer. Because adb shows changed behavior fairly often during glitching (the chip&rsquo;s USB controller is unhappy), being able to power-cycle from Python is essential.</p>
+<p>We simply pointed <strong>Claude</strong> to the manual:</p>
+<blockquote>
+<p><strong>Me:</strong> <em>&ldquo;The target is connected via YKUSH3: <a href="https://www.yepkit.com/learn/setup-guide-ykush3_linux%22">https://www.yepkit.com/learn/setup-guide-ykush3_linux"</a></em></p>
+</blockquote>
+<p><strong>Claude</strong> chose to bypass <code>ykushcmd</code> entirely and talk to the device over HID with <code>python-hid</code> against VID:PID <code>04D8:F11B</code>. The HID protocol is trivial: <code>port N off</code> is <code>bytes([0x00, N])</code> and <code>port N on</code> is <code>bytes([0x00, 0x10 | N])</code>. <strong>Claude</strong> being <strong>Claude</strong>. 🤷</p>
+<p><strong>USB microscope.</strong></p>
+<p>We use two cheap USB digital microscopes to see the probe&rsquo;s location on the chip&rsquo;s surface. They show up as <code>/dev/video0</code> and <code>/dev/video4</code>.</p>
+<blockquote>
+<p><strong>Me:</strong> <em>&ldquo;There are two microscopes attached via USB. Make their feed accessible via the browser.&rdquo;</em></p>
+</blockquote>
+<p><strong>Claude</strong> added two <code>MJPEG</code> endpoints to the dashboard:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>@app.route(<span style="color:#f1fa8c">&#34;/api/cam/&lt;int:idx&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">cam</span>(idx):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> Response(
+</span></span><span style="display:flex;"><span>        mjpeg_iter(idx),
+</span></span><span style="display:flex;"><span>        mimetype<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;multipart/x-mixed-replace; boundary=frame&#34;</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span></code></pre></div><p>Each camera runs on a background grabber thread that holds a single <code>cv2.VideoCapture</code> instance, so multiple browsers can watch the same feed concurrently without fighting for the device.</p>
+<blockquote>
+<p><strong>Me:</strong> <em>&ldquo;Shrink the camera feeds; they take up too much of the screen.&rdquo;</em></p>
+</blockquote>
+<p>Done by tweaking the <code>&lt;img&gt;</code> <code>width</code> attribute. Trivial, but the responsiveness was what made it feel like a real instrument at minimum cost.</p>
+<!-- Glitch monitor -->
+<h2 id="glitch-monitor">Glitch Monitor</h2>
+<p>We asked <strong>Claude</strong> to build a dashboard which we can use to keep an eye on the experiments.</p>
+<blockquote>
+<p><strong>Me:</strong> <em>&ldquo;Build a Flask/Plotly dashboard; colors should match the original research; create a XY plot.&rdquo;</em></p>
+</blockquote>
+<p>It&rsquo;s interesting <strong>Claude</strong> always comes up with a slightly different design but it often includes most of the functionality already that we need. This process can be optimized by creating a <code>SKILL.md</code> with all the required functionality that we need.</p>
+<p style="text-align:center;">
+    <a href="/images/blog/tvstreamer-emfi-ai/glitch-monitor.png">
+        <img src="/images/blog/tvstreamer-emfi-ai/glitch-monitor.png" style="width:90%; max-width:90%">
+    </a>
+</p>
+<p style="text-align:center; color:#666; font-size:0.9em;"><em>Live glitch monitor during the successful setresuid run. Top-left: both USB-microscope feeds showing the probe over the SoC. Centre: 2D scatter of every glitch in the active campaign, colored G / P / R per the paper convention. The whole page auto-refreshes every two seconds.</em></p>
+<p>The result is <code>host/dashboard.py</code>, a ~500 lines of Flask + vanilla JS reading one or more <code>runs/databases/*.sqlite</code> files in read-only mode and serving an auto-refreshing dashboard. Features that proved useful during the campaigns:</p>
+<ul>
+<li><strong>Database selector</strong> — every campaign is a separate SQLite file, so you can switch between historic and live runs without restart.</li>
+<li><strong>Plot results</strong> — 2D scatter plot using Plotly.</li>
+<li><strong>Camera feeds</strong> — both USB-microscope feeds inline.</li>
+<li><strong>SQL tab</strong> — type a query, see results.</li>
+</ul>
+<p>The dashboard was being written while the chip was glitching itself. <strong>Claude</strong> would push a UI change, hit save, and the next 2-second refresh showed it live. We never stopped the campaign to deploy.</p>
+<!-- Characterization -->
+<h2 id="characterization">Characterization</h2>
+<p>We characterized the CPU of the Mediatek SoC in order to find locations on the chip&rsquo;s surface that lead to instruction corruption. We used the newish <code>/goal</code> feature of <strong>Claude</strong> as we expected this may take a while (i.e., we need to scan the chip&rsquo;s surface which is time consuming).</p>
+<blockquote>
+<p><strong>Me:</strong> <em>&quot;/goal Characterize the CPU of the Mediatek SoC and find a location where instructions are corrupted; use android-ndk-r27c to compile any target code.&rdquo;</em></p>
+</blockquote>
+<p><strong>Building the target binary</strong></p>
+<p><strong>Claude</strong> started coding immediately. It created test code that we often use where 10,000 <code>add</code> instructions are used to increase a counter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">asm</span> <span style="color:#50fa7b">volatile</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;mov r0, #0</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;add r0, r0, #1</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;add r0, r0, #1</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/* ... 9998 more ... */</span>
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>If the counter is wrong, an instruction got corrupted. <strong>Claude</strong> ran into an issue where clang&rsquo;s literal pool can&rsquo;t reach 10k inline <code>add</code> instructions but this was solved swiftly. The characterization test code now compiles, runs on the target, and reports <code>10000</code> on every clean execution. <strong>Claude</strong> send it to the device.</p>
+<p>With the characterization test code on disk and the dashboard live, it&rsquo;s time to start the first glitch campaign.</p>
+<blockquote>
+<p><strong>Me:</strong> <em>&ldquo;Characterize the chip surface. Scan the calibrated rectangle with the characterization test code running on the target. Stay inside NW/NE/SE. Don&rsquo;t touch Z.&rdquo;</em></p>
+</blockquote>
+<p>The classification table is exactly the one we use in the original paper:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Class</th>
+          <th style="text-align: left">Meaning</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>G</code></td>
+          <td style="text-align: left">EM glitch had no observable effect (characterization test code returned <code>10000</code>). Expected.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>R</code></td>
+          <td style="text-align: left">Counter corrupted — CPU instruction was affected. Success.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>Y</code></td>
+          <td style="text-align: left">adb still works but characterization test process unresponsive. Restart it.</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>P</code></td>
+          <td style="text-align: left">adb shell hung — USB stack died. Power-cycle via YKUSH3.</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Claude</strong> created the following plot with the experiments at various locations on teh chip&rsquo;s surface until the moment we got a successful glitch:</p>
+<p style="text-align:center;">
+    <a href="/images/blog/tvstreamer-emfi-ai/characterization-xy.png">
+        <img src="/images/blog/tvstreamer-emfi-ai/characterization-xy.png" style="width:80%; max-width:80%">
+    </a>
+</p>
+<p style="text-align:center; color:#666; font-size:0.9em;"><em>Spatial coverage of the phase-1 characterization scans, in chip coordinates with NW = (0, 0) at the top-left of the calibrated rectangle. Each dot is one glitch; green is <code>expected</code> (no effect). The scans were <strong>edge-first</strong>, not a uniform raster — we did several X-strips along the north edge (<code>Y ≈ 0–100 k</code>) and the chip stayed silent. So we flipped to the opposite edge (the <code>_rev</code> scan at <code>Y = 570 998</code>) and the very first row of glitches produced both an <code>adb_timeout</code> (purple) and the red-star <code>success</code> at <code>X = 0</code>. Once the successful location was located on the south edge, we stopped scanning and switched to the real attack at that location.</em></p>
+<p>Interestingly, and this was unexpected, <strong>Claude</strong> decided to scan first the top edge and bottom edge of the chip This yielded a successful glitch early on. Much quicker if it would&rsquo;ve started scanning the surface of the chip from left to right, top to bottom, like we normally do. We are not entirely sure why <strong>Claude</strong> decided to do this. Once the successful location was found, <strong>Claude</strong> simply fixed the probe there.</p>
+<p>Once the probe was fixed at the successful location we found above (<code>X = 0</code>, <code>Y ≈ 570 000</code>), the only knob left to vary was the <strong>Spider pulse amplitude</strong> (i.e., Glitch Power). Finding this location was just a matter of minutes.</p>
+<!-- Attack -->
+<h2 id="attack">Attack</h2>
+<p>With a succesful location identified, the next step is the real attack: glitch the kernel during a <code>setresuid(0,0,0)</code> system call from the <code>shell</code> user so that the capability check is bypassed and the kernel commits credentials with <code>uid = 0</code>.</p>
+<p><strong>Hypothesis.</strong></p>
+<p>The 2025 paper&rsquo;s hypothesis is: corrupt the conditional branch (or its operand) at the <em>capability-check fail</em> path in <code>setresuid32</code>. If the EM glitch corrupts the conditional that gates the <code>return -EPERM</code>, control falls through to <code>commit_creds(new)</code>, the kernel writes <code>uid = 0</code> for the calling task, and userland gets <code>ret == 0</code> back from <code>swi #0</code>. Now the attack binary&rsquo;s <code>cmp r0, #0; bne 1b</code> loop falls through, and we run further code as <code>uid 0</code>.</p>
+<p style="text-align:center;">
+    <a href="/images/blog/tvstreamer-emfi-ai/lsm-glitch-flow.png">
+        <img src="/images/blog/tvstreamer-emfi-ai/lsm-glitch-flow.png" style="width:80%; max-width:80%">
+    </a>
+</p>
+<p style="text-align:center; color:#666; font-size:0.9em;"><em>What we are trying to glitch. The default path returns <code>-EPERM</code> and userland keeps spinning. The dashed red EMFI arrow is the desired effect — skip the EPERM return, fall through to <code>commit_creds()</code>, and let userland see <code>ret = 0</code>.</em></p>
+<p>The original paper&rsquo;s attack binary is contains the following <code>asm</code> snippet:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#ff79c6">asm</span> <span style="color:#50fa7b">volatile</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;1:</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;    mov r0, #0</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;    mov r1, #0</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;    mov r2, #0</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;    mov r7, #208</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>      <span style="color:#6272a4">// __NR_setresuid32
+</span></span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;    swi #0</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;    cmp r0, #0</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;    bne 1b</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p><strong>Claude</strong> produced <code>target/setresuid_attack_tight.c</code> with this exact pattern as it had read the slides, forked N=2 children pinned to different cores, and on <code>r0 == 0</code> exit path the child immediately writes <code>success.txt</code>, calls <code>getresuid()</code> to capture proof, then starts <code>telnetd</code> as root.</p>
+<p>The driver, <code>host/attack_setresuid.py</code>, looks like this:</p>
+<p style="text-align:center;">
+    <a href="/images/blog/tvstreamer-emfi-ai/attack-flow.png">
+        <img src="/images/blog/tvstreamer-emfi-ai/attack-flow.png" style="width:80%; max-width:80%">
+    </a>
+</p>
+<p style="text-align:center; color:#666; font-size:0.9em;"><em>Attack driver. Move probe; start the attack binary on target; fire pulses asynchronously; poll the sentinel file via adb every N glitches; classify; recover from changed behavior via YKUSH3 power-cycle; on success, fetch the proof file and stop.</em></p>
+<p><strong>Getting root.</strong></p>
+<p>For the attack the probe was fixed at the successful location we identified during the characterization and never moved again. The only glitch parameter we randomized was the Spider amplitude (i.e., Glitch Power). Once glitches were being injected, it did not take long to get the first successful glitch, which was verified manually by reading <code>success.txt</code> and <code>proof.txt</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ adb shell cat /data/local/tmp/setresuid/success.txt
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">core</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span> <span style="color:#8be9fd;font-style:italic">pid</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">1669</span> <span style="color:#8be9fd;font-style:italic">ret</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span> <span style="color:#8be9fd;font-style:italic">uid</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span> <span style="color:#8be9fd;font-style:italic">euid</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span> <span style="color:#8be9fd;font-style:italic">listener_port</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">4444</span>
+</span></span><span style="display:flex;"><span>niek@laptop:~$ adb shell cat /data/local/tmp/setresuid/proof.txt
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">core</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span> <span style="color:#8be9fd;font-style:italic">ruid</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span> <span style="color:#8be9fd;font-style:italic">euid</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span> <span style="color:#8be9fd;font-style:italic">suid</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span> <span style="color:#8be9fd;font-style:italic">pid</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">1669</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--- /proc/cmdline ---
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">console</span><span style="color:#ff79c6">=</span>ttyMT0,921600n8 ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--- /proc/1/cmdline ---
+</span></span><span style="display:flex;"><span>/system/bin/init second_stage
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>--- /proc/self/status ---
+</span></span><span style="display:flex;"><span>Name:   attack_tight
+</span></span><span style="display:flex;"><span>State:  R <span style="color:#ff79c6">(</span>running<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>Tgid:   <span style="color:#bd93f9">1669</span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>Uid:    <span style="color:#bd93f9">0</span>       <span style="color:#bd93f9">0</span>       <span style="color:#bd93f9">0</span>       <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>Gid:    <span style="color:#bd93f9">2000</span>    <span style="color:#bd93f9">2000</span>    <span style="color:#bd93f9">2000</span>    <span style="color:#bd93f9">2000</span>
+</span></span><span style="display:flex;"><span>Groups: <span style="color:#bd93f9">2000</span>
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>The files show that the kernel committed our credentials successfully; we are root. The <code>Gid</code> line is still <code>2000</code> because <code>setresuid32</code> only writes the <code>UID</code> fields of the new cred struct; <code>GID</code>, supplementary groups and the SELinux context are untouched. Then we take over the resulting <code>telnetd-static</code> listener to get a root shell.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>niek@laptop:~$ adb shell
+</span></span><span style="display:flex;"><span>kirkwood:/ $ telnet 127.0.0.1 <span style="color:#bd93f9">4444</span>
+</span></span><span style="display:flex;"><span>Trying 127.0.0.1...
+</span></span><span style="display:flex;"><span>Connected to 127.0.0.1.
+</span></span><span style="display:flex;"><span>Escape character is <span style="color:#f1fa8c">&#39;^]&#39;</span>.
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># id</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">uid</span><span style="color:#ff79c6">=</span>0<span style="color:#ff79c6">(</span>root<span style="color:#ff79c6">)</span> <span style="color:#8be9fd;font-style:italic">gid</span><span style="color:#ff79c6">=</span>2000<span style="color:#ff79c6">(</span>shell<span style="color:#ff79c6">)</span> <span style="color:#8be9fd;font-style:italic">groups</span><span style="color:#ff79c6">=</span>2000<span style="color:#ff79c6">(</span>shell<span style="color:#ff79c6">)</span> ... <span style="color:#8be9fd;font-style:italic">context</span><span style="color:#ff79c6">=</span>u:r:shell:s0
+</span></span></code></pre></div><p>We&rsquo;re root, on Google&rsquo;s Streamer 4K, from an unprivileged adb shell, using a single EM glitch. 🎉</p>
+<!-- Takeaways -->
+<h2 id="takeaways">Takeaways</h2>
+<p>After all the fantastic examples of Claude (and similar models) being used to find and exploit complex software vulnerabilities, it probably comes as no surprise that it can do the same for hardware vulnerabilities. The impact on hardware security research is likely to be of similar magnitude to that on software security research.</p>
+<p><strong>What we learned about working with Claude.</strong></p>
+<ul>
+<li><strong>Claude is efficient.</strong> Given a well-defined goal, <strong>Claude</strong> is capable of finding the shortest route. It takes cares of everything which is normally done by human by hand (e.g., what hardware tool is connected on what port).</li>
+<li><strong>Claude is fast.</strong> We were shocked how fast <strong>Claude</strong> was able to get to a successful glitch. It took an unusual strategy where it scanned the edges of the chip first which led to an early success.</li>
+<li><strong>Skills are key.</strong> We had to go back and forth with <strong>Claude</strong> quite a bit to get certain things right. The insights from these discussions can be stored in <code>SKILL.md</code> files, which avoids having to repeat them next time. They&rsquo;re also easy to share with others.</li>
+<li><strong>Hypothesis generation.</strong> When something unexpected happened, <strong>Claude</strong> was quick to propose multiple plausible explanations and design experiments to distinguish between them. This shortened the debug loop considerably.</li>
+<li><strong>Verbose logging pays off.</strong> <strong>Claude</strong> works best when it can see what&rsquo;s happening. Investing time upfront in structured logging and clean tool output meant <strong>Claude</strong> could diagnose issues on its own instead of asking us to read traces back to it.</li>
+<li><strong>Domain knowledge still matters.</strong> Claude knew a lot about fault injection, side channels, and chip architecture out of the box, but the moments where it really shined were when we contributed the specific quirks of our setup.</li>
+</ul>
+<p>Feel free to reach out if you have any questions and/or remarks.</p>
+<p>- Raelize<span style="color:yellow">.</span></p>
+</div>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  </div><!-- end Contact Area -->
+<footer id="footer" class="section-bg">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-xl-12">
+
+				<!-- Footer Social Links -->
+				<div class="social-icon">
+					<ul class="list-inline">
+						
+						<li class="list-inline-item"><a href="https://twitter.com/raelizecom" rel="nofollow"><i class="ti-twitter-alt"></i></a></li>
+						
+						<li class="list-inline-item"><a href="https://www.linkedin.com/company/raelize" rel="nofollow"><i class="ti-linkedin"></i></a></li>
+						
+					</ul>
+				</div>
+
+				<!-- copyright -->
+				<div class="copyright text-center">
+					<a href="https://raelize.com/">
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+					</a>
+					<br>
+					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- /footer -->
+
+<!-- Google Map API -->
+
+
+<!-- JS Plugins -->
+
+<script src="https://raelize.com/plugins/jquery/jquery.min.js"></script>
+
+<script src="https://raelize.com/plugins/bootstrap/bootstrap.min.js"></script>
+
+<script src="https://raelize.com/plugins/slick/slick.min.js"></script>
+
+<script src="https://raelize.com/plugins/shuffle/shuffle.min.js"></script>
+
+<script src="https://raelize.com/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<script src="https://raelize.com/plugins/lazy-load/lozad.min.js"></script>
+
+<script src="https://raelize.com/plugins/google-map/map.js"></script>
+
+
+<!-- Main Script -->
+
+<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+
+
+</body>
+
+</html>
