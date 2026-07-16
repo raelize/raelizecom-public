@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Espressif ESP32: Breaking HW AES with Electromagnetic Analysis</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>Espressif ESP32: Breaking HW AES with Electromagnetic Analysis | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="We measure the ESP32&#39;s electromagnetic emissions to recover the secret key from its hardware AES accelerator, using EM analysis instead of power analysis.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="Espressif ESP32: Breaking HW AES with Electromagnetic Analysis">
+	<meta property="og:description" content="We measure the ESP32&#39;s electromagnetic emissions to recover the secret key from its hardware AES accelerator, using EM analysis instead of power analysis.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis/">
+	<meta property="og:image" content="https://raelize.com/img/esp32/sca/resized/em-fast-trigger.png">
+	
+	<meta property="article:published_time" content="2023-03-02T22:00:00&#43;01:00">
+	<meta property="article:modified_time" content="2023-03-02T22:00:00&#43;01:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="Espressif ESP32: Breaking HW AES with Electromagnetic Analysis">
+	<meta name="twitter:description" content="We measure the ESP32&#39;s electromagnetic emissions to recover the secret key from its hardware AES accelerator, using EM analysis instead of power analysis.">
+	<meta name="twitter:image" content="https://raelize.com/img/esp32/sca/resized/em-fast-trigger.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"Espressif ESP32: Breaking HW AES with Electromagnetic Analysis\"",
+		"description": "\"We measure the ESP32's electromagnetic emissions to recover the secret key from its hardware AES accelerator, using EM analysis instead of power analysis.\"",
+		"url": "https:\/\/raelize.com\/blog\/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis\/",
+		"datePublished": "2023-03-02T22:00:00\u002b01:00",
+		"dateModified": "2023-03-02T22:00:00\u002b01:00",
+		"image": "https:\/\/raelize.com\/img\/esp32\/sca\/resized\/em-fast-trigger.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/espressif-systems-esp32-breaking-hw-aes-with-electromagnetic-analysis\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,7 +180,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Espressif ESP32: Breaking HW AES with Electromagnetic Analysis</h2>
+                <h1>Espressif ESP32: Breaking HW AES with Electromagnetic Analysis</h1>
                 
                 <p>Thursday, Mar 2, 2023</p>
                 <hr />
@@ -159,13 +223,13 @@
 </span></span></code></pre></div></small>
 <p>Execution the above test application results in a trigger window (i.e., time between trigger up and down) of roughly 1.0 μs as is shown below. This trigger window was 3.1 μs when we used to ROM API function.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-fast-trigger.png" style="max-width: 100%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-fast-trigger.png" alt="Optimized trigger window narrowed to about one microsecond" loading="lazy" style="max-width: 100%; width: 600px">
     <figcaption>Optimized trigger window</figcaption>
 </p>
 <p>This trigger window is significantly smaller than the trigger we used during the <em>Power Analysis</em> attack. This should facilitate smaller traces as we have to measure less samples, this should yield a faster acquisition speed.</p>
 <p>We performed a quick <em>Known Key Correlation</em> analysis by measuring the power in order to identify where in this trigger window the AES operation is performed. Note, this measurement was made without the delay that&rsquo;s shown in the trigger window trace shown above.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/power-optimized-known-key-correlation.png" style="max-width: 100%; width: 600px">
+    <img src="/img/esp32/sca/resized/power-optimized-known-key-correlation.png" alt="Known key correlation trace with the optimized power analysis application" loading="lazy" style="max-width: 100%; width: 600px">
     <figcaption>Known Key Correlation with optimized application (Power Analysis)</figcaption>
 </p>
 <p>The intermediate correlation tells us that round 1 of the AES operation is started around sample 150. According to Espressif (see Section 22.3.5 in the <a href="https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf">Technical Reference Manual</a>), the AES encryption should take between 11 and 15 clock cycles. We use this information in order to optimize the acquisition for the EM Analysis described in the remainder of this blog post. We could measure e.g. sample 150 to sample 200. However, we decided to take a sub-optimal approach by simply measuring the first 200 samples.</p>
@@ -174,18 +238,18 @@
 <p>The probe is placed in <a href="https://www.riscure.com/">Riscure</a>&rsquo;s <a href="https://getquote.riscure.com/en/quote/2101064/em-probe-station.htm">EM Probe Station</a> which allows us to adjust the location of the probe automatically. This is convenient as we will have to find locations where we can measure electromagnetic emissions related to AES operation.</p>
 <p>A diagram of the power analysis setup that we used is shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/em-setup.png" style="max-width: 100%; width: 800px">
+    <img src="/img/esp32/sca/em-setup.png" alt="Diagram of the electromagnetic analysis measurement setup" loading="lazy" style="max-width: 100%; width: 800px">
     <figcaption>EM Analysis setup</figcaption>
 </p>
 <p>The actual setup in our lab is shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-setup-real.jpg" style="max-width: 45%; width: 600px">
-    <img src="/img/esp32/sca/em_setup_real_zoomed.jpg" style="max-width: 45%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-setup-real.jpg" alt="Photo of the EM analysis setup in the lab" loading="lazy" style="max-width: 45%; width: 600px">
+    <img src="/img/esp32/sca/em_setup_real_zoomed.jpg" alt="Close-up of the EM probe placed on the ESP32 chip" loading="lazy" style="max-width: 45%; width: 600px">
     <figcaption>EM Analysis setup</figcaption>
 </p>
 <p>We use <a href="https://www.riscure.com/">Riscure</a>&rsquo;s FiPy to control the setup during the acquisition. This is a Python framework that is configured through the browser and can be used to configure the EM Probe station. The menu to configure the EM Probe Station is shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-fipy.png" style="max-width: 100%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-fipy.png" alt="FiPy menu for configuring the EM probe station XYZ table" loading="lazy" style="max-width: 100%; width: 600px">
     <figcaption>EM Probe Station (XYZ table) control</figcaption>
 </p>
 <p>We define a square grid by setting three reference points: top left corner (A), to right corner (B) and bottom right corner (C). Even though this Python framework is typically used for Fault Injection attacks, it can be used conveniently for SCA acquisition as well.</p>
@@ -195,10 +259,10 @@
 <p>Usually, a good location for the <em>EM Probe</em> is found by performing a XYZ scan across the surface of the chip. For example, this can be done in a grid of 20x20 (i.e., 400 locations) or 30x30 (i.e., 900 locations). As you can imagine, the larger the grid the longer it takes to complete.</p>
 <p>At each location a measurement is taken and the frequency spectrum is computed. This allows you to determine what frequencies are prominently present during the execution of the cryptographic operation. This activity often results in nice and interesting pictures as is shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-spectrum-xyz1.png" style="max-width: 20%; width: 600px">
-    <img src="/img/esp32/sca/resized/em-spectrum-xyz2.png" style="max-width: 20%; width: 600px">
-    <img src="/img/esp32/sca/resized/em-spectrum-xyz3.png" style="max-width: 20%; width: 600px">
-    <img src="/img/esp32/sca/resized/em-spectrum-xyz4.png" style="max-width: 20%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-spectrum-xyz1.png" alt="EM spectrum scan across the chip surface at 40 MHz" loading="lazy" style="max-width: 20%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-spectrum-xyz2.png" alt="EM spectrum scan across the chip surface at 60 MHz" loading="lazy" style="max-width: 20%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-spectrum-xyz3.png" alt="EM spectrum scan across the chip surface at 80 MHz" loading="lazy" style="max-width: 20%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-spectrum-xyz4.png" alt="EM spectrum scan across the chip surface at 100 MHz" loading="lazy" style="max-width: 20%; width: 600px">
     <figcaption>Spectrum (XY) for 40 MHz, 60 MHz, 80 MHz and 100 MHz</figcaption>
 </p>
 <p>For this research, we are interested in finding the location of the hardware AES engine. As far as we know, this engine is running at the same speed as the processor, which we configured to be 80 MHz. We tried out a few strategies for determining at what location the <em>EM Probe</em> picks up EM emissions related to the AES operation.</p>
@@ -207,37 +271,37 @@
 <p>We performed a XY scan in a 30x30 grid across the chip&rsquo;s surface (i.e., 900 locations in total). For each location, we take 1,500 averaged traces, where for each trace 1,000 measurements are averaged with the same data. In other words, for each location we have a trace set consisting of 1500 averaged traces, representing 1.5M encryption operations. We average the traces because the level of noise is much more significant than during the <em>Power Analysis</em> attack. For each location, it took ~75 seconds to acquire the trace set, which means, with some additional time required for moving the <em>EM Probe</em> across the chip&rsquo;s surface, that the entire XY scan took roughly a day to complete. This lengthy process also shows the importance of being able to automate this process.</p>
 <p>Then, for each resulting trace set, we performed a <em>Known Key Correlation</em> analysis. Whenever the EM Probe picks up EM emissions related to the AES engine&rsquo;s operation, we should see correlation peaks at a specific moment in time. Interestingly, we identified multiple, significantly different, locations on the chip&rsquo;s surface. We selected, by visually analyzing the traces, two seemingly good locations for which the intermediate correlation traces are shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-location-1.png" style="max-width: 100%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-location-1.png" alt="Known key correlation trace at probe location A" loading="lazy" style="max-width: 100%; width: 600px">
     <figcaption>Location A</figcaption>
 </p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-location-3.png" style="max-width: 100%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-location-3.png" alt="Known key correlation trace at probe location B" loading="lazy" style="max-width: 100%; width: 600px">
     <figcaption>Location B</figcaption>
 </p>
 <p>The above traces show intermediate leakage at the same sample (i.e., 158), which is expected for a hardware AES accelerator. To identify the location on the grid, we summed the absolute correlation values (i.e., for each intermediate) at sample 158 for each location and plotted the result on a 30x30 grid.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/heatmap.png" style="max-width: 100%; width: 400px">
+    <img src="/img/esp32/sca/resized/heatmap.png" alt="Color map legend from low to high correlation" loading="lazy" style="max-width: 100%; width: 400px">
 </p>
 <p>Then, using the color map shown above, we color the locations depending on the resulting correlation value (i.e., dark is low correlation and light is high correlation). The actual location of the probe, in the real-world and on the resulting scatter plot are shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-location-1-real.jpg" style="max-width: 40%; width: 400px">
-    <img src="/img/esp32/sca/resized/em-location-A.png" style="max-width: 40%; width: 400px">
+    <img src="/img/esp32/sca/resized/em-location-1-real.jpg" alt="Photo of the EM probe positioned at location A" loading="lazy" style="max-width: 40%; width: 400px">
+    <img src="/img/esp32/sca/resized/em-location-A.png" alt="Correlation scatter plot highlighting location A" loading="lazy" style="max-width: 40%; width: 400px">
     <figcaption>Position of the EM probe for location A</figcaption>
 </p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-location-3-real.jpg" style="max-width: 40%; width: 400px">
-    <img src="/img/esp32/sca/resized/em-location-B.png" style="max-width: 40%; width: 400px">
+    <img src="/img/esp32/sca/resized/em-location-3-real.jpg" alt="Photo of the EM probe positioned at location B" loading="lazy" style="max-width: 40%; width: 400px">
+    <img src="/img/esp32/sca/resized/em-location-B.png" alt="Correlation scatter plot highlighting location B" loading="lazy" style="max-width: 40%; width: 400px">
     <figcaption>Position of the EM probe for location B</figcaption>
 </p>
 <p>The scatter plot shows that our manual selection is within or close to the regions that show good correlation (i.e, dots are light colored). Even though there are other, potentially better, locations where we observe good correlation, we will focus only on location A and B for the remainder of this blog post.</p>
 <p><strong>Averaged traces</strong></p>
 <p>An averaged trace, where 1,000 encryption operations with the same data are averaged, is shown below for location A and B. There is no distinctive pattern visible, which shows that identifying a good location merely based on the shape of the trace is not possible. The distorted signal in the first 80 ns of the traces is related to the trigger (i.e., not related to the cryptographic operation).</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-location-1-trace.png" style="max-width: 100%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-location-1-trace.png" alt="Averaged EM trace measured at location A" loading="lazy" style="max-width: 100%; width: 600px">
     <figcaption>Averaged trace for location A</figcaption>
 </p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca/resized/em-location-3-trace.png" style="max-width: 100%; width: 600px">
+    <img src="/img/esp32/sca/resized/em-location-3-trace.png" alt="Averaged EM trace measured at location B" loading="lazy" style="max-width: 100%; width: 600px">
     <figcaption>Averaged trace for location B</figcaption>
 </p>
 <p>To analyze location A and B in more detail, we acquire for each location a trace set of 10,000 averaged traces. Each averaged trace consists of 1,000 averaged measurements during the encryption of the same input data. In total this yields us a trace set that represents 10M encryption operation in total. We measure only 200 samples, as we know this should include the AES operation. We use an acquisition speed of 500 MSa/s. The total time it took to acquire this trace set for each location is ~8 minutes.</p>
@@ -246,16 +310,16 @@
 <p>We compute the correlation with the intermediate state, after the SBox in Round1, using the <em>Known Key Correlation</em> module from <a href="https://www.riscure.com/">Riscure</a>&rsquo;s Inspector software. This effectively mean that we target the <code>HW(SBox Out)</code> leakage model, which we already know is effective for extracting the key from the ESP32&rsquo;s AES engine.</p>
 <p>The resulting correlation trace for location A, including a zoomed version, is shown below. As expected, it shows significant correlation at sample 158. This shows that we were successful in moving the EM Probe back to the same location that was identified during the XY scan. The correlation at this point is negative.</p>
 <p style="text-align:center;">
-        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-1.png" style="max-width: 100%; width: 600px">
+        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-1.png" alt="Known key correlation result at location A with peak at sample 158" loading="lazy" style="max-width: 100%; width: 600px">
         <br>
-        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-1-zoomed.png" style="max-width: 100%; width: 600px">
+        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-1-zoomed.png" alt="Zoomed known key correlation peak at location A" loading="lazy" style="max-width: 100%; width: 600px">
         <figcaption>Known Key Correlation @ Location A</figcaption>
 </p>
 <p>The resulting correlation trace for location B, including a zoomed version, is shown below. As expected, it shows significant correlation at sample 158. This shows that we were successful in moving the EM Probe back to the same location that was identified during the XY scan. The correlation at this point is positive.</p>
 <p style="text-align:center;">
-        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-3.png" style="max-width: 100%; width: 600px">
+        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-3.png" alt="Known key correlation result at location B with peak at sample 158" loading="lazy" style="max-width: 100%; width: 600px">
         <br>
-        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-3-zoomed.png" style="max-width: 100%; width: 600px">
+        <img src="/img/esp32/sca/resized/em-known-key-correlation-spot-3-zoomed.png" alt="Zoomed known key correlation peak at location B" loading="lazy" style="max-width: 100%; width: 600px">
         <figcaption>Known Key Correlation @ Location B</figcaption>
 </p>
 <p>The correlation traces for location A and location B indicate significant correlation at a specific sample (i.e., 158). This result is different from what we obtained in our Power Analysis attack, where the leakage was spread across multiple samples. As we use the same trigger, this cannot be attributed to a jittery signal.</p>
@@ -265,12 +329,12 @@
 <p>Using the trace sets, containing 10,000 averaged traces, we perform a known key analysis using the <em>Known Key Analysis</em> module from Riscure&rsquo;s Inspector software. This gives us an idea how many traces are required to extract the entire key.</p>
 <p>The <em>Key Rank Evolution</em> for Location A is shown below. It shows that already at 4,000 averaged traces the key bytes fully converge to zero (i.e., correct key bytes rank 1). This indicates to us that we can extract the entire key with much less than the 10,0000 averaged traces we acquired.</p>
 <p style="text-align:center;">
-        <img src="/img/esp32/sca/resized/em-rank-evolution-location-1.png" style="max-width: 100%; width: 600px">
+        <img src="/img/esp32/sca/resized/em-rank-evolution-location-1.png" alt="Key rank evolution converging to the correct key at location A" loading="lazy" style="max-width: 100%; width: 600px">
         <figcaption>Key Rank Evolution @ Location A</figcaption>
 </p>
 <p>The <em>Key Rank Evolution</em> for Location B is shown below. It shows that already at 6,000 averaged traces the key bytes fully converge to zero (i.e., correct key bytes rank 1). This indicates to us that we can extract the entire key with much less than the 10,0000 averaged traces we acquired.</p>
 <p style="text-align:center;">
-        <img src="/img/esp32/sca/resized/em-rank-evolution-location-3.png" style="max-width: 100%; width: 600px">
+        <img src="/img/esp32/sca/resized/em-rank-evolution-location-3.png" alt="Key rank evolution converging to the correct key at location B" loading="lazy" style="max-width: 100%; width: 600px">
         <figcaption>Key Rank Evolution @ Location B</figcaption>
 </p>
 <p>Based on the above <em>Key Rank Evolution</em> plots, we are confident we are able to extract the entire key without any knowledge of the key.</p>
@@ -509,7 +573,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

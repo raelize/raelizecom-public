@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="A deep dive into four critical QSEE vulnerabilities on Qualcomm IPQ40xx routers like the Linksys EA8300, from extracting the TEE binary to restricted writes.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities">
+	<meta property="og:description" content="A deep dive into four critical QSEE vulnerabilities on Qualcomm IPQ40xx routers like the Linksys EA8300, from extracting the TEE binary to restricted writes.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities/">
+	<meta property="og:image" content="https://raelize.com/img/ipq40xx/ipq4019.png">
+	
+	<meta property="article:published_time" content="2021-03-02T16:00:00&#43;02:00">
+	<meta property="article:modified_time" content="2021-03-02T16:00:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities">
+	<meta name="twitter:description" content="A deep dive into four critical QSEE vulnerabilities on Qualcomm IPQ40xx routers like the Linksys EA8300, from extracting the TEE binary to restricted writes.">
+	<meta name="twitter:image" content="https://raelize.com/img/ipq40xx/ipq4019.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities\"",
+		"description": "\"A deep dive into four critical QSEE vulnerabilities on Qualcomm IPQ40xx routers like the Linksys EA8300, from extracting the TEE binary to restricted writes.\"",
+		"url": "https:\/\/raelize.com\/blog\/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities\/",
+		"datePublished": "2021-03-02T16:00:00\u002b02:00",
+		"dateModified": "2021-03-02T16:00:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/img\/ipq40xx\/ipq4019.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/qualcomm-ipq40xx-analysis-of-critical-qsee-vulnerabilities\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,7 +180,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities</h2>
+                <h1>Qualcomm IPQ40xx: Analysis of Critical QSEE Vulnerabilities</h1>
                 
                 <p>Tuesday, Mar 2, 2021</p>
                 <hr />
@@ -137,7 +201,7 @@
 <p>The <a href="https://www.linksys.com/us/p/P-EA8300/">Linksys EA8300</a> is a AC2200 Wi-Fi Tri-Band Router. Some of the information we used was obtained from <a href="https://openwrt.org/toh/linksys/linksys_ea8300">OpenWRT</a>&rsquo;s website and <a href="https://fccid.io/Q87-EA8300">FCCID</a>&rsquo;s website. This device is designed around the Qualcomm IPQ4019 SoC of which a picture is shown below.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/ipq4019.png">
-        <img src="/img/ipq40xx/ipq4019.png" style="max-width: 60%">
+        <img src="/img/ipq40xx/ipq4019.png" alt="Qualcomm IPQ4019 SoC on the Linksys EA8300 board" loading="lazy" style="max-width: 60%">
     </a>
 </p>
 <p>Our interest was immediately piqued after reading its <a href="https://www.qualcomm.com/products/ipq4019">product description</a> as it supports two of our favorite security features <em>Secure Boot</em> and a <em>TEE</em>. At Raelize, we often analyze these technologies in order to provide adequate guidance to our clients.</p>
@@ -147,7 +211,7 @@
 <p>Hardware hacking often starts with opening the device. The OpenWRT website actually provides <a href="https://openwrt.org/toh/linksys/linksys_ea8300#opening_the_case">useful instructions</a> for it. Then, the next step is typically scoping out a serial interface, which, hopefully, provides a (root) shell. It&rsquo;s not uncommon for these type of devices that a serial interface is clearly marked on the printed circuit board (PCB). The Linksys EA8300 we are analyzing exposes the serial interface on an unpopulated connector marked <code>J3</code> as is shown in the picture below.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/ea8300_serial.jpg">
-        <img src="/img/ipq40xx/ea8300_serial.jpg" style="max-width: 90%;">
+        <img src="/img/ipq40xx/ea8300_serial.jpg" alt="Serial interface on unpopulated header J3 of the EA8300" loading="lazy" style="max-width: 90%;">
     </a>
 </p>
 <p>Again, very conveniently, the pin-out and other information required for communicating with the serial interface can be found on the <a href="https://openwrt.org/toh/linksys/linksys_ea8300#serial">device page</a> of the OpenWRT website. This spares us the probing of the pins for determining the needed parametes. There&rsquo;s no harm done standing on the shoulders of others!</p>
@@ -242,7 +306,7 @@
 <p>The underlying platform (i.e. hardware) is required to securely implement both these environments.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/ree_tee.png">
-        <img src="/img/ipq40xx/ree_tee.png" style="max-width: 90%; width: 700px">
+        <img src="/img/ipq40xx/ree_tee.png" alt="ARM TrustZone REE and TEE execution environments diagram" loading="lazy" style="max-width: 90%; width: 700px">
     </a>
 </p>
 <p>These two environments are distinguished by the Non-Secure (NS) bit (i.e. SCR.NS). This bit set to 1 for execution of REE code and set to 0 when executing TEE code. The transition between these two execution modes is governed by the Monitor mode, which traps the execution of Secure Monitor Call (SMC) instructions. More details about this technology is available in ARM&rsquo;s <a href="https://developer.arm.com/documentation/ddi0406/c/">Architecture Reference Manual</a> for the ARMv7-A architecture.</p>
@@ -292,13 +356,13 @@
 <p>The ARMv7 exception vector is found at the start of the QSEE binary. It&rsquo;s used to handle the processor&rsquo;s exceptions, including the exception caused when a SMC instruction is executed. The exception vector is standardized and therefore we could simply define the correct names ourselves.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/qsee_exceptions.png">
-        <img src="/img/ipq40xx/qsee_exceptions.png" style="max-width: 90%; width: 700px">
+        <img src="/img/ipq40xx/qsee_exceptions.png" alt="ARMv7 exception vector at the start of the QSEE binary" loading="lazy" style="max-width: 90%; width: 700px">
     </a>
 </p>
 <p>We easily identified the code responsible for handling the SMC instruction by following the <em><strong>Software Interrupt</strong></em> exception handler. This code extracts the SMC ID from register <code>r0</code> in order to determine which SMC handler routine should be called. We determined that all SMC handler routines are defined in a table located at address <code>0x87EB465C</code>.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/smc_handlers.png">
-        <img src="/img/ipq40xx/smc_handlers.png" style="max-width: 90%; width: 700px">
+        <img src="/img/ipq40xx/smc_handlers.png" alt="SMC handler routine table with IDs and names" loading="lazy" style="max-width: 90%; width: 700px">
     </a>
 </p>
 <p>The SMC handler routines can be called using their unique SMC ID, which is also present in the table. For example, the SMC handler routine <code>tzbsp_pil_init_image_ns</code> can be called by using the SMC ID <code>0x805</code>. The table also contains other useful information when reverse engineering the code, like the name of the SMC handler routine.</p>
@@ -309,20 +373,20 @@
 <p>It&rsquo;s a QSEE responsibility to carefully check the arguments received from the REE. QSEE should check whether the buffer passed by the REE, described by a pointer and a size argument, is not located within secure memory. While analyzing the SMC handler routines, we&rsquo;ve identified the functions responsible for performing these range checks.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/range_check_ext.png">
-        <img src="/img/ipq40xx/range_check_ext.png" style="max-width: 90%; width: 700px">
+        <img src="/img/ipq40xx/range_check_ext.png" alt="Functions performing QSEE secure range checks" loading="lazy" style="max-width: 90%; width: 700px">
     </a>
 </p>
 <p>The function naming is done by us. Nonetheless, we aimed to remain somewhat consistent with the naming used by Gal Beniamini in his excellent <a href="http://bits-please.blogspot.com/2015/08/full-trustzone-exploit-for-msm8974.html">exploitation</a> of TEE vulnerability.</p>
 <p>The function <code>tzbsp_is_nsec_range</code> validates the buffer passed by the REE using the <code>is_allowed_range</code> function. This function uses a table with secure ranges to determine what memory should be considered secure memory. This function checks, among a few other things, if the start of the buffer (i.e. <code>pointer</code>) and end of the buffer (i.e. <code>pointer</code> + <code>size</code>)  are overlapping with secure memory.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/is_allowed_range.png">
-        <img src="/img/ipq40xx/is_allowed_range.png" style="max-width: 90%; width: 700px">
+        <img src="/img/ipq40xx/is_allowed_range.png" alt="Decompilation of the is_allowed_range range-check function" loading="lazy" style="max-width: 90%; width: 700px">
     </a>
 </p>
 <p>The table, that defines three secure ranges, is shown below.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/secure_ranges.png">
-        <img src="/img/ipq40xx/secure_ranges.png" style="max-width: 90%; width: 700px">
+        <img src="/img/ipq40xx/secure_ranges.png" alt="Secure range table defining three secure memory ranges" loading="lazy" style="max-width: 90%; width: 700px">
     </a>
 </p>
 <p>This means, that whenever the <code>tzbsp_is_nsec_range</code> function is used to sanitize the SMC handler routine&rsquo;s arguments, the buffer passed by the REE cannot overlap with: <code>0x0</code> to <code>0x7ffffff</code>, <code>0x90000000</code> to <code>0xffffffff</code> and <code>0x87E80000</code> to <code>0x87ffffff</code>. In other words, buffers are only considered to be allowed when they are between <code>0x80000000</code> to <code>0x87E80000</code> and <code>0x88000000</code> to <code>0x90000000</code>.</p>
@@ -336,7 +400,7 @@
 <p>The SMC handler routine named <code>tzbsp_blow_fuses_and_reset()</code> requires two arguments, namely <code>arg1</code> and <code>arg2</code>. The decompilation for this routine is shown below.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/cve_2020_11256_h.png">
-        <img src="/img/ipq40xx/cve_2020_11256_h.png" style="max-width: 90%; width: 700px">
+        <img src="/img/ipq40xx/cve_2020_11256_h.png" alt="Decompilation of tzbsp_blow_fuses_and_reset SMC handler" loading="lazy" style="max-width: 90%; width: 700px">
     </a>
 </p>
 <p>The argument <code>arg1</code> is an input pointer, which is sanitized using the function <code>is_allowed_range()</code>. The argument <code>arg2</code> is an output pointer, which is only checked to be <code>NULL</code>. The argument <code>arg2</code> is dereferenced in order to write a value to an arbitrary memory address. The value that&rsquo;s written, is either <code>1</code> or <code>2</code>, which depends on whether <code>arg1</code> is set to <code>0</code> or not.</p>
@@ -346,7 +410,7 @@
 <p>The SMC handler routine named <code>usb_calib()</code> requires one parameter, namely <code>arg1</code>. The decompilation for this routine is shown below.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/cve_2020_11257_h.png">
-        <img src="/img/ipq40xx/cve_2020_11257_h.png" style="max-width: 60%; width: 700px">
+        <img src="/img/ipq40xx/cve_2020_11257_h.png" alt="Decompilation of the usb_calib SMC handler routine" loading="lazy" style="max-width: 60%; width: 700px">
     </a>
 </p>
 <p>The argument <code>arg1</code> is an output pointer which is not sanitized. This means that there is no check to assure that <code>arg1</code> points to REE memory. It&rsquo;s dereferenced in order to write the value stored at <code>0x580e0</code> to the passed memory address. For our target device this value is set to <code>0x787</code>.</p>
@@ -356,7 +420,7 @@
 <p>The SMC handler routine named <code>tzbsp_version_set()</code> requires four arguments, namely <code>arg1</code>, <code>arg2</code>, <code>arg3</code> and <code>arg4</code>. The decompilation for this routine is shown below.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/cve_2020_11258_h.png">
-        <img src="/img/ipq40xx/cve_2020_11258_h.png" style="max-width: 90%; width: 700px">
+        <img src="/img/ipq40xx/cve_2020_11258_h.png" alt="Decompilation of the tzbsp_version_set SMC handler" loading="lazy" style="max-width: 90%; width: 700px">
     </a>
 </p>
 <p>All four arguments are passed into a function (i.e. <code>sub_87E9056</code>), which returns different values depending on the value of <code>arg1</code>, <code>arg2</code> and <code>arg4</code>. The argument <code>arg3</code> is an output pointer and the code does not assure it points only to REE memory. It&rsquo;s dereferenced in order to write the return value of <code>sub_87E9056</code> (i.e. at least <code>0</code>, <code>5</code> and <code>0xfffffffc</code>) or <code>0x7fffffff</code> to the passed memory address.</p>
@@ -366,7 +430,7 @@
 <p>The SMC handler routine named <code>tzbsp_version_set()</code> requires four arguments, namely <code>arg1</code>, <code>arg2</code> and <code>arg3</code>. The decompilation for this routine is shown below.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/cve_2020_11259_h.png">
-        <img src="/img/ipq40xx/cve_2020_11259_h.png" style="max-width: 90%; width: 700px">
+        <img src="/img/ipq40xx/cve_2020_11259_h.png" alt="Decompilation of the tzbsp_version_get SMC handler" loading="lazy" style="max-width: 90%; width: 700px">
     </a>
 </p>
 <p>The parameter <code>arg1</code> is used as input and can be used to influence the value being written to the output pointer <code>arg2</code>. The arguments <code>arg2</code> and <code>arg3</code> are both output pointers and the code does not assure that they point to REE memory.</p>
@@ -425,7 +489,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

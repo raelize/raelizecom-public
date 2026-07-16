@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Esp32 on Raelize - Embedded Device Security Services Consultancy Testing Research Training</title>
-    <link>https://raelize.com/tags/esp32/</link>
-    <description>Recent content in Esp32 on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 10 May 2026 15:00:00 +0200</lastBuildDate>
-    <atom:link href="https://raelize.com/tags/esp32/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot</title>
-      <link>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</link>
-      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
-      <guid>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</guid>
-      <description>We let an AI, namely Claude Code, orchestrate every part of a real Fault Injection (FI) attack. Driving the setup, the hardware tooling, debugging the setup, reverse engineering the ROM, building a live monitoring dashboard mid-campaign. The result: an autonomous bypass of ESP32 Secure Boot V1.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Esp32 on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</title>
+		<link>https://raelize.com/tags/esp32/</link>
+		<description>Recent content in Esp32 on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 10 May 2026 15:00:00 +0200</lastBuildDate>
+		
+			<atom:link href="https://raelize.com/tags/esp32/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot</title>
+				<link>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</link>
+				<pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+				<guid>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</guid>
+				<description>We let an AI, namely Claude Code, orchestrate every part of a real Fault Injection (FI) attack. Driving the setup, the hardware tooling, debugging the setup, reverse engineering the ROM, building a live monitoring dashboard mid-campaign. The result: an autonomous bypass of ESP32 Secure Boot V1.</description>
+			</item>
+	</channel>
 </rss>

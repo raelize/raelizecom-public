@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Google Wifi Pro: Glitching from Root to EL3</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>Google Wifi Pro: Glitching from Root to EL3 | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="Characterizing Qualcomm&#39;s IPQ5018 SoC on Google&#39;s Nest Wifi Pro for EM fault injection susceptibility using a Linux kernel module and Keysight EMFI tooling.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="Google Wifi Pro: Glitching from Root to EL3">
+	<meta property="og:description" content="Characterizing Qualcomm&#39;s IPQ5018 SoC on Google&#39;s Nest Wifi Pro for EM fault injection susceptibility using a Linux kernel module and Keysight EMFI tooling.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization/">
+	<meta property="og:image" content="https://raelize.com/img/google/wifipro/emfi/wifi_pro_emfi_setup.png">
+	
+	<meta property="article:published_time" content="2025-07-15T09:00:00&#43;02:00">
+	<meta property="article:modified_time" content="2025-07-15T09:00:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="Google Wifi Pro: Glitching from Root to EL3">
+	<meta name="twitter:description" content="Characterizing Qualcomm&#39;s IPQ5018 SoC on Google&#39;s Nest Wifi Pro for EM fault injection susceptibility using a Linux kernel module and Keysight EMFI tooling.">
+	<meta name="twitter:image" content="https://raelize.com/img/google/wifipro/emfi/wifi_pro_emfi_setup.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"Google Wifi Pro: Glitching from Root to EL3\"",
+		"description": "\"Characterizing Qualcomm's IPQ5018 SoC on Google's Nest Wifi Pro for EM fault injection susceptibility using a Linux kernel module and Keysight EMFI tooling.\"",
+		"url": "https:\/\/raelize.com\/blog\/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization\/",
+		"datePublished": "2025-07-15T09:00:00\u002b02:00",
+		"dateModified": "2025-07-15T09:00:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/img\/google\/wifipro\/emfi\/wifi_pro_emfi_setup.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/google-wifi-pro-glitching-from-root-to-el3-part-1-characterization\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,9 +180,9 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Google Wifi Pro: Glitching from Root to EL3</h2>
+                <h1>Google Wifi Pro: Glitching from Root to EL3</h1>
                 
-                <h3>Part 1 - Characterization</h3>
+                <h2 class="h3">Part 1 - Characterization</h2>
                 
                 <p>Tuesday, Jul 15, 2025</p>
                 <hr />
@@ -159,30 +223,30 @@
 <p>We have been stressing this again and again: considering the skipping of instructions as the only effect of FI attacks, significant limits the exploration of the full potential of FI attacks. Hence, we always think and reason along the lines of corrupting instructions (i.e., changing opcodes and operands) when discussing FI attacks targeting the CPU of a chip.</p>
 <p>A full diagram of the setup is shown below. We used <a href="https://www.keysight.com/">Keysight</a>&rsquo;s <a href="https://www.keysight.com/us/en/product/DS1180A/glitch-pattern-generator.html">DS1180A Glitch Pattern Generator</a>, <a href="https://www.keysight.com/us/en/product/DS1010A/precision-xyz-stage.html">DS1010A Precision XYZ Stage</a> and <a href="https://www.keysight.com/us/en/product/DS1120A/unidirectional-fault-injection-probe.html">DS1120A Unidirectional Fault Injection Probe</a>. Additionally, we used a solid-state relay to control the external power supply of the target, which allowed us to reset the device and bring it to a known state.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/wifi_pro_emfi_setup.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/wifi_pro_emfi_setup.png" alt="Diagram of the Keysight EMFI setup for glitching the Wifi Pro" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Diagram of the EMFI setup using Keysight tooling</figcaption>
 </p>
 <p>An actual photo of the setup at our lab is shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/setup.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/setup.png" alt="Photo of the real EMFI lab setup with Keysight tooling" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Real photo of the EMFI setup using Keysight tooling</figcaption>
 </p>
 <p>The EMFI probe tip is placed very close to, or even better, touching, the surface of the chip. This is shown in the image below.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/probe_location.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/probe_location.png" alt="EMFI probe tip touching the chip's surface" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Photo of the EMFI tip on the chip's surface</figcaption>
 </p>
 <h4 id="communication">Communication</h4>
 <p>The device exposes a serial interface (i.e., <code>TX</code> and <code>RX</code>) on the PCB. We found these by probing the various test pads on the PCB of the device. The pads that carry the <code>TX</code> and <code>RX</code> signals of the serial interface are shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/uart.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/uart.png" alt="PCB test pads carrying the TX and RX serial signals" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Photo of the TX/RX of the serial interface</figcaption>
 </p>
 <p>We use this serial interface to communicate with the test code used for the characterization.</p>
 <h4 id="trigger">Trigger</h4>
 <p>Being able to time the glitch is fundamental for FI attacks. For this target, we decided to leverage the GPIO signal used for the factory reset button. We simply soldered a wire to one of the reset button pads in order to access the GPIO signal at our best convenience.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/reset_button.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/reset_button.png" alt="Wire soldered to the factory reset button used as trigger" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Photo of the factory reset button as a trigger</figcaption>
 </p>
 <p>This GPIO is configured in the <code>init.rc</code> at boot (see below).</p>
@@ -209,7 +273,7 @@
 <h4 id="reset">Reset</h4>
 <p>When glitches are injected, it&rsquo;s highly likely that, at some point, the target may enter into an erroneous state. A reliable reset procedure is needed to restore the target to a known state and flawlessly continue with the experiments. We decided to perform a power-on reset, whenever we need to reboot the target, by directly controlling the external power supply.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/reset_relay.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/reset_relay.png" alt="Solid state relay used to power-cycle the target" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Photo of the relay used for reset</figcaption>
 </p>
 <p>We use a solid state relay, driven by a GPIO pin from our glitcher, to switch the original power supply on and off.</p>
@@ -299,7 +363,7 @@
 <h4 id="timing">Timing</h4>
 <p>We measured the time between the trigger up and down moment using an oscilloscope to get an idea of when to inject the glitch.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/timing_characterize.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/timing_characterize.png" alt="Oscilloscope timing of the characterization test code trigger" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Timing of the test code</figcaption>
 </p>
 <p>Based on the above timing, we decided to inject our glitch between 20,000 μs and 40,000 μs after the trigger goes up. This ensures that we are injecting glitches only when the <code>add</code> instructions are executed and no surrounding code is hit. Precise timing of our glitch is not too important to determine whether the Qualcomm&rsquo;s IPQ5018 SoC is vulnerable. It does not matter too much which <code>add</code> instruction we corrupt, as long as we corrupt one.</p>
@@ -317,45 +381,45 @@
 <p>We scanned the surface of Qualcomm&rsquo;s IPQ5018 SoC in a grid of 10 x 10 with Keysight&rsquo;s EMFI probe. After performing roughly 45 experiments at each location,  where we randomize the power of the EM probe between 10% and 100%, we observed several locations where the counter value is different than the expected value.</p>
 <p>We plot the experiments using our <a href="https://github.com/raelize/TAoFI-Analyzer">TAoFI-Analyzer</a>, for which the results are shown below. The red dots represent the locations where we are able to modify the counter value.</p>
 <p style="text-align:center;">
-    <a href="/img/google/wifipro/emfi/characterize_xyz2.png"><img src="/img/google/wifipro/emfi/characterize_xyz2.png" style="max-width: 80%; width: 600px"></a>
+    <a href="/img/google/wifipro/emfi/characterize_xyz2.png"><img src="/img/google/wifipro/emfi/characterize_xyz2.png" alt="XYZ scan plot with red dots marking vulnerable probe locations" loading="lazy" style="max-width: 80%; width: 600px"></a>
     <figcaption>Plot of the XYZ scan</figcaption>
 </p>
 <p>Several of the interesting results are listed below.</p>
 <div style="width: 800px;">
 <p>
 <table>
-  <thead>
-      <tr>
-          <th><strong>Response</strong></th>
-          <th style="text-align: left"><strong>Description</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>AAAA00002710BBBB00002710CCCC</code></td>
-          <td style="text-align: left">expected (i.e., glitch has no impact)</td>
-      </tr>
-      <tr>
-          <td><code>AAAA0000270fBBBB0000270fCCCC</code></td>
-          <td style="text-align: left">counter - 1</td>
-      </tr>
-      <tr>
-          <td><code>AAAA00002790BBBB00002790CCCC</code></td>
-          <td style="text-align: left">counter + 0x80</td>
-      </tr>
-      <tr>
-          <td><code>AAAA000027c0BBBB000027c0CCCC</code></td>
-          <td style="text-align: left">counter + 0xb0</td>
-      </tr>
-      <tr>
-          <td><code>AAAA4000198eBBBB4000198eCCCC</code></td>
-          <td style="text-align: left">Address in DDR</td>
-      </tr>
-      <tr>
-          <td><code>AAAA6fb91dacBBBB6fb91dacCCCC</code></td>
-          <td style="text-align: left">unknown</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>Response</strong></th>
+					<th style="text-align: left"><strong>Description</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>AAAA00002710BBBB00002710CCCC</code></td>
+					<td style="text-align: left">expected (i.e., glitch has no impact)</td>
+			</tr>
+			<tr>
+					<td><code>AAAA0000270fBBBB0000270fCCCC</code></td>
+					<td style="text-align: left">counter - 1</td>
+			</tr>
+			<tr>
+					<td><code>AAAA00002790BBBB00002790CCCC</code></td>
+					<td style="text-align: left">counter + 0x80</td>
+			</tr>
+			<tr>
+					<td><code>AAAA000027c0BBBB000027c0CCCC</code></td>
+					<td style="text-align: left">counter + 0xb0</td>
+			</tr>
+			<tr>
+					<td><code>AAAA4000198eBBBB4000198eCCCC</code></td>
+					<td style="text-align: left">Address in DDR</td>
+			</tr>
+			<tr>
+					<td><code>AAAA6fb91dacBBBB6fb91dacCCCC</code></td>
+					<td style="text-align: left">unknown</td>
+			</tr>
+	</tbody>
 </table>
 </p>
 </div>
@@ -401,7 +465,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

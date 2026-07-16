@@ -1,74 +1,132 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
-    <meta charset="utf-8">
-    <title>BootPwn - Secure Boot training - Embedded Device Security Training</title>
+	<meta charset="utf-8">
 
-    <!-- mobile responsive meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="BootPwn is a hands-on embedded device security training on Secure Boot technology. Students will attack and exploit interesting vulnerabilities applicable to real-world devices.">
-    
-    <meta name="author" content="Raelize B.V.">
-    <meta name="generator" content="Hugo 0.161.1">
+	<!-- mobile responsive meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- plugins -->
-    
-    <link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
-    
-    <link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
-    
-    <link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
-    
-    <link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
-    
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
-    
+	<!-- title -->
+	
+	<title>BootPwn – Secure Boot Security Training | Raelize</title>
 
-    <!-- Main Stylesheet -->
-    
-    <link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="BootPwn is a hands-on embedded device security training on Secure Boot. Students attack and exploit interesting vulnerabilities applicable to real-world …">
+	
+	<meta name="author" content="Raelize B.V.">
 
-    <!-- Custom stylesheet - for your changes -->
-    
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/bootpwn/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="BootPwn – Secure Boot Security Training">
+	<meta property="og:description" content="BootPwn is a hands-on embedded device security training on Secure Boot. Students attack and exploit interesting vulnerabilities applicable to real-world …">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/bootpwn/">
+	<meta property="og:image" content="https://raelize.com/images/logo.png">
+	
+	<meta property="article:published_time" content="0001-01-01T00:00:00Z">
+	
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="BootPwn – Secure Boot Security Training">
+	<meta name="twitter:description" content="BootPwn is a hands-on embedded device security training on Secure Boot. Students attack and exploit interesting vulnerabilities applicable to real-world …">
+	<meta name="twitter:image" content="https://raelize.com/images/logo.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		"headline": "\"BootPwn – Secure Boot Security Training\"",
+		"description": "\"BootPwn is a hands-on embedded device security training on Secure Boot. Students attack and exploit interesting vulnerabilities applicable to real-world …\"",
+		"url": "https:\/\/raelize.com\/bootpwn\/",
+		"datePublished": "0001-01-01T00:00:00Z",
+		"dateModified": "0001-01-01T00:00:00Z",
+		"image": "https:\/\/raelize.com\/images\/logo.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/bootpwn\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
+
+	<!-- plugins -->
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/bootstrap/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/themify-icons/themify-icons.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/magnific-popup/magnific-popup.css">
+	
+	<link rel="stylesheet" href="https://raelize.com/plugins/slick/slick.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anaheim%7cQuattrocento&#43;Sans:400,700&amp;display=swap">
+	
+
+	<!-- Main Stylesheet -->
+	
+	<link rel="stylesheet" href="https://raelize.com/css/style.min.css" media="screen">
+
+	<!-- Custom stylesheet - for your changes -->
+	
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
-    <!--Favicon-->
-    <link rel="shortcut icon" sizes="180x180" href="https://raelize.com/images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://raelize.com/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
-    <link rel="manifest" href="https://raelize.com/images/site.webmanifest">
+	<!--Favicon-->
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
-    
-    <!-- Global Site Tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+	
+	<!-- Global Site Tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
 
-      gtag('config', 'UA-135892271-3');
-    </script>
-    
+	  gtag('config', 'G-WYF12SDGBM');
+	</script>
+	
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Custom javascript by Raelize -->
-    
-    <script src="https://raelize.com/js/custom.min.js"></script>
-
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="55">
   <div id="content">
-    <section class="sticky-top navigation">
+    
+
+
+<section class="sticky-top navigation">
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -119,7 +177,7 @@
 </section>
 
 
-    
+
 
 <!-- Start empty -->
 <section id="services" class="bg-one section" style="padding: 20px 0; padding-top: 60px;">
@@ -129,7 +187,7 @@
             <div class="col-lg-12" style="margin: 0px 0;">
                 <br>
                 <div class="title text-center wow fadeIn" data-wow-duration="500ms" style="padding-bottom: 20px;">
-                    <img src="../img/bootpwn.png" width=300px/>
+                    <h1><img src="../img/bootpwn.png" width="300" alt="BootPwn – Secure Boot Security Training"/></h1>
 
                     <div class="border-meghna"></div>
                     <br>
@@ -169,7 +227,7 @@
 <!-- /testimonial -->
 
 
-    
+
 
 <!-- Start Testimonial -->
 <section id="testimonial" class="testimonial overly section bg-2" style='background-image: url("../images/backgrounds/shutterstock_722319712.jpg"); padding:20px 0'>
@@ -278,7 +336,7 @@
 </section>
 <!-- /testimonial -->
 
-    
+
 
 <!-- Start empty -->
 <section id="services" class="bg-one section" style="padding: 20px 0;">
@@ -364,7 +422,7 @@
 <!-- /testimonial -->
 
 
-     <!-- Start Counter Section -->
+ <!-- Start Counter Section -->
 <section id="counter" class="parallax-section bg-1 section" style="background-image: url(&quot;../images/backgrounds/shutterstock_760170937.jpg&quot;)">
     
     
@@ -513,7 +571,7 @@
 <!-- /Counter Section -->
 
 
-    
+
 
 
 
@@ -594,6 +652,8 @@
 <!-- /contact -->
 
 
+
+
   </div><!-- end Contact Area -->
 <footer id="footer" class="section-bg">
 	<div class="container">
@@ -614,7 +674,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
@@ -653,5 +713,3 @@
 </body>
 
 </html>
-
-

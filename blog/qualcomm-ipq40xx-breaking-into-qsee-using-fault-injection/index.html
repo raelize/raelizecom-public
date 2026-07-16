@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="Using ElectroMagnetic Fault Injection on a Linksys EA8300, we glitch the Qualcomm IPQ40xx CPU to bypass a QSEE secure range check without any software bug.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection">
+	<meta property="og:description" content="Using ElectroMagnetic Fault Injection on a Linksys EA8300, we glitch the Qualcomm IPQ40xx CPU to bypass a QSEE secure range check without any software bug.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection/">
+	<meta property="og:image" content="https://raelize.com/img/ipq40xx/emfi.png">
+	
+	<meta property="article:published_time" content="2021-06-07T11:00:00&#43;02:00">
+	<meta property="article:modified_time" content="2021-06-07T11:00:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection">
+	<meta name="twitter:description" content="Using ElectroMagnetic Fault Injection on a Linksys EA8300, we glitch the Qualcomm IPQ40xx CPU to bypass a QSEE secure range check without any software bug.">
+	<meta name="twitter:image" content="https://raelize.com/img/ipq40xx/emfi.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection\"",
+		"description": "\"Using ElectroMagnetic Fault Injection on a Linksys EA8300, we glitch the Qualcomm IPQ40xx CPU to bypass a QSEE secure range check without any software bug.\"",
+		"url": "https:\/\/raelize.com\/blog\/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection\/",
+		"datePublished": "2021-06-07T11:00:00\u002b02:00",
+		"dateModified": "2021-06-07T11:00:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/img\/ipq40xx\/emfi.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/qualcomm-ipq40xx-breaking-into-qsee-using-fault-injection\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,7 +180,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection</h2>
+                <h1>Qualcomm IPQ40xx: Breaking into QSEE using Fault Injection</h1>
                 
                 <p>Monday, Jun 7, 2021</p>
                 <hr />
@@ -131,19 +195,19 @@
 <p>We use Riscure&rsquo;s EMFI tooling to inject EM glitches in the chip. This tooling drives a high voltage through a coil in order to generate an electromagnetic field. This allows us to introduce faults at the transistor level due to eddy currents within the chip&rsquo;s circuitry. The concept of EMFI is shown in the picture below (<a href="https://byjus.com/physics/what-are-eddy-currents/">source</a>).</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/emfi.png">
-        <img src="/img/ipq40xx/emfi.png" style="max-width: 50%">
+        <img src="/img/ipq40xx/emfi.png" alt="Concept of EMFI inducing eddy currents in a chip" loading="lazy" style="max-width: 50%">
     </a>
 </p>
 <p>A diagram of our setup is shown below. We used the <a href="https://www.riscure.com/product/spider/">Riscure Spider</a>, <a href="https://getquote.riscure.com/en/quote/2101068/em-fi-transient-probe.htm">Riscure EMFI Probe</a> and <a href="https://getquote.riscure.com/en/quote/2101124/xyz-stage-for-em-probe-em-fi-or-compact-laser.htm">Riscure XYZ stage</a>. Additionally, we use a solid-state relay to control the external power supply of the target. We control the all hardware using <a href="https://www.riscure.com/security-tools/inspector-fi/">Riscure&rsquo;s Inspector FI Python</a> framework in order to, among others, the glitch parameters (i.e. position, timing and glitch power) completely automatically.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/setup_new.png">
-        <img src="/img/ipq40xx/setup_new.png" style="max-width: 80%">
+        <img src="/img/ipq40xx/setup_new.png" alt="Diagram of the Riscure EMFI attack setup" loading="lazy" style="max-width: 80%">
     </a>
 </p>
 <p>We perform the EMFI attack by placing the EM probe directly on the chip’s surface. In order to do so, we opened up the target and removed the chip’s heatsink. We made no other physical (invasive) modifications. An actual picture of the chip is shown below.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/setup_real.jpg">
-        <img src="/img/ipq40xx/setup_real.jpg" style="max-width: 80%">
+        <img src="/img/ipq40xx/setup_real.jpg" alt="EM probe placed on the IPQ40xx chip surface" loading="lazy" style="max-width: 80%">
     </a>
 </p>
 <p>We often get asked if our lab-grade tooling made by Riscure is really required to perform our attacks. We believe it&rsquo;s definitely possible to perform the same type of attacks using easier to obtain tooling like NewAE&rsquo;s <a href="http://store.newae.com/chipshouter-kit/">ChipShouter</a> or to build your own tooling. However, the tooling we use makes it easier to identify and reproduce the attacks. Nonetheless, we would love to hear from you if you&rsquo;re working on reproducing our research using other tooling.</p>
@@ -174,41 +238,41 @@
 <div style="width: 400px; margin:auto;">
 <p>
 <table>
-  <thead>
-      <tr>
-          <th>Type</th>
-          <th>Response</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Expected</td>
-          <td><code><span style="color: #74dc8d">AAAA 00002710 BBBB</span></code></td>
-      </tr>
-      <tr>
-          <td>Reset/Mute</td>
-          <td><code><span style="color: #ffff00">no output</span></code></td>
-      </tr>
-      <tr>
-          <td>Success</td>
-          <td><code><span style="color: #e76a72">AAAA 0000270f BBBB</span></code></td>
-      </tr>
-      <tr>
-          <td>Success</td>
-          <td><code><span style="color: #e76a72">AAAA 0000270e BBBB</span></code></td>
-      </tr>
-      <tr>
-          <td>Success</td>
-          <td><code><span style="color: #e76a72">AAAA 0000270b BBBB</span></code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Type</th>
+					<th>Response</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Expected</td>
+					<td><code><span style="color: #74dc8d">AAAA 00002710 BBBB</span></code></td>
+			</tr>
+			<tr>
+					<td>Reset/Mute</td>
+					<td><code><span style="color: #ffff00">no output</span></code></td>
+			</tr>
+			<tr>
+					<td>Success</td>
+					<td><code><span style="color: #e76a72">AAAA 0000270f BBBB</span></code></td>
+			</tr>
+			<tr>
+					<td>Success</td>
+					<td><code><span style="color: #e76a72">AAAA 0000270e BBBB</span></code></td>
+			</tr>
+			<tr>
+					<td>Success</td>
+					<td><code><span style="color: #e76a72">AAAA 0000270b BBBB</span></code></td>
+			</tr>
+	</tbody>
 </table>
 </p>
 </div>
 <p>We plot the experiments based their classification in order to determine what&rsquo;s a good location for the EMFI probe, which is shown below. Interestingly, we observe that all successful experiments occurred in a specific area on the chip&rsquo;s surface.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/fi_results.png">
-        <img src="/img/ipq40xx/fi_results.png" style="max-width: 80%">
+        <img src="/img/ipq40xx/fi_results.png" alt="Plot of characterization glitches across the chip surface" loading="lazy" style="max-width: 80%">
     </a>
 </p>
 <p>Even though we determined that the target is vulnerable to EMFI, we don&rsquo;t know yet if we can actually alter the QSEE software itself as we targeted only U-Boot code so far. However, as both U-Boot and QSEE are executed by the same processor, just with a different NS bit, we are confident the vulnerable locations we identified will yields faults in QSEE software too. Therefore, we place the probe on one of the locations where we observed a successful glitch. This allows us to target QSEE software without moving the probe, effectively removing the spatial parameter from the glitch parameter search space.</p>
@@ -259,7 +323,7 @@
 </span></span></code></pre></div><p>We use a GPIO signal as a trigger to time exactly when <code>tzbsp_fver_get_version</code> exactly is executed. The EM glitch is injected exactly between the moment the trigger is set high and set low, which takes approximately 5.875 microseconds (see picture below).</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/osc.png">
-        <img src="/img/ipq40xx/osc.png" style="max-width: 80%">
+        <img src="/img/ipq40xx/osc.png" alt="Oscilloscope trace of the glitch trigger window" loading="lazy" style="max-width: 80%">
     </a>
 </p>
 <p>In the above code example, by writing <code>NULL</code> to <code>0x87EAB204</code>, we disable one of the secure ranges defined in the secure range table. More details on how this exactly works will be explained in more detail in <a href="/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/">post #4</a>. For this post, it&rsquo;s sufficient to <strong>raelize</strong> that a successful attack will disable the restrictions enforced by the secure range check for each SMC handler routine.</p>
@@ -270,37 +334,37 @@
 <div style="width: 500px; margin:auto;">
 <p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Type</th>
-          <th style="text-align: left">Response</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">Expected</td>
-          <td style="text-align: left"><code><span style="color: #74dc8d">AAAAffffffeeffffffee00000002BBBB</span></code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Success</td>
-          <td style="text-align: left"><code><span style="color: #e76a72">AAAA000000000000000000000000BBBB</span></code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Exceptions</td>
-          <td style="text-align: left"><code><span style="color: #ec5598">undefined instruction</span></code></td>
-      </tr>
-      <tr>
-          <td style="text-align: left">Reset/Mute</td>
-          <td style="text-align: left"><code><span style="color: #ffff00">no output</span></code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">Type</th>
+					<th style="text-align: left">Response</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">Expected</td>
+					<td style="text-align: left"><code><span style="color: #74dc8d">AAAAffffffeeffffffee00000002BBBB</span></code></td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Success</td>
+					<td style="text-align: left"><code><span style="color: #e76a72">AAAA000000000000000000000000BBBB</span></code></td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Exceptions</td>
+					<td style="text-align: left"><code><span style="color: #ec5598">undefined instruction</span></code></td>
+			</tr>
+			<tr>
+					<td style="text-align: left">Reset/Mute</td>
+					<td style="text-align: left"><code><span style="color: #ffff00">no output</span></code></td>
+			</tr>
+	</tbody>
 </table>
 </p>
 </div>
 <p>We performed roughly 300,000 experiments where we inject EM glitches within the entire attack window. We give each experiment a randomized power between 10% and 100%. The EM probe itself is fixed to a vulnerable location on the chip&rsquo;s surface that we identified earlier. This entire campaign lasted roughly 12 hours. We plotted all experiments as is shown in the figure below.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/attack_results2.png">
-        <img src="/img/ipq40xx/attack_results2.png" style="max-width: 80%">
+        <img src="/img/ipq40xx/attack_results2.png" alt="Plot of glitch attack experiments over the timing window" loading="lazy" style="max-width: 80%">
     </a>
 </p>
 <p>We can summarize the plot as follows:</p>
@@ -318,7 +382,7 @@
 <p>The attack can be described using our <a href="/blog/raelize-fi-reference-model/">FIRM</a>, as shown in the figure below. Once the optimal glitch parameters are found, the attack can be reproduced once every 20 seconds, which is a very high success rate.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/attack_firm2.png">
-        <img src="/img/ipq40xx/attack_firm2.png" style="max-width: 80%">
+        <img src="/img/ipq40xx/attack_firm2.png" alt="The attack mapped onto the Raelize FI reference model" loading="lazy" style="max-width: 80%">
     </a>
 </p>
 <p>We targeted the processor executing the QSEE software instead of the ARM TrustZone hardware primitives. This means that hardening these hardware primitives is not sufficient protection for hardening a device against FI attacks. We believe that hardening the processor itself is fundamental.</p>
@@ -357,7 +421,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

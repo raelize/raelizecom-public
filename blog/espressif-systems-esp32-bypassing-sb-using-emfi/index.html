@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Espressif ESP32: Bypassing Secure Boot using EMFI</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>Espressif ESP32: Bypassing Secure Boot using EMFI | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="Using electromagnetic fault injection (EMFI) to bypass the ESP32&#39;s Secure Boot, showing the chip is vulnerable to EM glitches and how the attack is built.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="Espressif ESP32: Bypassing Secure Boot using EMFI">
+	<meta property="og:description" content="Using electromagnetic fault injection (EMFI) to bypass the ESP32&#39;s Secure Boot, showing the chip is vulnerable to EM glitches and how the attack is built.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/espressif-systems-esp32-bypassing-sb-using-emfi/">
+	<meta property="og:image" content="https://raelize.com/img/esp32/ESP32-fi-setup.png">
+	
+	<meta property="article:published_time" content="2020-07-24T20:40:00&#43;02:00">
+	<meta property="article:modified_time" content="2020-07-24T20:40:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="Espressif ESP32: Bypassing Secure Boot using EMFI">
+	<meta name="twitter:description" content="Using electromagnetic fault injection (EMFI) to bypass the ESP32&#39;s Secure Boot, showing the chip is vulnerable to EM glitches and how the attack is built.">
+	<meta name="twitter:image" content="https://raelize.com/img/esp32/ESP32-fi-setup.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"Espressif ESP32: Bypassing Secure Boot using EMFI\"",
+		"description": "\"Using electromagnetic fault injection (EMFI) to bypass the ESP32's Secure Boot, showing the chip is vulnerable to EM glitches and how the attack is built.\"",
+		"url": "https:\/\/raelize.com\/blog\/espressif-systems-esp32-bypassing-sb-using-emfi\/",
+		"datePublished": "2020-07-24T20:40:00\u002b02:00",
+		"dateModified": "2020-07-24T20:40:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/img\/esp32\/ESP32-fi-setup.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/espressif-systems-esp32-bypassing-sb-using-emfi\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,7 +180,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Espressif ESP32: Bypassing Secure Boot using EMFI</h2>
+                <h1>Espressif ESP32: Bypassing Secure Boot using EMFI</h1>
                 
                 <p>Friday, Jul 24, 2020</p>
                 <hr />
@@ -154,20 +218,20 @@
 <p>We execute the <a href="https://www.riscure.com/security-tools/inspector-fi/">Inspector FI Python</a> framework on an <a href="https://www.intel.com/content/www/us/en/products/boards-kits/nuc.html">Intel NUC</a> in order to communicate with the above components. A logical representation of the setup is shown below.</p>
 <p style="text-align:center;">
 	<a href="/img/esp32/ESP32-fi-setup.png">
-		<img src="/img/esp32/ESP32-fi-setup.png" style="max-width: 100%; width: 600px">
+		<img alt="Logical diagram of the Riscure EMFI test setup for the ESP32" loading="lazy" src="/img/esp32/ESP32-fi-setup.png" style="max-width: 100%; width: 600px">
 	</a>
 </p>
 <p>The picture below shows the setup in action, while we inject <strong>EM</strong> glitches into the <strong>ESP32</strong>.</p>
 <p style="text-align:center;">
 	<a href="/img/esp32/setup-distant.jpg">
-		<img src="/img/esp32/setup-distant.jpg" style="max-width: 100%; width: 600px">
+		<img alt="Photo of the lab setup injecting EM glitches into the ESP32" loading="lazy" src="/img/esp32/setup-distant.jpg" style="max-width: 100%; width: 600px">
 	</a>
 </p>
 <h2 id="target">Target</h2>
 <p>We used the <a href="https://www.az-delivery.de/en/products/esp32-developmentboard">ESP32 NodeMCU</a> modules available from <a href="https://www.az-delivery.de/en">AZ Delivery</a> which is shown in the picture below. These modules are designed around a <strong>ESP32-WROOM-32</strong> package.</p>
 <p style="text-align:center;">
 	<a href="/img/esp32/nodemcu.png">
-		<img src="/img/esp32/nodemcu.png" style="max-width: 100%; width: 600px">
+		<img alt="ESP32 NodeMCU development module based on the ESP32-WROOM-32" loading="lazy" src="/img/esp32/nodemcu.png" style="max-width: 100%; width: 600px">
 	</a>
 </p>
 <p>We removed the metal casing of the <strong>ESP32-WROOM-32</strong> package in order to place the tip of the <strong>EM-FI Probe</strong> on the chip's surface. This is the only modification we made to the target in order to inject <strong>EM</strong> glitches.</p>
@@ -233,43 +297,43 @@
 <p>We perform roughly 165,000 experiments in ~8.5 hours which are plotted in the graph shown below. For each experiment we move the <strong>EM-FI probe</strong> and randomize the <strong>glitch power</strong> between <strong>10%</strong> and <strong>100%</strong> of the maximum power.</p>
 <p style="text-align:center;">
 	<a href="/img/esp32/esp32-add-sled.png">
-		<img src="/img/esp32/esp32-add-sled.png" height="250px">
+		<img alt="Add-sled test code illustration for the identification phase" loading="lazy" src="/img/esp32/esp32-add-sled.png" height="250px">
 	</a>
 	<a href="/img/esp32/identification-ploit2.png">
-		<img src="/img/esp32/identification-ploit2.png" height="250px">
+		<img alt="XY grid scan plotting EM glitch sensitivity across the chip surface" loading="lazy" src="/img/esp32/identification-ploit2.png" height="250px">
 	</a>
 </p>
 <p>The experiments are summarized below. For each type we provided an example of what is observed on the <strong>serial interface</strong>.</p>
 <table>
-  <thead>
-      <tr>
-          <th>Type</th>
-          <th>Response</th>
-          <th>Amount</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Expected</td>
-          <td><code><span style="color: #74dc8d">AAAA00002710BBBB</span></code></td>
-          <td>165404</td>
-      </tr>
-      <tr>
-          <td>Exception</td>
-          <td><code><span style="color: #ec5598">Fatal exception (0): IllegalInstruction <cut></span></code></td>
-          <td>6</td>
-      </tr>
-      <tr>
-          <td>Reset/Mute</td>
-          <td><code><span style="color: yellow">ets Jun  8 2016 00:22:57&hellip;.rst:0x1 (POWERON_RESET) <cut></span></code></td>
-          <td>1489</td>
-      </tr>
-      <tr>
-          <td>Success</td>
-          <td><code><span style="color: #e76a72">AAAA0000270ABBBB</span></code></td>
-          <td>1</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Type</th>
+					<th>Response</th>
+					<th>Amount</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Expected</td>
+					<td><code><span style="color: #74dc8d">AAAA00002710BBBB</span></code></td>
+					<td>165404</td>
+			</tr>
+			<tr>
+					<td>Exception</td>
+					<td><code><span style="color: #ec5598">Fatal exception (0): IllegalInstruction <cut></span></code></td>
+					<td>6</td>
+			</tr>
+			<tr>
+					<td>Reset/Mute</td>
+					<td><code><span style="color: yellow">ets Jun  8 2016 00:22:57&hellip;.rst:0x1 (POWERON_RESET) <cut></span></code></td>
+					<td>1489</td>
+			</tr>
+			<tr>
+					<td>Success</td>
+					<td><code><span style="color: #e76a72">AAAA0000270ABBBB</span></code></td>
+					<td>1</td>
+			</tr>
+	</tbody>
 </table>
 <p>The <span style="color: #e76a72">red diamond</span> represents a location where we were able to introduce a successful glitch that introduced a fault that effected the increment of the counter without affecting the chip's continuation. Although we observed only a single successful glitch, it shows that the <strong>ESP32</strong> is susceptible to <strong>EM</strong> glitches.</p>
 <p>We achieved our first goal, we identified a hardware vulnerability. Let's see if we can <strong>exploit</strong> it by introducing faults that allow us to build an actual attack. We decided to fix the <strong>EM-FI probe</strong> to the location of the <strong>successful glitch</strong> the bypass of <strong>Secure Boot</strong>. This nicely reduces the glitch parameter search space by one entire dimension.</p>
@@ -332,7 +396,7 @@
 <p>The activity on <strong>pin1</strong> of the <strong>flash</strong> is shown in <span style="color: #81dafc">blue</span> whereas the <strong>trigger</strong> signal that we derive from this activity is shown in <span style="color: #e76a72">red</span>.</p>
 <p style="text-align:center;">
 	<a href="/img/esp32/esp32-spi-pin1-during-boot.png">
-		<img src="/img/esp32/esp32-spi-pin1-during-boot.png" style="max-width: 100%; width: 600px">
+		<img alt="Flash pin1 activity in blue with the derived trigger signal in red" loading="lazy" src="/img/esp32/esp32-spi-pin1-during-boot.png" style="max-width: 100%; width: 600px">
 	</a>
 </p>
 <p>At this stage of the research, we did not exactly know what was happening at each moment (i.e. <strong>A</strong> to <strong>G</strong>). However, we know we take the chip out of reset just before <strong>A</strong> and we assume that the bootloader is copied last during <strong>F</strong>. If a valid <strong>bootloader</strong> is programmed on the flash, the chip starts executing the bootloader somewhere during <strong>G</strong>.</p>
@@ -371,36 +435,36 @@
 </span></span></span></code></pre></div><p>The plot below shows all the experiments where the <strong>X</strong> axis is the <strong>timing</strong> (nanoseconds) and the <strong>Y</strong> axis is the <strong>power</strong> (% of full power). The three <span style="color: #e76a72">red diamonds</span> represent three successful glitches.</p>
 <p style="text-align:center;">
 	<a href="/img/esp32/esp32-secure-boot.png">
-		<img src="/img/esp32/esp32-secure-boot.png" style="max-width: 100%; width: 600px">
+		<img alt="Scatter plot of glitch timing versus power with three Secure Boot bypasses" loading="lazy" src="/img/esp32/esp32-secure-boot.png" style="max-width: 100%; width: 600px">
 	</a>
 </p>
 <p>The statistics for these experiments are shown below.</p>
 <div align="center">
 <table>
-  <thead>
-      <tr>
-          <th>Type</th>
-          <th>Amount</th>
-          <th>%</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><span style="color: #74dc8d">Expected</span></td>
-          <td>19494</td>
-          <td>56.54</td>
-      </tr>
-      <tr>
-          <td><span style="color: yellow">Reset/Mute</span></td>
-          <td>14981</td>
-          <td>43.45</td>
-      </tr>
-      <tr>
-          <td><span style="color: #e76a72">success</span></td>
-          <td>3</td>
-          <td>0.01</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Type</th>
+					<th>Amount</th>
+					<th>%</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><span style="color: #74dc8d">Expected</span></td>
+					<td>19494</td>
+					<td>56.54</td>
+			</tr>
+			<tr>
+					<td><span style="color: yellow">Reset/Mute</span></td>
+					<td>14981</td>
+					<td>43.45</td>
+			</tr>
+			<tr>
+					<td><span style="color: #e76a72">success</span></td>
+					<td>3</td>
+					<td>0.01</td>
+			</tr>
+	</tbody>
 </table>
 </div>
 <p>We can determine the attack's success rate by tuning the glitch parameters. When we simply take the exact same glitch parameters (i.e. <strong>position</strong>, <strong>power</strong> and <strong>timing</strong>) we achieve a <strong>success rate</strong> of <strong>2 successful glitches per minute</strong>. This shows the attack can be easily reproduced once the <strong>glitch parameters</strong> are known.</p>
@@ -447,7 +511,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

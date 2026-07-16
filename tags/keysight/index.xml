@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Keysight on Raelize - Embedded Device Security Services Consultancy Testing Research Training</title>
-    <link>https://raelize.com/tags/keysight/</link>
-    <description>Recent content in Keysight on Raelize - Embedded Device Security Services Consultancy Testing Research Training</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 19 May 2026 09:00:00 +0200</lastBuildDate>
-    <atom:link href="https://raelize.com/tags/keysight/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes</title>
-      <link>https://raelize.com/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/</link>
-      <pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
-      <guid>https://raelize.com/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/</guid>
-      <description>We reproduce our 2025 hardwear.io research where an ElectroMagnetic (EM) glitch escalates privilege from the adb shell to root on Google&amp;rsquo;s TV Streamer 4K. This time we let Claude Code drive the whole software stack: Keysight Spider SDK, Keysight Inspector XYZ stage, YEPKIT YKUSH3, attack binaries, dashboards, wikis. We never touched any code.</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Keysight on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</title>
+		<link>https://raelize.com/tags/keysight/</link>
+		<description>Recent content in Keysight on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 19 May 2026 09:00:00 +0200</lastBuildDate>
+		
+			<atom:link href="https://raelize.com/tags/keysight/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes</title>
+				<link>https://raelize.com/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/</link>
+				<pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
+				<guid>https://raelize.com/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/</guid>
+				<description>We reproduce our 2025 hardwear.io research where an ElectroMagnetic (EM) glitch escalates privilege from the adb shell to root on Google&amp;rsquo;s TV Streamer 4K. This time we let Claude Code drive the whole software stack: Keysight Spider SDK, Keysight Inspector XYZ stage, YEPKIT YKUSH3, attack binaries, dashboards, wikis. We never touched any code.</description>
+			</item>
+	</channel>
 </rss>

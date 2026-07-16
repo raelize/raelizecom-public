@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Qualcomm IPQ40xx: An Unexpected Cup of TEE</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>Qualcomm IPQ40xx: An Unexpected Cup of TEE | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="Qualcomm&#39;s QSEE TrustZone TEE turns up on IPQ40xx Wi-Fi routers. We found four critical CVEs letting attackers run arbitrary code with the highest privileges.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="Qualcomm IPQ40xx: An Unexpected Cup of TEE">
+	<meta property="og:description" content="Qualcomm&#39;s QSEE TrustZone TEE turns up on IPQ40xx Wi-Fi routers. We found four critical CVEs letting attackers run arbitrary code with the highest privileges.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/qualcomm-ipq40xx-an-unexpected-cup-of-tee/">
+	<meta property="og:image" content="https://raelize.com/images/logo.png">
+	
+	<meta property="article:published_time" content="2021-02-15T14:00:00&#43;02:00">
+	<meta property="article:modified_time" content="2021-02-15T14:00:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="Qualcomm IPQ40xx: An Unexpected Cup of TEE">
+	<meta name="twitter:description" content="Qualcomm&#39;s QSEE TrustZone TEE turns up on IPQ40xx Wi-Fi routers. We found four critical CVEs letting attackers run arbitrary code with the highest privileges.">
+	<meta name="twitter:image" content="https://raelize.com/images/logo.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"Qualcomm IPQ40xx: An Unexpected Cup of TEE\"",
+		"description": "\"Qualcomm's QSEE TrustZone TEE turns up on IPQ40xx Wi-Fi routers. We found four critical CVEs letting attackers run arbitrary code with the highest privileges.\"",
+		"url": "https:\/\/raelize.com\/blog\/qualcomm-ipq40xx-an-unexpected-cup-of-tee\/",
+		"datePublished": "2021-02-15T14:00:00\u002b02:00",
+		"dateModified": "2021-02-15T14:00:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/images\/logo.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/qualcomm-ipq40xx-an-unexpected-cup-of-tee\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,7 +180,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Qualcomm IPQ40xx: An Unexpected Cup of TEE</h2>
+                <h1>Qualcomm IPQ40xx: An Unexpected Cup of TEE</h1>
                 
                 <p>Monday, Feb 15, 2021</p>
                 <hr />
@@ -183,7 +247,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

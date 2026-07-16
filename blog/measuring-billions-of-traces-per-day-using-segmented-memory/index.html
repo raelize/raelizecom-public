@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Measuring Billions of Traces Per Day using Segmented Memory</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>Measuring Billions of Traces Per Day using Segmented Memory | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="Using an oscilloscope&#39;s segmented memory, we push side-channel acquisition on the ESP32&#39;s AES accelerator to billions of traces per day for key extraction.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/measuring-billions-of-traces-per-day-using-segmented-memory/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="Measuring Billions of Traces Per Day using Segmented Memory">
+	<meta property="og:description" content="Using an oscilloscope&#39;s segmented memory, we push side-channel acquisition on the ESP32&#39;s AES accelerator to billions of traces per day for key extraction.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/measuring-billions-of-traces-per-day-using-segmented-memory/">
+	<meta property="og:image" content="https://raelize.com/img/esp32/sca2/segmented_memory_1_iterations_with_timing.png">
+	
+	<meta property="article:published_time" content="2023-04-03T20:00:00&#43;02:00">
+	<meta property="article:modified_time" content="2023-04-03T20:00:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="Measuring Billions of Traces Per Day using Segmented Memory">
+	<meta name="twitter:description" content="Using an oscilloscope&#39;s segmented memory, we push side-channel acquisition on the ESP32&#39;s AES accelerator to billions of traces per day for key extraction.">
+	<meta name="twitter:image" content="https://raelize.com/img/esp32/sca2/segmented_memory_1_iterations_with_timing.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"Measuring Billions of Traces Per Day using Segmented Memory\"",
+		"description": "\"Using an oscilloscope's segmented memory, we push side-channel acquisition on the ESP32's AES accelerator to billions of traces per day for key extraction.\"",
+		"url": "https:\/\/raelize.com\/blog\/measuring-billions-of-traces-per-day-using-segmented-memory\/",
+		"datePublished": "2023-04-03T20:00:00\u002b02:00",
+		"dateModified": "2023-04-03T20:00:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/img\/esp32\/sca2\/segmented_memory_1_iterations_with_timing.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/measuring-billions-of-traces-per-day-using-segmented-memory\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,7 +180,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Measuring Billions of Traces Per Day using Segmented Memory</h2>
+                <h1>Measuring Billions of Traces Per Day using Segmented Memory</h1>
                 
                 <p>Monday, Apr 3, 2023</p>
                 <hr />
@@ -143,24 +207,24 @@
 <p>After the cryptographic operation is completed, the measurement is sent back to the computer and available for the pre-processing and analysis phases. With such an approach, it&rsquo;s possible to acquire millions of traces per day, which is often sufficient for extracting a key from an unprotected target.</p>
 <p>The time required for a single encryption performed with the ESP32&rsquo;s hardware AES accelerator is shown below and is about 3μs. The red signal is a GPIO pin that&rsquo;s set high just before the API call to start the cryptographic engine and set low when this API call returns. Such signal is commonly referred to as a <em>trigger</em>.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca2/segmented_memory_1_iterations_with_timing.png" style="max-width: 80%; width: 600px">
+    <img src="/img/esp32/sca2/segmented_memory_1_iterations_with_timing.png" alt="Oscilloscope trace timing a single AES encryption at three microseconds" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Time required for 1 single encryption</figcaption>
 </p>
 <p>The time between two consecutive cryptographic operations (i.e., the overhead) is quite significant, i.e., about 16ms) as shown in the picture below. In other words, each measurement takes roughly 16ms to complete, even though the cryptographic operation only takes a fraction of that.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca2/segmented_memory_1_iterations_with_timing_between_encryptions.png" style="max-width: 80%; width: 600px">
+    <img src="/img/esp32/sca2/segmented_memory_1_iterations_with_timing_between_encryptions.png" alt="Timing overhead of about 16 ms between two consecutive encryptions" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Time required between the start of two consecutive encryptions</figcaption>
 </p>
 <p>Needless to say, even though often sufficiently fast, in some situations, one cannot afford to wait a day, or, the leakage is so minimal that many millions of traces may be required for extracting the key. Hence, a faster acquisition speed is required. The most significant slow-down for this approach is the overhead introduced by the communications that occurs for each of the measurements. This includes both the communications with the oscilloscope and the communications with the target.</p>
 <p>Interestingly, most oscilloscopes, support an efficient acquisition mode, referred to by Keysight as <em>Segmented Memory Acquisition</em> and by Picoscope as <em>Rapid Block Mode</em>. In such modes, the internal memory of the oscilloscope is segmented, i.e., divided in multiple segments, where each segment can be used to store a single measurement. This enables a user to measure multiple cryptographic operations that are all stored inside the oscilloscope&rsquo;s internal memory. Even better, the user can define which samples, before or after the trigger, are to be stored for each of the measurements being performed. This allows the user to only store the relevant samples, i.e., the samples that leak, into dedicated segments. Then, once the internal memory is filled up, the measurements are communicated back to the user&rsquo;s computer system. This minimizes both the overhead of communicating with the oscilloscope and the overhead of communicating with the target.</p>
 <p>By using segmented memory, the time between two consecutive cryptographic operations, as is shown in the picture below, can be significantly reduced to less than a μs compared to the 16ms of a singular acquisition.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca2/segmented_memory_20_iterations_with_timing.png" style="max-width: 100%; width: 600px">
+    <img src="/img/esp32/sca2/segmented_memory_20_iterations_with_timing.png" alt="Reduced timing between encryptions when using segmented memory" loading="lazy" style="max-width: 100%; width: 600px">
     <figcaption>Time between the start of two cryptographic operations</figcaption>
 </p>
 <p>Of course, the overhead of communicating still needs to be added, as the segmented buffers need to be retrieved from the oscilloscope. As is visible in the picture below, the overhead between two consecutive batches of cryptographic operations is still similar, even though in absolute time forty (40) cryptographic operations have been performed instead of two (2).</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/sca2/segmented_memory_20_iterations_with_timing_between_batches.png" style="max-width: 100%; width: 600px">
+    <img src="/img/esp32/sca2/segmented_memory_20_iterations_with_timing_between_batches.png" alt="Communication overhead between two batches of twenty encryptions" loading="lazy" style="max-width: 100%; width: 600px">
     <figcaption>Time it takes between the start of two consecutive batches of 20 encryptions</figcaption>
 </p>
 <p>Note, the number of performing twenty (20) cryptographic operations, of which the measurement is stored in twenty (20) segments, is just taken as an example. Depending on the amount of samples to be measured, one can segment the internal memory of an oscilloscope into thousands of buffers. A memory depth of many million samples is not unlikely for a modern multi-purpose oscilloscope like our <a href="https://www.picotech.com/oscilloscope/3000/picoscope-3000-oscilloscope-specifications">Picoscope 3206d</a>. This means, that if the cryptographic operation is sufficiently short (i.e., less than 1000 samples), one can store thousands of measurements before returning the data back to the user, significantly reducing the communication overhead.</p>
@@ -184,66 +248,66 @@
 <div style="width: 800px;">
 <p>
 <table>
-  <thead>
-      <tr>
-          <th><strong>Experiment</strong></th>
-          <th style="text-align: right"><strong>Samples</strong></th>
-          <th style="text-align: right"><strong>Averaged</strong></th>
-          <th style="text-align: right"><strong>Nr Of Segments</strong></th>
-          <th style="text-align: right"><strong>Speed Per Day</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>A1</td>
-          <td style="text-align: right">1600</td>
-          <td style="text-align: right">No</td>
-          <td style="text-align: right">1</td>
-          <td style="text-align: right">5.34E+06</td>
-      </tr>
-      <tr>
-          <td>A2</td>
-          <td style="text-align: right">1600</td>
-          <td style="text-align: right">Yes</td>
-          <td style="text-align: right">10</td>
-          <td style="text-align: right">1.68E+06</td>
-      </tr>
-      <tr>
-          <td>A3</td>
-          <td style="text-align: right">500</td>
-          <td style="text-align: right">Yes</td>
-          <td style="text-align: right">1000</td>
-          <td style="text-align: right">1.16E+09</td>
-      </tr>
-      <tr>
-          <td>A4</td>
-          <td style="text-align: right">200</td>
-          <td style="text-align: right">Yes</td>
-          <td style="text-align: right">4000</td>
-          <td style="text-align: right">2.64E+09</td>
-      </tr>
-      <tr>
-          <td>A5</td>
-          <td style="text-align: right">100</td>
-          <td style="text-align: right">Yes</td>
-          <td style="text-align: right">8000</td>
-          <td style="text-align: right">4.17E+09</td>
-      </tr>
-      <tr>
-          <td>A6</td>
-          <td style="text-align: right">10</td>
-          <td style="text-align: right">Yes</td>
-          <td style="text-align: right">16000</td>
-          <td style="text-align: right">7.57E+09</td>
-      </tr>
-      <tr>
-          <td>A7</td>
-          <td style="text-align: right">1</td>
-          <td style="text-align: right">Yes</td>
-          <td style="text-align: right">64000</td>
-          <td style="text-align: right">8.55E+09</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>Experiment</strong></th>
+					<th style="text-align: right"><strong>Samples</strong></th>
+					<th style="text-align: right"><strong>Averaged</strong></th>
+					<th style="text-align: right"><strong>Nr Of Segments</strong></th>
+					<th style="text-align: right"><strong>Speed Per Day</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>A1</td>
+					<td style="text-align: right">1600</td>
+					<td style="text-align: right">No</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">5.34E+06</td>
+			</tr>
+			<tr>
+					<td>A2</td>
+					<td style="text-align: right">1600</td>
+					<td style="text-align: right">Yes</td>
+					<td style="text-align: right">10</td>
+					<td style="text-align: right">1.68E+06</td>
+			</tr>
+			<tr>
+					<td>A3</td>
+					<td style="text-align: right">500</td>
+					<td style="text-align: right">Yes</td>
+					<td style="text-align: right">1000</td>
+					<td style="text-align: right">1.16E+09</td>
+			</tr>
+			<tr>
+					<td>A4</td>
+					<td style="text-align: right">200</td>
+					<td style="text-align: right">Yes</td>
+					<td style="text-align: right">4000</td>
+					<td style="text-align: right">2.64E+09</td>
+			</tr>
+			<tr>
+					<td>A5</td>
+					<td style="text-align: right">100</td>
+					<td style="text-align: right">Yes</td>
+					<td style="text-align: right">8000</td>
+					<td style="text-align: right">4.17E+09</td>
+			</tr>
+			<tr>
+					<td>A6</td>
+					<td style="text-align: right">10</td>
+					<td style="text-align: right">Yes</td>
+					<td style="text-align: right">16000</td>
+					<td style="text-align: right">7.57E+09</td>
+			</tr>
+			<tr>
+					<td>A7</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">Yes</td>
+					<td style="text-align: right">64000</td>
+					<td style="text-align: right">8.55E+09</td>
+			</tr>
+	</tbody>
 </table>
 </p>
 </div>
@@ -251,66 +315,66 @@
 <div style="width: 800px;">
 <p>
 <table>
-  <thead>
-      <tr>
-          <th><strong>Experiment</strong></th>
-          <th style="text-align: right"><strong>Samples</strong></th>
-          <th style="text-align: right"><strong>Averaged</strong></th>
-          <th style="text-align: right"><strong>Nr Of Segments</strong></th>
-          <th style="text-align: right"><strong>Speed Per Day</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>B1</td>
-          <td style="text-align: right">1600</td>
-          <td style="text-align: right">No</td>
-          <td style="text-align: right">1</td>
-          <td style="text-align: right">5.34E+06</td>
-      </tr>
-      <tr>
-          <td>B2</td>
-          <td style="text-align: right">1600</td>
-          <td style="text-align: right">No</td>
-          <td style="text-align: right">10</td>
-          <td style="text-align: right">1.68E+06</td>
-      </tr>
-      <tr>
-          <td>B3</td>
-          <td style="text-align: right">500</td>
-          <td style="text-align: right">No</td>
-          <td style="text-align: right">1000</td>
-          <td style="text-align: right">1.39E+09</td>
-      </tr>
-      <tr>
-          <td>B4</td>
-          <td style="text-align: right">200</td>
-          <td style="text-align: right">No</td>
-          <td style="text-align: right">4000</td>
-          <td style="text-align: right">1.70E+09</td>
-      </tr>
-      <tr>
-          <td>B5</td>
-          <td style="text-align: right">100</td>
-          <td style="text-align: right">No</td>
-          <td style="text-align: right">8000</td>
-          <td style="text-align: right">1.80E+09</td>
-      </tr>
-      <tr>
-          <td>B6</td>
-          <td style="text-align: right">10</td>
-          <td style="text-align: right">No</td>
-          <td style="text-align: right">16000</td>
-          <td style="text-align: right">1.92E+09</td>
-      </tr>
-      <tr>
-          <td>B7</td>
-          <td style="text-align: right">1</td>
-          <td style="text-align: right">No</td>
-          <td style="text-align: right">64000</td>
-          <td style="text-align: right">1.94E+09</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>Experiment</strong></th>
+					<th style="text-align: right"><strong>Samples</strong></th>
+					<th style="text-align: right"><strong>Averaged</strong></th>
+					<th style="text-align: right"><strong>Nr Of Segments</strong></th>
+					<th style="text-align: right"><strong>Speed Per Day</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>B1</td>
+					<td style="text-align: right">1600</td>
+					<td style="text-align: right">No</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">5.34E+06</td>
+			</tr>
+			<tr>
+					<td>B2</td>
+					<td style="text-align: right">1600</td>
+					<td style="text-align: right">No</td>
+					<td style="text-align: right">10</td>
+					<td style="text-align: right">1.68E+06</td>
+			</tr>
+			<tr>
+					<td>B3</td>
+					<td style="text-align: right">500</td>
+					<td style="text-align: right">No</td>
+					<td style="text-align: right">1000</td>
+					<td style="text-align: right">1.39E+09</td>
+			</tr>
+			<tr>
+					<td>B4</td>
+					<td style="text-align: right">200</td>
+					<td style="text-align: right">No</td>
+					<td style="text-align: right">4000</td>
+					<td style="text-align: right">1.70E+09</td>
+			</tr>
+			<tr>
+					<td>B5</td>
+					<td style="text-align: right">100</td>
+					<td style="text-align: right">No</td>
+					<td style="text-align: right">8000</td>
+					<td style="text-align: right">1.80E+09</td>
+			</tr>
+			<tr>
+					<td>B6</td>
+					<td style="text-align: right">10</td>
+					<td style="text-align: right">No</td>
+					<td style="text-align: right">16000</td>
+					<td style="text-align: right">1.92E+09</td>
+			</tr>
+			<tr>
+					<td>B7</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">No</td>
+					<td style="text-align: right">64000</td>
+					<td style="text-align: right">1.94E+09</td>
+			</tr>
+	</tbody>
 </table>
 </p>
 </div>
@@ -357,7 +421,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

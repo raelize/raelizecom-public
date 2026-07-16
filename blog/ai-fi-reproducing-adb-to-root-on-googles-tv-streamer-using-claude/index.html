@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="Claude Code reproduces Raelize&#39;s EM fault-injection attack escalating from adb shell to root on Google&#39;s TV Streamer 4K, driving the Keysight EMFI tooling.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes">
+	<meta property="og:description" content="Claude Code reproduces Raelize&#39;s EM fault-injection attack escalating from adb shell to root on Google&#39;s TV Streamer 4K, driving the Keysight EMFI tooling.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/">
+	<meta property="og:image" content="https://raelize.com/images/blog/tvstreamer-emfi-ai/setup_real.png">
+	
+	<meta property="article:published_time" content="2026-05-19T09:00:00&#43;02:00">
+	<meta property="article:modified_time" content="2026-05-19T09:00:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes">
+	<meta name="twitter:description" content="Claude Code reproduces Raelize&#39;s EM fault-injection attack escalating from adb shell to root on Google&#39;s TV Streamer 4K, driving the Keysight EMFI tooling.">
+	<meta name="twitter:image" content="https://raelize.com/images/blog/tvstreamer-emfi-ai/setup_real.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"AI-FI: Reproducing adb to root on Google's TV Streamer using Claude in less than 15 minutes\"",
+		"description": "\"Claude Code reproduces Raelize's EM fault-injection attack escalating from adb shell to root on Google's TV Streamer 4K, driving the Keysight EMFI tooling.\"",
+		"url": "https:\/\/raelize.com\/blog\/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude\/",
+		"datePublished": "2026-05-19T09:00:00\u002b02:00",
+		"dateModified": "2026-05-19T09:00:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/images\/blog\/tvstreamer-emfi-ai\/setup_real.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,7 +180,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes</h2>
+                <h1>AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes</h1>
                 
                 <p>Tuesday, May 19, 2026</p>
                 <hr />
@@ -179,14 +243,14 @@
 <p>We humans built the physical setup. We wired up the Keysight <a href="https://www.keysight.com/us/en/product/DS1180A/glitch-pattern-generator.html">Spider</a>&rsquo;s <code>glitch out 1</code> to the Keysight <a href="https://www.keysight.com/us/en/product/DS1120A/unidirectional-fault-injection-probe.html">EMFI probe</a>&rsquo;s <code>digital glitch</code> input and the Spider&rsquo;s <code>voltage out 1</code> to the probe&rsquo;s <code>pulse amplitude</code>. We also calibrated NW/NE/SE corners for the Keysight <a href="https://www.keysight.com/us/en/product/DS1010A/precision-xyz-stage.html">XYZ stage</a>. We connected the <a href="https://www.yepkit.com/product/300110/YKUSH3">YKUSH3</a> between the laptop and the USB-C port of Google&rsquo;s TV Streamer.</p>
 <p style="text-align:center;">
     <a href="/images/blog/tvstreamer-emfi-ai/setup_real.png">
-        <img src="/images/blog/tvstreamer-emfi-ai/setup_real.png" style="width:80%; max-width:80%">
+        <img src="/images/blog/tvstreamer-emfi-ai/setup_real.png" alt="Real setup reproducing the attack with Keysight EMFI tooling" loading="lazy" style="width:80%; max-width:80%">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>The setup used for reproducing the attack using Keysight's EMFI tooling.</em></p>
 <p><strong>Claude</strong> made the following diagram for us after it figured out how everything was connected:</p>
 <p style="text-align:center;">
     <a href="/images/blog/tvstreamer-emfi-ai/setup-topology.png">
-        <img src="/images/blog/tvstreamer-emfi-ai/setup-topology.png" style="width:80%; max-width:80%">
+        <img src="/images/blog/tvstreamer-emfi-ai/setup-topology.png" alt="Block diagram of the EMFI setup with Spider, XYZ stage and YKUSH3" loading="lazy" style="width:80%; max-width:80%">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Block diagram of the EMFI setup. The Spider drives the EMFI probe via two analog lines: digital glitch and pulse amplitude. The XYZ stage moves the probe over the SoC. The YKUSH3 lets the host power-cycle the Streamer when needed.</em></p>
@@ -249,7 +313,7 @@
 <p>It&rsquo;s interesting <strong>Claude</strong> always comes up with a slightly different design but it often includes most of the functionality already that we need. This process can be optimized by creating a <code>SKILL.md</code> with all the required functionality that we need.</p>
 <p style="text-align:center;">
     <a href="/images/blog/tvstreamer-emfi-ai/glitch-monitor.png">
-        <img src="/images/blog/tvstreamer-emfi-ai/glitch-monitor.png" style="width:90%; max-width:90%">
+        <img src="/images/blog/tvstreamer-emfi-ai/glitch-monitor.png" alt="Live glitch monitor dashboard during the successful setresuid run" loading="lazy" style="width:90%; max-width:90%">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Live glitch monitor during the successful setresuid run. Top-left: both USB-microscope feeds showing the probe over the SoC. Centre: 2D scatter of every glitch in the active campaign, colored G / P / R per the paper convention. The whole page auto-refreshes every two seconds.</em></p>
@@ -282,35 +346,35 @@
 </blockquote>
 <p>The classification table is exactly the one we use in the original paper:</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Class</th>
-          <th style="text-align: left">Meaning</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><code>G</code></td>
-          <td style="text-align: left">EM glitch had no observable effect (characterization test code returned <code>10000</code>). Expected.</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>R</code></td>
-          <td style="text-align: left">Counter corrupted — CPU instruction was affected. Success.</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>Y</code></td>
-          <td style="text-align: left">adb still works but characterization test process unresponsive. Restart it.</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><code>P</code></td>
-          <td style="text-align: left">adb shell hung — USB stack died. Power-cycle via YKUSH3.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">Class</th>
+					<th style="text-align: left">Meaning</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><code>G</code></td>
+					<td style="text-align: left">EM glitch had no observable effect (characterization test code returned <code>10000</code>). Expected.</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><code>R</code></td>
+					<td style="text-align: left">Counter corrupted — CPU instruction was affected. Success.</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><code>Y</code></td>
+					<td style="text-align: left">adb still works but characterization test process unresponsive. Restart it.</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><code>P</code></td>
+					<td style="text-align: left">adb shell hung — USB stack died. Power-cycle via YKUSH3.</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>Claude</strong> created the following plot with the experiments at various locations on teh chip&rsquo;s surface until the moment we got a successful glitch:</p>
 <p style="text-align:center;">
     <a href="/images/blog/tvstreamer-emfi-ai/characterization-xy.png">
-        <img src="/images/blog/tvstreamer-emfi-ai/characterization-xy.png" style="width:80%; max-width:80%">
+        <img src="/images/blog/tvstreamer-emfi-ai/characterization-xy.png" alt="Spatial coverage of the characterization scans over the chip" loading="lazy" style="width:80%; max-width:80%">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Spatial coverage of the phase-1 characterization scans, in chip coordinates with NW = (0, 0) at the top-left of the calibrated rectangle. Each dot is one glitch; green is <code>expected</code> (no effect). The scans were <strong>edge-first</strong>, not a uniform raster — we did several X-strips along the north edge (<code>Y ≈ 0–100 k</code>) and the chip stayed silent. So we flipped to the opposite edge (the <code>_rev</code> scan at <code>Y = 570 998</code>) and the very first row of glitches produced both an <code>adb_timeout</code> (purple) and the red-star <code>success</code> at <code>X = 0</code>. Once the successful location was located on the south edge, we stopped scanning and switched to the real attack at that location.</em></p>
@@ -323,7 +387,7 @@
 <p>The 2025 paper&rsquo;s hypothesis is: corrupt the conditional branch (or its operand) at the <em>capability-check fail</em> path in <code>setresuid32</code>. If the EM glitch corrupts the conditional that gates the <code>return -EPERM</code>, control falls through to <code>commit_creds(new)</code>, the kernel writes <code>uid = 0</code> for the calling task, and userland gets <code>ret == 0</code> back from <code>swi #0</code>. Now the attack binary&rsquo;s <code>cmp r0, #0; bne 1b</code> loop falls through, and we run further code as <code>uid 0</code>.</p>
 <p style="text-align:center;">
     <a href="/images/blog/tvstreamer-emfi-ai/lsm-glitch-flow.png">
-        <img src="/images/blog/tvstreamer-emfi-ai/lsm-glitch-flow.png" style="width:80%; max-width:80%">
+        <img src="/images/blog/tvstreamer-emfi-ai/lsm-glitch-flow.png" alt="Flow of the setresuid capability check targeted by the glitch" loading="lazy" style="width:80%; max-width:80%">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>What we are trying to glitch. The default path returns <code>-EPERM</code> and userland keeps spinning. The dashed red EMFI arrow is the desired effect — skip the EPERM return, fall through to <code>commit_creds()</code>, and let userland see <code>ret = 0</code>.</em></p>
@@ -342,7 +406,7 @@
 <p>The driver, <code>host/attack_setresuid.py</code>, looks like this:</p>
 <p style="text-align:center;">
     <a href="/images/blog/tvstreamer-emfi-ai/attack-flow.png">
-        <img src="/images/blog/tvstreamer-emfi-ai/attack-flow.png" style="width:80%; max-width:80%">
+        <img src="/images/blog/tvstreamer-emfi-ai/attack-flow.png" alt="Attack driver flow firing pulses and polling the sentinel file" loading="lazy" style="width:80%; max-width:80%">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Attack driver. Move probe; start the attack binary on target; fire pulses asynchronously; poll the sentinel file via adb every N glitches; classify; recover from changed behavior via YKUSH3 power-cycle; on success, fetch the proof file and stop.</em></p>
@@ -422,7 +486,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

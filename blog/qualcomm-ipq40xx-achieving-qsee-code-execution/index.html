@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Qualcomm IPQ40xx: Achieving QSEE Code Execution</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>Qualcomm IPQ40xx: Achieving QSEE Code Execution | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="How we chained restricted QSEE writes on Qualcomm&#39;s IPQ40xx to disable secure range checks and achieve arbitrary code execution inside the ARM TrustZone TEE.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="Qualcomm IPQ40xx: Achieving QSEE Code Execution">
+	<meta property="og:description" content="How we chained restricted QSEE writes on Qualcomm&#39;s IPQ40xx to disable secure range checks and achieve arbitrary code execution inside the ARM TrustZone TEE.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/qualcomm-ipq40xx-achieving-qsee-code-execution/">
+	<meta property="og:image" content="https://raelize.com/img/ipq40xx/mmu_section.png">
+	
+	<meta property="article:published_time" content="2021-06-14T10:00:00&#43;02:00">
+	<meta property="article:modified_time" content="2021-06-14T10:00:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="Qualcomm IPQ40xx: Achieving QSEE Code Execution">
+	<meta name="twitter:description" content="How we chained restricted QSEE writes on Qualcomm&#39;s IPQ40xx to disable secure range checks and achieve arbitrary code execution inside the ARM TrustZone TEE.">
+	<meta name="twitter:image" content="https://raelize.com/img/ipq40xx/mmu_section.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"Qualcomm IPQ40xx: Achieving QSEE Code Execution\"",
+		"description": "\"How we chained restricted QSEE writes on Qualcomm's IPQ40xx to disable secure range checks and achieve arbitrary code execution inside the ARM TrustZone TEE.\"",
+		"url": "https:\/\/raelize.com\/blog\/qualcomm-ipq40xx-achieving-qsee-code-execution\/",
+		"datePublished": "2021-06-14T10:00:00\u002b02:00",
+		"dateModified": "2021-06-14T10:00:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/img\/ipq40xx\/mmu_section.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/qualcomm-ipq40xx-achieving-qsee-code-execution\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,7 +180,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Qualcomm IPQ40xx: Achieving QSEE Code Execution</h2>
+                <h1>Qualcomm IPQ40xx: Achieving QSEE Code Execution</h1>
                 
                 <p>Monday, Jun 14, 2021</p>
                 <hr />
@@ -329,7 +393,7 @@
 <p>As the page tables are not easily digested by the human brain, we wrote a translation table parser in order to make sense out of the MMU configuration. The non-secure memory is configured using <strong>Section</strong> entries in the L1 page table for which the format is shown in the picture below.</p>
 <p style="text-align:center;">
     <a href="/img/ipq40xx/mmu_section.png">
-        <img src="/img/ipq40xx/mmu_section.png" style="max-width: 90%">
+        <img src="/img/ipq40xx/mmu_section.png" alt="ARM MMU L1 Section entry bit-field format" loading="lazy" style="max-width: 90%">
     </a>
 </p>
 <p>A representation of the <strong>Section</strong> entry for address <code>0x82000000</code> (i.e. non-secure memory) obtained from our parser is shown below. It shows the 1-to-1 mapping and the configuration bits that are set for that 1 MB chunk of memory.</p>
@@ -404,7 +468,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

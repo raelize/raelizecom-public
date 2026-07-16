@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Espressif ESP32</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>Espressif ESP32: Using Crowbar Glitches to Bypass Encrypted Secure Boot | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="We reproduce our ESP32 EMFI attack using ChipWhisperer-Husky crowbar glitches, bypassing Secure Boot and Flash Encryption to dump the encrypted external flash.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="Espressif ESP32: Using Crowbar Glitches to Bypass Encrypted Secure Boot">
+	<meta property="og:description" content="We reproduce our ESP32 EMFI attack using ChipWhisperer-Husky crowbar glitches, bypassing Secure Boot and Flash Encryption to dump the encrypted external flash.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot/">
+	<meta property="og:image" content="https://raelize.com/img/esp32/crowbar/taofi_setup_for_attackencrypted.png">
+	
+	<meta property="article:published_time" content="2025-06-18T08:00:00&#43;02:00">
+	<meta property="article:modified_time" content="2025-06-18T08:00:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="Espressif ESP32: Using Crowbar Glitches to Bypass Encrypted Secure Boot">
+	<meta name="twitter:description" content="We reproduce our ESP32 EMFI attack using ChipWhisperer-Husky crowbar glitches, bypassing Secure Boot and Flash Encryption to dump the encrypted external flash.">
+	<meta name="twitter:image" content="https://raelize.com/img/esp32/crowbar/taofi_setup_for_attackencrypted.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"Espressif ESP32: Using Crowbar Glitches to Bypass Encrypted Secure Boot\"",
+		"description": "\"We reproduce our ESP32 EMFI attack using ChipWhisperer-Husky crowbar glitches, bypassing Secure Boot and Flash Encryption to dump the encrypted external flash.\"",
+		"url": "https:\/\/raelize.com\/blog\/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot\/",
+		"datePublished": "2025-06-18T08:00:00\u002b02:00",
+		"dateModified": "2025-06-18T08:00:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/img\/esp32\/crowbar\/taofi_setup_for_attackencrypted.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/espressif-systems-esp32-using-a-crowbar-glitch-to-bypass-encrypted-secure-boot\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,16 +180,14 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Espressif ESP32</h2>
-                
-                <h3>Using Crowbar Glitches to Bypass Encrypted Secure Boot</h3>
+                <h1>Espressif ESP32: Using Crowbar Glitches to Bypass Encrypted Secure Boot</h1>
                 
                 <p>Wednesday, Jun 18, 2025</p>
                 <hr />
                 
             </div>
             <div class="col-lg-8 offset-lg-2">
-                <div class="post-single-content" background-color="0xff"><p>In 2020, we <a href="https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">described</a> a Fault Injection (FI) attack on Espressif&rsquo;s ESP32 where we able to bypass <code>Secure Boot</code> and <code>Flash Encryption</code> using an <code>electromagnetic (EM)</code> glitch. Espressif acknowledged the attack and released an advisory (<a href="https://www.espressif.com/sites/default/files/advisory_downloads/Security%20Advisory%20CVE-2020-15048%2C%2013629%20EN%26CN.pdf">AR2020-001</a>) and <code>CVE-2020-13629</code> was assigned. Note, this attack is only applicable on revision 0 and 1 of the <code>ESP32</code>. The attack is not possible on revision 3.0 and revision 3.1, which we often refer to as <code>ESP32 V3</code>. Note, we also bypassed <code>Secure Boot</code> and <code>Flash Encryption</code> of this latest version using a single EM glitch (see our <a href="http://localhost:1313/upload/research/2024/woot24-delvaux.pdf">paper</a> at <a href="https://www.usenix.org/conference/woot24">Usenix WOOT 24</a>).</p>
+                <div class="post-single-content" background-color="0xff"><p>In 2020, we <a href="https://raelize.com/blog/espressif-esp32-bypassing-encrypted-secure-boot-cve-2020-13629/">described</a> a Fault Injection (FI) attack on Espressif&rsquo;s ESP32 where we able to bypass <code>Secure Boot</code> and <code>Flash Encryption</code> using an <code>electromagnetic (EM)</code> glitch. Espressif acknowledged the attack and released an advisory (<a href="https://www.espressif.com/sites/default/files/advisory_downloads/Security%20Advisory%20CVE-2020-15048%2C%2013629%20EN%26CN.pdf">AR2020-001</a>) and <code>CVE-2020-13629</code> was assigned. Note, this attack is only applicable on revision 0 and 1 of the <code>ESP32</code>. The attack is not possible on revision 3.0 and revision 3.1, which we often refer to as <code>ESP32 V3</code>. Note, we also bypassed <code>Secure Boot</code> and <code>Flash Encryption</code> of this latest version using a single EM glitch (see our <a href="https://raelize.com/upload/research/2024/woot24-delvaux.pdf">paper</a> at <a href="https://www.usenix.org/conference/woot24">Usenix WOOT 24</a>).</p>
 <p>When we started working on our <a href="https://raelize.com/taofi/">The Art of Fault Injection (TAoFI)</a> training, we envisioned our students would reproduce most, if not all, of the EMFI attacks we performed on Espressif&rsquo;s ESP32 SoC. We had no idea if this would actually be possible outside a lab environment, in a reasonable amount of time, and using a completely different FI technique. During our training, the students will not have access to <a href="https://www.riscure.com">Riscure</a>&rsquo;s <a href="https://www.riscure.com/products/em-fi-transient-probe/">EM-FI Transient Probe</a>. They will need to use <a href="https://www.newae.com/">NewAE</a>&rsquo;s <a href="https://www.newae.com/product-page/chipwhisperer-husky">ChipWhisperer-Husky</a> in order to inject a so-called <a href="https://eprint.iacr.org/2016/810.pdf">Crowbar glitch</a> in the VCC signal(s) wired into the ESP32 SoC. Using a different technique may trigger a different (hardware) vulnerability, and, hence, different type of faults.</p>
 <p>In this blog post, we describe our adventure(s) reproducing our EMFI attack using <a href="https://www.newae.com/">NewAE</a>&rsquo;s <a href="https://www.newae.com/product-page/chipwhisperer-husky">ChipWhisperer-Husky</a>.</p>
 <p>We have organized the content in the following sections:</p>
@@ -165,12 +227,12 @@
 <p>We used NewAE&rsquo;s <code>ChipWhisperer-Husky</code> to inject the Crowbar glitch into the <code>VDD3P3_CPU</code> and <code>VDD3P3_RTC</code> domains of the ESP32. We used a Raspberry Pi Pico to drive our Fault Injection state machine as this allows us to configure more complex triggers. The standard triggering mechanism of the <code>ChipWhisperer-Husky</code> is somewhat limited, but we are confident this will ber improved in future versions of the firmware.</p>
 <p>A diagram of the setup is shown below. Yes, all those wires are required. It often results in the spaghetti of wires shown below in the actual photo of a (clean) setup. Hence, it would not be the first time we, or our students, misplace a wire or two while building the setup.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/crowbar/taofi_setup_for_attackencrypted.png" style="max-width: 80%; width: 600px">
+    <img src="/img/esp32/crowbar/taofi_setup_for_attackencrypted.png" alt="Diagram of the ChipWhisperer-Husky crowbar glitch setup" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Diagram of the setup using NewAE's ChipWhisperer-Husky</figcaption>
 </p>
 <p>An actual photo of the setup is shown below. Note, the lab power supply is used to lower the voltage on the <code>VDD3P3_CPU</code> and <code>VDD3P3_RTC</code> signals as we have had less luck glitching this target at the 3.3 volts recommended by Espressif.</p>
 <p style="text-align:center;">
-    <img src="/img/esp32/crowbar/setup.png" style="max-width: 80%; width: 600px">
+    <img src="/img/esp32/crowbar/setup.png" alt="Photo of the ChipWhisperer-Husky attack setup and wiring" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Actual photo of the setup using NewAE's ChipWhisperer-Husky</figcaption>
 </p>
 <p>Besides timing the glitch, the Raspberry Pi Pico is also used to reset the ESP32 into <em>Bootloader Mode</em>. We used Espressif&rsquo;s <a href="https://docs.espressif.com/projects/esp-iot-solution/en/latest/hw-reference/ESP-Prog_guide.html">ESP-Prog</a>, designed around a FTDI FT2232H chip, to communicate with the target.</p>
@@ -287,21 +349,21 @@
 <p>We use our <a href="https://github.com/raelize/TAoFI-Analyzer">TAoFI-Analyzer</a> to plot all experiments. We observed one single successful glitch around <code>73,000</code> ns after the trigger. Moreover, we clearly see a repetitive pattern, which can be related to the activity with the external flash chip.</p>
 <p style="text-align:center;">
     <a href="/img/esp32/crowbar/attack_encrypted_identify_1.png">
-        <img src="/img/esp32/crowbar/attack_encrypted_identify_1.png" style="max-width: 80%; width: 600px">
+        <img src="/img/esp32/crowbar/attack_encrypted_identify_1.png" alt="Glitch parameter plot from 0 to 161,000 ns after the trigger" loading="lazy" style="max-width: 80%; width: 600px">
     </a>
     <figcaption>Glitching between 0 and 161,000 after the start of the bootloader copy</figcaption>
 </p>
 <p>We decided to explore this area further, which resulted in <code>15</code> more successful glitches in two distinct moments in time, namely around <code>71,800</code> ns and around <code>74,000</code> ns.</p>
 <p style="text-align:center;">
     <a href="/img/esp32/crowbar/attack_encrypted_identify_2.png">
-        <img src="/img/esp32/crowbar/attack_encrypted_identify_2.png" style="max-width: 80%; width: 600px">
+        <img src="/img/esp32/crowbar/attack_encrypted_identify_2.png" alt="Glitch results between 70,000 and 75,000 ns after the trigger" loading="lazy" style="max-width: 80%; width: 600px">
     </a>
     <figcaption>Glitching between 70,000 and 75,000 after the start of the bootloader copy</figcaption>
 </p>
 <p>We then decided to explore the area around <code>74,000</code> ns in more detail. As you can see, the success rate in the bottom right corner is significant.</p>
 <p style="text-align:center;">
     <a href="/img/esp32/crowbar/attack_encrypted_identify_3.png">
-    <img src="/img/esp32/crowbar/attack_encrypted_identify_3.png" style="max-width: 80%; width: 600px">
+    <img src="/img/esp32/crowbar/attack_encrypted_identify_3.png" alt="Dense glitch success region between 73,950 and 74,000 ns" loading="lazy" style="max-width: 80%; width: 600px">
     </a>
     <figcaption>Glitching between 73950 and 74000 after the start of the bootloader copy</figcaption>
 </p>
@@ -413,14 +475,14 @@
 <p>We use our <a href="https://github.com/raelize/TAoFI-Analyzer">TAoFI-Analyzer</a> to plot all experiments.</p>
 <p style="text-align:center;">
     <a href="/img/esp32/crowbar/attack_encrypted_codeexec_1.png">
-        <img src="/img/esp32/crowbar/attack_encrypted_codeexec_1.png" style="max-width: 80%; width: 600px">
+        <img src="/img/esp32/crowbar/attack_encrypted_codeexec_1.png" alt="Code execution glitch results between 70,000 and 75,000 ns" loading="lazy" style="max-width: 80%; width: 600px">
     </a>
     <figcaption>Glitching between 70,000 and 75,000 after the start of the bootloader copy</figcaption>
 </p>
 <p>Similar as before, we see two distinct regions where we observe successful glitches, as is shown below. There are a few outliers, but the two moment in time, one around <code>71,800</code> ns after the trigger and one around <code>74,000</code> ns after the trigger. The plot below, in order to see the regions more clearly, shows only the expected (i.e., green) and successful (i.e., red) experiments.</p>
 <p style="text-align:center;">
     <a href="/img/esp32/crowbar/attack_encrypted_codeexec_2.png">
-        <img src="/img/esp32/crowbar/attack_encrypted_codeexec_2.png" style="max-width: 80%; width: 600px">
+        <img src="/img/esp32/crowbar/attack_encrypted_codeexec_2.png" alt="Successful code execution glitches in two distinct timing regions" loading="lazy" style="max-width: 80%; width: 600px">
     </a>
     <figcaption>Glitching between 70,000 and 75,000 after the start of the bootloader copy (only green and red)</figcaption>
 </p>
@@ -475,7 +537,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

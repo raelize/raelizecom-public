@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>Google Wifi Pro Glitching from Root to EL3</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>Google Wifi Pro: Glitching from Root to EL3 | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="Using a single EM glitch to bypass the Secure Monitor&#39;s address whitelist on the Nest Wifi Pro, gaining an arbitrary 32-bit read/write primitive at EL3.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="Google Wifi Pro: Glitching from Root to EL3">
+	<meta property="og:description" content="Using a single EM glitch to bypass the Secure Monitor&#39;s address whitelist on the Nest Wifi Pro, gaining an arbitrary 32-bit read/write primitive at EL3.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write/">
+	<meta property="og:image" content="https://raelize.com/img/google/wifipro/emfi/timing_io_read_valid.png">
+	
+	<meta property="article:published_time" content="2025-07-16T09:00:00&#43;02:00">
+	<meta property="article:modified_time" content="2025-07-16T09:00:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="Google Wifi Pro: Glitching from Root to EL3">
+	<meta name="twitter:description" content="Using a single EM glitch to bypass the Secure Monitor&#39;s address whitelist on the Nest Wifi Pro, gaining an arbitrary 32-bit read/write primitive at EL3.">
+	<meta name="twitter:image" content="https://raelize.com/img/google/wifipro/emfi/timing_io_read_valid.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"Google Wifi Pro: Glitching from Root to EL3\"",
+		"description": "\"Using a single EM glitch to bypass the Secure Monitor's address whitelist on the Nest Wifi Pro, gaining an arbitrary 32-bit read/write primitive at EL3.\"",
+		"url": "https:\/\/raelize.com\/blog\/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write\/",
+		"datePublished": "2025-07-16T09:00:00\u002b02:00",
+		"dateModified": "2025-07-16T09:00:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/img\/google\/wifipro\/emfi\/timing_io_read_valid.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/google-wifi-pro-glitching-from-root-to-el3-part-2-arbitrary-read-write\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,9 +180,9 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>Google Wifi Pro Glitching from Root to EL3</h2>
+                <h1>Google Wifi Pro: Glitching from Root to EL3</h1>
                 
-                <h3>Part 2 - Arbitrary read and write</h3>
+                <h2 class="h3">Part 2 - Arbitrary read and write</h2>
                 
                 <p>Wednesday, Jul 16, 2025</p>
                 <hr />
@@ -337,12 +401,12 @@
 </span></span><span style="display:flex;"><span>...
 </span></span></code></pre></div><p>We define the attack window, in which our target code construction is executed, by measuring the trigger up and down moments using an oscilloscope. It&rsquo;s guaranteed to be executed within this window as the trigger goes up before the <code>smc</code> instruction and down after it returns. We randomize the timing within this window as we do not exactly know when the check we are targeting is being performed.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/timing_io_read_valid.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/timing_io_read_valid.png" alt="Oscilloscope trace of io_access_read reading an allowed address" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Reading an allowed address</figcaption>
 </p>
 <p>Several overlapping traces are shown below, making visible that some jitter is present (~300 ns), which means not all operations take the same amount of time. Hence, the operations within this window will not happen at the same time. This is likely caused by the context switch required between the REE and the TEE, but other events may introduce jitter as well.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/timing_io_read_invalid.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/timing_io_read_invalid.png" alt="Overlapping traces showing jitter when reading a non-allowed address" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Reading a non-allowed address</figcaption>
 </p>
 <p>We observe that when reading a non-allowed address, the time required for the operation to complete is slightly shorter. This is visible in the values for cursor 1 and 2. There is jitter for both reading an allowed address and an address that&rsquo;s not allowed.</p>
@@ -359,7 +423,7 @@
 </span></span></code></pre></div><p>To clarify, when we are successful in bypassing the check performed by <code>is_allowed_address()</code>, the value <code>0xd29fffe1</code> should be returned by the <code>smc</code> call instead of <code>0x00000000</code>.</p>
 <p>We started an overnight campaign of about <code>150,000</code> experiments, during which we observed our first successful glitches. As always, we plot the experiments using our <a href="https://github.com/raelize/TAoFI-Analyzer">TAoFI-Analyzer</a>, for which the results are shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/501_overnight.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/501_overnight.png" alt="Overnight glitch campaign plot reading from 0x4ac00000" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Overnight campaign: attempt reading from 0x4ac00000</figcaption>
 </p>
 <p>We observed <code>5</code> successful glitches in a region between roughly <code>3,500</code> ns and <code>4,000</code> ns, resulting in a success rate of nearly 0%. As the campaign lasted <code>524</code> minutes, we averaged a speed of <code>1</code> successful glitch per <code>104.8</code> minutes.</p>
@@ -367,7 +431,7 @@
 <p>The three different moments in time could potentially be explained by the hypothesis that we are affecting three (3) different code constructions. However, as the moments in time are at significant different moments in time, we do not know if this hypothesis is true. We assume the successful glitches around 3.8 μs are targeting the intended code construction.</p>
 <p>To increase the success rate, we adjust the glitch parameters to that of the successful glitches around 3.8 μs, as it yielded most successful glitches. The plot below contains <code>5,000</code> experiments, which took 50 minutes to perform, averaging a speed of <code>1.66</code> experiment per second.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/501_narrow.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/501_narrow.png" alt="Focused glitch campaign plot reading from 0x4ac00000" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Focused campaign: reading 0x4ac00000</figcaption>
 </p>
 <p>During this campaign we observed <code>4</code> successful glitches, which yields a success rate of <code>0.1%</code> and one successful glitch every <code>12.5</code> minutes in average. This means we are able to read a 32-bit value, from an arbitrary address, with the privileges the <code>Secure Monitor</code>, on average, once every <code>12.5</code> minutes.</p>
@@ -383,7 +447,7 @@
 </span></span></code></pre></div><p>Note, the most significant nibble cannot be written, hence it&rsquo;s <code>0</code>. This is just a characteristic of this hardware register and not so important for identifying the attack.</p>
 <p>We used the same glitch parameters as during the narrowed campaign of <code>io_access_read</code>, again with <code>5,000</code> experiments in about <code>50</code> minutes. The related plot is shown below.</p>
 <p style="text-align:center;">
-    <img src="/img/google/wifipro/emfi/502_narrow.png" style="max-width: 80%; width: 600px">
+    <img src="/img/google/wifipro/emfi/502_narrow.png" alt="Focused glitch campaign plot for the arbitrary write to a register" loading="lazy" style="max-width: 80%; width: 600px">
     <figcaption>Focused campaign reading 0x4ac00000</figcaption>
 </p>
 <p>In total, for this campaign, we observed <code>5</code> successful glitches, where the register <code>0x1814000</code> was set to <code>0x01414141</code>. This results in a success rate of 0.1% and one successful glitch every 10 minutes. This means we are able to write a 32-bit value to an arbitrary address, with the privileges the <code>Secure Monitor</code>, on average, once every 10 minutes.</p>
@@ -432,7 +496,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>

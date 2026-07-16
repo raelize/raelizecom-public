@@ -2,14 +2,74 @@
 <html lang="en-us">
 <head>
 	<meta charset="utf-8">
-	<title>AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot</title>
 
 	<!-- mobile responsive meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="description" content="Raelize provides top-notch embedded device security serrvices like consultancy, testing, research and training.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- title -->
+	
+	<title>AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot | Raelize</title>
+
+	<!-- meta description -->
+	
+	
+	
+	<meta name="description" content="Claude Code autonomously drives a voltage fault-injection campaign that bypasses ESP32 Secure Boot V1, using a ChipWhisperer Husky and building its own tooling.">
 	
 	<meta name="author" content="Raelize B.V.">
-	<meta name="generator" content="Hugo 0.161.1">
+
+	<!-- canonical -->
+	<link rel="canonical" href="https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/">
+
+	<!-- Open Graph -->
+	
+	
+	
+	<meta property="og:site_name" content="Raelize">
+	<meta property="og:title" content="AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot">
+	<meta property="og:description" content="Claude Code autonomously drives a voltage fault-injection campaign that bypasses ESP32 Secure Boot V1, using a ChipWhisperer Husky and building its own tooling.">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/">
+	<meta property="og:image" content="https://raelize.com/images/blog/esp32-sbv1-husky/setup-photo.png">
+	
+	<meta property="article:published_time" content="2026-05-10T15:00:00&#43;02:00">
+	<meta property="article:modified_time" content="2026-05-10T15:00:00&#43;02:00">
+	
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@raelizecom">
+	<meta name="twitter:title" content="AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot">
+	<meta name="twitter:description" content="Claude Code autonomously drives a voltage fault-injection campaign that bypasses ESP32 Secure Boot V1, using a ChipWhisperer Husky and building its own tooling.">
+	<meta name="twitter:image" content="https://raelize.com/images/blog/esp32-sbv1-husky/setup-photo.png">
+
+	<!-- JSON-LD structured data -->
+	
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "\"AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot\"",
+		"description": "\"Claude Code autonomously drives a voltage fault-injection campaign that bypasses ESP32 Secure Boot V1, using a ChipWhisperer Husky and building its own tooling.\"",
+		"url": "https:\/\/raelize.com\/blog\/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot\/",
+		"datePublished": "2026-05-10T15:00:00\u002b02:00",
+		"dateModified": "2026-05-10T15:00:00\u002b02:00",
+		"image": "https:\/\/raelize.com\/images\/blog\/esp32-sbv1-husky\/setup-photo.png",
+		"author": {"@type": "Organization", "name": "Raelize"},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Raelize",
+			"logo": {"@type": "ImageObject", "url": "https:\/\/raelize.com\/images\/logo.png"}
+		},
+		"mainEntityOfPage": {"@type": "WebPage", "@id": "https:\/\/raelize.com\/blog\/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot\/"}
+	}
+	</script>
+	
+
+	<!-- RSS feed discovery -->
+	
+
+	<meta name="generator" content="Hugo 0.164.0">
 
 	<!-- plugins -->
 	
@@ -33,22 +93,26 @@
   <link rel="stylesheet" href="https://raelize.com/css/custom.min.css" media="screen">
 
 	<!--Favicon-->
-	<link rel="shortcut icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
-	<link rel="icon" href="https://raelize.com/images/Uk3Fdpje_400x400.jpg" type="image/x-icon">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://raelize.com/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://raelize.com/images/favicon-16x16.png">
+	<link rel="shortcut icon" href="https://raelize.com/images/favicon.ico">
+	<link rel="apple-touch-icon" href="https://raelize.com/images/favicon.png">
 
 	
 	<!-- Global Site Tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-135892271-3"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-WYF12SDGBM"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 
-	  gtag('config', 'UA-135892271-3');
+	  gtag('config', 'G-WYF12SDGBM');
 	</script>
 	
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Custom javascript by Raelize (defines brand wordmark variables used inline in body) -->
+	
+	<script src="https://raelize.com/js/custom.min.js"></script>
 </head>
 
 
@@ -60,7 +124,7 @@
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand p-0" href="/">
 				
-				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42">
+				<img class="lozad" data-src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42">
 				
 			</a>
 
@@ -116,7 +180,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <hr />
-                <h2>AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot</h2>
+                <h1>AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot</h1>
                 
                 <p>Sunday, May 10, 2026</p>
                 <hr />
@@ -210,7 +274,7 @@
 <p>Here is a picture of the actual setup:</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/setup-photo.png">
-        <img src="/images/blog/esp32-sbv1-husky/setup-photo.png" style="max-width: 100%; width: 900px">
+        <img src="/images/blog/esp32-sbv1-husky/setup-photo.png" alt="Photo of the actual ESP32 glitching setup with ChipWhisperer Husky" loading="lazy" style="max-width: 100%; width: 900px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>The actual setup used for this AI adventure.</em></p>
@@ -221,7 +285,7 @@
 <p>This resulted eventually in the following diagram:</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/rig-topology.png">
-        <img src="/images/blog/esp32-sbv1-husky/rig-topology.png" style="max-width: 100%; width: 1100px">
+        <img src="/images/blog/esp32-sbv1-husky/rig-topology.png" alt="Diagram of how the glitching rig components are connected" loading="lazy" style="max-width: 100%; width: 1100px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Diagram of the setup indicating how everything is connected.</em></p>
@@ -235,7 +299,7 @@
 <p>The board hosts an Espressif <strong>ESP32</strong> SoC (rev 0) and exposes everything an attacker needs: separate power-domain headers , SPI flash signals routed to a header, RESET / IO0 broken out, and an UART connector. The availability of all these signals in a convenient manner decreases complexity for an effective FI setup compared to a real product based on the <strong>ESP32</strong> SoC where you may need to do more (invasive) modifications.</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/taofi-target-board.png">
-        <img src="/images/blog/esp32-sbv1-husky/taofi-target-board.png" style="max-width: 100%; width: 420px">
+        <img src="/images/blog/esp32-sbv1-husky/taofi-target-board.png" alt="The TAoFI target board hosting the ESP32 SoC" loading="lazy" style="max-width: 100%; width: 420px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>The TAoFI target board</em></p>
@@ -278,30 +342,30 @@
 <p>We utilize three channels on the oscilloscope:</p>
 <div style="display:flex; justify-content:center;">
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Channel</th>
-          <th style="text-align: left">Connected to</th>
-          <th style="text-align: left">Purpose</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>A</strong></td>
-          <td style="text-align: left">Reset</td>
-          <td style="text-align: left">Stable t=0 reference for trigger position</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>B</strong></td>
-          <td style="text-align: left">SPI CS</td>
-          <td style="text-align: left">Independent count of flash transactions during boot</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>C</strong></td>
-          <td style="text-align: left">GlitchOut</td>
-          <td style="text-align: left">Records the wall-clock time of the crowbar pulse</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">Channel</th>
+					<th style="text-align: left">Connected to</th>
+					<th style="text-align: left">Purpose</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>A</strong></td>
+					<td style="text-align: left">Reset</td>
+					<td style="text-align: left">Stable t=0 reference for trigger position</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>B</strong></td>
+					<td style="text-align: left">SPI CS</td>
+					<td style="text-align: left">Independent count of flash transactions during boot</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>C</strong></td>
+					<td style="text-align: left">GlitchOut</td>
+					<td style="text-align: left">Records the wall-clock time of the crowbar pulse</td>
+			</tr>
+	</tbody>
 </table>
 </div>
 <br>
@@ -391,7 +455,7 @@
 <p>The result is <strong><code>campaign_monitor.py</code></strong>, a self-contained ~400-line Python HTTP server that reads from <code>huskyonly.sqlite</code> in read-only mode and serves an auto-refreshing dashboard on port 8083. <strong>It was written while the chip was glitching itself</strong>, every UI iteration we asked for landed in the live page within seconds, with the in-flight campaign continuing to write rows behind the scenes.</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/campaign-monitor.gif">
-        <img src="/images/blog/esp32-sbv1-husky/campaign-monitor.gif" style="max-width: 100%; width: 1100px">
+        <img src="/images/blog/esp32-sbv1-husky/campaign-monitor.gif" alt="Live glitch monitor dashboard auto-refreshing during a campaign" loading="lazy" style="max-width: 100%; width: 1100px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>The Glitch Monitor with auto refresh</em></p>
@@ -426,7 +490,7 @@
 <p><strong>Claude</strong> dispatched an autonomous <strong>sub-agent</strong> which disassembled the ROM with <code>xtensa-esp-elf-objdump</code>, walked the call graph from <code>main</code> → <code>ets_unpack_flash_code</code> → <code>ets_secure_boot_check_finish</code>, and cross-referenced the Technical Reference Manual (TRM). <strong>Claude</strong> figured out that the boot ROM runs on XTAL at <strong>40 MHz</strong> (25 ns / cycle), the brown-out detector is <em>off</em> by POR default, and the Secure Boot verdict is a single memory-mapped word at <code>*0x3ff04180</code> consumed by one <strong>bnei</strong> instruction.</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/hypothesis-flow.png">
-        <img src="/images/blog/esp32-sbv1-husky/hypothesis-flow.png" style="max-width: 100%; width: 700px">
+        <img src="/images/blog/esp32-sbv1-husky/hypothesis-flow.png" alt="Basic-block control flow around the Secure Boot decision" loading="lazy" style="max-width: 100%; width: 700px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Basic-block control flow around the Secure Boot decision. The <strong>red path</strong> is what happens without a glitch on a tampered flash: <code>ets_secure_boot_check_finish</code> runs, returns 1, the bnei falls through, and the chip halts with "secure boot check fail". The <strong>green dashed path</strong> is the glitch path — skip BB2 outright, <em>or</em> corrupt something inside it so <code>a10</code> ends up ≠ 1; either way the bnei branches to <code>0x400075c5</code> and the loaded — unsigned — application runs.</em></p>
@@ -451,7 +515,7 @@
 <p>The first attempt at this didn&rsquo;t work as Husky&rsquo;s edge counter was firing far earlier in the boot than expected. Pulling the CS line up on the PicoScope showed why:</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/cs-ghost-edges.png">
-        <img src="/images/blog/esp32-sbv1-husky/cs-ghost-edges.png" style="max-width: 100%; width: 1100px">
+        <img src="/images/blog/esp32-sbv1-husky/cs-ghost-edges.png" alt="Scope capture of RESET and SPI CS ghost edges after reset" loading="lazy" style="max-width: 100%; width: 1100px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Top: full 25 ms boot capture — RESET (red) and SPI flash CS (blue) in pure analog. Bottom: zoom into the first 1.5 ms. The CS line floats for ~1.3 ms after RESET release, emitting narrow noise spikes — "ghost edges" — that never reach the 1.5 V PicoScope threshold but do trip Husky's TIO4 input. The chip's first real CS edge is at ~1.29 ms (highlighted green band).</em></p>
@@ -463,7 +527,7 @@
 <p>With ch C tied to Husky&rsquo;s MCX glitch-trigger output, we sweep <code>--edges N</code> until the crowbar fires exactly at the last CS edge of the bootloader-load phase (~19.3 ms after RESET release). For our setup that turned out to be <strong><code>--edges 952</code></strong>.</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/pico-trace-sample.png">
-        <img src="/images/blog/esp32-sbv1-husky/pico-trace-sample.png" style="max-width: 100%; width: 1000px">
+        <img src="/images/blog/esp32-sbv1-husky/pico-trace-sample.png" alt="One boot cycle showing the crowbar firing at the last CS edge" loading="lazy" style="max-width: 100%; width: 1000px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>One boot cycle at <code>--edges 952, V=2.20</code>. Top: RESET. Middle: SPI flash CS — bursts from 1.3 ms to ~19.3 ms. Bottom: Husky's MCX glitch-trigger pulse — the dotted line marks the moment the crowbar fires, exactly at the last CS edge of the load phase.</em></p>
@@ -472,7 +536,7 @@
 <p>Putting all the moving pieces of one glitch attempt on a single timeline:</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/attack-sequence.png">
-        <img src="/images/blog/esp32-sbv1-husky/attack-sequence.png" style="max-width: 100%; width: 1100px">
+        <img src="/images/blog/esp32-sbv1-husky/attack-sequence.png" alt="Message sequence timeline for a single glitch attempt" loading="lazy" style="max-width: 100%; width: 1100px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Message sequence for one glitch attempt. The host sleeps 1.2 ms after RESET release before calling <code>scope.arm()</code>, to skip the "ghost edge" zone where the floating CS line inflates Husky's edge counter.</em></p>
@@ -500,7 +564,7 @@
 <p><strong>Step 1 — broad scan.</strong> Random uniform delay 0–10 µs × length 0–5 µs:</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/zoom-1-broad.png">
-        <img src="/images/blog/esp32-sbv1-husky/zoom-1-broad.png" style="max-width: 100%; width: 1000px">
+        <img src="/images/blog/esp32-sbv1-husky/zoom-1-broad.png" alt="Broad scan scatter plot of delay versus length at 2.2 V" loading="lazy" style="max-width: 100%; width: 1000px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>1 000 attempts at V = 2.2 V. Just <strong>1 R hit</strong> (0.1 %) — the broad scan barely finds the productive zone, but the corruption (Y) cluster in the upper band hints where to narrow next.</em></p>
@@ -518,7 +582,7 @@
 </span></span></span><span style="display:flex;"><span>    --campaign-name <span style="color:#f1fa8c">&#34;Campaign 1 zoom step 2 — productive band&#34;</span>
 </span></span></code></pre></div><p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/zoom-2-mid.png">
-        <img src="/images/blog/esp32-sbv1-husky/zoom-2-mid.png" style="max-width: 100%; width: 1000px">
+        <img src="/images/blog/esp32-sbv1-husky/zoom-2-mid.png" alt="Scatter plot narrowed to the productive glitch band" loading="lazy" style="max-width: 100%; width: 1000px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>1 000 attempts at V = 2.2 V, narrowed to the band identified in Step 1. R count jumps from 1 to <strong>16 (1.6 %)</strong> — a 16× improvement just by trimming the dead zones. The R hits cluster around delay 1–2 µs × length 3–4 µs.</em></p>
@@ -536,7 +600,7 @@
 </span></span></span><span style="display:flex;"><span>    --campaign-name <span style="color:#f1fa8c">&#34;Campaign 1 zoom step 3 — hot region&#34;</span>
 </span></span></code></pre></div><p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/zoom-3-tight.png">
-        <img src="/images/blog/esp32-sbv1-husky/zoom-3-tight.png" style="max-width: 100%; width: 1000px">
+        <img src="/images/blog/esp32-sbv1-husky/zoom-3-tight.png" alt="Scatter plot locked into the hot region with many bypasses" loading="lazy" style="max-width: 100%; width: 1000px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>1 000 attempts at V = 2.2 V locked into delay 1–2 µs × length 3–4 µs. R count climbs to <strong>93 (9.3 %)</strong> — another ~6× over Step 2. Every red dot is a successful Secure Boot bypass; the <code>call8</code> we want to skip lives at delay ≈ 1.5 µs and our pulse hits it reliably.</em></p>
@@ -560,7 +624,7 @@
 </span></span></code></pre></div><p>The result was the most surprising plot of the whole project:</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/voltage-curve.png">
-        <img src="/images/blog/esp32-sbv1-husky/voltage-curve.png" style="max-width: 100%; width: 1000px">
+        <img src="/images/blog/esp32-sbv1-husky/voltage-curve.png" alt="Bypass rate versus rail voltage showing two sharp peaks" loading="lazy" style="max-width: 100%; width: 1000px">
     </a>
 </p>
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Bypass rate vs RTC+CPU rail voltage at the hot-region parameters. Two sharp peaks — <strong>2.17 V (57.5 %)</strong> and <strong>2.33 V (57.0 %)</strong> — with a glitch-resistant valley at 2.25 V where the chip flat-out refuses to misbehave.</em></p>
@@ -610,7 +674,7 @@
 				<!-- copyright -->
 				<div class="copyright text-center">
 					<a href="https://raelize.com/">
-						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Services Consultancy Testing Research Training" height="42" />
+						<img src="https://raelize.com/images/logo.png" alt="Raelize - Embedded Device Security Testing, Consultancy &amp; Training" height="42" />
 					</a>
 					<br>
 					<p>Copyright ©2020 Raelize B.V. <br> Powered by <a href=#>Hugo</a> and <a href="https://themefisher.com">Themefisher</a>.</p>
