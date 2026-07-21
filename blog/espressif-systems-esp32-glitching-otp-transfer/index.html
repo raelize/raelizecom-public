@@ -69,7 +69,7 @@
 	<!-- RSS feed discovery -->
 	
 
-	<meta name="generator" content="Hugo 0.164.0">
+	<meta name="generator" content="Hugo 0.145.0">
 
 	<!-- plugins -->
 	
@@ -210,7 +210,7 @@
 <p>The chip itself is housed on a DevKitC development board which are publicly available.</p>
 <h4 id="test-application">Test application</h4>
 <p>We programmed a bootloader that prints the entire OTP memory from shadow registers as is shown in the snippet below for block 0 (i.e., 28 bytes in total).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd">uint32_t</span> block0[<span style="color:#bd93f9">7</span>] <span style="color:#ff79c6">=</span> { <span style="color:#bd93f9">0</span> };
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>block0[<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">*</span>(<span style="color:#8be9fd">uint32_t</span> <span style="color:#ff79c6">*</span>)(<span style="color:#bd93f9">0x3FF5A000</span>);
@@ -223,7 +223,7 @@
 </span></span><span style="display:flex;"><span>...
 </span></span></code></pre></div><p>The expected output (i.e., no glitch) of this test application is shown below.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (expected)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (expected)
 </span></span></span></code></pre></div></small>
 <p>Any change in the expected output is an indication were were successful in affecting the OTP transfer.</p>
 <h4 id="setup">Setup</h4>
@@ -262,8 +262,8 @@
 </p>
 <p>Interestingly, we observed 9 successful glitches for which the output is shown below.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (no glitch)
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (no glitch)
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched)
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched)
 </span></span></span></code></pre></div></small>
 <p>These are actually located at four different locations as is shown below. We decided to fix the EM Probe at the location where we observed most of the successful glitches.</p>
@@ -281,8 +281,8 @@
 </p>
 <p>When we analyze the successful glitches, we see that we are able to perform bit-level corruptions inside the data stored in the shadow registers as is shown below.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (no glitch)
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- Block 0: 00000100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (no glitch)
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- Block 0: 00000100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched)
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- Block 0: 00020100 a3d2c0e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched)
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- Block 0: 00020100 a3d2c1e0 0001c889 0000a000 00000132 00000000 00000014 (glitched)
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000032 00000000 00000014 (glitched)
@@ -299,8 +299,8 @@
     <figcaption>Timing dependency</figcaption>
 </p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (no glitch)
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- Block 0: 00000100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched; early)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (no glitch)
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- Block 0: 00000100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014 (glitched; early)
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000004 (glitched; late)
 </span></span></span></code></pre></div></small>
 <p>To conclude our analysis, using an EM glitch, we are able to affect the <em>OTP Data Transfer</em>, at the bit-level, which may allow us to disable security critical features like Secure Boot. At this point in time, we do not know if all the (security) features actually consume these modified bits. In principle, they could be reading them from a completely different location (i.e., register). Therefore, we needed to perform the actual attacks in order to confirm that we are successful in disabling or reconfiguring security critical features.</p>
@@ -321,10 +321,10 @@
 </p>
 <p>As you can see in the glitched output below, the read protection bit changed from 1 to 0 which allowed us to read out the Secure Boot key.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ No Glitch
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ No Glitch
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ Block 0: 00020100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ Block 2: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-</span></span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>
 </span></span><span style="display:flex;"><span><span style="color:#f55">- Successful Glitch
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- Block 0: 00000100 a3d2c1e0 0001c8c9 0000a000 00000132 00000000 00000014
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- Block 2: 570b8325 8df3b44a 8dbe92d8 934a7e19 b9e116d4 8c0b50fc ebe4b056 688860da
@@ -447,7 +447,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

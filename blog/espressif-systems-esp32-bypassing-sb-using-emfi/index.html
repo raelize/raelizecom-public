@@ -69,7 +69,7 @@
 	<!-- RSS feed discovery -->
 	
 
-	<meta name="generator" content="Hugo 0.164.0">
+	<meta name="generator" content="Hugo 0.145.0">
 
 	<!-- plugins -->
 	
@@ -249,41 +249,41 @@
 <li>print the counter result</li>
 </ul>
 <p>One of the implementations used during our <strong>ESP32</strong> research is shown below. The test code allows us to identify a successful glitch by observing the counter printed on the <strong>serial interface</strong>. If the counter value is different than the expected value (i.e. 10,000), then the glitch we injected <strong>successfully</strong> affected the target's execution without preventing program continuation.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd">char</span> cmd;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd">char</span> cmd;
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">int</span> counter;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">while</span>(<span style="color:#bd93f9">1</span>) {
 </span></span><span style="display:flex;"><span>	cmd <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#50fa7b">uart_rx_one_char</span>(<span style="color:#ff79c6">&amp;</span>cmd);					<span style="color:#6272a4">// receive command
-</span></span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
 </span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">if</span>(cmd <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#39;A&#39;</span>) {
 </span></span><span style="display:flex;"><span>		<span style="color:#50fa7b">GPIO_OUTPUT_SET</span>(<span style="color:#bd93f9">26</span>, <span style="color:#bd93f9">0</span>);				<span style="color:#6272a4">// trigger high
-</span></span></span><span style="display:flex;"><span>				
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>				
 </span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">asm</span> <span style="color:#ff79c6">volatile</span> (						<span style="color:#6272a4">// set unused registers
-</span></span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;movi a0, 0x40404040;&#34;</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>			<span style="color:#f1fa8c">&#34;movi a0, 0x40404040;&#34;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;movi a1, 0x41414141;&#34;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;movi a2, 0x42424242;&#34;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;movi a3, 0x43434343;&#34;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;movi a4, 0x44444444;&#34;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;movi a5, 0x45454545;&#34;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#6272a4">// &#34;movi a6, 0x46464646;&#34;
-</span></span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;movi a7, 0x47474747;&#34;</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>			<span style="color:#f1fa8c">&#34;movi a7, 0x47474747;&#34;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;movi a8, 0x48484848;&#34;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;movi a9, 0x49494949;&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;movi a6, 0;&#34;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;addi a6, a6, 1;&#34;</span>				<span style="color:#6272a4">// start add sled
-</span></span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;</span> repeat <span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">000</span> times <span style="color:#ff79c6">&gt;</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>			<span style="color:#ff79c6">&lt;</span> repeat <span style="color:#bd93f9">10</span>,<span style="color:#bd93f9">000</span> times <span style="color:#ff79c6">&gt;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#f1fa8c">&#34;mov %[counter], a6;&#34;</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">:</span> [counter] <span style="color:#f1fa8c">&#34;=r&#34;</span> (counter)
 </span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">:</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">:</span> 	<span style="color:#f1fa8c">&#34;a6&#34;</span>, <span style="color:#f1fa8c">&#34;a0&#34;</span>, <span style="color:#f1fa8c">&#34;a1&#34;</span>, <span style="color:#f1fa8c">&#34;a2&#34;</span>, <span style="color:#f1fa8c">&#34;a3&#34;</span>, <span style="color:#f1fa8c">&#34;a4&#34;</span>, <span style="color:#f1fa8c">&#34;a5&#34;</span>, <span style="color:#f1fa8c">&#34;a7&#34;</span>, <span style="color:#f1fa8c">&#34;a8&#34;</span>, <span style="color:#f1fa8c">&#34;a9&#34;</span> );
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#50fa7b">GPIO_OUTPUT_SET</span>(<span style="color:#bd93f9">26</span>, <span style="color:#bd93f9">1</span>);				<span style="color:#6272a4">// trigger low
-</span></span></span><span style="display:flex;"><span>	}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>	}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#50fa7b">printf</span>(<span style="color:#f1fa8c">&#34;AAAA%08xBBBB</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>, counter);	<span style="color:#6272a4">// send result back
-</span></span></span><span style="display:flex;"><span>}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>}
 </span></span></code></pre></div><p>We generate the <strong>trigger high</strong> and the <strong>trigger low</strong> signal by driving a <strong>GPIO</strong> pin. This allows us to create a measurable <strong>attack window</strong> that encompasses the sled of <code>add</code> instructions. This increases our chances of injecting a successful glitch and allows us to identify the presence of a hardware vulnerability.</p>
 <h2 id="location">Location</h2>
 <p>We use the <strong>XYZ stage</strong> to automatically move the <strong>EM-FI Probe</strong> across the chip's surface. The <strong>Spider</strong> waits until the <strong>trigger</strong> is set high, effectively injecting the glitch exactly within the attack window. The attack window is defined by the moment the <strong>trigger</strong> goes high and the <strong>trigger</strong> goes low. We randomize both the <strong>timing within the attack window</strong> and the <strong>power</strong> of the <strong>EM-FI Probe</strong>. We used a <strong>30 x 30 grid</strong> for our initial experiment.</p>
@@ -305,35 +305,35 @@
 </p>
 <p>The experiments are summarized below. For each type we provided an example of what is observed on the <strong>serial interface</strong>.</p>
 <table>
-	<thead>
-			<tr>
-					<th>Type</th>
-					<th>Response</th>
-					<th>Amount</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Expected</td>
-					<td><code><span style="color: #74dc8d">AAAA00002710BBBB</span></code></td>
-					<td>165404</td>
-			</tr>
-			<tr>
-					<td>Exception</td>
-					<td><code><span style="color: #ec5598">Fatal exception (0): IllegalInstruction <cut></span></code></td>
-					<td>6</td>
-			</tr>
-			<tr>
-					<td>Reset/Mute</td>
-					<td><code><span style="color: yellow">ets Jun  8 2016 00:22:57&hellip;.rst:0x1 (POWERON_RESET) <cut></span></code></td>
-					<td>1489</td>
-			</tr>
-			<tr>
-					<td>Success</td>
-					<td><code><span style="color: #e76a72">AAAA0000270ABBBB</span></code></td>
-					<td>1</td>
-			</tr>
-	</tbody>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>Response</th>
+          <th>Amount</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Expected</td>
+          <td><code><span style="color: #74dc8d">AAAA00002710BBBB</span></code></td>
+          <td>165404</td>
+      </tr>
+      <tr>
+          <td>Exception</td>
+          <td><code><span style="color: #ec5598">Fatal exception (0): IllegalInstruction <cut></span></code></td>
+          <td>6</td>
+      </tr>
+      <tr>
+          <td>Reset/Mute</td>
+          <td><code><span style="color: yellow">ets Jun  8 2016 00:22:57&hellip;.rst:0x1 (POWERON_RESET) <cut></span></code></td>
+          <td>1489</td>
+      </tr>
+      <tr>
+          <td>Success</td>
+          <td><code><span style="color: #e76a72">AAAA0000270ABBBB</span></code></td>
+          <td>1</td>
+      </tr>
+  </tbody>
 </table>
 <p>The <span style="color: #e76a72">red diamond</span> represents a location where we were able to introduce a successful glitch that introduced a fault that effected the increment of the counter without affecting the chip's continuation. Although we observed only a single successful glitch, it shows that the <strong>ESP32</strong> is susceptible to <strong>EM</strong> glitches.</p>
 <p>We achieved our first goal, we identified a hardware vulnerability. Let's see if we can <strong>exploit</strong> it by introducing faults that allow us to build an actual attack. We decided to fix the <strong>EM-FI probe</strong> to the location of the <strong>successful glitch</strong> the bypass of <strong>Secure Boot</strong>. This nicely reduces the glitch parameter search space by one entire dimension.</p>
@@ -342,7 +342,7 @@
 <h4 id="perform-a-sanity-check">Perform a sanity check</h4>
 <p>It's always a good idea to perform a so-called &ldquo;<em>sanity check</em>&rdquo; to verify if <strong>Secure Boot</strong> is actually enabled and works as expected. One approach for doing this, is to invalidate the <strong>bootloader</strong> and observe the differences on the <strong>serial interface</strong> output. When there is no <strong>serial interface</strong> output, other information may be used as well, such as the communication with the flash or the chip's power consumption. As fas as we know the <strong>serial interface</strong> output of the <strong>ESP32</strong> cannot be disabled and therefore always available.</p>
 <p>After power-on reset, the <strong>ROM</strong> (<span style="color: #74dc8d"> green </span>) and <strong>bootloader</strong> (<span style="color: #e76a72"> red </span>) print the following:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ ets Jun 8 2016 00:22:57
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ ets Jun 8 2016 00:22:57
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ 
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ configsip: 0, SPIWP:0xee
@@ -353,7 +353,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ load:0x40078000,len:4816
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ load:0x40080400,len:18640
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ entry 0x40080740
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- I (86) boot: Chip Revision: 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- I (86) boot: Chip Revision: 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- I (87) boot_comm: chip revision: 1, min. bootloader chip revision: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- I (42) boot: ESP-IDF v3.3.1 2nd stage bootloader
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- I (42) boot: compile time 16:14:32
@@ -364,7 +364,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- 
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- Hello, I am the bootloader
 </span></span></span></code></pre></div><p>We invalidate the <strong>bootloader</strong> by modifying the string <code>bootloader</code>, visible in the last line of the above <strong>serial interface</strong> output, into <code>Raelize!!!</code>. Then, we program the modified <strong>bootloader</strong> to the external flash of the <strong>ESP32</strong>. Then, when we boot up the <strong>ESP32</strong>, we observe the following output printed on the <strong>serial interface</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ ets Jun 8 2016 00:22:57
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ ets Jun 8 2016 00:22:57
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ 
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ configsip: 0, SPIWP:0xee
@@ -377,7 +377,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ csum err:0xb5!=0xdf
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ ets_main.c 371
 </span></span></span></code></pre></div><p>The <strong>ROM</strong> verifies a checksum of the <strong>bootloader</strong>, which is invalid due to our modification. The checksum value present in the <strong>flash image</strong>  is easily identified as the required information is printed on the <strong>serial interface</strong>. We simply change <code>0xb5</code> into <code>0xdf</code> to satisfy the checksum operation. As expected, the <strong>ROM</strong> now reports that the <strong>Secure Boot</strong> check failed.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ ets Jun 8 2016 00:22:57
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ ets Jun 8 2016 00:22:57
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ 
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rst:0x10 (RTCWDT_RTC_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ configsip: 0, SPIWP:0xee
@@ -411,7 +411,7 @@
 <li>Store the <strong>serial interface</strong> output in a database for post processing</li>
 </ul>
 <p>After ~35,000 experiments, which took ~55 minutes, we observed <strong>three successful glitches</strong> where we bypassed <strong>Secure Boot</strong> using a <strong>EM</strong> glitch. We can easily identify the successful glitches as <code>Raelize!!!</code>  is printed on the <strong>serial interface</strong> instead of <code>bootloader</code> as is shown below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ ets Jun 8 2016 00:22:57
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ ets Jun 8 2016 00:22:57
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ 
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ configsip: 0, SPIWP:0xee
@@ -422,7 +422,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ load:0x40078000,len:4816
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ load:0x40080400,len:18640
 </span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ entry 0x40080740
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- I (86) boot: Chip Revision: 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- I (86) boot: Chip Revision: 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- I (87) boot_comm: chip revision: 1, min. bootloader chip revision: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- I (42) boot: ESP-IDF v3.3.1 2nd stage bootloader
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- I (42) boot: compile time 16:14:32
@@ -441,30 +441,30 @@
 <p>The statistics for these experiments are shown below.</p>
 <div align="center">
 <table>
-	<thead>
-			<tr>
-					<th>Type</th>
-					<th>Amount</th>
-					<th>%</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><span style="color: #74dc8d">Expected</span></td>
-					<td>19494</td>
-					<td>56.54</td>
-			</tr>
-			<tr>
-					<td><span style="color: yellow">Reset/Mute</span></td>
-					<td>14981</td>
-					<td>43.45</td>
-			</tr>
-			<tr>
-					<td><span style="color: #e76a72">success</span></td>
-					<td>3</td>
-					<td>0.01</td>
-			</tr>
-	</tbody>
+  <thead>
+      <tr>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>%</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><span style="color: #74dc8d">Expected</span></td>
+          <td>19494</td>
+          <td>56.54</td>
+      </tr>
+      <tr>
+          <td><span style="color: yellow">Reset/Mute</span></td>
+          <td>14981</td>
+          <td>43.45</td>
+      </tr>
+      <tr>
+          <td><span style="color: #e76a72">success</span></td>
+          <td>3</td>
+          <td>0.01</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <p>We can determine the attack's success rate by tuning the glitch parameters. When we simply take the exact same glitch parameters (i.e. <strong>position</strong>, <strong>power</strong> and <strong>timing</strong>) we achieve a <strong>success rate</strong> of <strong>2 successful glitches per minute</strong>. This shows the attack can be easily reproduced once the <strong>glitch parameters</strong> are known.</p>
@@ -474,7 +474,7 @@
 <p>Nonetheless, these initial results suggested to us that there may be an opportunity to leverage more refined <strong>Fault Models</strong> for exploitation. We anticipated, that we could put our previously published research into practice where we turn <strong>copy operations</strong> into <strong>execution primitives</strong>. If applicable, this could allow us to invent powerful new attacks that bypass more than just <strong>Secure Boot</strong> using a single glitch.</p>
 <p>We actually tried a few different things after the initial attack described in this post. Like any research, not everything succeeded, but we actually managed to bypass <strong>Secure Boot</strong> and <strong>Flash Decryption</strong> using a creative and interesting approach.</p>
 <p><i>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#34;It&#39;s not the fault that matters, 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#34;It&#39;s not the fault that matters, 
 </span></span><span style="display:flex;"><span> it&#39;s how you use it that reveals its true value.&#34; - Raelize
 </span></span></code></pre></div><p></i></p></p>
 <p>The results of this adventure beyond <em>&ldquo;just bypassing Secure Boot&rdquo;</em> will be described in a series of upcoming posts which will be published in the upcoming weeks. <strong>Stay tuned!</strong></p>
@@ -544,7 +544,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

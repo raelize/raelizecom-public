@@ -69,7 +69,7 @@
 	<!-- RSS feed discovery -->
 	
 
-	<meta name="generator" content="Hugo 0.164.0">
+	<meta name="generator" content="Hugo 0.145.0">
 
 	<!-- plugins -->
 	
@@ -233,7 +233,7 @@
 <p>For the standard SCA attack, where uniformly distributed input data is required, one can decided to randomize it for each cryptographic operation or keep it the same for a certain amount. Measuring multiple cryptographic operations with the same, yet still random, input data, allows for averaging the acquired traces. Such averaging allows for increasing the SNR as it&rsquo;s assumed most of the noise is somewhat uniformly distributed while the signal is not as the input data and key are the same.</p>
 <p>When there are no requirements for speed, it&rsquo;s perfectly fine to generate the input data off-target on a computer system. However, when speed is important, and multiple cryptographic operations are stored in the segmented memory of the oscilloscope, it becomes preferred to generate the input data on the target itself. This removes the communication overhead introduced to provide input data from the computer system to the target for each cryptographic operation.</p>
 <p>We decided to use the ESP32&rsquo;s hardware AES accelerator as a PRNG to generate input data at the same time we are attacking it. This means that the output of the AES operation that we are attacking is used as input for the next AES operation. We only provide the target a 128-bit value that&rsquo;s used as the input, i.e., seed, for the first AES operation. The code we used for implementation this approach is shown below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> iterations; i<span style="color:#ff79c6">++</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">GPIO_OUTPUT_SET</span>(<span style="color:#bd93f9">26</span>,<span style="color:#bd93f9">1</span>);
 </span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">ets_aes_crypt</span>(input, input);
@@ -248,66 +248,66 @@
 <div style="width: 800px;">
 <p>
 <table>
-	<thead>
-			<tr>
-					<th><strong>Experiment</strong></th>
-					<th style="text-align: right"><strong>Samples</strong></th>
-					<th style="text-align: right"><strong>Averaged</strong></th>
-					<th style="text-align: right"><strong>Nr Of Segments</strong></th>
-					<th style="text-align: right"><strong>Speed Per Day</strong></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>A1</td>
-					<td style="text-align: right">1600</td>
-					<td style="text-align: right">No</td>
-					<td style="text-align: right">1</td>
-					<td style="text-align: right">5.34E+06</td>
-			</tr>
-			<tr>
-					<td>A2</td>
-					<td style="text-align: right">1600</td>
-					<td style="text-align: right">Yes</td>
-					<td style="text-align: right">10</td>
-					<td style="text-align: right">1.68E+06</td>
-			</tr>
-			<tr>
-					<td>A3</td>
-					<td style="text-align: right">500</td>
-					<td style="text-align: right">Yes</td>
-					<td style="text-align: right">1000</td>
-					<td style="text-align: right">1.16E+09</td>
-			</tr>
-			<tr>
-					<td>A4</td>
-					<td style="text-align: right">200</td>
-					<td style="text-align: right">Yes</td>
-					<td style="text-align: right">4000</td>
-					<td style="text-align: right">2.64E+09</td>
-			</tr>
-			<tr>
-					<td>A5</td>
-					<td style="text-align: right">100</td>
-					<td style="text-align: right">Yes</td>
-					<td style="text-align: right">8000</td>
-					<td style="text-align: right">4.17E+09</td>
-			</tr>
-			<tr>
-					<td>A6</td>
-					<td style="text-align: right">10</td>
-					<td style="text-align: right">Yes</td>
-					<td style="text-align: right">16000</td>
-					<td style="text-align: right">7.57E+09</td>
-			</tr>
-			<tr>
-					<td>A7</td>
-					<td style="text-align: right">1</td>
-					<td style="text-align: right">Yes</td>
-					<td style="text-align: right">64000</td>
-					<td style="text-align: right">8.55E+09</td>
-			</tr>
-	</tbody>
+  <thead>
+      <tr>
+          <th><strong>Experiment</strong></th>
+          <th style="text-align: right"><strong>Samples</strong></th>
+          <th style="text-align: right"><strong>Averaged</strong></th>
+          <th style="text-align: right"><strong>Nr Of Segments</strong></th>
+          <th style="text-align: right"><strong>Speed Per Day</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>A1</td>
+          <td style="text-align: right">1600</td>
+          <td style="text-align: right">No</td>
+          <td style="text-align: right">1</td>
+          <td style="text-align: right">5.34E+06</td>
+      </tr>
+      <tr>
+          <td>A2</td>
+          <td style="text-align: right">1600</td>
+          <td style="text-align: right">Yes</td>
+          <td style="text-align: right">10</td>
+          <td style="text-align: right">1.68E+06</td>
+      </tr>
+      <tr>
+          <td>A3</td>
+          <td style="text-align: right">500</td>
+          <td style="text-align: right">Yes</td>
+          <td style="text-align: right">1000</td>
+          <td style="text-align: right">1.16E+09</td>
+      </tr>
+      <tr>
+          <td>A4</td>
+          <td style="text-align: right">200</td>
+          <td style="text-align: right">Yes</td>
+          <td style="text-align: right">4000</td>
+          <td style="text-align: right">2.64E+09</td>
+      </tr>
+      <tr>
+          <td>A5</td>
+          <td style="text-align: right">100</td>
+          <td style="text-align: right">Yes</td>
+          <td style="text-align: right">8000</td>
+          <td style="text-align: right">4.17E+09</td>
+      </tr>
+      <tr>
+          <td>A6</td>
+          <td style="text-align: right">10</td>
+          <td style="text-align: right">Yes</td>
+          <td style="text-align: right">16000</td>
+          <td style="text-align: right">7.57E+09</td>
+      </tr>
+      <tr>
+          <td>A7</td>
+          <td style="text-align: right">1</td>
+          <td style="text-align: right">Yes</td>
+          <td style="text-align: right">64000</td>
+          <td style="text-align: right">8.55E+09</td>
+      </tr>
+  </tbody>
 </table>
 </p>
 </div>
@@ -315,66 +315,66 @@
 <div style="width: 800px;">
 <p>
 <table>
-	<thead>
-			<tr>
-					<th><strong>Experiment</strong></th>
-					<th style="text-align: right"><strong>Samples</strong></th>
-					<th style="text-align: right"><strong>Averaged</strong></th>
-					<th style="text-align: right"><strong>Nr Of Segments</strong></th>
-					<th style="text-align: right"><strong>Speed Per Day</strong></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>B1</td>
-					<td style="text-align: right">1600</td>
-					<td style="text-align: right">No</td>
-					<td style="text-align: right">1</td>
-					<td style="text-align: right">5.34E+06</td>
-			</tr>
-			<tr>
-					<td>B2</td>
-					<td style="text-align: right">1600</td>
-					<td style="text-align: right">No</td>
-					<td style="text-align: right">10</td>
-					<td style="text-align: right">1.68E+06</td>
-			</tr>
-			<tr>
-					<td>B3</td>
-					<td style="text-align: right">500</td>
-					<td style="text-align: right">No</td>
-					<td style="text-align: right">1000</td>
-					<td style="text-align: right">1.39E+09</td>
-			</tr>
-			<tr>
-					<td>B4</td>
-					<td style="text-align: right">200</td>
-					<td style="text-align: right">No</td>
-					<td style="text-align: right">4000</td>
-					<td style="text-align: right">1.70E+09</td>
-			</tr>
-			<tr>
-					<td>B5</td>
-					<td style="text-align: right">100</td>
-					<td style="text-align: right">No</td>
-					<td style="text-align: right">8000</td>
-					<td style="text-align: right">1.80E+09</td>
-			</tr>
-			<tr>
-					<td>B6</td>
-					<td style="text-align: right">10</td>
-					<td style="text-align: right">No</td>
-					<td style="text-align: right">16000</td>
-					<td style="text-align: right">1.92E+09</td>
-			</tr>
-			<tr>
-					<td>B7</td>
-					<td style="text-align: right">1</td>
-					<td style="text-align: right">No</td>
-					<td style="text-align: right">64000</td>
-					<td style="text-align: right">1.94E+09</td>
-			</tr>
-	</tbody>
+  <thead>
+      <tr>
+          <th><strong>Experiment</strong></th>
+          <th style="text-align: right"><strong>Samples</strong></th>
+          <th style="text-align: right"><strong>Averaged</strong></th>
+          <th style="text-align: right"><strong>Nr Of Segments</strong></th>
+          <th style="text-align: right"><strong>Speed Per Day</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>B1</td>
+          <td style="text-align: right">1600</td>
+          <td style="text-align: right">No</td>
+          <td style="text-align: right">1</td>
+          <td style="text-align: right">5.34E+06</td>
+      </tr>
+      <tr>
+          <td>B2</td>
+          <td style="text-align: right">1600</td>
+          <td style="text-align: right">No</td>
+          <td style="text-align: right">10</td>
+          <td style="text-align: right">1.68E+06</td>
+      </tr>
+      <tr>
+          <td>B3</td>
+          <td style="text-align: right">500</td>
+          <td style="text-align: right">No</td>
+          <td style="text-align: right">1000</td>
+          <td style="text-align: right">1.39E+09</td>
+      </tr>
+      <tr>
+          <td>B4</td>
+          <td style="text-align: right">200</td>
+          <td style="text-align: right">No</td>
+          <td style="text-align: right">4000</td>
+          <td style="text-align: right">1.70E+09</td>
+      </tr>
+      <tr>
+          <td>B5</td>
+          <td style="text-align: right">100</td>
+          <td style="text-align: right">No</td>
+          <td style="text-align: right">8000</td>
+          <td style="text-align: right">1.80E+09</td>
+      </tr>
+      <tr>
+          <td>B6</td>
+          <td style="text-align: right">10</td>
+          <td style="text-align: right">No</td>
+          <td style="text-align: right">16000</td>
+          <td style="text-align: right">1.92E+09</td>
+      </tr>
+      <tr>
+          <td>B7</td>
+          <td style="text-align: right">1</td>
+          <td style="text-align: right">No</td>
+          <td style="text-align: right">64000</td>
+          <td style="text-align: right">1.94E+09</td>
+      </tr>
+  </tbody>
 </table>
 </p>
 </div>
@@ -454,7 +454,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

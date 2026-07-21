@@ -69,7 +69,7 @@
 	<!-- RSS feed discovery -->
 	
 
-	<meta name="generator" content="Hugo 0.164.0">
+	<meta name="generator" content="Hugo 0.145.0">
 
 	<!-- plugins -->
 	
@@ -250,12 +250,12 @@
     <figcaption>Photo of the factory reset button as a trigger</figcaption>
 </p>
 <p>This GPIO is configured in the <code>init.rc</code> at boot (see below).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>on init
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>on init
 </span></span><span style="display:flex;"><span>    Export FDR button GPIO
 </span></span><span style="display:flex;"><span>    write /sys/class/gpio/export <span style="color:#f1fa8c">&#34;487&#34;</span>
 </span></span><span style="display:flex;"><span>    write /sys/class/gpio/gpio487/active_low <span style="color:#f1fa8c">&#34;1&#34;</span>
 </span></span></code></pre></div><p>As the GPIO signal is configured as an input pin, we re-configure it as an output pin, by modifying the <code>init.rc</code>. This prevents us from performing a factory reset, but that is likely not something we want to do anyways.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>on init
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>on init
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># Export FDR button GPIO</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># write /sys/class/gpio/export &#34;487&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># write /sys/class/gpio/gpio487/active_low &#34;1&#34;</span>
@@ -266,9 +266,9 @@
 </span></span><span style="display:flex;"><span>    write /sys/class/gpio/gpio487/value <span style="color:#f1fa8c">&#34;3&#34;</span>
 </span></span></code></pre></div><p>We confirmed that we can control this GPIO pin using <code>devmem</code> from our root shell.</p>
 <p>We can set the GPIO high (i.e., trigger up). This allows us to identify, using an oscilloscope, when the relevant part of our test code starts executing.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # devmem 0x01016004 32 0x3
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # devmem 0x01016004 32 0x3
 </span></span></code></pre></div><p>We can also set the GPIO low (i.e., trigger down). This allows us to identify, using an oscilloscope, when the test code has finished executing.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # devmem 0x01016004 32 0x0
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>/ # devmem 0x01016004 32 0x0
 </span></span></code></pre></div><p>Now that the address and the values to control the GPIO are known, we can also do this also directly from code (i.e., by simply writing to those addresses).</p>
 <h4 id="reset">Reset</h4>
 <p>When glitches are injected, it&rsquo;s highly likely that, at some point, the target may enter into an erroneous state. A reliable reset procedure is needed to restore the target to a known state and flawlessly continue with the experiments. We decided to perform a power-on reset, whenever we need to reboot the target, by directly controlling the external power supply.</p>
@@ -280,12 +280,12 @@
 <h2 id="characterization-test-code">Characterization test code</h2>
 <hr>
 <p>The Linux kernel module we used for the characterization implements the code shown below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;linux/module.h&gt;</span><span style="color:#ff79c6">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;linux/module.h&gt;</span><span style="color:#ff79c6">
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;linux/kernel.h&gt;</span><span style="color:#ff79c6">
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;linux/types.h&gt;</span><span style="color:#ff79c6">
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;linux/dma-mapping.h&gt;</span><span style="color:#ff79c6">
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;asm/cacheflush.h&gt;</span><span style="color:#ff79c6">
-</span></span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">MODULE_LICENSE</span>(<span style="color:#f1fa8c">&#34;GPL&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">MODULE_AUTHOR</span>(<span style="color:#f1fa8c">&#34;Raelize&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b">MODULE_DESCRIPTION</span>(<span style="color:#f1fa8c">&#34;CHARACTERIZATION 1 for Google&#39;s Nest Wi-Fi Pro (3.73.406133)&#34;</span>);
@@ -302,7 +302,7 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define h t t t t t t t t t t
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define d h h h h h h h h h h
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define x d d d d d d d d d d
-</span></span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">static</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">unrolled_loop</span>(<span style="color:#ff79c6">volatile</span> u32 <span style="color:#ff79c6">*</span>trigger) {
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">volatile</span> u32 counter <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
 </span></span><span style="display:flex;"><span>
@@ -355,7 +355,7 @@
 </ol>
 <p>To determine if Qualcomm&rsquo;s IPQ5018 SoC is sensitive to EM glitches, we inject the glitch while the counter is being increased using the <code>add</code> instructions. When the glitch results in a fault altering the intended behavior of an <code>add</code> instruction, we expect to see the output counter value different from the expected value (i.e., <code>10,000</code>).</p>
 <p>We can run the kernel module as follows:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># insmod characterize_1.ko _command=1 _iterations=10000 &amp;&amp; rmmod characterize_1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6272a4"># insmod characterize_1.ko _command=1 _iterations=10000 &amp;&amp; rmmod characterize_1</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span> 1054.149388<span style="color:#ff79c6">]</span> characterize_1 <span style="color:#ff79c6">(</span>init<span style="color:#ff79c6">)</span>!
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span> 1054.149491<span style="color:#ff79c6">]</span> AAAA00002710BBBB00002710CCCC
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span> 1054.176611<span style="color:#ff79c6">]</span> characterize_1 <span style="color:#ff79c6">(</span><span style="color:#8be9fd;font-style:italic">exit</span><span style="color:#ff79c6">)</span>!
@@ -370,7 +370,7 @@
 <h4 id="boot-time">Boot time</h4>
 <p>The duration of a single experiment is the biggest disadvantage when characterizing using a kernel module. The kernel module can only be loaded after having booted into the root shell. This takes a significant amount of time due to the booting time, especially when compared to implementing the test code directly in the bootloader (e.g., U-Boot). We expect to reset the target often, so the overhead to boot, has a significant impact on the overall characterization.</p>
 <p>We decided to speed up the boot process for an earlier loading of the kernel module. We made the following additions to <code>init.rc</code> at the end of <code>on init</code>, which spawns our root shell very early at boot. This results in a non-functional device, however we confirmed this is sufficient for loading a kernel module.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>on init
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>on init
 </span></span><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>    write /sys/devices/system/cpu/cpu0/online <span style="color:#f1fa8c">&#34;1&#34;</span>
 </span></span><span style="display:flex;"><span>    write /sys/devices/system/cpu/cpu1/online <span style="color:#f1fa8c">&#34;0&#34;</span>
@@ -388,38 +388,38 @@
 <div style="width: 800px;">
 <p>
 <table>
-	<thead>
-			<tr>
-					<th><strong>Response</strong></th>
-					<th style="text-align: left"><strong>Description</strong></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>AAAA00002710BBBB00002710CCCC</code></td>
-					<td style="text-align: left">expected (i.e., glitch has no impact)</td>
-			</tr>
-			<tr>
-					<td><code>AAAA0000270fBBBB0000270fCCCC</code></td>
-					<td style="text-align: left">counter - 1</td>
-			</tr>
-			<tr>
-					<td><code>AAAA00002790BBBB00002790CCCC</code></td>
-					<td style="text-align: left">counter + 0x80</td>
-			</tr>
-			<tr>
-					<td><code>AAAA000027c0BBBB000027c0CCCC</code></td>
-					<td style="text-align: left">counter + 0xb0</td>
-			</tr>
-			<tr>
-					<td><code>AAAA4000198eBBBB4000198eCCCC</code></td>
-					<td style="text-align: left">Address in DDR</td>
-			</tr>
-			<tr>
-					<td><code>AAAA6fb91dacBBBB6fb91dacCCCC</code></td>
-					<td style="text-align: left">unknown</td>
-			</tr>
-	</tbody>
+  <thead>
+      <tr>
+          <th><strong>Response</strong></th>
+          <th style="text-align: left"><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>AAAA00002710BBBB00002710CCCC</code></td>
+          <td style="text-align: left">expected (i.e., glitch has no impact)</td>
+      </tr>
+      <tr>
+          <td><code>AAAA0000270fBBBB0000270fCCCC</code></td>
+          <td style="text-align: left">counter - 1</td>
+      </tr>
+      <tr>
+          <td><code>AAAA00002790BBBB00002790CCCC</code></td>
+          <td style="text-align: left">counter + 0x80</td>
+      </tr>
+      <tr>
+          <td><code>AAAA000027c0BBBB000027c0CCCC</code></td>
+          <td style="text-align: left">counter + 0xb0</td>
+      </tr>
+      <tr>
+          <td><code>AAAA4000198eBBBB4000198eCCCC</code></td>
+          <td style="text-align: left">Address in DDR</td>
+      </tr>
+      <tr>
+          <td><code>AAAA6fb91dacBBBB6fb91dacCCCC</code></td>
+          <td style="text-align: left">unknown</td>
+      </tr>
+  </tbody>
 </table>
 </p>
 </div>
@@ -498,7 +498,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

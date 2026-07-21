@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Claude-Code on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</title>
-		<link>https://raelize.com/tags/claude-code/</link>
-		<description>Recent content in Claude-Code on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-		
-			<lastBuildDate>Tue, 19 May 2026 09:00:00 +0200</lastBuildDate>
-		
-			<atom:link href="https://raelize.com/tags/claude-code/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes</title>
-				<link>https://raelize.com/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/</link>
-				<pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
-				<guid>https://raelize.com/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/</guid>
-				<description>We reproduce our 2025 hardwear.io research where an ElectroMagnetic (EM) glitch escalates privilege from the adb shell to root on Google&amp;rsquo;s TV Streamer 4K. This time we let Claude Code drive the whole software stack: Keysight Spider SDK, Keysight Inspector XYZ stage, YEPKIT YKUSH3, attack binaries, dashboards, wikis. We never touched any code.</description>
-			</item>
-			<item>
-				<title>AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot</title>
-				<link>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</link>
-				<pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
-				<guid>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</guid>
-				<description>We let an AI, namely Claude Code, orchestrate every part of a real Fault Injection (FI) attack. Driving the setup, the hardware tooling, debugging the setup, reverse engineering the ROM, building a live monitoring dashboard mid-campaign. The result: an autonomous bypass of ESP32 Secure Boot V1.</description>
-			</item>
-	</channel>
+  <channel>
+    <title>Claude Code on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</title>
+    <link>https://raelize.com/tags/claude-code/</link>
+    <description>Recent content in Claude Code on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 May 2026 09:00:00 +0200</lastBuildDate>
+    <atom:link href="https://raelize.com/tags/claude-code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI-FI: Reproducing adb to root on Google&#39;s TV Streamer using Claude in less than 15 minutes</title>
+      <link>https://raelize.com/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/</link>
+      <pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/blog/ai-fi-reproducing-adb-to-root-on-googles-tv-streamer-using-claude/</guid>
+      <description>We reproduce our 2025 hardwear.io research where an ElectroMagnetic (EM) glitch escalates privilege from the adb shell to root on Google&amp;rsquo;s TV Streamer 4K. This time we let Claude Code drive the whole software stack: Keysight Spider SDK, Keysight Inspector XYZ stage, YEPKIT YKUSH3, attack binaries, dashboards, wikis. We never touched any code.</description>
+    </item>
+    <item>
+      <title>AI-FI: Giving Claude Code Glitch Skills for Bypassing Secure Boot</title>
+      <link>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/</guid>
+      <description>We let an AI, namely Claude Code, orchestrate every part of a real Fault Injection (FI) attack. Driving the setup, the hardware tooling, debugging the setup, reverse engineering the ROM, building a live monitoring dashboard mid-campaign. The result: an autonomous bypass of ESP32 Secure Boot V1.</description>
+    </item>
+  </channel>
 </rss>

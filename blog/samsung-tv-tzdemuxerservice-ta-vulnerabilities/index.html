@@ -69,7 +69,7 @@
 	<!-- RSS feed discovery -->
 	
 
-	<meta name="generator" content="Hugo 0.164.0">
+	<meta name="generator" content="Hugo 0.145.0">
 
 	<!-- plugins -->
 	
@@ -213,7 +213,7 @@ requested CVEs for these vulnerabilities. Therefore, no CVEs are available for t
 <p>In this post we do not intend to discuss Samsung's <strong>TEE</strong> or the general aspects of TEEs in detail. Please consider signing up for our <a href="https://raelize.com/training/">TEEPwn training</a> if you're interested in learning more about TEE security in an exciting hands-on exercise driven experience.</p>
 <h2 id="tzdemuxerservice">tzdemuxerservice</h2>
 <p>The entry point for the TA is easily found in the <code>tzdemuxerservice.cpp</code> source file by identifying the <code>TA_InvokeCommandEntryPoint()</code> function.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">extern</span> <span style="color:#f1fa8c">&#34;C&#34;</span>
 </span></span><span style="display:flex;"><span>TEE_Result <span style="color:#50fa7b">TA_InvokeCommandEntryPoint</span>(<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">void</span> <span style="color:#ff79c6">*</span>sessionContext, 
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">uint32_t</span> commandID, <span style="color:#8be9fd">uint32_t</span> param_types, TEE_Param param[<span style="color:#bd93f9">4</span>])
@@ -221,7 +221,7 @@ requested CVEs for these vulnerabilities. Therefore, no CVEs are available for t
 </span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">TA_PRINT</span>(<span style="color:#f1fa8c">&#34;commandID %d</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>,commandID);
 </span></span><span style="display:flex;"><span>    ...
 </span></span></code></pre></div><p>This entry point implements multiple commands which are implemented using a <code>switch</code> statement where each command is implemented using a dedicated <code>case</code> statement.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>...
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">switch</span>(commandID)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">case</span> <span style="color:#8be9fd;font-style:italic">CMD_TZDEMUXER_CLIENT_INIT</span>:
@@ -264,7 +264,7 @@ requested CVEs for these vulnerabilities. Therefore, no CVEs are available for t
 <p>It must be noted that vulnerability 1 to 5 could also be considered a single vulnerability as the core problem is the <code>param[0]</code> parameter is not checked. However, we decided to also touch upon the different ways the unchecked parameter can be used and therefore listed the paths as seperate vulnerabilities.</p>
 <h2 id="vulnerability-1-restricted-write-to-arbitrary-address">Vulnerability 1: restricted write to arbitrary address</h2>
 <p>As <code>buf</code> can point to any arbitrary address, it's possible to write <code>32768</code> of <code>buffer.data</code> to an arbitrary location with the <strong>TA</strong> memory, which can result in a crash of the <strong>TA</strong> or code execution in the context of the <strong>TA</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        ...
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">929</span> <span style="color:#ff79c6">!</span>  buf <span style="color:#ff79c6">=</span> (<span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>)param[<span style="color:#bd93f9">0</span>].memref.buffer;
@@ -286,7 +286,7 @@ requested CVEs for these vulnerabilities. Therefore, no CVEs are available for t
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in REE memory.</p>
 <h2 id="vulnerability-2-restricted-write-to-arbitrary-address">Vulnerability 2: restricted write to arbitrary address</h2>
 <p>As <code>buf</code> can point to any arbitrary address, it's possible to write <code>pkt.size</code> of <code>pkt.data</code> to an arbitrary location with the <strong>TA</strong> memory, which can result in a crash of the <strong>TA</strong> or code execution in the context of the <strong>TA</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        ...
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">929</span> <span style="color:#ff79c6">!</span>  buf <span style="color:#ff79c6">=</span> (<span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>)param[<span style="color:#bd93f9">0</span>].memref.buffer;
@@ -320,7 +320,7 @@ verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequ
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in <strong>REE</strong> memory.</p>
 <h2 id="vulnerability-3-restricted-write-to-arbitrary-address">Vulnerability 3: restricted write to arbitrary address</h2>
 <p>As <code>buf</code> can point to any arbitrary address, it's possible to write multiple restricted values to an arbitrary location with the <strong>TA</strong> memory, which can result in a crash of the <strong>TA</strong> or code execution in the context of the <strong>TA</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
 </span></span><span style="display:flex;"><span>        ...
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">929</span> <span style="color:#ff79c6">!</span>  buf <span style="color:#ff79c6">=</span> (<span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>)param[<span style="color:#bd93f9">0</span>].memref.buffer;
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">930</span> <span style="color:#ff79c6">!</span>  size <span style="color:#ff79c6">=</span> param[<span style="color:#bd93f9">0</span>].memref.size;
@@ -343,7 +343,7 @@ verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequ
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in <strong>REE</strong> memory.</p>
 <h2 id="vulnerability-4-restricted-write-to-arbitrary-address">Vulnerability 4: restricted write to arbitrary address</h2>
 <p>As <code>buf</code> can point to any arbitrary address, it's possible to write multiple restricted values to an arbitrary location with the <strong>TA</strong> memory, which can result in a crash of the <strong>TA</strong> or code execution in the context of the <strong>TA</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
 </span></span><span style="display:flex;"><span>        ...
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">929</span> <span style="color:#ff79c6">!</span>  buf <span style="color:#ff79c6">=</span> (<span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>)param[<span style="color:#bd93f9">0</span>].memref.buffer;
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">930</span> <span style="color:#ff79c6">!</span>  size <span style="color:#ff79c6">=</span> param[<span style="color:#bd93f9">0</span>].memref.size;
@@ -363,7 +363,7 @@ verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequ
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in <strong>REE</strong> memory.</p>
 <h2 id="vulnerability-5-restricted-write-to-arbitrary-address">Vulnerability 5: restricted write to arbitrary address</h2>
 <p>As <code>buf</code> can point to any arbitrary address, it's possible to write multiple restricted values to an arbitrary location with the <strong>TA</strong> memory, which can result in a crash of the <strong>TA</strong> or code execution in the context of the <strong>TA</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
 </span></span><span style="display:flex;"><span>        ...
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">929</span>    buf <span style="color:#ff79c6">=</span> (<span style="color:#8be9fd">char</span> <span style="color:#ff79c6">*</span>)param[<span style="color:#bd93f9">0</span>].memref.buffer;
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">930</span>    size <span style="color:#ff79c6">=</span> param[<span style="color:#bd93f9">0</span>].memref.size;
@@ -383,14 +383,14 @@ verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequ
 verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequate fix for this vulnerability as the <strong>TEE OS</strong> is now able to check if the passed buffer is entirely contained in <strong>REE</strong> memory.</p>
 <h2 id="vulnerability-6-return-value-of-malloc-not-checked">Vulnerability 6: return value of malloc not checked</h2>
 <p>The <strong>TA</strong> makes use of dynamic memory allocations using <code>malloc</code>. It's a security best practice to verify the return value of a <code>malloc</code> call in order to check if the request memory actually could be allocated. If it's not done, and the memory allocation fails, the subsequent writes to memory will be done to address <code>0</code>. This will cause a crash of the <strong>TA</strong> or potentially memory corruption of address <code>0</code> is mapped within the <strong>TA</strong>'s memory space.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">File</span>: tzdemuxerservice.cpp
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">385</span>    sub_buffer.data <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">malloc</span>(needed_size);
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">386</span>    <span style="color:#50fa7b">memcpy</span>((<span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span>)sub_buffer.data,(<span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span>)cur_node<span style="color:#ff79c6">-&gt;</span>buffer.data <span style="color:#ff79c6">+</span> skip , needed_size);
 </span></span><span style="display:flex;"><span>        ...
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">402</span>    merge_buffer.data <span style="color:#ff79c6">=</span> <span style="color:#50fa7b">malloc</span>(needed_size);
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">403</span>    <span style="color:#6272a4">//TA_PRINT(&#34;step 1\n&#34;);
-</span></span></span><span style="display:flex;"><span> <span style="color:#bd93f9">404</span>    <span style="color:#50fa7b">memcpy</span>((<span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span>)merge_buffer.data, (<span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span>)cur_node<span style="color:#ff79c6">-&gt;</span>buffer.data <span style="color:#ff79c6">+</span> skip , hsize <span style="color:#ff79c6">-</span> skip);
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span> <span style="color:#bd93f9">404</span>    <span style="color:#50fa7b">memcpy</span>((<span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span>)merge_buffer.data, (<span style="color:#8be9fd">char</span><span style="color:#ff79c6">*</span>)cur_node<span style="color:#ff79c6">-&gt;</span>buffer.data <span style="color:#ff79c6">+</span> skip , hsize <span style="color:#ff79c6">-</span> skip);
 </span></span><span style="display:flex;"><span>        ...
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">749</span>    sctx <span style="color:#ff79c6">=</span> (tzdemuxer_service_s<span style="color:#ff79c6">*</span>)<span style="color:#50fa7b">malloc</span>(<span style="color:#ff79c6">sizeof</span>(tzdemuxer_service_s));
 </span></span><span style="display:flex;"><span> <span style="color:#bd93f9">750</span>    <span style="color:#50fa7b">memset</span>(sctx,<span style="color:#bd93f9">0x0</span>,<span style="color:#ff79c6">sizeof</span>(tzdemuxer_service_s));
@@ -475,7 +475,7 @@ verified to be <code>TEE_PARAM_TYPE_MEMREF_INOUT</code> which is likely an adequ
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

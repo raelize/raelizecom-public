@@ -69,7 +69,7 @@
 	<!-- RSS feed discovery -->
 	
 
-	<meta name="generator" content="Hugo 0.164.0">
+	<meta name="generator" content="Hugo 0.145.0">
 
 	<!-- plugins -->
 	
@@ -191,8 +191,7 @@
     TL;DR
 -->
 <blockquote>
-<p><strong>TL;DR:</strong> We used <strong>Claude Code</strong> to reproduce a Fault Injection attack where <strong>Secure Boot</strong> is bypassed on an Espressif <strong>ESP32</strong> SoC. We gave <strong>Claude</strong> full control to all the hardware tooling. All software tooling was written by <strong>Claude</strong> using third-party libraries. None of the code was written by humans. All this was created organically while glitches were being injected in the background (i.e., no downtime). This type of agentic workflow for finding/exploiting hardware vulnerabilities is likely here to stay, as it will be for software vulnerabilities.</p>
-</blockquote>
+<p><strong>TL;DR:</strong> We used <strong>Claude Code</strong> to reproduce a Fault Injection attack where <strong>Secure Boot</strong> is bypassed on an Espressif <strong>ESP32</strong> SoC. We gave <strong>Claude</strong> full control to all the hardware tooling. All software tooling was written by <strong>Claude</strong> using third-party libraries. None of the code was written by humans. All this was created organically while glitches were being injected in the background (i.e., no downtime). This type of agentic workflow for finding/exploiting hardware vulnerabilities is likely here to stay, as it will be for software vulnerabilities.</p></blockquote>
 <!--
     Contents
 -->
@@ -258,12 +257,10 @@
 <h2 id="lets-get-started">Let&rsquo;s get started</h2>
 <p>We simply kicked-off this adventure by telling <strong>Claude</strong> what we were going to do.</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;We are going to bypass ESP32&rsquo;s Secure Boot using ChipWhisperer Husky.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;We are going to bypass ESP32&rsquo;s Secure Boot using ChipWhisperer Husky.&rdquo;</p></blockquote>
 <p>Moreover, we told it to store everything it learns in a wiki format we like, which allows us and <strong>Claude</strong> to remember what we are working on.</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Store and keep track of everything you learn using Hugo and the relearn theme.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Store and keep track of everything you learn using Hugo and the relearn theme.&rdquo;</p></blockquote>
 <p>Then we connected all the required tooling via USB to a freshly installed laptop with Ubuntu 26.04 LTS. Moreover, we give <strong>Claude</strong> full power using <code>--dangerously-skip-permissions</code>, as the laptop is not used for any other purpose.</p>
 <!-- 
     Setup 
@@ -280,8 +277,7 @@
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>The actual setup used for this AI adventure.</em></p>
 <p>Early on we asked <strong>Claude</strong> to keep track of what it was building:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;While you learn about all the tooling; please keep updating a diagram of all the connections.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;While you learn about all the tooling; please keep updating a diagram of all the connections.&rdquo;</p></blockquote>
 <p>This resulted eventually in the following diagram:</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/rig-topology.png">
@@ -294,8 +290,7 @@
 <p>The target is Espressif&rsquo;s ESP32 SoC mounted on our <strong><a href="https://github.com/raelize/TAoFI-Target">TAoFI Target</a></strong> development board, which we also use for our advanced FI training named <a href="https://raelize.com/taofi/">The Art of Fault Injection (TAoFI)</a>.</p>
 <p>We simply instructed <strong>Claude</strong> to learn more about this target:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Learn about the target here: <a href="https://github.com/raelize/TAoFI-Target%22">https://github.com/raelize/TAoFI-Target"</a></p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Learn about the target here: <a href="https://github.com/raelize/TAoFI-Target%22">https://github.com/raelize/TAoFI-Target"</a></p></blockquote>
 <p>The board hosts an Espressif <strong>ESP32</strong> SoC (rev 0) and exposes everything an attacker needs: separate power-domain headers , SPI flash signals routed to a header, RESET / IO0 broken out, and an UART connector. The availability of all these signals in a convenient manner decreases complexity for an effective FI setup compared to a real product based on the <strong>ESP32</strong> SoC where you may need to do more (invasive) modifications.</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/taofi-target-board.png">
@@ -308,19 +303,16 @@
 <p>We use the <strong><a href="https://www.ruidengkeji.com/rk6006/">Riden RK6006</a></strong> to deliver an arbitrary, programmable voltage to the <strong>RTC + CPU power domains</strong> of the ESP32. The PSU exposes a USB-CH340 serial interface, so the host can change the provided voltage mid-campaign (i.e., while it&rsquo;s glitching). The RK6006&rsquo;s hardware OVP cap is set to between <strong>0.0V</strong> and <strong>3.0 V</strong>, so we can never accidentally damage the chip while exploring lower-voltage corners (or burn our office down).</p>
 <p>We pointed <strong>Claude</strong> at an existing open-source Python lib that handles the communication:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Use <a href="https://github.com/dzwer/RK6006-Python-Module">https://github.com/dzwer/RK6006-Python-Module</a> for controlling the RK6006.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Use <a href="https://github.com/dzwer/RK6006-Python-Module">https://github.com/dzwer/RK6006-Python-Module</a> for controlling the RK6006.&rdquo;</p></blockquote>
 <p>Now we can control the voltage arbitrarily whenever we want and need.</p>
 <h3 id="newae-chipwhisperer-husky">NewAE ChipWhisperer Husky</h3>
 <p>The <strong><a href="https://www.newae.com/products/chipwhisperer-husky">ChipWhisperer Husky</a></strong> is the heart of the setup. We use four TIO pins to drive and/or consume <code>RESET</code>, <code>PROGRAM</code>, <code>SPI CS</code> and <code>UART TX</code>. The glitch is injected using the <strong>HP MOSFET</strong> to short the <code>CPU+RTC</code> domain o ground for number of nanoseconds. All of this is reachable from Python via the <code>chipwhisperer</code> package.</p>
 <p>We told <strong>Claude</strong> how we connected the various signals:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;I&rsquo;ve connected IO1 to UART TX, IO2 to RESET, IO3 to PROGRAM and IO4 to SPI CS.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;I&rsquo;ve connected IO1 to UART TX, IO2 to RESET, IO3 to PROGRAM and IO4 to SPI CS.&rdquo;</p></blockquote>
 <p>We helped <strong>Claude</strong> a bit by providing it a <strong>reference implementation</strong> from our training which is based on the guidance provided by NewAE. No real magic is done here, it&rsquo;s using the standard API. Hence, we are confident <strong>Claude</strong> would have been successful in figuring this out from just the API description available online.</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Find <code>g_AttackSignature.py</code> in your root (incl. its lib); that&rsquo;s how we usually control the NewAE Husky.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Find <code>g_AttackSignature.py</code> in your root (incl. its lib); that&rsquo;s how we usually control the NewAE Husky.&rdquo;</p></blockquote>
 <p><strong>Claude</strong> learned essentially everything it needed to configure the Husky correctly:</p>
 <ul>
 <li>the <code>chipwhisperer</code> setter pattern for the glitch module, e.g.:
@@ -342,55 +334,51 @@
 <p>We utilize three channels on the oscilloscope:</p>
 <div style="display:flex; justify-content:center;">
 <table>
-	<thead>
-			<tr>
-					<th style="text-align: left">Channel</th>
-					<th style="text-align: left">Connected to</th>
-					<th style="text-align: left">Purpose</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left"><strong>A</strong></td>
-					<td style="text-align: left">Reset</td>
-					<td style="text-align: left">Stable t=0 reference for trigger position</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>B</strong></td>
-					<td style="text-align: left">SPI CS</td>
-					<td style="text-align: left">Independent count of flash transactions during boot</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>C</strong></td>
-					<td style="text-align: left">GlitchOut</td>
-					<td style="text-align: left">Records the wall-clock time of the crowbar pulse</td>
-			</tr>
-	</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Channel</th>
+          <th style="text-align: left">Connected to</th>
+          <th style="text-align: left">Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>A</strong></td>
+          <td style="text-align: left">Reset</td>
+          <td style="text-align: left">Stable t=0 reference for trigger position</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>B</strong></td>
+          <td style="text-align: left">SPI CS</td>
+          <td style="text-align: left">Independent count of flash transactions during boot</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>C</strong></td>
+          <td style="text-align: left">GlitchOut</td>
+          <td style="text-align: left">Records the wall-clock time of the crowbar pulse</td>
+      </tr>
+  </tbody>
 </table>
 </div>
 <br>
 <p>Then we simply told <strong>Claude</strong>:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;I&rsquo;ve connected channel A to RESET, channel B to SPI CS, channel C to GlitchOut of Husky&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;I&rsquo;ve connected channel A to RESET, channel B to SPI CS, channel C to GlitchOut of Husky&rdquo;</p></blockquote>
 <p>And then we simply asked <strong>Claude</strong>:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Use the picosdk python wrappers to communicate with the scope: <a href="https://github.com/picotech/picosdk-python-wrappers%22">https://github.com/picotech/picosdk-python-wrappers"</a></p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Use the picosdk python wrappers to communicate with the scope: <a href="https://github.com/picotech/picosdk-python-wrappers%22">https://github.com/picotech/picosdk-python-wrappers"</a></p></blockquote>
 <p>Claude wired this up with the <code>picosdk</code> Python wrapper. The verification scripts (<code>pico_trace.py</code>, <code>cs_analog.py</code>, <code>pico_trace_multi.py</code>) all use the PicoScope, but the campaign driver <code>g_HuskyOnly.py</code> does not — so once a setup is verified, the PicoScope can be unplugged without affecting throughput.</p>
 <h3 id="espressif-esp-prog">Espressif ESP-PROG</h3>
 <p>The <strong><a href="https://docs.espressif.com/projects/espressif-esp-iot-solution/en/latest/hw-reference/ESP-Prog_guide.html">ESP-PROG</a></strong> is an FT2232H-based USB-to-serial / JTAG adapter that Espressif ships for ESP32 development.</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;I&rsquo;ve connected channel ESP-PROG to the UART of the target; figure out how to use it.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;I&rsquo;ve connected channel ESP-PROG to the UART of the target; figure out how to use it.&rdquo;</p></blockquote>
 <p>The whole device is a glorified USB-UART for our purposes and used for communication. Claude figured out by itself how to communicate with the right ttyUSB device and what configuration to use (i.e., not that difficult as it&rsquo;s the standard 115200 baud rate).</p>
 <hr>
 <h2 id="programming-the-flash">Programming the flash</h2>
 <p>The first concrete task we gave <strong>Claude</strong>, once the required tooling was available via USB in Linux, was to figure out how to program the flash. Normally this is done using the ESP-PROG, but the required signals, notably RESET and PROGRAM, were now under control of the Husky.</p>
 <p>We simply asked <strong>Claude</strong>:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Your first mission is to use the ESP-PROG and ChipWhisperer Husky to program <code>bootloader.bin</code> to the flash using <code>esptool</code>. Note, UART TX/RX are controlled from ESP-PROG and Husky controls RESET and GPIO.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Your first mission is to use the ESP-PROG and ChipWhisperer Husky to program <code>bootloader.bin</code> to the flash using <code>esptool</code>. Note, UART TX/RX are controlled from ESP-PROG and Husky controls RESET and GPIO.&rdquo;</p></blockquote>
 <p>There&rsquo;s no off-the-shelf script that combines those two tools the way we needed. <strong>Claude</strong> had to solve it, specifically, it had to figure out:</p>
 <ul>
 <li><strong>How to put the chip in download mode using the Husky</strong> — Espressif&rsquo;s <code>esptool</code> expects a separate USB-to-serial adapter to drive RESET and IO0 / boot-strap. We don&rsquo;t have one in the loop. Claude found that it could drive both pins via Husky&rsquo;s TIO2 / TIO3 (which it had just learned from the wiring table), pulse them in the documented <code>boot:0</code> sequence (IO0 low, RESET pulse, IO0 released), and then hand the UART off to <code>esptool</code>.</li>
@@ -405,7 +393,7 @@
 <hr>
 <h2 id="reading-the-serial">Reading the serial</h2>
 <p>The flashed bootloader was originally <strong>signed correctly</strong> — passes Secure Boot V1 cleanly (i.e., the signature is valid). This prints the following on the serial interface:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>ets Jun  8 2016 00:22:57
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>ets Jun  8 2016 00:22:57
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
 </span></span><span style="display:flex;"><span>configsip: 0, SPIWP:0xee
@@ -421,7 +409,7 @@
 </span></span><span style="display:flex;"><span>I&#39;m a bootloader!
 </span></span></code></pre></div><p>We then <strong>modified a string</strong> inside the signed binary which invalidates the signature. From this point on, the target reproducibly prints the baseline <code>secure boot check fail</code> boot output every reset, which is the precondition for everything that follows.  In other words, we are hanging on the Secure Boot check in ROM code, which we want to bypass using a voltage glitch.</p>
 <p>This is printed on each boot with an invalid signature:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>ets Jun  8 2016 00:22:57
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plain" data-lang="plain"><span style="display:flex;"><span>ets Jun  8 2016 00:22:57
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
 </span></span><span style="display:flex;"><span>configsip: 0, SPIWP:0xee
@@ -435,8 +423,7 @@
 </span></span><span style="display:flex;"><span>ets_main.c 371
 </span></span></code></pre></div><p>To make sure <strong>Claude</strong> correctly sees this as well, we simply ask:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Read the serial output of the target after reset.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Read the serial output of the target after reset.&rdquo;</p></blockquote>
 <p>We use the <code>I'm a bootloader!</code> string, only printed with a valid signature,  to determine if we bypassed Secure Boot successfully.</p>
 <hr>
 <!--
@@ -450,8 +437,7 @@
 </ol>
 <p>So we simply ask:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Build me a live web dashboard so I can keep track of the experiments from a browser.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Build me a live web dashboard so I can keep track of the experiments from a browser.&rdquo;</p></blockquote>
 <p>The result is <strong><code>campaign_monitor.py</code></strong>, a self-contained ~400-line Python HTTP server that reads from <code>huskyonly.sqlite</code> in read-only mode and serves an auto-refreshing dashboard on port 8083. <strong>It was written while the chip was glitching itself</strong>, every UI iteration we asked for landed in the live page within seconds, with the in-flight campaign continuing to write rows behind the scenes.</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/campaign-monitor.gif">
@@ -485,8 +471,7 @@
 <p>We had the rev-0 boot <strong>ROM</strong> as an ELF (<code>esp32_rev0_rom.elf</code> — Xtensa LE, with symbols), the <a href="https://documentation.espressif.com/esp32_technical_reference_manual_en.pdf">ESP32 Technical Reference Manual</a>, and a modified bootloader that fails Secure Boot.</p>
 <p>We asked <strong>Claude</strong> for locations inside the ROM code where we could corrupt a single instruction to bypass Secure Boot:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Reverse and emulate the ROM and find an instruction that bypasses Secure Boot when corrupted; do all of this in the background while we work on the rest of the setup.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Reverse and emulate the ROM and find an instruction that bypasses Secure Boot when corrupted; do all of this in the background while we work on the rest of the setup.&rdquo;</p></blockquote>
 <p><strong>Claude</strong> dispatched an autonomous <strong>sub-agent</strong> which disassembled the ROM with <code>xtensa-esp-elf-objdump</code>, walked the call graph from <code>main</code> → <code>ets_unpack_flash_code</code> → <code>ets_secure_boot_check_finish</code>, and cross-referenced the Technical Reference Manual (TRM). <strong>Claude</strong> figured out that the boot ROM runs on XTAL at <strong>40 MHz</strong> (25 ns / cycle), the brown-out detector is <em>off</em> by POR default, and the Secure Boot verdict is a single memory-mapped word at <code>*0x3ff04180</code> consumed by one <strong>bnei</strong> instruction.</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/hypothesis-flow.png">
@@ -496,14 +481,12 @@
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>Basic-block control flow around the Secure Boot decision. The <strong>red path</strong> is what happens without a glitch on a tampered flash: <code>ets_secure_boot_check_finish</code> runs, returns 1, the bnei falls through, and the chip halts with "secure boot check fail". The <strong>green dashed path</strong> is the glitch path — skip BB2 outright, <em>or</em> corrupt something inside it so <code>a10</code> ends up ≠ 1; either way the bnei branches to <code>0x400075c5</code> and the loaded — unsigned — application runs.</em></p>
 <p>The pre-check setup ends in a final burst of SPI traffic from <code>cache_flash_mmu_set</code> / <code>Cache_Read_Enable</code> — the <strong>last CS edge of that burst</strong> is the natural anchor. From there it&rsquo;s only a handful of CPU cycles to the call8, but cache fills, icache misses, and the verify routine&rsquo;s own flash reads push real activity into the <strong>first several µs after the anchor</strong>, and that&rsquo;s the window we end up exploiting.</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Confirm the path by emulating the ROM. Use Espressif QEMU.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Confirm the path by emulating the ROM. Use Espressif QEMU.&rdquo;</p></blockquote>
 <p>The sub-agent set up Espressif <strong>QEMU</strong> with our rev-0 ROM blob, an <code>efuse</code> blob with <code>ABS_DONE_0</code> set, and our 2 MB flash image. The emulated boot reproduced the rev-0 banner, executed all four <code>load:</code> segments, and traced through to the call8 in the order the disassembly predicted — confirming the static analysis.</p>
 <h3 id="timing">Timing</h3>
 <p>The hypothesis above ended with the conclusion to start glitching directly after the last CS edge. The area we are interested in happens almost directly after this moment, hence, we can start with a relatively small attack window (e.g., first ~10 µs). To do that with sub-µs precision we want to trigger as close to that last SPI communication as possible — and we let the chip itself tell us when, by using <strong>the SPI flash CS line as our trigger source</strong> and counting edges in hardware.</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Use the SPI flash CS line as the trigger; we&rsquo;ll count edges to set a trigger at the right moment.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Use the SPI flash CS line as the trigger; we&rsquo;ll count edges to set a trigger at the right moment.&rdquo;</p></blockquote>
 <p>The Husky&rsquo;s <code>trigger.module = &quot;edge_counter&quot;</code> does exactly this in the FPGA, with no host-jitter:</p>
 <ol>
 <li>The host releases RESET; the chip starts booting.</li>
@@ -522,8 +505,7 @@
 <p>Fix is mechanical: wait until the chip is actually driving CS before arming. The host sleeps <strong><code>csdelay_ms = 1.2 ms</code></strong> after releasing RESET, <em>then</em> calls <code>scope.arm()</code> — every edge Husky counts after that is a real flash transaction.</p>
 <p>We then used the PicoScope as ground truth to verify the trigger lands where we expect.</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Verify using the picoscope the trigger is at the right location; show me a picture on the wiki.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Verify using the picoscope the trigger is at the right location; show me a picture on the wiki.&rdquo;</p></blockquote>
 <p>With ch C tied to Husky&rsquo;s MCX glitch-trigger output, we sweep <code>--edges N</code> until the crowbar fires exactly at the last CS edge of the bootloader-load phase (~19.3 ms after RESET release). For our setup that turned out to be <strong><code>--edges 952</code></strong>.</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/pico-trace-sample.png">
@@ -550,16 +532,15 @@
 <h3 id="campaign-1-identification">Campaign 1: Identification</h3>
 <p>For the very first campaign we leaned on the timing analysis above: the <code>call8</code> we want to skip sits within the <strong>first 10 µs</strong> after the last bootloader-load CS edge, and the productive crowbar pulse widths for an ESP32 sit somewhere in the <strong>0–5 µs</strong> range. So we scan that whole rectangle randomly, with a <code>--max 1000</code> budget at <code>V = 2.2 V</code>:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Run 1000 experiments with voltage set to 2.2; randomize delay between 0 and 10_000; the length between 0 and 5000; keep trigger where it is.&rdquo;</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 g_HuskyOnly.py <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --port /dev/ttyUSB2 --csdelay-ms 1.2 <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --edges <span style="color:#bd93f9">952</span> --edge-dir rising_edge <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --delay <span style="color:#bd93f9">0</span> <span style="color:#bd93f9">10000</span> --length <span style="color:#bd93f9">0</span> <span style="color:#bd93f9">5000</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --vset 2.20 <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --max <span style="color:#bd93f9">1000</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --campaign-id <span style="color:#f1fa8c">&#34;first-1k-2v2&#34;</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --campaign-name <span style="color:#f1fa8c">&#34;First 1000-shot at V=2.2 V — random in 10 µs × 5 µs window&#34;</span>
+<p><strong>Me:</strong> &ldquo;Run 1000 experiments with voltage set to 2.2; randomize delay between 0 and 10_000; the length between 0 and 5000; keep trigger where it is.&rdquo;</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 g_HuskyOnly.py <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --port /dev/ttyUSB2 --csdelay-ms 1.2 <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --edges <span style="color:#bd93f9">952</span> --edge-dir rising_edge <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --delay <span style="color:#bd93f9">0</span> <span style="color:#bd93f9">10000</span> --length <span style="color:#bd93f9">0</span> <span style="color:#bd93f9">5000</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --vset 2.20 <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --max <span style="color:#bd93f9">1000</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --campaign-id <span style="color:#f1fa8c">&#34;first-1k-2v2&#34;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --campaign-name <span style="color:#f1fa8c">&#34;First 1000-shot at V=2.2 V — random in 10 µs × 5 µs window&#34;</span>
 </span></span></code></pre></div><p>A thousand attempts at ~4 / s is roughly four minutes of wall-clock time. Pointing the <a href="/blog/ai-fi-giving-claude-code-glitch-skills-for-bypassing-secure-boot/#glitch-monitor">glitch monitor</a> at the campaign produced a clear pattern almost immediately. The next three plots all share the <strong>same axis</strong> (delay 0–10 µs × length 0–5 µs at V = 2.2 V) — what changes is where we <em>sample</em> from, narrowing in on the densest region.</p>
 <p><strong>Step 1 — broad scan.</strong> Random uniform delay 0–10 µs × length 0–5 µs:</p>
 <p style="text-align:center;">
@@ -570,16 +551,15 @@
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>1 000 attempts at V = 2.2 V. Just <strong>1 R hit</strong> (0.1 %) — the broad scan barely finds the productive zone, but the corruption (Y) cluster in the upper band hints where to narrow next.</em></p>
 <p><strong>Step 2 — narrowed to the productive band.</strong> Now we trim the dead zones identified in Step 1:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Re-run 1000 experiments at V=2.2 V; narrow to delay 0 to 5000; length 2500 ns to 4000 ns.&rdquo;</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 g_HuskyOnly.py <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --port /dev/ttyUSB2 --csdelay-ms 1.2 <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --edges <span style="color:#bd93f9">952</span> --edge-dir rising_edge <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --delay <span style="color:#bd93f9">0</span> <span style="color:#bd93f9">5000</span> --length <span style="color:#bd93f9">2500</span> <span style="color:#bd93f9">4000</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --vset 2.20 <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --max <span style="color:#bd93f9">1000</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --campaign-id <span style="color:#f1fa8c">&#34;zoom_step2_mid&#34;</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --campaign-name <span style="color:#f1fa8c">&#34;Campaign 1 zoom step 2 — productive band&#34;</span>
+<p><strong>Me:</strong> &ldquo;Re-run 1000 experiments at V=2.2 V; narrow to delay 0 to 5000; length 2500 ns to 4000 ns.&rdquo;</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 g_HuskyOnly.py <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --port /dev/ttyUSB2 --csdelay-ms 1.2 <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --edges <span style="color:#bd93f9">952</span> --edge-dir rising_edge <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --delay <span style="color:#bd93f9">0</span> <span style="color:#bd93f9">5000</span> --length <span style="color:#bd93f9">2500</span> <span style="color:#bd93f9">4000</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --vset 2.20 <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --max <span style="color:#bd93f9">1000</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --campaign-id <span style="color:#f1fa8c">&#34;zoom_step2_mid&#34;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --campaign-name <span style="color:#f1fa8c">&#34;Campaign 1 zoom step 2 — productive band&#34;</span>
 </span></span></code></pre></div><p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/zoom-2-mid.png">
         <img src="/images/blog/esp32-sbv1-husky/zoom-2-mid.png" alt="Scatter plot narrowed to the productive glitch band" loading="lazy" style="max-width: 100%; width: 1000px">
@@ -588,16 +568,15 @@
 <p style="text-align:center; color:#666; font-size:0.9em;"><em>1 000 attempts at V = 2.2 V, narrowed to the band identified in Step 1. R count jumps from 1 to <strong>16 (1.6 %)</strong> — a 16× improvement just by trimming the dead zones. The R hits cluster around delay 1–2 µs × length 3–4 µs.</em></p>
 <p><strong>Step 3 — locked into the hot region.</strong> One last narrowing onto the tight cluster from Step 2:</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Fix 1000 experiments at V=2.2 V; narrow to delay 1000 to 2000; length 3000 ns to 4000 ns.&rdquo;</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 g_HuskyOnly.py <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --port /dev/ttyUSB2 --csdelay-ms 1.2 <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --edges <span style="color:#bd93f9">952</span> --edge-dir rising_edge <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --delay <span style="color:#bd93f9">1000</span> <span style="color:#bd93f9">2000</span> --length <span style="color:#bd93f9">3000</span> <span style="color:#bd93f9">4000</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --vset 2.20 <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --max <span style="color:#bd93f9">1000</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --campaign-id <span style="color:#f1fa8c">&#34;zoom_step3_tight&#34;</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --campaign-name <span style="color:#f1fa8c">&#34;Campaign 1 zoom step 3 — hot region&#34;</span>
+<p><strong>Me:</strong> &ldquo;Fix 1000 experiments at V=2.2 V; narrow to delay 1000 to 2000; length 3000 ns to 4000 ns.&rdquo;</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 g_HuskyOnly.py <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --port /dev/ttyUSB2 --csdelay-ms 1.2 <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --edges <span style="color:#bd93f9">952</span> --edge-dir rising_edge <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --delay <span style="color:#bd93f9">1000</span> <span style="color:#bd93f9">2000</span> --length <span style="color:#bd93f9">3000</span> <span style="color:#bd93f9">4000</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --vset 2.20 <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --max <span style="color:#bd93f9">1000</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --campaign-id <span style="color:#f1fa8c">&#34;zoom_step3_tight&#34;</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --campaign-name <span style="color:#f1fa8c">&#34;Campaign 1 zoom step 3 — hot region&#34;</span>
 </span></span></code></pre></div><p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/zoom-3-tight.png">
         <img src="/images/blog/esp32-sbv1-husky/zoom-3-tight.png" alt="Scatter plot locked into the hot region with many bypasses" loading="lazy" style="max-width: 100%; width: 1000px">
@@ -613,14 +592,13 @@
 <h3 id="campaign-2-maximize-success-rate">Campaign 2: Maximize success rate</h3>
 <p>With the productive zone pinned to <code>delay 1.5–2 µs × length 3–4 µs</code>, the next step was to fix the (delay, length) random window onto its centre and sweep <strong>voltage</strong> instead. The goal of this campaign was to explore the maximum possible success rate.</p>
 <blockquote>
-<p><strong>Me:</strong> &ldquo;Fix the delay and length and sweep the voltage from 2.0V to 3.0V in 0.01 V steps, 200 experiments per voltage; plot bypass rate vs voltage.&rdquo;</p>
-</blockquote>
+<p><strong>Me:</strong> &ldquo;Fix the delay and length and sweep the voltage from 2.0V to 3.0V in 0.01 V steps, 200 experiments per voltage; plot bypass rate vs voltage.&rdquo;</p></blockquote>
 <p>That&rsquo;s a fine voltage scan — 20k attempts total:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 voltage_fine_scan.py <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --vmin 2.00 --vmax 3.00 --vstep 0.01 <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --delay <span style="color:#bd93f9">1500</span> <span style="color:#bd93f9">1600</span> --length <span style="color:#bd93f9">3400</span> <span style="color:#bd93f9">3500</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --experiments <span style="color:#bd93f9">200</span> <span style="color:#f1fa8c">\
-</span></span></span><span style="display:flex;"><span>    --campaign-id <span style="color:#f1fa8c">&#34;vscan_full_2v_3v&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python3 voltage_fine_scan.py <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --vmin 2.00 --vmax 3.00 --vstep 0.01 <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --delay <span style="color:#bd93f9">1500</span> <span style="color:#bd93f9">1600</span> --length <span style="color:#bd93f9">3400</span> <span style="color:#bd93f9">3500</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --experiments <span style="color:#bd93f9">200</span> <span style="color:#f1fa8c">\
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c"></span>    --campaign-id <span style="color:#f1fa8c">&#34;vscan_full_2v_3v&#34;</span>
 </span></span></code></pre></div><p>The result was the most surprising plot of the whole project:</p>
 <p style="text-align:center;">
     <a href="/images/blog/esp32-sbv1-husky/voltage-curve.png">
@@ -707,7 +685,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

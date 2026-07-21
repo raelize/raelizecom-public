@@ -69,7 +69,7 @@
 	<!-- RSS feed discovery -->
 	
 
-	<meta name="generator" content="Hugo 0.164.0">
+	<meta name="generator" content="Hugo 0.145.0">
 
 	<!-- plugins -->
 	
@@ -194,7 +194,7 @@
 <h2 id="test-application">Test application</h2>
 <p>The first thing we had to find out is how to communicate with the hardware AES engine of the ESP32 chip. Conveniently, the ESP32 chip includes a built-in ROM API to decrease the complexity of interfacing with its hardware features, including the hardware AES engine. We simply used this ROM API in order to set the key and perform an encryption with the AES engine. We use a standard GPIO pin to determine where exactly this ROM API call is executed and to align our measurement with the oscilloscope. A simplified snippet of our test application is shown below.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>    ...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">case</span> <span style="color:#f1fa8c">&#39;K&#39;</span><span style="color:#ff79c6">:</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">ets_aes_setkey_enc</span>(key, AES128);
 </span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">break</span>;
@@ -293,41 +293,41 @@
 </p>
 <p>By looking at the key ranking, another output of this module, we indeed determine that not all correct key bytes rank the highest. This is a clear indication that the correlation found is not significant enough for the amount of traces analyzed.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 50000 traces
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 50000 traces
 </span></span><span style="display:flex;"><span>Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
 </span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 0, Row 0 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  26 (0x1A), confidence: 0.0266 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 0, Row 1 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 0, Row 1 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 122 (0x7A), confidence: 0.0167 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 0, Row 2 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 0, Row 2 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 142 (0x8E), confidence: 0.0169 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 0, Row 3 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 0, Row 3 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 11, candidate: 219 (0xDB), confidence: 0.0095 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 1, Row 0 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best correlation Round 0: Key: Column 1, Row 0 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  25 (0x19), confidence: 0.0233 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 1, Row 1 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 1, Row 1 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 206 (0xCE), confidence: 0.0137 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 1, Row 2 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best correlation Round 0: Key: Column 1, Row 2 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 119 (0x77), confidence: 0.0188 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 1, Row 3 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 1, Row 3 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  93 (0x5D), confidence: 0.0134 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 2, Row 0 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 2, Row 0 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0198 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 2, Row 1 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 2, Row 1 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  57 (0x39), confidence: 0.0181 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 2, Row 2 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 2, Row 2 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0241 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 2, Row 3 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 2, Row 3 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 164 (0xA4), confidence: 0.0184 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 3, Row 0 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 3, Row 0 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 15, candidate:  65 (0x41), confidence: 0.0328 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 3, Row 1 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best correlation Round 0: Key: Column 3, Row 1 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 10, candidate:  39 (0x27), confidence: 0.0123 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 3, Row 2 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best correlation Round 0: Key: Column 3, Row 2 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 10, candidate:  33 (0x21), confidence: 0.0115 at position: 399
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 3, Row 3 in the range 399 till 400:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best correlation Round 0: Key: Column 3, Row 3 in the range 399 till 400:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 186 (0xBA), confidence: 0.0131 at position: 399
-</span></span></span><span style="display:flex;"><span>Best global key rank estimate in the range 399 till 400 (entropy): 41.24538723481172
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best global key rank estimate in the range 399 till 400 (entropy): 41.24538723481172
 </span></span></code></pre></div></small>
 <p>When this module is re-run using 200,000 traces, we are able to recover the key entirely. Interestingly, the leakage in fragment 12 (i.e., sample 402) seems more significant than in other fragments. The plot for fragment 12 shows that all key bytes actually already converge to 0 after 140,000 traces.</p>
 <p style="text-align:center;">
@@ -336,41 +336,41 @@
 </p>
 <p>By analyzing the key ranking, we see that this time all key bytes rank the highest. This is a clear indication that the correlation found is now significant enough to extract the entire key.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 200000 traces
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 200000 traces
 </span></span><span style="display:flex;"><span>Analysing Round 0 (round key: 1a7a8edb19ce775d413941a4412721ba)
 </span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 0, Row 0 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  26 (0x1A), confidence: 0.0150 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 0, Row 1 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 122 (0x7A), confidence: 0.0137 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 0, Row 2 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 142 (0x8E), confidence: 0.0234 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 0, Row 3 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 219 (0xDB), confidence: 0.0168 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 1, Row 0 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  25 (0x19), confidence: 0.0172 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 1, Row 1 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 206 (0xCE), confidence: 0.0096 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 1, Row 2 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 119 (0x77), confidence: 0.0195 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 1, Row 3 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  93 (0x5D), confidence: 0.0186 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 2, Row 0 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0184 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 2, Row 1 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  57 (0x39), confidence: 0.0163 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 2, Row 2 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0167 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 2, Row 3 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 164 (0xA4), confidence: 0.0180 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 3, Row 0 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0284 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 3, Row 1 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  39 (0x27), confidence: 0.0135 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 3, Row 2 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  33 (0x21), confidence: 0.0130 at position: 402
-</span></span></span><span style="display:flex;"><span>Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best correlation Round 0: Key: Column 3, Row 3 in the range 402 till 403:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 186 (0xBA), confidence: 0.0174 at position: 402
-</span></span></span><span style="display:flex;"><span>Best global key rank estimate in the range 402 till 403 (entropy): 0.0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best global key rank estimate in the range 402 till 403 (entropy): 0.0
 </span></span></code></pre></div></small>
 <p>We can now use the information obtained from the known key analysis to perform our attack where we aim to extract an unknown key.</p>
 <h2 id="first-order-analysis">First Order Analysis</h2>
@@ -381,88 +381,88 @@
 </p>
 <p>The output of this module after 50,000 traces is shown below. We already know from the known key analysis that the intermediate correlation, with this amount of traces, is not significant enough for extracting the entire key. Interestingly, we were still able to extract the key by brute forcing the incorrect key byte guesses.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 50000 traces
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 50000 traces
 </span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 0 with rdm: 3.3968:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  26 (0x1A), confidence: 0.0253 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  16 (0x10), confidence: 0.0148 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  16 (0x10), confidence: 0.0148 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 235 (0xEB), confidence: 0.0117 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  46 (0x2E), confidence: 0.0115 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 1 with rdm: 1.7616:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 0, Row 1 with rdm: 1.7616:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 122 (0x7A), confidence: 0.0191 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 246 (0xF6), confidence: 0.0138 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 246 (0xF6), confidence: 0.0138 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 108 (0x6C), confidence: 0.0123 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 147 (0x93), confidence: 0.0123 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 2 with rdm: 2.5288:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 0, Row 2 with rdm: 2.5288:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 142 (0x8E), confidence: 0.0203 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  87 (0x57), confidence: 0.0131 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  87 (0x57), confidence: 0.0131 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 129 (0x81), confidence: 0.0123 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 192 (0xC0), confidence: 0.0117 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 3 with rdm: 0.0746:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 0, Row 3 with rdm: 0.0746:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 1, candidate: 248 (0xF8), confidence: 0.0124 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 220 (0xDC), confidence: 0.0122 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  17 (0x11), confidence: 0.0117 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 4, candidate: 219 (0xDB), confidence: 0.0113 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 0 with rdm: 0.0749:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span><span style="color:#50fa7b;font-weight:bold">+ rank: 4, candidate: 219 (0xDB), confidence: 0.0113 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span>Best score for Round 0: Key: Column 1, Row 0 with rdm: 0.0749:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 1, candidate: 194 (0xC2), confidence: 0.0159 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 2, candidate:  25 (0x19), confidence: 0.0156 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  63 (0x3F), confidence: 0.0136 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span><span style="color:#50fa7b;font-weight:bold">+ rank: 2, candidate:  25 (0x19), confidence: 0.0156 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 3, candidate:  63 (0x3F), confidence: 0.0136 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 118 (0x76), confidence: 0.0121 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 1 with rdm: 0.5460:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 1 with rdm: 0.5460:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 1, candidate: 220 (0xDC), confidence: 0.0159 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  13 (0x0D), confidence: 0.0141 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 114 (0x72), confidence: 0.0137 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 241 (0xF1), confidence: 0.0132 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 2 with rdm: 1.7964:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 2 with rdm: 1.7964:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 119 (0x77), confidence: 0.0190 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 150 (0x96), confidence: 0.0132 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 150 (0x96), confidence: 0.0132 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  56 (0x38), confidence: 0.0126 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 104 (0x68), confidence: 0.0125 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 3 with rdm: 0.4219:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 3 with rdm: 0.4219:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  93 (0x5D), confidence: 0.0135 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  27 (0x1B), confidence: 0.0123 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  27 (0x1B), confidence: 0.0123 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 244 (0xF4), confidence: 0.0120 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 157 (0x9D), confidence: 0.0111 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 0 with rdm: 0.9682:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 0 with rdm: 0.9682:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0200 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 248 (0xF8), confidence: 0.0163 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 248 (0xF8), confidence: 0.0163 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 252 (0xFC), confidence: 0.0144 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  18 (0x12), confidence: 0.0143 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 1 with rdm: 1.6868:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 1 with rdm: 1.6868:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  57 (0x39), confidence: 0.0205 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  67 (0x43), confidence: 0.0146 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  67 (0x43), confidence: 0.0146 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  93 (0x5D), confidence: 0.0141 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 177 (0xB1), confidence: 0.0135 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 2 with rdm: 1.1896:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 2 with rdm: 1.1896:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0257 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  72 (0x48), confidence: 0.0202 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  72 (0x48), confidence: 0.0202 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 239 (0xEF), confidence: 0.0199 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 180 (0xB4), confidence: 0.0184 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 3 with rdm: 1.8430:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 3 with rdm: 1.8430:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 164 (0xA4), confidence: 0.0202 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 208 (0xD0), confidence: 0.0140 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 208 (0xD0), confidence: 0.0140 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 109 (0x6D), confidence: 0.0138 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 152 (0x98), confidence: 0.0132 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 0 with rdm: 0.5792:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 0 with rdm: 0.5792:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 1, candidate:  55 (0x37), confidence: 0.0318 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 230 (0xE6), confidence: 0.0284 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  72 (0x48), confidence: 0.0280 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 202 (0xCA), confidence: 0.0270 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 1 with rdm: 1.0305:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 1 with rdm: 1.0305:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  39 (0x27), confidence: 0.0142 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:   2 (0x02), confidence: 0.0115 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:   2 (0x02), confidence: 0.0115 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 103 (0x67), confidence: 0.0108 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  79 (0x4F), confidence: 0.0101 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 2 with rdm: 1.7148:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 2 with rdm: 1.7148:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 1, candidate: 121 (0x79), confidence: 0.0239 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 222 (0xDE), confidence: 0.0168 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 173 (0xAD), confidence: 0.0168 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:   3 (0x03), confidence: 0.0167 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 3 with rdm: 0.2780:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 3 with rdm: 0.2780:
 </span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 1, candidate: 120 (0x78), confidence: 0.0167 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 2, candidate: 186 (0xBA), confidence: 0.0157 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 240 (0xF0), confidence: 0.0150 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span><span style="color:#50fa7b;font-weight:bold">+ rank: 2, candidate: 186 (0xBA), confidence: 0.0157 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 3, candidate: 240 (0xF0), confidence: 0.0150 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  47 (0x2F), confidence: 0.0137 at position: 402
-</span></span></span><span style="display:flex;"><span>Unverified key: (0x1a7a8ef8c2dc775d413941a437277978)
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Unverified key: (0x1a7a8ef8c2dc775d413941a437277978)
 </span></span><span style="display:flex;"><span>Preparing for key enumeration (SKEA)
 </span></span><span style="display:flex;"><span>Press abort to stop searching
 </span></span><span style="display:flex;"><span>Starting SKEA algorithm to a maximum of 30 bits
@@ -480,88 +480,88 @@
 </span></span></code></pre></div></small>
 <p>The output of the module for 200,000 traces is shown below.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 200000 traces
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 200000 traces
 </span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 0 with rdm: 3.1367:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  26 (0x1A), confidence: 0.0150 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 242 (0xF2), confidence: 0.0089 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 242 (0xF2), confidence: 0.0089 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 158 (0x9E), confidence: 0.0074 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 115 (0x73), confidence: 0.0071 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 1 with rdm: 3.0664:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 0, Row 1 with rdm: 3.0664:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 122 (0x7A), confidence: 0.0137 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  61 (0x3D), confidence: 0.0080 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  61 (0x3D), confidence: 0.0080 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 103 (0x67), confidence: 0.0080 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 133 (0x85), confidence: 0.0073 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 2 with rdm: 7.2396:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 0, Row 2 with rdm: 7.2396:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 142 (0x8E), confidence: 0.0234 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 133 (0x85), confidence: 0.0076 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 133 (0x85), confidence: 0.0076 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 219 (0xDB), confidence: 0.0073 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  97 (0x61), confidence: 0.0073 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 3 with rdm: 3.8561:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 0, Row 3 with rdm: 3.8561:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 219 (0xDB), confidence: 0.0168 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  17 (0x11), confidence: 0.0094 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  17 (0x11), confidence: 0.0094 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 135 (0x87), confidence: 0.0089 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 117 (0x75), confidence: 0.0077 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 0 with rdm: 3.1664:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 0 with rdm: 3.1664:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  25 (0x19), confidence: 0.0172 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  83 (0x53), confidence: 0.0099 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  83 (0x53), confidence: 0.0099 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 176 (0xB0), confidence: 0.0096 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 194 (0xC2), confidence: 0.0094 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 1 with rdm: 1.3449:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 1 with rdm: 1.3449:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 206 (0xCE), confidence: 0.0096 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  10 (0x0A), confidence: 0.0073 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  10 (0x0A), confidence: 0.0073 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 100 (0x64), confidence: 0.0070 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  92 (0x5C), confidence: 0.0067 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 2 with rdm: 3.8297:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 2 with rdm: 3.8297:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 119 (0x77), confidence: 0.0195 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  48 (0x30), confidence: 0.0105 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  48 (0x30), confidence: 0.0105 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  92 (0x5C), confidence: 0.0086 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  73 (0x49), confidence: 0.0083 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 3 with rdm: 3.2113:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 3 with rdm: 3.2113:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  93 (0x5D), confidence: 0.0186 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 244 (0xF4), confidence: 0.0113 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 244 (0xF4), confidence: 0.0113 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  73 (0x49), confidence: 0.0098 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 196 (0xC4), confidence: 0.0098 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 0 with rdm: 3.1708:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 0 with rdm: 3.1708:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0184 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:   9 (0x09), confidence: 0.0102 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:   9 (0x09), confidence: 0.0102 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 216 (0xD8), confidence: 0.0098 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 250 (0xFA), confidence: 0.0092 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- Best score for Round 0: Key: Column 2, Row 1 with rdm: 2.2755:
-</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  57 (0x39), confidence: 0.0163 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  70 (0x46), confidence: 0.0104 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  57 (0x39), confidence: 0.0163 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  70 (0x46), confidence: 0.0104 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  91 (0x5B), confidence: 0.0101 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 120 (0x78), confidence: 0.0100 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 2 with rdm: 1.2491:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 2 with rdm: 1.2491:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0167 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  67 (0x43), confidence: 0.0132 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  67 (0x43), confidence: 0.0132 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 244 (0xF4), confidence: 0.0116 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  96 (0x60), confidence: 0.0113 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 3 with rdm: 1.9663:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 3 with rdm: 1.9663:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 164 (0xA4), confidence: 0.0180 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 244 (0xF4), confidence: 0.0130 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 244 (0xF4), confidence: 0.0130 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 208 (0xD0), confidence: 0.0101 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  27 (0x1B), confidence: 0.0101 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 0 with rdm: 0.8957:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 0 with rdm: 0.8957:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0284 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 142 (0x8E), confidence: 0.0243 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 142 (0x8E), confidence: 0.0243 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  19 (0x13), confidence: 0.0234 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 140 (0x8C), confidence: 0.0234 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 1 with rdm: 3.3628:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 1 with rdm: 3.3628:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  39 (0x27), confidence: 0.0135 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 239 (0xEF), confidence: 0.0079 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 239 (0xEF), confidence: 0.0079 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 209 (0xD1), confidence: 0.0070 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 184 (0xB8), confidence: 0.0067 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 2 with rdm: 0.1975:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 2 with rdm: 0.1975:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  33 (0x21), confidence: 0.0130 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 111 (0x6F), confidence: 0.0125 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 111 (0x6F), confidence: 0.0125 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 114 (0x72), confidence: 0.0122 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 141 (0x8D), confidence: 0.0108 at position: 402
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 3 with rdm: 1.6783:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 3 with rdm: 1.6783:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 186 (0xBA), confidence: 0.0174 at position: 402
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 105 (0x69), confidence: 0.0125 at position: 402
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 105 (0x69), confidence: 0.0125 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 212 (0xD4), confidence: 0.0114 at position: 402
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 244 (0xF4), confidence: 0.0110 at position: 402
-</span></span></span><span style="display:flex;"><span>Unverified key: (0x1a7a8edb19ce775d413941a4412721ba)
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Unverified key: (0x1a7a8edb19ce775d413941a4412721ba)
 </span></span><span style="display:flex;"><span>Process finished after evaluating 1.00 key candidates
 </span></span><span style="display:flex;"><span>Correct key found: 1a7a8edb19ce775d413941a4412721ba
 </span></span></code></pre></div></small>
@@ -576,7 +576,7 @@
 <p>As we are randomizing the data for each encryption, we need to generate the input data for the encryption operation executed on the device. This is typically done offline (i.e., on our workstation), but this requires sending input data for each iteration of the encryption operation. This slows down the acquisition significantly, hence we benefit of measuring multiple cryptographic operation in a single communication cycle.</p>
 <p>Therefore, we decided to use the hardware SHA1 accelerator present on the target to deterministically derive semi-random inputs, out of a randomized seed received from our workstation. We could also leverage another cryptographic engine, even the AES engine itself, to accomplish the same, likely even faster. The modified encryption loop on the ESP32 chip is shown below.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>    ...
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>    iterations <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">20000</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> iterations; i<span style="color:#ff79c6">++</span>) {
 </span></span><span style="display:flex;"><span>        <span style="color:#50fa7b">ets_sha_init</span>(<span style="color:#ff79c6">&amp;</span>ctx);
@@ -592,95 +592,95 @@
 <p>Using this approach, we are able to acquire 200,000 measurements, an amount sufficient to recover the entire key without brute forcing, in only ~16 seconds.</p>
 <p>The traces processing performed with Riscure&rsquo;s Inspector allows us to successfully recover the key in ~1 minute, as is shown below.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 200000 traces
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>Results after 200000 traces
 </span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 0 with rdm: 2.6537:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  26 (0x1A), confidence: 0.0136 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  94 (0x5E), confidence: 0.0085 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  94 (0x5E), confidence: 0.0085 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  69 (0x45), confidence: 0.0081 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  47 (0x2F), confidence: 0.0078 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 1 with rdm: 3.9071:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 0, Row 1 with rdm: 3.9071:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 122 (0x7A), confidence: 0.0187 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  69 (0x45), confidence: 0.0100 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  69 (0x45), confidence: 0.0100 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 108 (0x6C), confidence: 0.0092 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 221 (0xDD), confidence: 0.0088 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 2 with rdm: 5.8470:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 0, Row 2 with rdm: 5.8470:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 142 (0x8E), confidence: 0.0218 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  12 (0x0C), confidence: 0.0092 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  12 (0x0C), confidence: 0.0092 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 152 (0x98), confidence: 0.0083 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  97 (0x61), confidence: 0.0080 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 0, Row 3 with rdm: 1.3096:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 0, Row 3 with rdm: 1.3096:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 219 (0xDB), confidence: 0.0117 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 240 (0xF0), confidence: 0.0091 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 240 (0xF0), confidence: 0.0091 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 148 (0x94), confidence: 0.0088 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 223 (0xDF), confidence: 0.0085 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 0 with rdm: 3.1125:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 0 with rdm: 3.1125:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  25 (0x19), confidence: 0.0182 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  94 (0x5E), confidence: 0.0106 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  94 (0x5E), confidence: 0.0106 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 194 (0xC2), confidence: 0.0101 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 148 (0x94), confidence: 0.0099 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 1 with rdm: 3.2461:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 1 with rdm: 3.2461:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 206 (0xCE), confidence: 0.0125 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 164 (0xA4), confidence: 0.0070 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 164 (0xA4), confidence: 0.0070 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  76 (0x4C), confidence: 0.0069 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 111 (0x6F), confidence: 0.0064 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 2 with rdm: 1.3049:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 2 with rdm: 1.3049:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 119 (0x77), confidence: 0.0158 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  72 (0x48), confidence: 0.0126 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  72 (0x48), confidence: 0.0126 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  94 (0x5E), confidence: 0.0115 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 124 (0x7C), confidence: 0.0099 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 1, Row 3 with rdm: 4.7617:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 1, Row 3 with rdm: 4.7617:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  93 (0x5D), confidence: 0.0222 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 134 (0x86), confidence: 0.0108 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 134 (0x86), confidence: 0.0108 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate:  47 (0x2F), confidence: 0.0090 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  57 (0x39), confidence: 0.0089 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 0 with rdm: 2.0899:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 0 with rdm: 2.0899:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0159 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 244 (0xF4), confidence: 0.0106 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 244 (0xF4), confidence: 0.0106 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 180 (0xB4), confidence: 0.0102 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  75 (0x4B), confidence: 0.0095 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 1 with rdm: 2.3057:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 1 with rdm: 2.3057:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  57 (0x39), confidence: 0.0162 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 228 (0xE4), confidence: 0.0112 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 228 (0xE4), confidence: 0.0112 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 194 (0xC2), confidence: 0.0092 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 110 (0x6E), confidence: 0.0085 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 2 with rdm: 2.0476:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 2 with rdm: 2.0476:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0168 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  25 (0x19), confidence: 0.0111 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  25 (0x19), confidence: 0.0111 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 116 (0x74), confidence: 0.0110 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 126 (0x7E), confidence: 0.0109 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 2, Row 3 with rdm: 2.2039:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 2, Row 3 with rdm: 2.2039:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 164 (0xA4), confidence: 0.0153 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 179 (0xB3), confidence: 0.0101 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 179 (0xB3), confidence: 0.0101 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 118 (0x76), confidence: 0.0095 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 247 (0xF7), confidence: 0.0094 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 0 with rdm: 0.4566:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 0 with rdm: 0.4566:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  65 (0x41), confidence: 0.0276 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 245 (0xF5), confidence: 0.0254 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 245 (0xF5), confidence: 0.0254 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 115 (0x73), confidence: 0.0248 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  78 (0x4E), confidence: 0.0247 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 1 with rdm: 1.8494:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 1 with rdm: 1.8494:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  39 (0x27), confidence: 0.0156 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate:  82 (0x52), confidence: 0.0115 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate:  82 (0x52), confidence: 0.0115 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 203 (0xCB), confidence: 0.0107 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  44 (0x2C), confidence: 0.0097 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 2 with rdm: 1.9529:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 2 with rdm: 1.9529:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate:  33 (0x21), confidence: 0.0175 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 102 (0x66), confidence: 0.0127 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 102 (0x66), confidence: 0.0127 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 134 (0x86), confidence: 0.0123 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate:  91 (0x5B), confidence: 0.0103 at position: 0
-</span></span></span><span style="display:flex;"><span>Best score for Round 0: Key: Column 3, Row 3 with rdm: 0.6008:
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Best score for Round 0: Key: Column 3, Row 3 with rdm: 0.6008:
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank: 1, candidate: 186 (0xBA), confidence: 0.0161 at position: 0
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 2, candidate: 246 (0xF6), confidence: 0.0142 at position: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank: 2, candidate: 246 (0xF6), confidence: 0.0142 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 3, candidate: 111 (0x6F), confidence: 0.0136 at position: 0
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank: 4, candidate: 105 (0x69), confidence: 0.0131 at position: 0
-</span></span></span><span style="display:flex;"><span>Unverified key: (0x1a7a8edb19ce775d413941a4412721ba)
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Unverified key: (0x1a7a8edb19ce775d413941a4412721ba)
 </span></span><span style="display:flex;"><span>Process finished after evaluating 1.00 key candidates
 </span></span><span style="display:flex;"><span>Correct key found: 1a7a8edb19ce775d413941a4412721ba
 </span></span><span style="display:flex;"><span>Runtime (s): 56.6904158
 </span></span></code></pre></div></small>
 <p>We can speed up the attack phase by using <a href="https://github.com/Riscure/Jlsca">Jlsca</a>, a SCA toolkit made by <a href="https://github.com/ceesb">ceesb</a> and available on <a href="https://github.com/Riscure">Riscure&rsquo;s GitHub repository</a>. The script we used to extract the entire key is shown below.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#ff79c6">using</span> Jlsca<span style="color:#ff79c6">.</span>Sca
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#ff79c6">using</span> Jlsca<span style="color:#ff79c6">.</span>Sca
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">using</span> Jlsca<span style="color:#ff79c6">.</span>Trs
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">using</span> Jlsca<span style="color:#ff79c6">.</span>Aes
 </span></span><span style="display:flex;"><span>
@@ -696,7 +696,7 @@
 </span></span></code></pre></div></small>
 <p>Using the above script, of which the output is shown below, we were able to extract the entire key in less than 10 seconds, without any brute forcing.</p>
 <small>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>julia attack.jl
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span>julia attack.jl
 </span></span><span style="display:flex;"><span>Opened ESP32-HW-AES-SINGLE-SAMPLE-200k.trs
 </span></span><span style="display:flex;"><span>#traces 200000, #samples 1 (Float32), #data 32
 </span></span><span style="display:flex;"><span>
@@ -721,101 +721,101 @@
 </span></span><span style="display:flex;"><span>Incremental CPA on range 1:1 produced (1, 4096) correlation matrix
 </span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 1, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x1a, score: 0.013637 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0x5e, score: 0.008511 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0x5e, score: 0.008511 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x45, score: 0.008067 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x2f, score: 0.007813 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x0c, score: 0.007084 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 2, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 2, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x7a, score: 0.018708 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0x45, score: 0.010001 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0x45, score: 0.010001 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x6c, score: 0.009226 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0xdd, score: 0.008752 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x67, score: 0.008268 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 3, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 3, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x8e, score: 0.021768 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0x0c, score: 0.009159 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0x0c, score: 0.009159 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x98, score: 0.008293 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x61, score: 0.008021 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x8c, score: 0.007858 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 4, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 4, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0xdb, score: 0.011662 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0xf0, score: 0.009129 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0xf0, score: 0.009129 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x94, score: 0.008829 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0xdf, score: 0.008490 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0xf4, score: 0.007312 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 5, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 5, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x19, score: 0.018190 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0x5e, score: 0.010612 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0x5e, score: 0.010612 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0xc2, score: 0.010127 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x94, score: 0.009853 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0xe3, score: 0.009075 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 6, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 6, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0xce, score: 0.012541 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0xa4, score: 0.006998 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0xa4, score: 0.006998 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x4c, score: 0.006910 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x6f, score: 0.006442 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x3d, score: 0.006071 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 7, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 7, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x77, score: 0.015756 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0x48, score: 0.012625 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0x48, score: 0.012625 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x5e, score: 0.011476 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x7c, score: 0.009862 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x54, score: 0.009093 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 8, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 8, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x5d, score: 0.022229 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0x86, score: 0.010802 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0x86, score: 0.010802 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x2f, score: 0.009040 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x39, score: 0.008853 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x59, score: 0.008491 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 9, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 9, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x41, score: 0.015887 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0xf4, score: 0.010560 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0xf4, score: 0.010560 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0xb4, score: 0.010201 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x4b, score: 0.009462 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x2d, score: 0.009280 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 10, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 10, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x39, score: 0.016188 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0xe4, score: 0.011168 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0xe4, score: 0.011168 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0xc2, score: 0.009159 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x6e, score: 0.008456 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x07, score: 0.008258 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 11, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 11, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x41, score: 0.016778 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0x19, score: 0.011101 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0x19, score: 0.011101 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x74, score: 0.010976 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x7e, score: 0.010926 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0xe2, score: 0.010595 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 12, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 12, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0xa4, score: 0.015283 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0xb3, score: 0.010129 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0xb3, score: 0.010129 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x76, score: 0.009530 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0xf7, score: 0.009418 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x15, score: 0.009243 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 13, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 13, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x41, score: 0.027563 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0xf5, score: 0.025414 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0xf5, score: 0.025414 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x73, score: 0.024782 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x4e, score: 0.024713 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0xb5, score: 0.024684 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 14, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 14, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x27, score: 0.015643 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0x52, score: 0.011513 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0x52, score: 0.011513 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0xcb, score: 0.010737 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x2c, score: 0.009734 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x69, score: 0.009411 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 15, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 15, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0x21, score: 0.017519 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0x66, score: 0.012684 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0x66, score: 0.012684 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x86, score: 0.012334 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x5b, score: 0.010321 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x8f, score: 0.010318 @ 1
-</span></span></span><span style="display:flex;"><span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 16, phase: 1, ...
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>Results @ 200000 rows, 1 cols (200000 rows consumed) target: 16, phase: 1, ...
 </span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold">+ rank:   1, candidate: 0xba, score: 0.016071 @ 1
-</span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   2, candidate: 0xf6, score: 0.014246 @ 1
+</span></span></span><span style="display:flex;"><span><span style="color:#50fa7b;font-weight:bold"></span><span style="color:#f55">- rank:   2, candidate: 0xf6, score: 0.014246 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   3, candidate: 0x6f, score: 0.013595 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   4, candidate: 0x69, score: 0.013145 @ 1
 </span></span></span><span style="display:flex;"><span><span style="color:#f55">- rank:   5, candidate: 0x2b, score: 0.012718 @ 1
-</span></span></span><span style="display:flex;"><span>recovered key material: 1a7a8edb19ce775d413941a4412721ba
+</span></span></span><span style="display:flex;"><span><span style="color:#f55"></span>recovered key material: 1a7a8edb19ce775d413941a4412721ba
 </span></span><span style="display:flex;"><span>recovered key: 1a7a8edb19ce775d413941a4412721ba
 </span></span><span style="display:flex;"><span>Runtime (s): 8.682181 seconds (43.60 M allocations: 1.897 GiB, ...)
 </span></span></code></pre></div></small>
@@ -913,7 +913,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

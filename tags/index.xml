@@ -1,129 +1,124 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Tags on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</title>
-		<link>https://raelize.com/tags/</link>
-		<description>Recent content in Tags on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-		
-			<lastBuildDate>Tue, 19 May 2026 09:00:00 +0200</lastBuildDate>
-		
-			<atom:link href="https://raelize.com/tags/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>Claude-Code</title>
-				<link>https://raelize.com/tags/claude-code/</link>
-				<pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/claude-code/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>EMFI</title>
-				<link>https://raelize.com/tags/emfi/</link>
-				<pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/emfi/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Fault Injection</title>
-				<link>https://raelize.com/tags/fault-injection/</link>
-				<pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/fault-injection/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Google</title>
-				<link>https://raelize.com/tags/google/</link>
-				<pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/google/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Inspector</title>
-				<link>https://raelize.com/tags/inspector/</link>
-				<pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/inspector/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Keysight</title>
-				<link>https://raelize.com/tags/keysight/</link>
-				<pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/keysight/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>TV Streamer 4K</title>
-				<link>https://raelize.com/tags/tv-streamer-4k/</link>
-				<pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/tv-streamer-4k/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Android</title>
-				<link>https://raelize.com/tags/android/</link>
-				<pubDate>Sun, 17 May 2026 23:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/android/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Mediatek</title>
-				<link>https://raelize.com/tags/mediatek/</link>
-				<pubDate>Sun, 17 May 2026 23:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/mediatek/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>MT8696</title>
-				<link>https://raelize.com/tags/mt8696/</link>
-				<pubDate>Sun, 17 May 2026 23:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/mt8696/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Setresuid</title>
-				<link>https://raelize.com/tags/setresuid/</link>
-				<pubDate>Sun, 17 May 2026 23:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/setresuid/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Ai</title>
-				<link>https://raelize.com/tags/ai/</link>
-				<pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/ai/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Chipwhisperer-Husky</title>
-				<link>https://raelize.com/tags/chipwhisperer-husky/</link>
-				<pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/chipwhisperer-husky/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Esp32</title>
-				<link>https://raelize.com/tags/esp32/</link>
-				<pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/esp32/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Secure-Boot</title>
-				<link>https://raelize.com/tags/secure-boot/</link>
-				<pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/secure-boot/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Voltage-Glitching</title>
-				<link>https://raelize.com/tags/voltage-glitching/</link>
-				<pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
-				<guid>https://raelize.com/tags/voltage-glitching/</guid>
-				<description></description>
-			</item>
-	</channel>
+  <channel>
+    <title>Tags on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</title>
+    <link>https://raelize.com/tags/</link>
+    <description>Recent content in Tags on Raelize - Embedded Device Security Testing, Consultancy &amp; Training</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 19 May 2026 09:00:00 +0200</lastBuildDate>
+    <atom:link href="https://raelize.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Claude Code</title>
+      <link>https://raelize.com/tags/claude-code/</link>
+      <pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/claude-code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>EMFI</title>
+      <link>https://raelize.com/tags/emfi/</link>
+      <pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/emfi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fault Injection</title>
+      <link>https://raelize.com/tags/fault-injection/</link>
+      <pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/fault-injection/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Google</title>
+      <link>https://raelize.com/tags/google/</link>
+      <pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/google/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Inspector</title>
+      <link>https://raelize.com/tags/inspector/</link>
+      <pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/inspector/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Keysight</title>
+      <link>https://raelize.com/tags/keysight/</link>
+      <pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/keysight/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>TV Streamer 4K</title>
+      <link>https://raelize.com/tags/tv-streamer-4k/</link>
+      <pubDate>Tue, 19 May 2026 09:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/tv-streamer-4k/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Android</title>
+      <link>https://raelize.com/tags/android/</link>
+      <pubDate>Sun, 17 May 2026 23:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/android/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mediatek</title>
+      <link>https://raelize.com/tags/mediatek/</link>
+      <pubDate>Sun, 17 May 2026 23:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/mediatek/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>MT8696</title>
+      <link>https://raelize.com/tags/mt8696/</link>
+      <pubDate>Sun, 17 May 2026 23:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/mt8696/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Setresuid</title>
+      <link>https://raelize.com/tags/setresuid/</link>
+      <pubDate>Sun, 17 May 2026 23:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/setresuid/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ai</title>
+      <link>https://raelize.com/tags/ai/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/ai/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Chipwhisperer-Husky</title>
+      <link>https://raelize.com/tags/chipwhisperer-husky/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/chipwhisperer-husky/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Esp32</title>
+      <link>https://raelize.com/tags/esp32/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/esp32/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Secure-Boot</title>
+      <link>https://raelize.com/tags/secure-boot/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/secure-boot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Voltage-Glitching</title>
+      <link>https://raelize.com/tags/voltage-glitching/</link>
+      <pubDate>Sun, 10 May 2026 15:00:00 +0200</pubDate>
+      <guid>https://raelize.com/tags/voltage-glitching/</guid>
+      <description></description>
+    </item>
+  </channel>
 </rss>
